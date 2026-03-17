@@ -1,100 +1,100 @@
 # CLAUDE.md
 
-## Project Overview
+## Ringkasan Proyek
 
-**Al-Qomar Muthmainnah School Website** — a static single-page website for an Islamic educational institution (Yayasan Pendidikan Islam Purnama Cendekia / YPIPC) located in Jakarta Barat, Indonesia. The school operates across four education levels: KB (preschool), TKIT (kindergarten), SDIT (elementary), and SMPIT (junior high).
+**Website Sekolah Al-Qomar Muthmainnah** — website statis satu halaman untuk lembaga pendidikan Islam di bawah naungan Yayasan Pendidikan Islam Purnama Cendekia (YPIPC), berlokasi di Jakarta Barat, Indonesia. Sekolah ini beroperasi di empat jenjang pendidikan: KB (Kelompok Bermain), TKIT (Taman Kanak-Kanak Islam Terpadu), SDIT (Sekolah Dasar Islam Terpadu), dan SMPIT (Sekolah Menengah Pertama Islam Terpadu).
 
-- **Domain**: alqomar.sch.id (configured via `CNAME`)
+- **Domain**: alqomar.sch.id (dikonfigurasi melalui file `CNAME`)
 - **Hosting**: Netlify / GitHub Pages
-- **Language**: Indonesian (Bahasa Indonesia)
+- **Bahasa konten**: Bahasa Indonesia
 
-## Repository Structure
+## Struktur Repositori
 
 ```
 alqomar-muthmainnah/
-├── index.html    # Complete single-page website (HTML + CSS + JS, ~2100 lines)
-└── CNAME         # Custom domain mapping (alqomar.sch.id)
+├── index.html    # Website satu halaman lengkap (HTML + CSS + JS, ~2100 baris)
+└── CNAME         # Pemetaan domain kustom (alqomar.sch.id)
 ```
 
-This is a **single-file static site** with no build system, package manager, or framework. All CSS and JavaScript are embedded inline within `index.html`.
+Ini adalah **situs statis satu file** tanpa build system, package manager, atau framework. Semua CSS dan JavaScript ditulis secara inline di dalam `index.html`.
 
-## Technology Stack
+## Teknologi yang Digunakan
 
-- **HTML5** — semantic markup with responsive design
-- **CSS3** — embedded styles using CSS custom properties, flexbox, and grid
-- **Vanilla JavaScript** — no frameworks or libraries
+- **HTML5** — markup semantik dengan desain responsif
+- **CSS3** — gaya tertanam menggunakan CSS custom properties, flexbox, dan grid
+- **Vanilla JavaScript** — tanpa framework atau library eksternal
 - **Google Fonts** — Plus Jakarta Sans, Amiri, Playfair Display
-- **External embeds** — Google Maps, YouTube videos
+- **Embed eksternal** — Google Maps, video YouTube
 
-## Key CSS Variables (Design System)
+## Variabel CSS (Sistem Desain)
 
-| Variable | Value | Usage |
-|----------|-------|-------|
-| `--h`, `--h2`, `--h3` | `#1a5c38`, `#1e6e42`, `#2a8a54` | Primary green tones |
-| `--e`, `--e2` | `#c8922a`, `#e0a832` | Accent gold tones |
-| `--kr` | `#faf7f2` | Cream background |
+| Variabel | Nilai | Kegunaan |
+|----------|-------|----------|
+| `--h`, `--h2`, `--h3` | `#1a5c38`, `#1e6e42`, `#2a8a54` | Warna hijau utama |
+| `--e`, `--e2` | `#c8922a`, `#e0a832` | Warna emas aksen |
+| `--kr` | `#faf7f2` | Latar belakang krem |
 
-## Page Sections (in order)
+## Bagian-Bagian Halaman (berurutan)
 
-1. **Top bar** — ticker announcements + social links
-2. **Navigation** — sticky navbar with dropdown menus + mobile hamburger
-3. **Hero slider** — 4-slide carousel with auto-rotation (5.5s)
-4. **Widget row** — statistics/info cards
-5. **Kenapa** — "Why choose us" (3-column grid)
-6. **Jenjang** — education levels showcase (4 columns)
-7. **Fasilitas** — facilities (4-column grid)
-8. **Visi & Misi** — vision and mission cards
-9. **Prestasi** — achievements/statistics (4 columns)
-10. **Berita** — news/articles (3-column grid)
-11. **Video** — main player + sidebar
-12. **Galeri** — photo gallery
-13. **PPDB** — student admission registration banner
-14. **Kontak** — contact info + embedded Google Maps
-15. **Legalitas** — accreditation display
-16. **Footer** — navigation, contact, social links
-17. **Floating WhatsApp button**
+1. **Top bar** — ticker pengumuman + tautan media sosial
+2. **Navigasi** — navbar sticky dengan menu dropdown + hamburger menu untuk mobile
+3. **Hero slider** — carousel 4 slide dengan rotasi otomatis (5,5 detik)
+4. **Widget row** — kartu statistik/informasi
+5. **Kenapa** — "Kenapa memilih kami" (grid 3 kolom)
+6. **Jenjang** — tampilan jenjang pendidikan (4 kolom)
+7. **Fasilitas** — fasilitas sekolah (grid 4 kolom)
+8. **Visi & Misi** — kartu visi dan misi
+9. **Prestasi** — pencapaian/statistik (4 kolom)
+10. **Berita** — artikel/berita (grid 3 kolom)
+11. **Video** — pemutar utama + sidebar
+12. **Galeri** — galeri foto
+13. **PPDB** — banner pendaftaran peserta didik baru
+14. **Kontak** — informasi kontak + Google Maps tertanam
+15. **Legalitas** — tampilan akreditasi
+16. **Footer** — navigasi, kontak, tautan sosial media
+17. **Tombol WhatsApp mengambang**
 
-## JavaScript Features
+## Fitur JavaScript
 
-- Hero slider auto-rotation and manual navigation dots
-- FAQ accordion toggle
-- Scroll-reveal animations on section entry
-- Navigation active state tracking on scroll
-- Mobile hamburger menu toggle
-- Real-time date display
+- Rotasi otomatis hero slider dan navigasi dot manual
+- Toggle akordeon FAQ
+- Animasi scroll-reveal saat masuk ke bagian tertentu
+- Pelacakan status aktif navigasi saat scroll
+- Toggle hamburger menu untuk tampilan mobile
+- Tampilan tanggal secara real-time
 
-## Development Workflow
+## Alur Pengembangan
 
-### Making Changes
+### Melakukan Perubahan
 
-1. Edit `index.html` directly — all markup, styles, and scripts are in this single file
-2. Open `index.html` in a browser to preview changes locally
-3. Commit and push to deploy
+1. Edit `index.html` secara langsung — semua markup, gaya, dan skrip ada di satu file ini
+2. Buka `index.html` di browser untuk pratinjau perubahan secara lokal
+3. Commit dan push untuk deploy
 
-### No Build Steps Required
+### Tidak Perlu Build
 
-There is no build process, transpilation, or bundling. Changes to `index.html` are deployed as-is.
+Tidak ada proses build, transpilasi, atau bundling. Perubahan pada `index.html` langsung di-deploy apa adanya.
 
-### No Tests
+### Tidak Ada Testing
 
-No test framework or test files exist. Verify changes by visual inspection in a browser.
+Tidak ada framework atau file testing. Verifikasi perubahan dilakukan melalui inspeksi visual di browser.
 
 ## Deployment
 
-The site deploys automatically via Netlify on push to the `main` branch. The `CNAME` file maps the custom domain `alqomar.sch.id`.
+Website di-deploy secara otomatis melalui Netlify saat push ke branch `main`. File `CNAME` memetakan domain kustom `alqomar.sch.id`.
 
-## Conventions
+## Konvensi
 
-- **Single-file architecture** — keep all code in `index.html` unless there is a strong reason to split
-- **CSS custom properties** — use the existing design variables for color consistency
-- **Indonesian language** — all user-facing content is in Bahasa Indonesia
-- **Responsive design** — all sections must work on mobile, tablet, and desktop
-- **No external JS dependencies** — use vanilla JavaScript only
-- **Inline styles and scripts** — CSS in `<style>` tags, JS in `<script>` tags at end of body
+- **Arsitektur satu file** — simpan semua kode di `index.html` kecuali ada alasan kuat untuk memisahkan
+- **CSS custom properties** — gunakan variabel desain yang sudah ada untuk konsistensi warna
+- **Bahasa Indonesia** — semua konten yang ditampilkan kepada pengguna dalam Bahasa Indonesia
+- **Desain responsif** — semua bagian harus berfungsi dengan baik di mobile, tablet, dan desktop
+- **Tanpa dependensi JS eksternal** — gunakan vanilla JavaScript saja
+- **Gaya dan skrip inline** — CSS di tag `<style>`, JS di tag `<script>` di akhir body
 
-## External Services
+## Layanan Eksternal
 
-- **WhatsApp**: Direct chat links for admissions
-- **Google Maps**: Embedded map for school location
-- **YouTube**: Embedded video content
-- **Social media**: Instagram, YouTube, Facebook links
+- **WhatsApp**: Tautan chat langsung untuk pendaftaran/admisi
+- **Google Maps**: Peta lokasi sekolah yang ditanamkan
+- **YouTube**: Konten video yang ditanamkan
+- **Media sosial**: Tautan ke Instagram, YouTube, Facebook
