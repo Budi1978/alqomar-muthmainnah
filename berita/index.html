@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Berita & Kegiatan — Al-Qomar Muthmainnah School</title>
+<meta name="description" content="Berita, kegiatan, prestasi, dan informasi terbaru dari Al-Qomar Muthmainnah School — KB, TKIT, SDIT, SMPIT Jakarta Barat.">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a1a;overflow-x:hidden}
+:root{
+  --h:#1a5c38;--h2:#1e6e42;--h3:#2a8a54;
+  --e:#c8922a;--e2:#e0a832;--ep:#fdf3e0;
+  --kr:#faf7f2;--kr2:#f0e9d8;
+}
+
+/* NAV */
+nav{background:#fff;box-shadow:0 2px 20px rgba(0,0,0,.08);position:sticky;top:0;z-index:200;border-bottom:3px solid var(--e)}
+.ni{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:70px}
+.nb{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nl{width:46px;height:46px;border-radius:50%;overflow:hidden;border:2px solid var(--e);flex-shrink:0}
+.nl img{width:100%;height:100%;object-fit:cover}
+.nt strong{display:block;font-size:14px;font-weight:800;color:var(--h);letter-spacing:-.3px;line-height:1.2}
+.nt span{font-size:10px;color:var(--e);font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+.back-btn{color:var(--h);font-size:13px;font-weight:700;text-decoration:none;border:2px solid var(--h);padding:9px 20px;border-radius:6px;transition:.2s;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.back-btn:hover{background:var(--h);color:#fff}
+
+/* HERO BERITA */
+.hero-berita{background:linear-gradient(135deg,var(--h) 0%,var(--h2) 50%,var(--h3) 100%);padding:64px 0 56px;position:relative;overflow:hidden}
+.hero-berita::after{content:'';position:absolute;top:-60%;right:-10%;width:500px;height:500px;background:rgba(255,255,255,.04);border-radius:50%}
+.hero-berita .con{position:relative;z-index:2}
+.hero-berita .sl{color:var(--e2)}
+.hero-berita .sl::before{background:var(--e2)}
+.hero-berita .st{color:#fff;font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,48px);margin-bottom:14px}
+.hero-berita .st em{color:var(--e2);font-style:italic}
+.hero-berita .desc{font-size:15px;color:rgba(255,255,255,.75);max-width:600px;line-height:1.7;margin-bottom:18px}
+.breadcrumb{font-size:13px;color:rgba(255,255,255,.6)}
+.breadcrumb a{color:rgba(255,255,255,.8);text-decoration:none;transition:.2s}
+.breadcrumb a:hover{color:#fff}
+
+/* SECTION */
+.con{max-width:1200px;margin:0 auto;padding:0 24px}
+.sl{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--e);font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.sl::before{content:'';width:28px;height:2px;background:var(--e)}
+.st{font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,42px);color:var(--h);font-weight:700;line-height:1.15;margin-bottom:12px}
+
+/* BERITA GRID */
+.berita-section{background:var(--kr);padding:64px 0 80px}
+.bg2-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.bc{border-radius:10px;overflow:hidden;border:1px solid rgba(0,0,0,.07);transition:.3s;background:#fff}
+.bc:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,.1)}
+.bimg{height:210px;overflow:hidden;position:relative}
+.bimg img{width:100%;height:100%;object-fit:cover;transition:.4s}
+.bc:hover .bimg img{transform:scale(1.06)}
+.btag{position:absolute;top:14px;left:14px;background:var(--e);color:#fff;font-size:10px;font-weight:700;padding:4px 11px;border-radius:20px;text-transform:uppercase;letter-spacing:.5px}
+.bb{padding:22px}
+.bdate{font-size:11px;color:var(--e);font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:7px}
+.bb h3{font-size:15px;font-weight:700;color:#1a1a1a;line-height:1.5;margin-bottom:9px}
+.bb p{font-size:13px;color:#777;line-height:1.7;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.bb a.rl{color:var(--h);font-size:13px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:4px;margin-top:12px}
+.bb a.rl:hover{color:var(--e)}
+
+/* FOOTER */
+.fbot{background:var(--h);padding:24px 0;text-align:center}
+.fbot p{font-size:13px;color:rgba(255,255,255,.6)}
+.fbot a{color:var(--e2);text-decoration:none;font-weight:600}
+.fbot a:hover{text-decoration:underline}
+
+/* SCROLL REVEAL */
+.rv{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s}
+.rv.up{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+/* WA FLOAT */
+.waf{position:fixed;bottom:24px;right:24px;z-index:999;display:flex;align-items:flex-end;gap:10px}
+.wab{width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#25d366,#128c7e);display:flex;align-items:center;justify-content:center;font-size:28px;text-decoration:none;animation:wap 2.5s infinite;transition:.2s}
+.wab:hover{transform:scale(1.1)}
+@keyframes wap{0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}50%{box-shadow:0 0 0 14px rgba(37,211,102,0)}}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .bg2-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){
+  .bg2-grid{grid-template-columns:1fr}
+  .hero-berita{padding:48px 0 40px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="ni">
+    <a class="nb" href="/">
+      <div class="nl"><img src="https://alqomar.sch.id/logo/logo.png" alt="Logo Al-Qomar" onerror="this.style.display='none';this.parentElement.innerHTML='ق';this.parentElement.style.cssText='width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#1a5c38,#2a8a54);display:flex;align-items:center;justify-content:center;color:#fff;font-family:serif;font-size:22px;font-weight:700;border:2px solid #c8922a'"></div>
+      <div class="nt">
+        <strong>Al-Qomar Muthmainnah School</strong>
+        <span>KB · TKIT · SDIT · SMPIT · Jakarta Barat</span>
+      </div>
+    </a>
+    <a href="/" class="back-btn">&larr; Kembali ke Beranda</a>
+  </div>
+</nav>
+
+<!-- HERO BERITA -->
+<div class="hero-berita">
+  <div class="con">
+    <p class="sl">Informasi Terkini</p>
+    <h1 class="st">Berita &amp; <em>Kegiatan</em></h1>
+    <p class="desc">Aktivitas, prestasi, dan informasi terbaru dari Al-Qomar Muthmainnah School</p>
+    <p class="breadcrumb"><a href="/">Beranda</a> &rsaquo; <strong style="color:#fff">Berita &amp; Kegiatan</strong></p>
+  </div>
+</div>
+
+<!-- BERITA GRID -->
+<section class="berita-section">
+  <div class="con">
+    <div class="bg2-grid">
+
+      <div class="bc rv d1">
+        <div class="bimg"><div style="background:linear-gradient(135deg,var(--h),var(--h3));display:flex;align-items:center;justify-content:center;height:210px"><span style="font-size:64px">📋</span></div><span class="btag">Berita</span></div>
+        <div class="bb">
+          <div class="bdate">14 Mar 2026</div>
+          <h3>Rapat Evaluasi Sumatif Tengah Semester Genap Bersama Dewan Guru dan Yayasan</h3>
+          <p>Al Qomar Muthmainnah menggelar rapat evaluasi Sumatif Tengah Semester (STS) Genap bersama seluruh dewan guru dan pengurus yayasan. Rapat ini menjadi momentum penting untuk mengevaluasi capaian belajar siswa dan merumuskan langkah perbaikan ke depan.</p>
+          <a href="https://alqomar.sch.id/berita" class="rl">Baca Selengkapnya &rarr;</a>
+        </div>
+      </div>
+
+      <div class="bc rv d2">
+        <div class="bimg"><div style="background:linear-gradient(135deg,var(--h),var(--h3));display:flex;align-items:center;justify-content:center;height:210px"><span style="font-size:64px">🎉</span></div><span class="btag">Berita</span></div>
+        <div class="bb">
+          <div class="bdate">13 Mar 2026</div>
+          <h3>Selamat Berlibur, Siswa-Siswi Sholeh Sholehah Al Qomar</h3>
+          <p>Liburan telah tiba! Al Qomar Muthmainnah mengucapkan selamat berlibur kepada seluruh siswa-siswi tercinta. Semoga waktu istirahat ini menjadi momen berharga bersama keluarga.</p>
+          <a href="https://alqomar.sch.id/berita" class="rl">Baca Selengkapnya &rarr;</a>
+        </div>
+      </div>
+
+      <div class="bc rv d3">
+        <div class="bimg"><div style="background:linear-gradient(135deg,var(--h),var(--h3));display:flex;align-items:center;justify-content:center;height:210px"><span style="font-size:64px">📝</span></div><span class="btag">Berita</span></div>
+        <div class="bb">
+          <div class="bdate">13 Mar 2026</div>
+          <h3>TPA &amp; Try Out Ke-2 Berlangsung Lancar di Al Qomar Muthmainnah</h3>
+          <p>Alhamdulillah, pelaksanaan Tes Potensi Akademik (TPA) dan Try Out Ke-2 di Al Qomar Muthmainnah berjalan dengan lancar dan tertib. Seluruh siswa mengikuti kegiatan dengan penuh semangat dan kesungguhan.</p>
+          <a href="https://alqomar.sch.id/berita" class="rl">Baca Selengkapnya &rarr;</a>
+        </div>
+      </div>
+
+      <div class="bc rv d1">
+        <div class="bimg"><div style="background:linear-gradient(135deg,var(--e),var(--e2));display:flex;align-items:center;justify-content:center;height:210px"><span style="font-size:64px">🏆</span></div><span class="btag">Prestasi</span></div>
+        <div class="bb">
+          <div class="bdate">10 Mar 2026</div>
+          <h3>Siswa SDIT Al-Qomar Raih Juara Lomba Tahfidz Tingkat Kecamatan</h3>
+          <p>Alhamdulillah, siswa SDIT Al-Qomar berhasil meraih juara dalam lomba Tahfidz Al-Qur'an tingkat Kecamatan Kalideres. Prestasi ini membuktikan kualitas pembinaan tahfidz di lingkungan sekolah.</p>
+          <a href="https://alqomar.sch.id/berita" class="rl">Baca Selengkapnya &rarr;</a>
+        </div>
+      </div>
+
+      <div class="bc rv d2">
+        <div class="bimg"><div style="background:linear-gradient(135deg,var(--h2),var(--h3));display:flex;align-items:center;justify-content:center;height:210px"><span style="font-size:64px">🎓</span></div><span class="btag">Akademik</span></div>
+        <div class="bb">
+          <div class="bdate">5 Mar 2026</div>
+          <h3>Wisuda Tahfidz &amp; Munaqosyah SDIT — 42 Siswa Raih Target Hafalan</h3>
+          <p>Sebanyak 42 siswa SDIT Al-Qomar berhasil menyelesaikan target hafalan Al-Qur'an dan diwisuda dalam acara Munaqosyah yang dihadiri orang tua dan tokoh masyarakat.</p>
+          <a href="https://alqomar.sch.id/berita" class="rl">Baca Selengkapnya &rarr;</a>
+        </div>
+      </div>
+
+      <div class="bc rv d3">
+        <div class="bimg"><div style="background:linear-gradient(135deg,#25d366,#128c7e);display:flex;align-items:center;justify-content:center;height:210px"><span style="font-size:64px">📚</span></div><span class="btag">Kegiatan</span></div>
+        <div class="bb">
+          <div class="bdate">1 Mar 2026</div>
+          <h3>SMPIT Al-Qomar Resmikan Perpustakaan Digital &amp; Pojok Literasi</h3>
+          <p>Fasilitas perpustakaan digital baru dilengkapi tablet dan koleksi e-book untuk mendukung gerakan literasi dan minat baca siswa SMPIT Al-Qomar.</p>
+          <a href="https://alqomar.sch.id/berita" class="rl">Baca Selengkapnya &rarr;</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="fbot">
+  <p>&copy; 2026 <a href="/">Al-Qomar Muthmainnah School</a> · Yayasan Pendidikan Islam Purnama Cendekia · Jakarta Barat</p>
+</div>
+
+<!-- WA FLOAT -->
+<div class="waf">
+  <a class="wab" href="https://wa.me/6221559683440?text=Assalamu'alaikum%20Al-Qomar%20Muthmainnah%20School%2C%0A%0ASaya%20ingin%20bertanya%20tentang%3A%0A%E2%96%A1%20PPDB%202026%2F2027%0A%E2%96%A1%20Biaya%20pendidikan%0A%E2%96%A1%20Program%20%26%20kurikulum%0A%E2%96%A1%20Lainnya%0A%0ANama%3A%20%0AJenjang%20yang%20diminati%3A%20%0A%0ATerima%20kasih." target="_blank">&#x1F4AC;</a>
+</div>
+
+<!-- SCROLL REVEAL -->
+<script>
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('up');obs.unobserve(e.target)}})},{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+</script>
+
+</body>
+</html>
