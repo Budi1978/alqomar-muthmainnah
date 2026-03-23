@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator RPP - Aplikasi Pembuat Rencana Pelaksanaan Pembelajaran</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a5c38;
+            --primary-light: #2a8a54;
+            --secondary: #c8922a;
+            --bg-light: #faf7f2;
+            --bg-white: #ffffff;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --border: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--bg-light) 0%, #f0e9d8 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .form-section, .preview-section {
+            background: var(--bg-white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .form-section h2, .preview-section h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 3px solid var(--secondary);
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-size: 0.95em;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 92, 56, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .section-title {
+            background: var(--primary);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 25px 0 15px 0;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin: 5px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(26, 92, 56, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #e0a832;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(200, 146, 42, 0.3);
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        #preview {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            min-height: 400px;
+            max-height: 800px;
+            overflow-y: auto;
+        }
+
+        #preview h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--primary);
+            font-size: 1.5em;
+        }
+
+        #preview table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        #preview table td {
+            padding: 8px;
+            border: 1px solid #333;
+            vertical-align: top;
+        }
+
+        #preview table td:first-child {
+            width: 30%;
+            font-weight: 600;
+        }
+
+        .section-header {
+            background: var(--primary);
+            color: white;
+            padding: 8px;
+            font-weight: 600;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        .empty-preview {
+            text-align: center;
+            color: var(--text-light);
+            padding: 60px 20px;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .form-section, .btn-group, header {
+                display: none !important;
+            }
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            .preview-section {
+                box-shadow: none;
+                padding: 0;
+            }
+            #preview {
+                border: none;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Generator RPP</h1>
+            <p>Aplikasi Pembuat Rencana Pelaksanaan Pembelajaran untuk Guru</p>
+        </header>
+
+        <div class="main-content">
+            <div class="form-section">
+                <h2>Form Input RPP</h2>
+
+                <form id="rppForm">
+                    <div class="section-title">A. Identitas</div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="sekolah">Nama Sekolah/Madrasah</label>
+                            <input type="text" id="sekolah" placeholder="Contoh: SDIT Al-Qomar Muthmainnah">
+                        </div>
+                        <div class="form-group">
+                            <label for="mataPelajaran">Mata Pelajaran</label>
+                            <input type="text" id="mataPelajaran" placeholder="Contoh: Matematika">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="kelas">Kelas/Semester</label>
+                            <input type="text" id="kelas" placeholder="Contoh: IV / 1">
+                        </div>
+                        <div class="form-group">
+                            <label for="alokasi">Alokasi Waktu</label>
+                            <input type="text" id="alokasi" placeholder="Contoh: 2 x 35 menit">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="materi">Materi Pokok</label>
+                        <input type="text" id="materi" placeholder="Contoh: Bilangan Bulat">
+                    </div>
+
+                    <div class="section-title">B. Kompetensi</div>
+
+                    <div class="form-group">
+                        <label for="kompetensiInti">Kompetensi Inti (KI)</label>
+                        <textarea id="kompetensiInti" rows="3" placeholder="Tuliskan kompetensi inti yang relevan..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="kompetensiDasar">Kompetensi Dasar (KD)</label>
+                        <textarea id="kompetensiDasar" rows="3" placeholder="Tuliskan kompetensi dasar..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="indikator">Indikator Pencapaian Kompetensi</label>
+                        <textarea id="indikator" rows="3" placeholder="Contoh: Menjelaskan konsep bilangan bulat"></textarea>
+                    </div>
+
+                    <div class="section-title">C. Tujuan Pembelajaran</div>
+
+                    <div class="form-group">
+                        <label for="tujuan">Tujuan Pembelajaran</label>
+                        <textarea id="tujuan" rows="4" placeholder="Tuliskan tujuan pembelajaran yang ingin dicapai..."></textarea>
+                    </div>
+
+                    <div class="section-title">D. Materi dan Metode</div>
+
+                    <div class="form-group">
+                        <label for="materiPembelajaran">Materi Pembelajaran</label>
+                        <textarea id="materiPembelajaran" rows="4" placeholder="Uraikan materi pembelajaran secara detail..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="metode">Metode Pembelajaran</label>
+                        <input type="text" id="metode" placeholder="Contoh: Ceramah, Diskusi, Praktik">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="media">Media dan Alat Pembelajaran</label>
+                        <textarea id="media" rows="2" placeholder="Contoh: Papan tulis, LCD Proyektor, Buku paket"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sumber">Sumber Belajar</label>
+                        <textarea id="sumber" rows="2" placeholder="Contoh: Buku paket, Modul pembelajaran"></textarea>
+                    </div>
+
+                    <div class="section-title">E. Langkah Pembelajaran</div>
+
+                    <div class="form-group">
+                        <label for="kegiatan_pendahuluan">Kegiatan Pendahuluan</label>
+                        <textarea id="kegiatan_pendahuluan" rows="4" placeholder="Contoh: Guru membuka pelajaran dengan salam dan doa"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="kegiatan_inti">Kegiatan Inti</label>
+                        <textarea id="kegiatan_inti" rows="6" placeholder="Tuliskan kegiatan inti pembelajaran..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="kegiatan_penutup">Kegiatan Penutup</label>
+                        <textarea id="kegiatan_penutup" rows="4" placeholder="Contoh: Guru dan siswa menyimpulkan materi"></textarea>
+                    </div>
+
+                    <div class="section-title">F. Penilaian</div>
+
+                    <div class="form-group">
+                        <label for="penilaian_sikap">Penilaian Sikap</label>
+                        <textarea id="penilaian_sikap" rows="2" placeholder="Contoh: Observasi sikap spiritual dan sosial"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="penilaian_pengetahuan">Penilaian Pengetahuan</label>
+                        <textarea id="penilaian_pengetahuan" rows="2" placeholder="Contoh: Tes tertulis, Kuis"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="penilaian_keterampilan">Penilaian Keterampilan</label>
+                        <textarea id="penilaian_keterampilan" rows="2" placeholder="Contoh: Praktik, Proyek, Portofolio"></textarea>
+                    </div>
+
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary" onclick="generateRPP()">Generate RPP</button>
+                        <button type="button" class="btn btn-secondary" onclick="resetForm()">Reset Form</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="preview-section">
+                <h2>Preview RPP</h2>
+                <div class="btn-group">
+                    <button class="btn btn-success" onclick="printRPP()">Print / Save PDF</button>
+                    <button class="btn btn-secondary" onclick="copyRPP()">Copy to Clipboard</button>
+                </div>
+                <div id="preview">
+                    <div class="empty-preview">
+                        <h3>Preview RPP akan muncul di sini</h3>
+                        <p>Silakan isi form di sebelah kiri dan klik "Generate RPP"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function generateRPP() {
+            const data = {
+                sekolah: document.getElementById('sekolah').value || '-',
+                mataPelajaran: document.getElementById('mataPelajaran').value || '-',
+                kelas: document.getElementById('kelas').value || '-',
+                alokasi: document.getElementById('alokasi').value || '-',
+                materi: document.getElementById('materi').value || '-',
+                kompetensiInti: document.getElementById('kompetensiInti').value || '-',
+                kompetensiDasar: document.getElementById('kompetensiDasar').value || '-',
+                indikator: document.getElementById('indikator').value || '-',
+                tujuan: document.getElementById('tujuan').value || '-',
+                materiPembelajaran: document.getElementById('materiPembelajaran').value || '-',
+                metode: document.getElementById('metode').value || '-',
+                media: document.getElementById('media').value || '-',
+                sumber: document.getElementById('sumber').value || '-',
+                kegiatan_pendahuluan: document.getElementById('kegiatan_pendahuluan').value || '-',
+                kegiatan_inti: document.getElementById('kegiatan_inti').value || '-',
+                kegiatan_penutup: document.getElementById('kegiatan_penutup').value || '-',
+                penilaian_sikap: document.getElementById('penilaian_sikap').value || '-',
+                penilaian_pengetahuan: document.getElementById('penilaian_pengetahuan').value || '-',
+                penilaian_keterampilan: document.getElementById('penilaian_keterampilan').value || '-'
+            };
+
+            const previewHTML = `
+                <h3 style="text-align: center; margin-bottom: 5px;">RENCANA PELAKSANAAN PEMBELAJARAN</h3>
+                <h3 style="text-align: center; margin-bottom: 20px;">(RPP)</h3>
+
+                <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                    <tr>
+                        <td style="width: 30%; padding: 8px; border: 1px solid #333; font-weight: 600;">Sekolah/Madrasah</td>
+                        <td style="padding: 8px; border: 1px solid #333;">: ${escapeHtml(data.sekolah)}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px; border: 1px solid #333; font-weight: 600;">Mata Pelajaran</td>
+                        <td style="padding: 8px; border: 1px solid #333;">: ${escapeHtml(data.mataPelajaran)}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px; border: 1px solid #333; font-weight: 600;">Kelas/Semester</td>
+                        <td style="padding: 8px; border: 1px solid #333;">: ${escapeHtml(data.kelas)}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px; border: 1px solid #333; font-weight: 600;">Materi Pokok</td>
+                        <td style="padding: 8px; border: 1px solid #333;">: ${escapeHtml(data.materi)}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px; border: 1px solid #333; font-weight: 600;">Alokasi Waktu</td>
+                        <td style="padding: 8px; border: 1px solid #333;">: ${escapeHtml(data.alokasi)}</td>
+                    </tr>
+                </table>
+
+                <div class="section-header" style="background: #1a5c38; color: white; padding: 8px; font-weight: 600; margin-top: 15px;">
+                    A. KOMPETENSI INTI (KI)
+                </div>
+                <p style="padding: 10px; border: 1px solid #333; white-space: pre-line;">${escapeHtml(data.kompetensiInti)}</p>
+
+                <div class="section-header" style="background: #1a5c38; color: white; padding: 8px; font-weight: 600; margin-top: 15px;">
+                    B. KOMPETENSI DASAR (KD)
+                </div>
+                <p style="padding: 10px; border: 1px solid #333; white-space: pre-line;">${escapeHtml(data.kompetensiDasar)}</p>
+
+                <div class="section-header" style="background: #1a5c38; color: white; padding: 8px; font-weight: 600; margin-top: 15px;">
+                    C. INDIKATOR PENCAPAIAN KOMPETENSI
+                </div>
+                <p style="padding: 10px; border: 1px solid #333; white-space: pre-line;">${escapeHtml(data.indikator)}</p>
+
+                <div class="section-header" style="background: #1a5c38; color: white; padding: 8px; font-weight: 600; margin-top: 15px;">
+                    D. TUJUAN PEMBELAJARAN
+                </div>
+                <p style="padding: 10px; border: 1px solid #333; white-space: pre-line;">${escapeHtml(data.tujuan)}</p>
+
+                <div class="section-header" style="background: #1a5c38; color: white; padding: 8px; font-weight: 600; margin-top: 15px;">
+                    E. MATERI PEMBELAJARAN
+                </div>
+                <p style="padding: 10px; border: 1px solid #333; white-space: pre-line;">${escapeHtml(data.materiPembelajaran)}</p>
+
+                <div class="section-header" style="background: #1a5c38; color: white; padding: 8px; font-weight: 600; margin-top: 15px;">
+                    F. METODE PEMBELAJARAN
+                </div>
+                <p style="padding: 10px; border: 1px solid #333;">${escapeHtml(data.metode)}</p>
+
+                <div class="section-header" style="background: #1a5c38; color: white; padding: 8px; font-weight: 600; margin-top: 15px;">
+                    G. MEDIA DAN ALAT PEMBELAJARAN
+                </div>
+                <p style="padding: 10px; border: 1px solid #333; white-space: pre-line;">${escapeHtml(data.media)}</p>
+
+                <div class="section-header" style="background: #1a5c38; color: white; padding: 8px; font-weight: 600; margin-top: 15px;">
+                    H. SUMBER BELAJAR
+                </div>
+                <p style="padding: 10px; border: 1px solid #333; white-space: pre-line;">${escapeHtml(data.sumber)}</p>
+
+                <div class="section-header" style="background: #1a5c38; color: white; padding: 8px; font-weight: 600; margin-top: 15px;">
+                    I. LANGKAH-LANGKAH PEMBELAJARAN
+                </div>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                    <tr>
+                        <td style="width: 30%; padding: 8px; border: 1px solid #333; font-weight: 600; background: #f0f0f0;">Kegiatan Pendahuluan</td>
+                        <td style="padding: 8px; border: 1px solid #333; white-space: pre-line;">${escapeHtml(data.kegiatan_pendahuluan)}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px; border: 1px solid #333; font-weight: 600; background: #f0f0f0;">Kegiatan Inti</td>
+                        <td style="padding: 8px; border: 1px solid #333; white-space: pre-line;">${escapeHtml(data.kegiatan_inti)}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px; border: 1px solid #333; font-weight: 600; background: #f0f0f0;">Kegiatan Penutup</td>
+                        <td style="padding: 8px; border: 1px solid #333; white-space: pre-line;">${escapeHtml(data.kegiatan_penutup)}</td>
+                    </tr>
+                </table>
+
+                <div class="section-header" style="background: #1a5c38; color: white; padding: 8px; font-weight: 600; margin-top: 15px;">
+                    J. PENILAIAN
+                </div>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                    <tr>
+                        <td style="width: 30%; padding: 8px; border: 1px solid #333; font-weight: 600; background: #f0f0f0;">Penilaian Sikap</td>
+                        <td style="padding: 8px; border: 1px solid #333; white-space: pre-line;">${escapeHtml(data.penilaian_sikap)}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px; border: 1px solid #333; font-weight: 600; background: #f0f0f0;">Penilaian Pengetahuan</td>
+                        <td style="padding: 8px; border: 1px solid #333; white-space: pre-line;">${escapeHtml(data.penilaian_pengetahuan)}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px; border: 1px solid #333; font-weight: 600; background: #f0f0f0;">Penilaian Keterampilan</td>
+                        <td style="padding: 8px; border: 1px solid #333; white-space: pre-line;">${escapeHtml(data.penilaian_keterampilan)}</td>
+                    </tr>
+                </table>
+
+                <div style="margin-top: 40px; text-align: right;">
+                    <p>Mengetahui,</p>
+                    <p>Kepala Sekolah</p>
+                    <br><br><br>
+                    <p>_______________________</p>
+                    <br><br>
+                    <p style="margin-top: 20px;">Guru Mata Pelajaran</p>
+                    <br><br><br>
+                    <p>_______________________</p>
+                </div>
+            `;
+
+            document.getElementById('preview').innerHTML = previewHTML;
+            document.querySelector('.preview-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function printRPP() {
+            window.print();
+        }
+
+        function copyRPP() {
+            const previewContent = document.getElementById('preview').innerText;
+
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(previewContent).then(function() {
+                    alert('RPP berhasil disalin ke clipboard!');
+                }).catch(function(err) {
+                    alert('Gagal menyalin: ' + err);
+                });
+            } else {
+                const textArea = document.createElement('textarea');
+                textArea.value = previewContent;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    alert('RPP berhasil disalin ke clipboard!');
+                } catch (err) {
+                    alert('Gagal menyalin: ' + err);
+                }
+                document.body.removeChild(textArea);
+            }
+        }
+
+        function resetForm() {
+            if (confirm('Apakah Anda yakin ingin mereset form? Semua data yang diisi akan hilang.')) {
+                document.getElementById('rppForm').reset();
+                document.getElementById('preview').innerHTML = '<div class="empty-preview"><h3>Preview RPP akan muncul di sini</h3><p>Silakan isi form di sebelah kiri dan klik "Generate RPP"</p></div>';
+                localStorage.clear();
+            }
+        }
+
+        const formInputs = document.querySelectorAll('#rppForm input, #rppForm textarea, #rppForm select');
+        formInputs.forEach(function(input) {
+            const savedValue = localStorage.getItem('rpp_' + input.id);
+            if (savedValue) {
+                input.value = savedValue;
+            }
+
+            input.addEventListener('input', function() {
+                localStorage.setItem('rpp_' + this.id, this.value);
+            });
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'Enter') {
+                e.preventDefault();
+                generateRPP();
+            }
+            if (e.ctrlKey && e.key === 'p') {
+                e.preventDefault();
+                printRPP();
+            }
+        });
+    </script>
+</body>
+</html>
