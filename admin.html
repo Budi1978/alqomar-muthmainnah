@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — Platform Guru Al-Qomar</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#faf7f2;color:#1a1a1a;min-height:100vh;display:flex;flex-direction:column}
+:root{
+  --h:#1a5c38;--h2:#1e6e42;--h3:#2a8a54;
+  --e:#c8922a;--e2:#e0a832;--ep:#fdf3e0;
+  --kr:#faf7f2;--kr2:#f0e9d8;
+  --rad:14px;--shadow:0 2px 12px rgba(0,0,0,.07);
+}
+a{text-decoration:none;color:inherit}
+
+/* HEADER */
+.dh{background:linear-gradient(135deg,var(--h) 0%,var(--h2) 40%,var(--h3) 100%);color:#fff;padding:32px 0 36px;position:relative;overflow:hidden}
+.dh::after{content:'';position:absolute;right:-40px;top:-40px;width:260px;height:260px;background:rgba(255,255,255,.06);border-radius:50%}
+.dh::before{content:'';position:absolute;right:60px;bottom:-60px;width:180px;height:180px;background:rgba(255,255,255,.04);border-radius:50%}
+.dh-inner{max-width:1100px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+.dh-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}
+.dh-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);padding:6px 16px;border-radius:20px;font-size:13px;font-weight:600;backdrop-filter:blur(4px)}
+.dh-time{text-align:right}
+.dh-time .clock{font-size:22px;font-weight:700;display:flex;align-items:center;gap:6px;justify-content:flex-end}
+.dh-time .clock::before{content:'';width:12px;height:12px;background:#4ade80;border-radius:50%;display:inline-block;box-shadow:0 0 8px rgba(74,222,128,.6)}
+.dh-time .schedule{font-size:12px;opacity:.8;margin-top:2px}
+.dh h1{font-size:32px;font-weight:800;margin-bottom:4px}
+.dh h1 span{color:var(--e2)}
+.dh .dh-sub{font-size:14px;opacity:.85;font-weight:400}
+
+/* QUOTE CARD */
+.qcard{max-width:1100px;margin:-20px auto 0;padding:0 24px;position:relative;z-index:2}
+.qcard-inner{background:var(--ep);border-radius:var(--rad);padding:28px 32px;box-shadow:var(--shadow);position:relative}
+.qcard-inner::before{content:'\201C';position:absolute;top:12px;left:20px;font-size:64px;color:var(--e);opacity:.3;font-family:Georgia,serif;line-height:1}
+.qcard-profile{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+.qcard-avatar{width:56px;height:56px;border-radius:50%;background:var(--h);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;flex-shrink:0}
+.qcard-name{font-size:16px;font-weight:700;color:var(--h)}
+.qcard-title{font-size:13px;color:#888;font-weight:500}
+.qcard-text{font-size:14px;line-height:1.75;color:#555;font-style:italic;padding-left:72px}
+.qcard-sign{text-align:right;margin-top:14px;font-size:13px;font-weight:600;color:var(--e)}
+.qcard-sign::before{content:'\2714 ';color:var(--h3)}
+
+/* CONTENT */
+.dc{max-width:1100px;margin:0 auto;padding:24px}
+
+/* STAT CARDS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.stat{background:#fff;border-radius:var(--rad);padding:20px;box-shadow:var(--shadow);border-bottom:4px solid transparent;transition:transform .2s}
+.stat:hover{transform:translateY(-2px)}
+.stat:nth-child(1){border-bottom-color:var(--h3)}
+.stat:nth-child(2){border-bottom-color:var(--e2)}
+.stat:nth-child(3){border-bottom-color:var(--h)}
+.stat:nth-child(4){border-bottom-color:#e74c3c}
+.stat-icon{font-size:28px;margin-bottom:8px}
+.stat-num{font-size:36px;font-weight:800;color:#1a1a1a;line-height:1.1}
+.stat:nth-child(4) .stat-num{color:#e74c3c}
+.stat-label{font-size:11px;font-weight:700;color:#999;letter-spacing:.5px;text-transform:uppercase;margin-top:4px}
+
+/* TWO COLUMN */
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px}
+
+/* KKTP CARD */
+.kktp-card{background:#fff;border-radius:var(--rad);padding:24px;box-shadow:var(--shadow)}
+.kktp-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.kktp-header h2{font-size:17px;font-weight:700;color:#1a1a1a}
+.kktp-header .kktp-icon{font-size:24px}
+.kktp-badge{background:var(--ep);color:var(--e);font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;border:1px solid var(--kr2);margin-left:auto}
+.kktp-tabs{display:flex;gap:8px;margin-bottom:18px}
+.kktp-tab{padding:8px 20px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:2px solid var(--kr2);background:#fff;color:#555;transition:.2s}
+.kktp-tab.active{background:var(--h);color:#fff;border-color:var(--h)}
+.kktp-tab:hover:not(.active){border-color:var(--h3);color:var(--h)}
+.kktp-table{width:100%;border-collapse:collapse}
+.kktp-table th{text-align:left;font-size:10px;font-weight:700;color:#999;letter-spacing:.8px;text-transform:uppercase;padding:8px 0;border-bottom:2px solid var(--kr2)}
+.kktp-table th:last-child{text-align:center}
+.kktp-table td{padding:12px 0;border-bottom:1px solid #f5f0e8;font-size:14px;color:#444;font-weight:500}
+.kktp-table td:last-child{text-align:center}
+.kktp-val{display:inline-flex;align-items:center;justify-content:center;width:44px;height:32px;border-radius:8px;font-weight:700;font-size:14px}
+.kktp-val.g{background:#e8f5e9;color:var(--h)}
+.kktp-val.y{background:#fff8e1;color:#e65100}
+.kktp-note{margin-top:14px;background:#faf7f2;border-left:4px solid var(--e);padding:10px 14px;border-radius:0 8px 8px 0;font-size:12px;color:#888;line-height:1.5}
+.kktp-note b{color:#555}
+.kktp-panel{display:none}
+.kktp-panel.active{display:block}
+
+/* GUIDE + QUICK ACCESS */
+.right-col{display:flex;flex-direction:column;gap:24px}
+.guide-card{background:#fff;border-radius:var(--rad);padding:24px;box-shadow:var(--shadow)}
+.guide-card h2{font-size:17px;font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.guide-card h2 span{font-size:22px}
+.guide-steps{display:flex;flex-direction:column;gap:14px}
+.guide-step{display:flex;gap:14px;align-items:flex-start}
+.guide-num{width:36px;height:36px;border-radius:50%;background:var(--h);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0}
+.guide-step-content h3{font-size:14px;font-weight:700;color:#1a1a1a;margin-bottom:2px}
+.guide-step-content p{font-size:12px;color:#888;line-height:1.5}
+.guide-step-content p b{color:#555}
+.quick-card{background:#fff;border-radius:var(--rad);padding:24px;box-shadow:var(--shadow)}
+.quick-card h2{font-size:17px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.quick-card h2 span{font-size:22px}
+.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.quick-item{display:flex;align-items:center;gap:12px;padding:16px;border-radius:12px;border:1.5px solid var(--kr2);background:var(--kr);transition:.2s;cursor:pointer}
+.quick-item:hover{border-color:var(--h3);background:#fff;transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.06)}
+.quick-item-icon{font-size:28px}
+.quick-item-text h3{font-size:13px;font-weight:700;color:#1a1a1a}
+.quick-item-text p{font-size:11px;color:#999;font-weight:500}
+
+/* FOOTER */
+.dfooter{background:var(--h);color:#fff;padding:16px 24px;margin-top:auto;border-radius:var(--rad);max-width:1100px;width:calc(100% - 48px);margin-left:auto;margin-right:auto;margin-bottom:24px}
+.dfooter-inner{display:flex;align-items:center;gap:14px}
+.dfooter-icon{font-size:28px}
+.dfooter h3{font-size:14px;font-weight:700}
+.dfooter p{font-size:12px;opacity:.8}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .twocol{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .dh h1{font-size:24px}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat-num{font-size:28px}
+  .qcard-text{padding-left:0;margin-top:8px}
+  .qcard-profile{flex-wrap:wrap}
+  .quick-grid{grid-template-columns:1fr}
+  .kktp-tabs{flex-wrap:wrap}
+  .dh-top{flex-direction:column;gap:12px}
+  .dh-time{text-align:left}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="dh">
+  <div class="dh-inner">
+    <div class="dh-top">
+      <div class="dh-badge">&#11088; Platform Guru Al-Qomar</div>
+      <div class="dh-time">
+        <div class="clock" id="jam">07.30 WIB</div>
+        <div class="schedule" id="jadwal">Jadwal Pagi Aktif</div>
+      </div>
+    </div>
+    <h1>Selamat Datang, <span>Admin!</span></h1>
+    <p class="dh-sub"><span id="hr">Kamis</span>, <span id="tgl">2 April 2026</span> &middot; SDIT/SMPIT Al-Qomar &mdash; Tahun Ajaran 2025/2026</p>
+  </div>
+</header>
+
+<!-- QUOTE CARD -->
+<div class="qcard">
+  <div class="qcard-inner">
+    <div class="qcard-profile">
+      <div class="qcard-avatar">AB</div>
+      <div>
+        <div class="qcard-name">Ahmad Budi Setiawan, SE.</div>
+        <div class="qcard-title">Kepala Sekolah &mdash; SDIT &amp; SMPIT Al-Qomar Muthmainnah</div>
+      </div>
+    </div>
+    <p class="qcard-text">Bismillahirrahmanirrahim. Alhamdulillah, selamat datang di Platform Guru Al-Qomar. Platform ini hadir sebagai ruang kolaborasi dan produktivitas bagi seluruh pendidik Al-Qomar Muthmainnah. Manfaatkan fitur RPP, Soal, Presensi, dan Nilai untuk mewujudkan pembelajaran yang bermutu, Islami, dan bermakna bagi setiap peserta didik kita. Semoga Allah mudahkan ikhtiar kita bersama.</p>
+    <div class="qcard-sign">Ahmad Budi Setiawan, SE. &mdash; Kepala Sekolah</div>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="dc">
+
+  <!-- STAT CARDS -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-icon">&#129489;&#8205;&#127891;</div>
+      <div class="stat-num">28</div>
+      <div class="stat-label">Guru Aktif</div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon">&#127979;</div>
+      <div class="stat-num">601</div>
+      <div class="stat-label">Total Siswa</div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon">&#128218;</div>
+      <div class="stat-num">22</div>
+      <div class="stat-label">Total Kelas</div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon">&#128203;</div>
+      <div class="stat-num">0</div>
+      <div class="stat-label">RPP Menunggu</div>
+    </div>
+  </div>
+
+  <!-- TWO COLUMN -->
+  <div class="twocol">
+
+    <!-- KKTP -->
+    <div class="kktp-card">
+      <div class="kktp-header">
+        <span class="kktp-icon">&#127919;</span>
+        <h2>Kriteria Ketuntasan Tujuan Pembelajaran (KKTP)</h2>
+        <span class="kktp-badge">2025/2026</span>
+      </div>
+      <div class="kktp-tabs">
+        <button class="kktp-tab active" onclick="showKktp('sdit')">SDIT</button>
+        <button class="kktp-tab" onclick="showKktp('smpit')">SMPIT</button>
+        <button class="kktp-tab" onclick="showKktp('kbtkit')">KB / TKIT</button>
+      </div>
+
+      <!-- SDIT Panel -->
+      <div class="kktp-panel active" id="panel-sdit">
+        <table class="kktp-table">
+          <thead><tr><th>Mata Pelajaran</th><th>KKTP</th></tr></thead>
+          <tbody>
+            <tr><td>PAI &amp; Budi Pekerti</td><td><span class="kktp-val g">80</span></td></tr>
+            <tr><td>Bahasa Indonesia</td><td><span class="kktp-val g">80</span></td></tr>
+            <tr><td>Matematika</td><td><span class="kktp-val y">75</span></td></tr>
+            <tr><td>IPAS</td><td><span class="kktp-val g">80</span></td></tr>
+            <tr><td>PJOK</td><td><span class="kktp-val g">80</span></td></tr>
+            <tr><td>Seni Budaya</td><td><span class="kktp-val g">80</span></td></tr>
+            <tr><td>Bahasa Inggris</td><td><span class="kktp-val g">80</span></td></tr>
+            <tr><td>Bahasa Arab</td><td><span class="kktp-val g">80</span></td></tr>
+            <tr><td>Informatika</td><td><span class="kktp-val g">80</span></td></tr>
+            <tr><td>Tahfidz / Diniyah</td><td><span class="kktp-val g">80</span></td></tr>
+          </tbody>
+        </table>
+        <div class="kktp-note">&#9432; Seluruh mapel SDIT KKTP <b>80</b>, kecuali <b>Matematika 75</b></div>
+      </div>
+
+      <!-- SMPIT Panel -->
+      <div class="kktp-panel" id="panel-smpit">
+        <table class="kktp-table">
+          <thead><tr><th>Mata Pelajaran</th><th>KKTP</th></tr></thead>
+          <tbody>
+            <tr><td>PAI &amp; Budi Pekerti</td><td><span class="kktp-val g">80</span></td></tr>
+            <tr><td>Bahasa Indonesia</td><td><span class="kktp-val g">80</span></td></tr>
+            <tr><td>Matematika</td><td><span class="kktp-val y">75</span></td></tr>
+            <tr><td>IPA</td><td><span class="kktp-val g">80</span></td></tr>
+            <tr><td>IPS</td><td><span class="kktp-val g">80</span></td></tr>
+            <tr><td>Bahasa Inggris</td><td><span class="kktp-val g">80</span></td></tr>
+            <tr><td>Bahasa Arab</td><td><span class="kktp-val g">80</span></td></tr>
+            <tr><td>PJOK</td><td><span class="kktp-val g">80</span></td></tr>
+            <tr><td>Seni Budaya</td><td><span class="kktp-val g">80</span></td></tr>
+            <tr><td>Informatika</td><td><span class="kktp-val g">80</span></td></tr>
+            <tr><td>Tahfidz / Diniyah</td><td><span class="kktp-val g">80</span></td></tr>
+          </tbody>
+        </table>
+        <div class="kktp-note">&#9432; Seluruh mapel SMPIT KKTP <b>80</b>, kecuali <b>Matematika 75</b></div>
+      </div>
+
+      <!-- KB/TKIT Panel -->
+      <div class="kktp-panel" id="panel-kbtkit">
+        <table class="kktp-table">
+          <thead><tr><th>Aspek Perkembangan</th><th>KKTP</th></tr></thead>
+          <tbody>
+            <tr><td>Nilai Agama &amp; Moral</td><td><span class="kktp-val g">80</span></td></tr>
+            <tr><td>Fisik Motorik</td><td><span class="kktp-val g">80</span></td></tr>
+            <tr><td>Kognitif</td><td><span class="kktp-val g">80</span></td></tr>
+            <tr><td>Bahasa</td><td><span class="kktp-val g">80</span></td></tr>
+            <tr><td>Sosial Emosional</td><td><span class="kktp-val g">80</span></td></tr>
+            <tr><td>Seni</td><td><span class="kktp-val g">80</span></td></tr>
+          </tbody>
+        </table>
+        <div class="kktp-note">&#9432; Seluruh aspek perkembangan KB/TKIT KKTP <b>80</b></div>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="right-col">
+
+      <!-- GUIDE -->
+      <div class="guide-card">
+        <h2><span>&#128221;</span> Petunjuk Penggunaan Platform</h2>
+        <div class="guide-steps">
+          <div class="guide-step">
+            <div class="guide-num">1</div>
+            <div class="guide-step-content">
+              <h3>Buat atau Pilih RPP</h3>
+              <p>Klik menu <b>RPP &amp; Soal</b> &rarr; Buat RPP baru sesuai jenjang dan mata pelajaran.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-num">2</div>
+            <div class="guide-step-content">
+              <h3>Isi Presensi Harian</h3>
+              <p>Klik menu <b>Presensi</b> setiap hari sebelum 09.00 untuk catat kehadiran siswa.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-num">3</div>
+            <div class="guide-step-content">
+              <h3>Input Nilai &amp; Rapor</h3>
+              <p>Gunakan menu <b>Nilai &amp; Rapor</b> untuk memasukkan nilai tugas, ASTS, dan ASS.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-num">4</div>
+            <div class="guide-step-content">
+              <h3>Ajukan Persetujuan Kepsek</h3>
+              <p>RPP selesai otomatis masuk menu <b>Persetujuan</b> untuk divalidasi Kepala Sekolah.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUICK ACCESS -->
+      <div class="quick-card">
+        <h2><span>&#9889;</span> Akses Cepat</h2>
+        <div class="quick-grid">
+          <a class="quick-item" href="#">
+            <div class="quick-item-icon">&#129489;&#8205;&#127891;</div>
+            <div class="quick-item-text">
+              <h3>Data Guru</h3>
+              <p>28 guru aktif</p>
+            </div>
+          </a>
+          <a class="quick-item" href="#">
+            <div class="quick-item-icon">&#127979;</div>
+            <div class="quick-item-text">
+              <h3>Data Siswa</h3>
+              <p>601 siswa</p>
+            </div>
+          </a>
+          <a class="quick-item" href="#">
+            <div class="quick-item-icon">&#128221;</div>
+            <div class="quick-item-text">
+              <h3>RPP &amp; Soal</h3>
+              <p>Buat dokumen</p>
+            </div>
+          </a>
+          <a class="quick-item" href="#">
+            <div class="quick-item-icon">&#127963;</div>
+            <div class="quick-item-text">
+              <h3>Laporan Kepsek</h3>
+              <p>Rekap bulanan</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="dfooter">
+  <div class="dfooter-inner">
+    <div class="dfooter-icon">&#128218;</div>
+    <div>
+      <h3>Platform Guru Al-Qomar &mdash; YPIPC &copy; 2025</h3>
+      <p>28 guru aktif &middot; 601 siswa &middot; Tahun Ajaran 2025/2026 &middot; Akreditasi A &middot; Sekolah Penggerak</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// CLOCK & DATE
+function updateClock(){
+  const now=new Date();
+  const h=String(now.getHours()).padStart(2,'0');
+  const m=String(now.getMinutes()).padStart(2,'0');
+  document.getElementById('jam').textContent=h+'.'+m+' WIB';
+  const hr=now.getHours();
+  let sched='Jadwal Malam';
+  if(hr>=5&&hr<12) sched='Jadwal Pagi Aktif';
+  else if(hr>=12&&hr<15) sched='Jadwal Siang Aktif';
+  else if(hr>=15&&hr<18) sched='Jadwal Sore Aktif';
+  document.getElementById('jadwal').textContent=sched;
+}
+updateClock();
+setInterval(updateClock,30000);
+
+// DATE
+const now=new Date();
+const days=['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+const mons=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+document.getElementById('tgl').textContent=now.getDate()+' '+mons[now.getMonth()]+' '+now.getFullYear();
+document.getElementById('hr').textContent=days[now.getDay()];
+
+// KKTP TABS
+function showKktp(id){
+  document.querySelectorAll('.kktp-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.kktp-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+</script>
+</body>
+</html>
