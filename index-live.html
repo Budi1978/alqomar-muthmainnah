@@ -20,12 +20,12 @@
 <meta property="og:site_name" content="Al-Qomar Muthmainnah School">
 <meta property="og:locale" content="id_ID">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://alqomar.sch.id/images/og-image.jpg">
+<meta name="twitter:title" content="Al-Qomar Muthmainnah School | Jakarta Barat">
 <meta name="twitter:description" content="Sekolah Islam Terpadu KB·TKIT·SDIT·SMPIT — Tahfidz, Akreditasi A, Kurikulum Merdeka. PPDB 2026/2027 Dibuka!">
-<meta name="twitter:image" content="https://alqomar.sch.id/logo/logo.png">
+<meta name="twitter:image" content="https://alqomar.sch.id/images/og-image.jpg">
+<meta name="twitter:image:alt" content="Al-Qomar Muthmainnah School — Sekolah Islam Terpadu Jakarta Barat">
 <link rel="icon" href="https://alqomar.sch.id/logo/logo.png" type="image/png">
 <link rel="apple-touch-icon" href="https://alqomar.sch.id/logo/logo.png">
-<link rel="canonical" href="https://alqomar.sch.id">
 
 <!-- STRUCTURED DATA — Google Rich Results -->
 <script type="application/ld+json">
@@ -2206,6 +2206,85 @@ function toggleNav(){
     });
   }
 }
+// ── SEARCH ──────────────────────────────────────────────────────
+function toggleSearch(){
+  var box=document.getElementById('searchBox');
+  var inp=document.getElementById('searchInput');
+  var isOpen=box.classList.contains('open');
+  if(isOpen){
+    box.classList.remove('open');
+  }else{
+    box.classList.add('open');
+    inp.focus();inp.value='';
+    document.getElementById('searchResults').innerHTML='';
+  }
+}
+document.addEventListener('click',function(e){
+  var wrap=e.target.closest('.srch-wrap');
+  if(!wrap){
+    var box=document.getElementById('searchBox');
+    if(box)box.classList.remove('open');
+  }
+});
+var _searchData=[
+  {label:'PPDB 2026/2027 — Pendaftaran Dibuka',url:'/spmb-online.html'},
+  {label:'KB & TKIT Muthmainnah',url:'#jenjang'},
+  {label:'SDIT Al-Qomar',url:'#jenjang'},
+  {label:'SMPIT Al-Qomar',url:'#jenjang'},
+  {label:'Program Tahfidz Al-Quran',url:'#profil'},
+  {label:'Fasilitas Sekolah',url:'#profil'},
+  {label:'Visi & Misi',url:'#profil'},
+  {label:'Berita Terbaru',url:'#berita'},
+  {label:'Munaqosyah',url:'#munaqosyah'},
+  {label:'Galeri Kegiatan',url:'#galeri'},
+  {label:'FAQ Pertanyaan Umum',url:'#faq'},
+  {label:'Kontak & Lokasi',url:'#kontak'},
+  {label:'Tim Pengajar',url:'/guru.html'},
+  {label:'Santunan Yatim & Dhuafa',url:'#santunan'},
+  {label:'Kalender Kegiatan',url:'/event.html'},
+  {label:'Rumah Quran Al-Qomar (RQAQ)',url:'/rqaq.html'},
+  {label:'Akreditasi A BAN-S/M',url:'#profil'},
+];
+function doSearch(q){
+  var res=document.getElementById('searchResults');
+  if(!q||q.length<2){res.innerHTML='';return;}
+  var kw=q.toLowerCase();
+  var hits=_searchData.filter(function(d){return d.label.toLowerCase().indexOf(kw)!==-1}).slice(0,6);
+  if(hits.length===0){
+    res.innerHTML='<div class="srch-empty">Tidak ditemukan hasil untuk "'+q+'"</div>';
+    return;
+  }
+  res.innerHTML=hits.map(function(m){
+    return '<a href="'+m.url+'" onclick="document.getElementById(\'searchBox\').classList.remove(\'open\')">'+m.label+'</a>';
+  }).join('');
+}
+
+// ── CONTACT FORM ────────────────────────────────────────────────
+async function submitContact(e){
+  e.preventDefault();
+  var form=e.target;
+  var btn=form.querySelector('button[type="submit"]');
+  var nama=form.nama.value.trim();
+  var email=form.email.value.trim();
+  var wa=form.wa.value.trim();
+  var subjek=form.subjek.value;
+  var pesan=form.pesan.value.trim();
+  btn.disabled=true;
+  btn.textContent='⏳ Mengirim...';
+  var berhasil=false;
+  try{
+    var r=await window._sb.from('kontak').insert([{nama,email,wa,subjek,pesan,dibuat_pada:new Date().toISOString()}]);
+    if(!r.error)berhasil=true;
+  }catch(_){}
+  if(!berhasil){
+    // Fallback: buka WhatsApp dengan isi pesan
+    var msg=encodeURIComponent('Halo Al-Qomar,\n\nNama: '+nama+'\nEmail: '+email+(wa?'\nWA: '+wa:'')+'\nSubjek: '+subjek+'\n\n'+pesan);
+    window.open('https://wa.me/6221559683440?text='+msg,'_blank');
+  }
+  form.style.display='none';
+  document.getElementById('contactOk').style.display='block';
+}
+
 function toggleFaq(el){
   const body=el.nextElementSibling;
   const isOpen=body.classList.contains('on');
@@ -2615,9 +2694,6 @@ window._sb = supabase.createClient(
 <!-- SUPABASE PENGUMUMAN TICKER -->
 <script>
 (async function() {
-  const SUPABASE_URL = 'https://gzcgyqntluhxxrvbcwin.supabase.co';
-  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd6Y2d5cW50bHVoeHhydmJjd2luIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0ODQ4NzAsImV4cCI6MjA4OTA2MDg3MH0.s54F8pW-Z8Ox8y1coz8oI71WqYkRJ4tY2CIR0vfMEKQ';
-
   var defaultItems = [
     'PPDB 2026/2027 Dibuka — Daftarkan Putra-Putri Anda Sekarang Sebelum Kuota Penuh',
     'Al-Qomar Muthmainnah School — KB · TKIT · SDIT · SMPIT · Jl. Kamal Raya No.1 Tegal Alur, Kalideres, Jakarta Barat',
@@ -2663,8 +2739,6 @@ window._sb = supabase.createClient(
 <!-- SUPABASE BERITA DINAMIS -->
 <script>
 (async function() {
-  const SUPABASE_URL = 'https://gzcgyqntluhxxrvbcwin.supabase.co';
-  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd6Y2d5cW50bHVoeHhydmJjd2luIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0ODQ4NzAsImV4cCI6MjA4OTA2MDg3MH0.s54F8pW-Z8Ox8y1coz8oI71WqYkRJ4tY2CIR0vfMEKQ';
   const bulan = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
 
   function formatTgl(tgl) {
@@ -2742,9 +2816,6 @@ window._sb = supabase.createClient(
 <!-- SUPABASE EKSKUL & GALERI DINAMIS -->
 <script>
 (async function() {
-  const SUPABASE_URL = 'https://gzcgyqntluhxxrvbcwin.supabase.co';
-  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd6Y2d5cW50bHVoeHhydmJjd2luIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0ODQ4NzAsImV4cCI6MjA4OTA2MDg3MH0.s54F8pW-Z8Ox8y1coz8oI71WqYkRJ4tY2CIR0vfMEKQ';
-
   function renderEkskul(list, gridId) {
     const grid = document.getElementById(gridId);
     if (!grid || !list || list.length === 0) return;
@@ -2801,9 +2872,6 @@ window._sb = supabase.createClient(
 </script>
 <script>
 (async function() {
-  const SUPABASE_URL = 'https://gzcgyqntluhxxrvbcwin.supabase.co';
-  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd6Y2d5cW50bHVoeHhydmJjd2luIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0ODQ4NzAsImV4cCI6MjA4OTA2MDg3MH0.s54F8pW-Z8Ox8y1coz8oI71WqYkRJ4tY2CIR0vfMEKQ';
-
   function renderAktivitas(list, gridId) {
     const grid = document.getElementById(gridId);
     if (!grid || !list || list.length === 0) return;
