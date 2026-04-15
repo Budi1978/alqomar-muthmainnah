@@ -676,6 +676,44 @@ footer{background:#0B2B17;padding:60px 0 0}
     <button class="close-nav" id="closeNav" onclick="toggleNav()">✕</button>
   </div>
 </nav>
+<script>
+function toggleSearch(){
+  var box=document.getElementById('searchBox');
+  var inp=document.getElementById('searchInput');
+  if(!box)return;
+  var isOpen=box.classList.contains('open');
+  if(isOpen){box.classList.remove('open');}
+  else{box.classList.add('open');if(inp){inp.focus();inp.value='';document.getElementById('searchResults').innerHTML='';}}
+}
+function doSearch(q){
+  var res=document.getElementById('searchResults');
+  if(!res)return;
+  if(!q||q.length<2){res.innerHTML='';return;}
+  var kw=q.toLowerCase();
+  var data=[
+    {l:'PPDB 2026/2027 Pendaftaran Dibuka',u:'/spmb-online.html'},
+    {l:'KB dan TKIT Muthmainnah',u:'#jenjang'},
+    {l:'SDIT Al-Qomar',u:'#jenjang'},
+    {l:'SMPIT Al-Qomar',u:'#jenjang'},
+    {l:'Program Tahfidz Al-Quran',u:'#profil'},
+    {l:'Fasilitas Sekolah',u:'#profil'},
+    {l:'Visi dan Misi',u:'#profil'},
+    {l:'Berita Terbaru',u:'#berita'},
+    {l:'Munaqosyah',u:'#munaqosyah'},
+    {l:'Galeri Kegiatan',u:'#galeri'},
+    {l:'FAQ',u:'#faq'},
+    {l:'Kontak dan Lokasi',u:'#kontak'},
+    {l:'Tim Pengajar',u:'/guru.html'},
+    {l:'Kalender Kegiatan',u:'/event.html'},
+  ];
+  var hits=data.filter(function(d){return d.l.toLowerCase().indexOf(kw)!==-1}).slice(0,6);
+  if(hits.length===0){res.innerHTML='<div class="srch-empty">Tidak ditemukan: "'+q+'"</div>';return;}
+  res.innerHTML=hits.map(function(m){return '<a href="'+m.u+'">'+m.l+'</a>';}).join('');
+}
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.srch-wrap')){var b=document.getElementById('searchBox');if(b)b.classList.remove('open');}
+});
+</script>
 <main>
 <!-- HERO SLIDER — Modern Upgrade -->
 <div class="hero" id="beranda">
