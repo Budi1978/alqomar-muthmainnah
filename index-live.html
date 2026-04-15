@@ -89,6 +89,70 @@
   }
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Apakah ada program beasiswa atau keringanan biaya?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yayasan Pendidikan Islam Purnama Cendekia menyediakan program keringanan biaya bagi keluarga yang membutuhkan. Silakan hubungi bagian administrasi sekolah untuk informasi persyaratan dan proses pengajuan secara langsung."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Bagaimana sistem Full Day School di Al-Qomar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kegiatan belajar berlangsung Senin–Jumat pukul 06.30–15.00 WIB. Hari diisi dengan pembelajaran akademik, pembiasaan ibadah (Dhuha, Dzuhur), tahfidz, One Day One Ayat, dan ekstrakurikuler. Siswa pulang dalam kondisi sudah melaksanakan ibadah wajib dan sunnah."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Berapa target hafalan Al-Qur'an per jenjang?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "TKIT: target 1 juz (Juz 'Amma/Juz 30) selama di TKIT. SDIT: target 2 juz selama 6 tahun melalui program ODOA (One Day One Ayat). SMPIT: melanjutkan hafalan dari SDIT dengan target tambahan dan penguatan tajwid."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Apa saja persyaratan dokumen untuk PPDB?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Dokumen umum yang dibutuhkan: Akta kelahiran, Kartu Keluarga, Foto 3x4, Ijazah/Raport jenjang sebelumnya (untuk SDIT & SMPIT), Surat keterangan sehat. Persyaratan lengkap dapat dilihat di formulir pendaftaran online di alqomar.sch.id/spmb-online."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Apakah ada program untuk orang tua (parenting)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ya! Al-Qomar memiliki program Parenting Islami yang dilaksanakan secara rutin. Kegiatan ini membantu orang tua selaras dengan nilai dan pembiasaan yang diajarkan di sekolah, sehingga pembentukan karakter anak berlangsung konsisten di rumah maupun di sekolah."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Bagaimana cara memantau perkembangan anak?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sekolah menyediakan rapor sumatif bulanan, rapor tengah semester, dan rapor akhir semester. Selain itu, guru wali kelas aktif berkomunikasi dengan orang tua via WhatsApp grup kelas. Ada juga pertemuan orang tua rutin dan konsultasi individual bila diperlukan."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Apakah SMPIT Al-Qomar memiliki program persiapan SMA/pesantren?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SMPIT Al-Qomar mempersiapkan siswa kelas IX untuk menghadapi ujian kelulusan dan seleksi masuk SMA/MA unggulan. Ada program bimbingan belajar intensif, tryout, dan konseling pemilihan sekolah lanjutan. Banyak alumni melanjutkan ke SMA/MA favorit dan pesantren tahfidz."
+      }
+    }
+  ]
+}
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
 
 
@@ -197,7 +261,7 @@ nav{background:#fff;box-shadow:0 2px 20px rgba(0,0,0,.08);position:sticky;top:0;
 
 /* Dots */
 .hdots{position:absolute;bottom:30px;left:52px;transform:none;display:flex;gap:10px;z-index:10}
-.hd{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:all .4s cubic-bezier(.4,0,.2,1);border:none;position:relative}
+.hd{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:all .4s cubic-bezier(.4,0,.2,1);border:none;position:relative;padding:17px;margin:-17px;box-sizing:content-box}
 .hd:hover{background:rgba(255,255,255,.6)}
 .hd.on{background:var(--e2);width:32px;border-radius:5px;box-shadow:0 0 12px rgba(212,175,55,.5)}
 
@@ -422,6 +486,9 @@ footer{background:#0B2B17;padding:60px 0 0}
 .wab:hover{transform:scale(1.1)}
 @keyframes wap{0%,100%{box-shadow:0 6px 22px rgba(37,211,102,.4)}50%{box-shadow:0 6px 36px rgba(37,211,102,.7)}}
 
+/* FOCUS STATE */
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--e);outline-offset:2px}
+
 /* REVEAL */
 .rv{opacity:1;transform:none;transition:opacity .7s ease,transform .7s ease}
 .rv.up{opacity:1;transform:none}
@@ -471,6 +538,14 @@ footer{background:#0B2B17;padding:60px 0 0}
   .hero-particles span:nth-child(n+5){display:none}
   .wg{grid-template-columns:1fr 1fr}
   .wi{padding:16px 18px}
+}
+@media(max-width:768px){
+  .tsg{grid-template-columns:1fr}
+  .evg{grid-template-columns:1fr 1fr}
+  .socg{grid-template-columns:1fr 1fr}
+  section{padding:56px 16px}
+  .sh{padding:0 16px 32px}
+  .bg2-grid{gap:16px}
 }
 </style>
 
@@ -672,7 +747,7 @@ footer{background:#0B2B17;padding:60px 0 0}
       <li><a href="https://alqomar.sch.id/spmb-online.html" target="_blank" class="ncta">Daftar PPDB</a></li>
       <li class="srch-wrap"><button class="srch-btn" onclick="toggleSearch()" aria-label="Cari">🔍</button><div class="srch-box" id="searchBox"><input type="text" id="searchInput" placeholder="Cari berita, program, info..." oninput="doSearch(this.value)" autocomplete="off"><div class="srch-results" id="searchResults"></div></div></li>
     </ul>
-    <div class="hbg" onclick="toggleNav()"><span></span><span></span><span></span></div>
+    <div class="hbg" onclick="toggleNav()" aria-label="Buka menu" role="button" tabindex="0"><span></span><span></span><span></span></div>
     <button class="close-nav" id="closeNav" onclick="toggleNav()">✕</button>
   </div>
 </nav>
@@ -785,8 +860,8 @@ document.addEventListener('click',function(e){
       </div>
     </div>
   </div>
-  <button class="harr hp" onclick="mv(-1)">&#8249;</button>
-  <button class="harr hn" onclick="mv(1)">&#8250;</button>
+  <button class="harr hp" onclick="mv(-1)" aria-label="Slide sebelumnya">&#8249;</button>
+  <button class="harr hn" onclick="mv(1)" aria-label="Slide berikutnya">&#8250;</button>
   <div class="hdots" id="dots"></div>
   <div class="hero-counter"><span class="hc-cur" id="hc-cur">01</span> / 05</div>
   <div class="hero-progress" id="hero-progress"></div>
@@ -1463,15 +1538,15 @@ function switchTab(id,btn){
         </div>
         <!-- THUMBNAILS -->
         <div class="mqs-thumbs" id="mqsThumbs">
-          <div class="mqs-thumb on" onclick="mqsGo(0)"><img src="images/img_086.jpg" alt="t1" loading="lazy"></div>
-          <div class="mqs-thumb" onclick="mqsGo(1)"><img src="images/img_087.jpg" alt="t2" loading="lazy"></div>
-          <div class="mqs-thumb" onclick="mqsGo(2)"><img src="images/img_088.jpg" alt="t3" loading="lazy"></div>
-          <div class="mqs-thumb" onclick="mqsGo(3)"><img src="images/img_089.jpg" alt="t4" loading="lazy"></div>
-          <div class="mqs-thumb" onclick="mqsGo(4)"><img src="images/img_090.jpg" alt="t5" loading="lazy"></div>
-          <div class="mqs-thumb" onclick="mqsGo(5)"><img src="images/img_091.jpg" alt="t6" loading="lazy"></div>
-          <div class="mqs-thumb" onclick="mqsGo(6)"><img src="images/img_092.jpg" alt="t7" loading="lazy"></div>
-          <div class="mqs-thumb" onclick="mqsGo(7)"><img src="images/img_093.jpg" alt="t8" loading="lazy"></div>
-          <div class="mqs-thumb" onclick="mqsGo(8)"><img src="images/img_094.jpg" alt="t9" loading="lazy"></div>
+          <div class="mqs-thumb on" onclick="mqsGo(0)"><img src="images/img_086.jpg" alt="Munaqosyah Tahfidz foto 1" loading="lazy"></div>
+          <div class="mqs-thumb" onclick="mqsGo(1)"><img src="images/img_087.jpg" alt="Munaqosyah Tahfidz foto 2" loading="lazy"></div>
+          <div class="mqs-thumb" onclick="mqsGo(2)"><img src="images/img_088.jpg" alt="Munaqosyah Tahfidz foto 3" loading="lazy"></div>
+          <div class="mqs-thumb" onclick="mqsGo(3)"><img src="images/img_089.jpg" alt="Munaqosyah Tahfidz foto 4" loading="lazy"></div>
+          <div class="mqs-thumb" onclick="mqsGo(4)"><img src="images/img_090.jpg" alt="Munaqosyah Tahfidz foto 5" loading="lazy"></div>
+          <div class="mqs-thumb" onclick="mqsGo(5)"><img src="images/img_091.jpg" alt="Munaqosyah Tahfidz foto 6" loading="lazy"></div>
+          <div class="mqs-thumb" onclick="mqsGo(6)"><img src="images/img_092.jpg" alt="Munaqosyah Tahfidz foto 7" loading="lazy"></div>
+          <div class="mqs-thumb" onclick="mqsGo(7)"><img src="images/img_093.jpg" alt="Munaqosyah Tahfidz foto 8" loading="lazy"></div>
+          <div class="mqs-thumb" onclick="mqsGo(8)"><img src="images/img_094.jpg" alt="Munaqosyah Tahfidz foto 9" loading="lazy"></div>
         </div>
       </div>
     </div>
