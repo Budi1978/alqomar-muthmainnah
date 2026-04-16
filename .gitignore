@@ -1,0 +1,28 @@
+# Credentials & secrets
+*.env
+.env.*
+*.key
+*.pem
+*.p12
+credentials.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Node (jika suatu saat digunakan)
+node_modules/
+npm-debug.log*
+
+# Backup files
+_backup/
+*.bak
