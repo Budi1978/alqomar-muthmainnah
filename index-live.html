@@ -3033,13 +3033,24 @@ window._sb = supabase.createClient(
 
   try {
     var sb = window._sb;
+    var todayIso = new Date().toISOString().split('T')[0];
     var res = await sb.from('kegiatan')
       .select('judul,tanggal,deskripsi,tag')
       .eq('aktif', true)
+      .gte('tanggal', todayIso)
       .order('tanggal', { ascending: true })
       .limit(5);
     if (res.error) throw res.error;
-    if (res.data && res.data.length > 0) renderKegiatan(res.data);
+    if (res.data && res.data.length > 0) {
+      renderKegiatan(res.data);
+    } else {
+      var res2 = await sb.from('kegiatan')
+        .select('judul,tanggal,deskripsi,tag')
+        .eq('aktif', true)
+        .order('tanggal', { ascending: false })
+        .limit(4);
+      if (!res2.error && res2.data && res2.data.length > 0) renderKegiatan(res2.data);
+    }
   } catch(e) {
     console.warn('Kegiatan load error:', e.message);
   }
