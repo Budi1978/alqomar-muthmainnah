@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://alqomar.sch.id/sitemap.xml
