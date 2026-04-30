@@ -31,3 +31,15 @@
 
 /event.html
   Cache-Control: public, max-age=0, must-revalidate
+
+/index-live.html
+  X-Robots-Tag: noindex, nofollow
+
+/index-live-latest.html
+  X-Robots-Tag: noindex, nofollow
+
+/_backup/*
+  X-Robots-Tag: noindex, nofollow
+
+/docs/*
+  X-Robots-Tag: noindex, nofollow
