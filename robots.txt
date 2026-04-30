@@ -1,7 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /index-live.html
-Disallow: /index-live-latest.html
 Disallow: /_backup/
 Disallow: /docs/
 Disallow: /caption-ppdb-ig.txt
