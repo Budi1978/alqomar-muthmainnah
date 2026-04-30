@@ -47,11 +47,14 @@
 {
   "@context": "https://schema.org",
   "@type": "EducationalOrganization",
+  "@id": "https://alqomar.sch.id/#school",
   "name": "Al-Qomar Muthmainnah School",
-  "alternateName": "YPIPC Al-Qomar",
+  "alternateName": ["YPIPC Al-Qomar", "Sekolah Islam Terpadu Al-Qomar Muthmainnah"],
   "url": "https://alqomar.sch.id",
   "logo": "https://alqomar.sch.id/logo/logo.png",
+  "image": "https://alqomar.sch.id/logo/logo.png",
   "description": "Sekolah Islam Terpadu di Jakarta Barat dengan jenjang KB, TKIT, SDIT, dan SMPIT. Program Tahfidz Al-Quran terintegrasi, Kurikulum Merdeka, dan akreditasi A.",
+  "slogan": "Membentuk Generasi Qurani, Cerdas & Berakhlak",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Jl. Kamal Raya No.1 Tegal Alur",
@@ -60,17 +63,134 @@
     "postalCode": "11820",
     "addressCountry": "ID"
   },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -6.125217,
+    "longitude": 106.723293
+  },
+  "hasMap": "https://maps.google.com/maps?q=-6.125217,106.723293",
   "telephone": "+62-21-55968344",
   "email": "info@alqomar.sch.id",
   "foundingDate": "1991",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "06:30",
+      "closes": "15:00"
+    }
+  ],
+  "areaServed": [
+    {"@type": "City", "name": "Jakarta Barat"},
+    {"@type": "AdministrativeArea", "name": "Kalideres"},
+    {"@type": "AdministrativeArea", "name": "Tegal Alur"}
+  ],
   "parentOrganization": {
     "@type": "Organization",
-    "name": "Yayasan Pendidikan Islam Purnama Cendekia"
+    "name": "Yayasan Pendidikan Islam Purnama Cendekia",
+    "alternateName": "YPIPC"
   },
+  "department": [
+    {
+      "@type": "EducationalOrganization",
+      "name": "KB Al-Qomar Muthmainnah",
+      "description": "Kelompok Bermain — pendidikan anak usia dini berbasis nilai Islam."
+    },
+    {
+      "@type": "EducationalOrganization",
+      "name": "TKIT Al-Qomar Muthmainnah",
+      "description": "Taman Kanak-Kanak Islam Terpadu dengan hafalan juz 30."
+    },
+    {
+      "@type": "EducationalOrganization",
+      "name": "SDIT Al-Qomar Muthmainnah",
+      "description": "Sekolah Dasar Islam Terpadu, Kurikulum Merdeka, target hafalan 3 juz, akreditasi A."
+    },
+    {
+      "@type": "EducationalOrganization",
+      "name": "SMPIT Al-Qomar Muthmainnah",
+      "description": "Sekolah Menengah Pertama Islam Terpadu dengan persiapan SMA/MA unggulan."
+    }
+  ],
   "sameAs": [
     "https://www.instagram.com/alqomar.school",
     "https://www.facebook.com/alqomarschool",
     "https://www.youtube.com/channel/UCA3iOPu9iYC7ZOD4PyW9VPw"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://alqomar.sch.id/#website",
+  "url": "https://alqomar.sch.id/",
+  "name": "Al-Qomar Muthmainnah School",
+  "inLanguage": "id-ID",
+  "publisher": {"@id": "https://alqomar.sch.id/#school"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Apakah ada program beasiswa atau keringanan biaya?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yayasan Pendidikan Islam Purnama Cendekia menyediakan program keringanan biaya bagi keluarga yang membutuhkan. Silakan hubungi bagian administrasi sekolah untuk informasi persyaratan dan proses pengajuan secara langsung."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Bagaimana sistem Full Day School di Al-Qomar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kegiatan belajar berlangsung Senin–Jumat pukul 06.30–15.00 WIB. Hari diisi dengan pembelajaran akademik, pembiasaan ibadah (Dhuha, Dzuhur), tahfidz, One Day One Ayat, dan ekstrakurikuler. Siswa pulang dalam kondisi sudah melaksanakan ibadah wajib dan sunnah."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Berapa target hafalan Al-Qur'an per jenjang?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "TKIT: hafalan surat-surat pendek juz 30. SDIT: target minimal 3 juz selama 6 tahun melalui program ODOA (One Day One Ayat). SMPIT: melanjutkan hafalan dari SDIT dengan target tambahan dan penguatan tajwid."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Apa saja persyaratan dokumen untuk PPDB?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Dokumen umum yang dibutuhkan: Akta kelahiran, Kartu Keluarga, Foto 3x4, Ijazah/Raport jenjang sebelumnya (untuk SDIT & SMPIT), Surat keterangan sehat. Persyaratan lengkap dapat dilihat di formulir pendaftaran online di alqomar.sch.id/spmb-online."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Apakah ada program untuk orang tua (parenting)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ya. Al-Qomar memiliki program Parenting Islami yang dilaksanakan secara rutin. Kegiatan ini membantu orang tua selaras dengan nilai dan pembiasaan yang diajarkan di sekolah, sehingga pembentukan karakter anak berlangsung konsisten di rumah maupun di sekolah."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Bagaimana cara memantau perkembangan anak?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sekolah menyediakan rapor sumatif bulanan, rapor tengah semester, dan rapor akhir semester. Selain itu, guru wali kelas aktif berkomunikasi dengan orang tua via WhatsApp grup kelas. Ada juga pertemuan orang tua rutin dan konsultasi individual bila diperlukan."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Apakah SMPIT Al-Qomar memiliki program persiapan SMA/pesantren?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SMPIT Al-Qomar mempersiapkan siswa kelas IX untuk menghadapi ujian kelulusan dan seleksi masuk SMA/MA unggulan. Ada program bimbingan belajar intensif, tryout, dan konseling pemilihan sekolah lanjutan. Banyak alumni melanjutkan ke SMA/MA favorit dan pesantren tahfidz."
+      }
+    }
   ]
 }
 </script>
