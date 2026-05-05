@@ -1,0 +1,1296 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Meeting MD — 05 April 2026 · Al-Qomar Muthmainnah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+/* ==========================================================
+   MEETING MD — 05 April 2026
+   Editorial dark, gold-accented executive layout
+   ========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #0b0b0d;
+  --bg-elev: #131317;
+  --bg-card: #16161b;
+  --bg-card-2: #1c1c22;
+  --line: #26262e;
+  --line-strong: #34343f;
+  --ink: #f4f1ea;
+  --ink-dim: #a8a59c;
+  --ink-mute: #6b6962;
+  --gold: #c9a24c;
+  --gold-soft: #8a6f33;
+  --gold-glow: rgba(201, 162, 76, 0.18);
+  --emerald: #6fa888;
+  --rust: #c97a4c;
+  --crimson: #b85450;
+  --plum: #8e6f9e;
+
+  --serif: 'Fraunces', 'Times New Roman', serif;
+  --sans: 'Geist', system-ui, -apple-system, sans-serif;
+  --mono: 'Geist Mono', ui-monospace, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-feature-settings: 'ss01', 'ss02', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(201, 162, 76, 0.08), transparent 70%),
+    var(--bg);
+}
+
+/* ----- Layout ----- */
+.shell {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 48px 96px;
+}
+
+/* ----- Top Bar ----- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 48px;
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  background: rgba(11, 11, 13, 0.85);
+  backdrop-filter: blur(20px);
+  z-index: 50;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.brand-mark {
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 600;
+  color: var(--gold);
+  font-size: 14px;
+}
+.topbar-meta {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+.topbar-meta .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--emerald);
+  box-shadow: 0 0 10px var(--emerald);
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* ----- Hero ----- */
+.hero {
+  padding: 88px 0 56px;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 32px; height: 1px;
+  background: var(--gold);
+}
+.hero-title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(48px, 7vw, 92px);
+  line-height: 0.96;
+  letter-spacing: -0.035em;
+  margin-bottom: 28px;
+  text-wrap: balance;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--gold);
+  font-weight: 300;
+}
+.hero-sub {
+  font-family: var(--serif);
+  font-size: 22px;
+  line-height: 1.45;
+  color: var(--ink-dim);
+  font-weight: 300;
+  max-width: 720px;
+  text-wrap: pretty;
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  margin-top: 64px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.stat {
+  background: var(--bg);
+  padding: 28px 24px;
+}
+.stat-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 12px;
+}
+.stat-value {
+  font-family: var(--serif);
+  font-size: 44px;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--ink);
+}
+.stat-value .unit {
+  font-size: 18px;
+  color: var(--ink-dim);
+  margin-left: 6px;
+  font-style: italic;
+}
+.stat-trend {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--gold);
+  margin-top: 8px;
+}
+
+/* ----- Tabs ----- */
+.tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--line);
+  margin: 0 -48px;
+  padding: 0 48px;
+  position: sticky;
+  top: 73px;
+  background: rgba(11, 11, 13, 0.92);
+  backdrop-filter: blur(20px);
+  z-index: 40;
+  overflow-x: auto;
+}
+.tab {
+  background: none;
+  border: none;
+  color: var(--ink-mute);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  padding: 22px 24px;
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.tab:hover { color: var(--ink-dim); }
+.tab.active { color: var(--ink); }
+.tab.active::after {
+  content: '';
+  position: absolute;
+  left: 24px; right: 24px;
+  bottom: -1px;
+  height: 1px;
+  background: var(--gold);
+}
+.tab-num {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ink-mute);
+  letter-spacing: 0.1em;
+}
+.tab.active .tab-num { color: var(--gold); }
+
+/* ----- Section ----- */
+.section {
+  padding: 64px 0;
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: 120px;
+}
+.section:last-child { border-bottom: none; }
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+.section-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: 40px;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.section-sub {
+  margin-left: auto;
+  font-size: 13px;
+  color: var(--ink-dim);
+  max-width: 360px;
+  text-align: right;
+  line-height: 1.5;
+}
+
+/* ----- Summary cards ----- */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.sum-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  padding: 32px;
+  position: relative;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.sum-card:hover {
+  border-color: var(--gold-soft);
+}
+.sum-card-icon {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--gold-soft);
+  display: grid;
+  place-items: center;
+  color: var(--gold);
+  margin-bottom: 24px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+}
+.sum-card-title {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+.sum-card-body {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-dim);
+  text-wrap: pretty;
+}
+
+/* ----- Action items ----- */
+.actions-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+.filter-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.chip {
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  color: var(--ink-dim);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.chip:hover { border-color: var(--ink-dim); color: var(--ink); }
+.chip.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #0b0b0d;
+  font-weight: 600;
+}
+
+.progress-track {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+}
+.progress-bar {
+  width: 160px;
+  height: 4px;
+  background: var(--line);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold-soft), var(--gold));
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.action-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.action {
+  background: var(--bg-card);
+  padding: 24px 28px;
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  gap: 20px;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.action:hover { background: var(--bg-card-2); }
+.action.done { opacity: 0.5; }
+.action.done .action-text { text-decoration: line-through; }
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 4px;
+  display: grid;
+  place-items: center;
+  transition: all 0.2s;
+}
+.action:hover .checkbox { border-color: var(--gold); }
+.checkbox.checked {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+.checkbox svg { opacity: 0; transition: opacity 0.15s; }
+.checkbox.checked svg { opacity: 1; }
+
+.action-text {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+.action-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+.action-pic {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  padding: 5px 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  white-space: nowrap;
+}
+.action-pic.gold {
+  color: var(--gold);
+  border-color: var(--gold-soft);
+}
+.action-when {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ink-mute);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ----- Pricing ----- */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+.cost-panel, .dp-panel, .free-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  padding: 32px;
+}
+.panel-title {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+.panel-sub {
+  font-size: 13px;
+  color: var(--ink-dim);
+  margin-bottom: 32px;
+  line-height: 1.5;
+}
+
+/* cost bars */
+.cost-row {
+  display: grid;
+  grid-template-columns: 140px 1fr 130px;
+  gap: 16px;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+.cost-row:last-child { border-bottom: none; }
+.cost-label {
+  font-size: 13px;
+  color: var(--ink);
+  font-weight: 500;
+}
+.cost-bar-wrap {
+  height: 6px;
+  background: var(--bg);
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+.cost-bar {
+  height: 100%;
+  border-radius: 3px;
+  background: var(--gold-soft);
+  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cost-bar.up { background: linear-gradient(90deg, var(--gold-soft), var(--gold)); }
+.cost-amount {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-dim);
+  text-align: right;
+}
+.cost-amount strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.cost-highlight {
+  margin-top: 28px;
+  padding: 20px;
+  border: 1px dashed var(--gold-soft);
+  background: var(--gold-glow);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--ink);
+  line-height: 1.5;
+}
+.cost-highlight strong {
+  font-style: normal;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+/* DP options */
+.dp-option {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid var(--line);
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+.dp-option:hover { border-color: var(--gold-soft); }
+.dp-option.active {
+  border-color: var(--gold);
+  background: var(--gold-glow);
+}
+.dp-option.tentative {
+  border-style: dashed;
+  opacity: 0.7;
+}
+.dp-amount {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.dp-amount .currency {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-mute);
+  margin-right: 6px;
+  vertical-align: middle;
+}
+.dp-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+.dp-option.active .dp-tag { color: var(--gold); }
+
+/* ----- Decisions ----- */
+.decisions-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.decision {
+  background: var(--bg-card);
+  padding: 32px;
+  position: relative;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.2s;
+}
+.decision:hover { background: var(--bg-card-2); }
+.decision-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 56px;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 20px;
+  opacity: 0.85;
+}
+.decision-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 10px;
+}
+.decision-title {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+}
+.decision-body {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-dim);
+  text-wrap: pretty;
+}
+
+/* ----- Risks ----- */
+.risk-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.risk {
+  border: 1px solid var(--line);
+  padding: 24px;
+  background: var(--bg-card);
+  position: relative;
+  overflow: hidden;
+}
+.risk::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--rust);
+}
+.risk.med::before { background: var(--gold); }
+.risk.low::before { background: var(--emerald); }
+.risk-level {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin-bottom: 10px;
+}
+.risk.med .risk-level { color: var(--gold); }
+.risk.low .risk-level { color: var(--emerald); }
+.risk-title {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.risk-body {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-dim);
+}
+
+/* ----- Ops list ----- */
+.ops-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.op-row {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 32px;
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+  align-items: start;
+}
+.op-row:last-child { border-bottom: 1px solid var(--line); }
+.op-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 28px;
+  color: var(--gold);
+  font-weight: 300;
+  line-height: 1;
+  padding-top: 4px;
+}
+.op-title {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+.op-body {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-dim);
+  max-width: 720px;
+  text-wrap: pretty;
+}
+.op-body strong { color: var(--ink); font-weight: 500; }
+
+/* ----- Other agenda ----- */
+.agenda-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.agenda-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.agenda-card-tag {
+  align-self: flex-start;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 4px 10px;
+  border: 1px solid var(--gold-soft);
+}
+.agenda-card-title {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.agenda-card-body {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-dim);
+}
+
+/* ----- Footer ----- */
+.signoff {
+  padding: 80px 0 0;
+  text-align: center;
+  border-top: 1px solid var(--line);
+  margin-top: 40px;
+}
+.signoff-mark {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 32px;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.signoff-text {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+/* ----- Animations ----- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up {
+  animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.fade-up:nth-child(1) { animation-delay: 0.05s; }
+.fade-up:nth-child(2) { animation-delay: 0.1s; }
+.fade-up:nth-child(3) { animation-delay: 0.15s; }
+.fade-up:nth-child(4) { animation-delay: 0.2s; }
+.fade-up:nth-child(5) { animation-delay: 0.25s; }
+.fade-up:nth-child(6) { animation-delay: 0.3s; }
+.fade-up:nth-child(7) { animation-delay: 0.35s; }
+.fade-up:nth-child(8) { animation-delay: 0.4s; }
+
+/* responsive */
+@media (max-width: 900px) {
+  .shell { padding: 0 24px 64px; }
+  .topbar { padding: 18px 24px; }
+  .tabs { margin: 0 -24px; padding: 0 24px; }
+  .hero-stats, .summary-grid, .pricing-grid, .decisions-list, .risk-grid, .agenda-grid {
+    grid-template-columns: 1fr;
+  }
+  .section-sub { display: none; }
+  .topbar-meta { display: none; }
+}
+</style>
+</head>
+<body>
+<div id="root">
+
+  <!-- ===== Top Bar ===== -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">A</span>
+      <span>Al-Qomar Muthmainnah <em style="font-style:italic;color:var(--ink-dim);font-weight:400">— Yayasan Pendidikan Islam Purnama Cendekia</em></span>
+    </div>
+    <div class="topbar-meta">
+      <span><span class="dot"></span>SESSION LIVE</span>
+      <span>05 APR 2026</span>
+      <span>JAKARTA BARAT</span>
+    </div>
+  </header>
+
+  <div class="shell">
+
+    <!-- ===== Hero ===== -->
+    <section class="hero fade-up">
+      <div class="hero-eyebrow">Rapat Koordinasi Manajemen · Q2 2026</div>
+      <h1 class="hero-title">Membangun fondasi <em>unggul</em> untuk tahun ajaran 2026 / 2027.</h1>
+      <p class="hero-sub">Konsolidasi strategis lintas jenjang KB, TKIT, SDIT, dan SMPIT — fokus pada kesiapan operasional, target PPDB gelombang 2, struktur biaya, dan mitigasi risiko menjelang puncak penerimaan peserta didik baru.</p>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-label">Peserta Rapat</div>
+          <div class="stat-value">14<span class="unit">orang</span></div>
+          <div class="stat-trend">Direksi · Kepsek · PPDB · Keuangan</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Durasi</div>
+          <div class="stat-value">2<span class="unit">jam 45 mnt</span></div>
+          <div class="stat-trend">09.00 – 11.45 WIB</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Keputusan</div>
+          <div class="stat-value">6<span class="unit">strategis</span></div>
+          <div class="stat-trend">Disetujui aklamasi</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Action Items</div>
+          <div class="stat-value">18<span class="unit">butir</span></div>
+          <div class="stat-trend">↑ 11 jatuh tempo April</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Tabs ===== -->
+    <nav class="tabs" id="tabs">
+      <button class="tab active" data-target="summary"><span class="tab-num">01</span>Ringkasan</button>
+      <button class="tab" data-target="actions"><span class="tab-num">02</span>Action Items</button>
+      <button class="tab" data-target="pricing"><span class="tab-num">03</span>Biaya &amp; PPDB</button>
+      <button class="tab" data-target="decisions"><span class="tab-num">04</span>Keputusan</button>
+      <button class="tab" data-target="risks"><span class="tab-num">05</span>Risiko</button>
+      <button class="tab" data-target="ops"><span class="tab-num">06</span>Operasional</button>
+      <button class="tab" data-target="agenda"><span class="tab-num">07</span>Agenda Lain</button>
+    </nav>
+
+    <!-- ===== 01 Summary ===== -->
+    <section class="section" id="summary">
+      <div class="section-head">
+        <span class="section-num">01</span>
+        <h2 class="section-title">Ringkasan Eksekutif</h2>
+        <p class="section-sub">Empat tema utama yang membentuk arah eksekusi triwulan kedua tahun pelajaran berjalan.</p>
+      </div>
+      <div class="summary-grid">
+        <div class="sum-card fade-up">
+          <div class="sum-card-icon">i</div>
+          <h3 class="sum-card-title">Momentum PPDB Kuat</h3>
+          <p class="sum-card-body">Pendaftar gelombang 1 mencapai <strong style="color:var(--ink)">142 calon siswa</strong>, naik 23% dibanding periode yang sama tahun lalu. Konversi menjadi siswa terdaftar ditargetkan 75% dengan dukungan follow-up terstruktur dari tim admisi.</p>
+        </div>
+        <div class="sum-card fade-up">
+          <div class="sum-card-icon">ii</div>
+          <h3 class="sum-card-title">Tekanan Biaya Operasional</h3>
+          <p class="sum-card-body">Beban biaya per siswa naik 8% akibat kenaikan UMP DKI Jakarta dan biaya utilitas. Diperlukan penyesuaian struktur SPP serta efisiensi belanja non-akademik agar margin operasional tetap sehat.</p>
+        </div>
+        <div class="sum-card fade-up">
+          <div class="sum-card-icon">iii</div>
+          <h3 class="sum-card-title">Kesiapan Fasilitas</h3>
+          <p class="sum-card-body">Renovasi ruang lab IPA SMPIT dan playground TKIT selesai tepat waktu. Yang masih tersisa: pengadaan ATK, furniture untuk kelas baru SDIT, serta penataan ulang ruang guru.</p>
+        </div>
+        <div class="sum-card fade-up">
+          <div class="sum-card-icon">iv</div>
+          <h3 class="sum-card-title">Akreditasi &amp; Legalitas</h3>
+          <p class="sum-card-body">Re-akreditasi SDIT dijadwalkan Juni 2026. Dokumen 80% siap. NPSN dan izin operasional dari Kemenag sudah aman. Tim audit internal akan memvalidasi kelengkapan minggu ke-4 April.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 02 Actions ===== -->
+    <section class="section" id="actions">
+      <div class="section-head">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Action Items</h2>
+        <p class="section-sub">18 butir tindakan dengan PIC dan tenggat. Diurutkan menurut prioritas dan jatuh tempo.</p>
+      </div>
+
+      <div class="actions-bar">
+        <div class="filter-chips">
+          <button class="chip active">Semua · 18</button>
+          <button class="chip">High · 4</button>
+          <button class="chip">Med · 7</button>
+          <button class="chip">Low · 4</button>
+          <button class="chip">Selesai · 3</button>
+        </div>
+        <div class="progress-track">
+          <span>17% selesai</span>
+          <div class="progress-bar"><div class="progress-fill" style="width:17%"></div></div>
+        </div>
+      </div>
+
+      <div class="action-list">
+        <div class="action">
+          <div class="checkbox"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3" stroke="#0b0b0d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="action-text">Finalisasi brosur PPDB cetak gelombang 2 — desain, proofread, dan distribusi ke 12 TK mitra.</div>
+          <div class="action-meta"><span class="action-pic gold">MARKETING</span><span class="action-when">12 APR · HIGH</span></div>
+        </div>
+        <div class="action">
+          <div class="checkbox"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3" stroke="#0b0b0d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="action-text">Update banner PPDB di alqomar.sch.id dan landing page formulir online.</div>
+          <div class="action-meta"><span class="action-pic gold">IT</span><span class="action-when">08 APR · HIGH</span></div>
+        </div>
+        <div class="action">
+          <div class="checkbox"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3" stroke="#0b0b0d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="action-text">Rekrutmen 3 guru baru SDIT — posting lowongan, screening, micro-teaching, finalisasi kontrak.</div>
+          <div class="action-meta"><span class="action-pic gold">HRD</span><span class="action-when">30 APR · HIGH</span></div>
+        </div>
+        <div class="action">
+          <div class="checkbox"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3" stroke="#0b0b0d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="action-text">Audit internal kelengkapan dokumen re-akreditasi SDIT (8 standar BAN-S/M).</div>
+          <div class="action-meta"><span class="action-pic gold">KEPSEK SDIT</span><span class="action-when">25 APR · HIGH</span></div>
+        </div>
+        <div class="action done">
+          <div class="checkbox checked"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3" stroke="#0b0b0d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="action-text">Survei kepuasan orang tua TKIT — kuesioner online, target 120 responden.</div>
+          <div class="action-meta"><span class="action-pic">KEPSEK TKIT</span><span class="action-when">SELESAI</span></div>
+        </div>
+        <div class="action">
+          <div class="checkbox"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3" stroke="#0b0b0d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="action-text">Pengadaan furniture untuk 4 kelas baru SDIT — meja, kursi, lemari guru, papan display.</div>
+          <div class="action-meta"><span class="action-pic">SARPRAS</span><span class="action-when">15 MEI · MED</span></div>
+        </div>
+        <div class="action">
+          <div class="checkbox"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3" stroke="#0b0b0d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="action-text">Pelatihan guru kurikulum merdeka batch 2 — 16 guru, 2 hari, narasumber dinas pendidikan.</div>
+          <div class="action-meta"><span class="action-pic">AKADEMIK</span><span class="action-when">22 APR · MED</span></div>
+        </div>
+        <div class="action">
+          <div class="checkbox"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3" stroke="#0b0b0d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="action-text">Update kalender akademik 2026/2027 — koordinasi dengan kalender Kemenag dan libur nasional.</div>
+          <div class="action-meta"><span class="action-pic">AKADEMIK</span><span class="action-when">18 APR · MED</span></div>
+        </div>
+        <div class="action">
+          <div class="checkbox"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3" stroke="#0b0b0d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="action-text">Negosiasi ulang kontrak vendor katering siswa — review harga, varian menu, dan jaminan halal.</div>
+          <div class="action-meta"><span class="action-pic">OPERASIONAL</span><span class="action-when">30 APR · MED</span></div>
+        </div>
+        <div class="action done">
+          <div class="checkbox checked"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3" stroke="#0b0b0d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="action-text">Sosialisasi gelombang 2 PPDB di grup WhatsApp wali murid existing.</div>
+          <div class="action-meta"><span class="action-pic">MARKETING</span><span class="action-when">SELESAI</span></div>
+        </div>
+        <div class="action">
+          <div class="checkbox"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3" stroke="#0b0b0d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="action-text">Refresh foto galeri website — sesi pemotretan kegiatan kelas dan fasilitas terbaru.</div>
+          <div class="action-meta"><span class="action-pic">MARKETING</span><span class="action-when">25 APR · LOW</span></div>
+        </div>
+        <div class="action">
+          <div class="checkbox"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3" stroke="#0b0b0d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="action-text">Penataan ulang ruang guru SMPIT — ergonomi, storage, area diskusi.</div>
+          <div class="action-meta"><span class="action-pic">SARPRAS</span><span class="action-when">10 MEI · LOW</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 03 Pricing ===== -->
+    <section class="section" id="pricing">
+      <div class="section-head">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Struktur Biaya &amp; Opsi DP PPDB</h2>
+        <p class="section-sub">Komposisi beban operasional per siswa dan opsi uang pangkal yang dievaluasi untuk gelombang berikutnya.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="cost-panel">
+          <h3 class="panel-title">Biaya Operasional / Siswa / Bulan</h3>
+          <p class="panel-sub">Distribusi beban biaya rata-rata berdasarkan rekap keuangan Q1 2026.</p>
+
+          <div class="cost-row">
+            <div class="cost-label">Gaji guru &amp; staff</div>
+            <div class="cost-bar-wrap"><div class="cost-bar up" style="width:62%"></div></div>
+            <div class="cost-amount"><strong>Rp 1.450.000</strong> · 62%</div>
+          </div>
+          <div class="cost-row">
+            <div class="cost-label">Utilitas &amp; maintenance</div>
+            <div class="cost-bar-wrap"><div class="cost-bar" style="width:14%"></div></div>
+            <div class="cost-amount"><strong>Rp 320.000</strong> · 14%</div>
+          </div>
+          <div class="cost-row">
+            <div class="cost-label">ATK &amp; bahan ajar</div>
+            <div class="cost-bar-wrap"><div class="cost-bar" style="width:10%"></div></div>
+            <div class="cost-amount"><strong>Rp 240.000</strong> · 10%</div>
+          </div>
+          <div class="cost-row">
+            <div class="cost-label">Kegiatan &amp; event</div>
+            <div class="cost-bar-wrap"><div class="cost-bar" style="width:8%"></div></div>
+            <div class="cost-amount"><strong>Rp 180.000</strong> · 8%</div>
+          </div>
+          <div class="cost-row">
+            <div class="cost-label">Lain-lain</div>
+            <div class="cost-bar-wrap"><div class="cost-bar" style="width:6%"></div></div>
+            <div class="cost-amount"><strong>Rp 140.000</strong> · 6%</div>
+          </div>
+
+          <div class="cost-highlight">
+            Total beban operasional <strong>Rp 2.330.000</strong>/siswa/bulan. SPP rata-rata saat ini Rp 1.950.000 — defisit <strong>Rp 380.000</strong> perlu ditutup melalui efisiensi belanja non-akademik dan penyesuaian SPP TA 2026/2027.
+          </div>
+        </div>
+
+        <div class="dp-panel">
+          <h3 class="panel-title">Opsi DP / Uang Pangkal</h3>
+          <p class="panel-sub">Tiga skenario dievaluasi. Default berlaku untuk gelombang 1–2.</p>
+
+          <div class="dp-option active">
+            <div class="dp-amount"><span class="currency">Rp</span>8.500.000</div>
+            <div class="dp-tag">Default · Gelombang 1–2 · ACTIVE</div>
+          </div>
+
+          <div class="dp-option">
+            <div class="dp-amount"><span class="currency">Rp</span>7.500.000</div>
+            <div class="dp-tag">Early Bird · Closed 31 Maret</div>
+          </div>
+
+          <div class="dp-option tentative">
+            <div class="dp-amount"><span class="currency">Rp</span>9.500.000</div>
+            <div class="dp-tag">Gelombang 3 · Tentative · Pending Mei</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 04 Decisions ===== -->
+    <section class="section" id="decisions">
+      <div class="section-head">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Keputusan Strategis</h2>
+        <p class="section-sub">Enam keputusan disetujui aklamasi oleh dewan direksi yayasan dalam rapat ini.</p>
+      </div>
+
+      <div class="decisions-list">
+        <div class="decision">
+          <div class="decision-num">01</div>
+          <div class="decision-label">Keuangan · TA 2026/2027</div>
+          <h3 class="decision-title">Penyesuaian SPP rata-rata 6%</h3>
+          <p class="decision-body">Menyesuaikan inflasi dan kenaikan beban operasional, efektif tahun ajaran baru. Wali murid existing mendapat sosialisasi langsung melalui surat resmi.</p>
+        </div>
+        <div class="decision">
+          <div class="decision-num">02</div>
+          <div class="decision-label">Akademik · SDIT</div>
+          <h3 class="decision-title">Pembukaan rombel paralel ke-4</h3>
+          <p class="decision-body">Menambah satu rombongan belajar kelas 1 SDIT karena permintaan tinggi, total 4 rombel paralel. Kapasitas tambahan ±28 siswa.</p>
+        </div>
+        <div class="decision">
+          <div class="decision-num">03</div>
+          <div class="decision-label">Beasiswa · Lintas Jenjang</div>
+          <h3 class="decision-title">Beasiswa Tahfidz penuh — 8 slot</h3>
+          <p class="decision-body">Mengalokasikan 8 slot beasiswa 100% untuk hafidz/hafidzah 5 juz ke atas. Seleksi terbuka via tes hafalan dan wawancara karakter.</p>
+        </div>
+        <div class="decision">
+          <div class="decision-num">04</div>
+          <div class="decision-label">PPDB · Akses Ekonomi</div>
+          <h3 class="decision-title">Skema cicilan DP hingga 4×</h3>
+          <p class="decision-body">Memperluas akses untuk keluarga ekonomi menengah. Maksimum 4 kali angsuran, jatuh tempo terakhir sebelum tahun ajaran dimulai.</p>
+        </div>
+        <div class="decision">
+          <div class="decision-num">05</div>
+          <div class="decision-label">Investasi · SMPIT</div>
+          <h3 class="decision-title">Pengadaan 6 unit smart board</h3>
+          <p class="decision-body">Total Rp 180 juta dari surplus operasional 2025. Instalasi bertahap mulai Mei, training guru menyertai pengadaan.</p>
+        </div>
+        <div class="decision">
+          <div class="decision-num">06</div>
+          <div class="decision-label">Kemitraan · Tahfidz</div>
+          <h3 class="decision-title">Kerjasama Rumah Tahfidz Al-Hikmah</h3>
+          <p class="decision-body">Program intensif liburan semester untuk siswa SDIT–SMPIT. MoU ditandatangani sebelum 30 April, batch perdana Juni–Juli 2026.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 05 Risks ===== -->
+    <section class="section" id="risks">
+      <div class="section-head">
+        <span class="section-num">05</span>
+        <h2 class="section-title">Risiko &amp; Mitigasi</h2>
+        <p class="section-sub">Klasifikasi tingkat risiko terhadap kelangsungan operasional dan pencapaian target tahun ajaran baru.</p>
+      </div>
+      <div class="risk-grid">
+        <div class="risk">
+          <div class="risk-level">High</div>
+          <h4 class="risk-title">Rekrutmen guru SDIT terlambat</h4>
+          <p class="risk-body">Bila rekrutmen molor ke Mei, kualitas pembukaan tahun ajaran baru terganggu. Mitigasi: aktifkan jaringan alumni guru dan iklan berbayar di portal lowongan pendidikan.</p>
+        </div>
+        <div class="risk">
+          <div class="risk-level">High</div>
+          <h4 class="risk-title">Konversi PPDB di bawah 70%</h4>
+          <p class="risk-body">Defisit biaya operasional bila konversi kurang dari target. Mitigasi: program follow-up terstruktur, diskon DP dini, dan open house tambahan minggu kedua April.</p>
+        </div>
+        <div class="risk med">
+          <div class="risk-level">Medium</div>
+          <h4 class="risk-title">Keterlambatan furniture kelas baru</h4>
+          <p class="risk-body">Vendor utama backlog Q2. Mitigasi: kontrak paralel dengan vendor cadangan dan deposit dipercepat untuk mengamankan slot produksi.</p>
+        </div>
+        <div class="risk med">
+          <div class="risk-level">Medium</div>
+          <h4 class="risk-title">Kompetisi sekolah baru</h4>
+          <p class="risk-body">Dua sekolah kompetitor membuka cabang dalam radius 3 km. Mitigasi: penguatan diferensiasi tahfidz dan testimoni alumni di kanal digital.</p>
+        </div>
+        <div class="risk med">
+          <div class="risk-level">Medium</div>
+          <h4 class="risk-title">Penundaan re-akreditasi</h4>
+          <p class="risk-body">Risiko bila dokumen 8 standar BAN-S/M tidak lengkap pada Juni. Mitigasi: audit internal 25 April dengan checklist resmi BAN-S/M.</p>
+        </div>
+        <div class="risk low">
+          <div class="risk-level">Low</div>
+          <h4 class="risk-title">Beban server saat puncak pendaftaran</h4>
+          <p class="risk-body">Risiko teknis terbatas karena infrastruktur sudah di-uplift Maret. Mitigasi: monitoring real-time dan rollback plan tersedia.</p>
+        </div>
+        <div class="risk low">
+          <div class="risk-level">Low</div>
+          <h4 class="risk-title">Cuaca ekstrem &amp; banjir lokal</h4>
+          <p class="risk-body">Berdampak pada agenda outdoor dan akses transportasi. Mitigasi: SOP relokasi indoor dan komunikasi cepat melalui grup wali murid.</p>
+        </div>
+        <div class="risk low">
+          <div class="risk-level">Low</div>
+          <h4 class="risk-title">Variabilitas harga ATK</h4>
+          <p class="risk-body">Fluktuasi ringan harga kertas dan supplies. Mitigasi: penawaran kontrak tahunan dengan distributor utama.</p>
+        </div>
+        <div class="risk low">
+          <div class="risk-level">Low</div>
+          <h4 class="risk-title">Turnover staff non-akademik</h4>
+          <p class="risk-body">Risiko terbatas, retensi 12 bulan terakhir di atas 90%. Mitigasi: review kompensasi tahunan dan jenjang karir internal.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 06 Operations ===== -->
+    <section class="section" id="ops">
+      <div class="section-head">
+        <span class="section-num">06</span>
+        <h2 class="section-title">Operasional &amp; Langkah Lanjut</h2>
+        <p class="section-sub">Rencana eksekusi taktis untuk dua minggu pertama April hingga gelombang utama PPDB.</p>
+      </div>
+      <div class="ops-list">
+        <div class="op-row">
+          <div class="op-num">01</div>
+          <div>
+            <h3 class="op-title">War Room PPDB</h3>
+            <p class="op-body">Aktifkan ruang khusus tim PPDB di lantai 2 gedung utama, buka <strong>Senin–Sabtu, 08.00–16.00 WIB</strong>, mulai 8 April. Backup digital melalui WhatsApp Business resmi sekolah dan formulir online di alqomar.sch.id/spmb-online.</p>
+          </div>
+        </div>
+        <div class="op-row">
+          <div class="op-num">02</div>
+          <div>
+            <h3 class="op-title">Open House Berikutnya</h3>
+            <p class="op-body">Sabtu <strong>19 April 2026</strong>, target 80 keluarga hadir. Materi: tour fasilitas seluruh jenjang, demo kelas tematik, sesi tanya jawab dengan kepala sekolah masing-masing jenjang, dan sajian halal dari katering mitra.</p>
+          </div>
+        </div>
+        <div class="op-row">
+          <div class="op-num">03</div>
+          <div>
+            <h3 class="op-title">Roadshow ke TK Mitra</h3>
+            <p class="op-body">Tim marketing mengunjungi <strong>12 TK mitra</strong> di Kalideres dan Cengkareng, presentasi singkat untuk wali murid, pembagian merchandise dan brosur PPDB. Periode pelaksanaan 15–30 April.</p>
+          </div>
+        </div>
+        <div class="op-row">
+          <div class="op-num">04</div>
+          <div>
+            <h3 class="op-title">Optimasi Digital</h3>
+            <p class="op-body">Boost iklan Instagram dan Facebook dengan budget <strong>Rp 8.000.000</strong> untuk April. Konten utama: reels testimoni alumni, walk-through fasilitas, dan kutipan visi-misi yayasan dengan tipografi serif.</p>
+          </div>
+        </div>
+        <div class="op-row">
+          <div class="op-num">05</div>
+          <div>
+            <h3 class="op-title">Briefing Tim Frontliner</h3>
+            <p class="op-body">Seluruh resepsionis, satpam terdepan, dan staff TU mendapat briefing <strong>skrip PPDB, FAQ, dan handling objection</strong>. Jadwal: 10 April, durasi 3 jam, fasilitator dari tim marketing dan kepala TU.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 07 Other agenda ===== -->
+    <section class="section" id="agenda">
+      <div class="section-head">
+        <span class="section-num">07</span>
+        <h2 class="section-title">Agenda Lain</h2>
+        <p class="section-sub">Inisiatif tambahan yang dibahas singkat dan akan ditindaklanjuti pada rapat berikutnya.</p>
+      </div>
+      <div class="agenda-grid">
+        <div class="agenda-card">
+          <span class="agenda-card-tag">Program</span>
+          <h3 class="agenda-card-title">Lomba Tahfidz Internal</h3>
+          <p class="agenda-card-body">Kompetisi antar jenjang Mei 2026. Hadiah utama: paket umroh untuk juara umum tingkat SMPIT, beasiswa 1 semester untuk juara jenjang KB/TKIT/SDIT.</p>
+        </div>
+        <div class="agenda-card">
+          <span class="agenda-card-tag">Kemitraan</span>
+          <h3 class="agenda-card-title">MoU Klinik Pratama</h3>
+          <p class="agenda-card-body">Layanan kesehatan rutin untuk siswa, screening kesehatan tahunan gratis, serta jalur rujukan cepat untuk kasus darurat. Penandatanganan akhir April.</p>
+        </div>
+        <div class="agenda-card">
+          <span class="agenda-card-tag">Event</span>
+          <h3 class="agenda-card-title">Pentas Seni Akhir Tahun</h3>
+          <p class="agenda-card-body">Tema "Generasi Qur'ani Berkarya". Venue gedung serbaguna, 25 Juni 2026. Melibatkan seluruh jenjang, target audiens 600 wali murid dan tamu undangan.</p>
+        </div>
+        <div class="agenda-card">
+          <span class="agenda-card-tag">Digital</span>
+          <h3 class="agenda-card-title">Aplikasi Rapor Wali Murid</h3>
+          <p class="agenda-card-body">Soft launch Juli 2026, pilot di SDIT, integrasi dengan sistem akademik internal. Roadmap iOS &amp; Android, otentikasi NISN, notifikasi nilai dan presensi.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Sign-off ===== -->
+    <footer class="signoff">
+      <div class="signoff-mark">—</div>
+      <div class="signoff-text">Next Review · Rapat Manajemen Bulanan · 03 Mei 2026</div>
+      <div class="signoff-text" style="margin-top:14px;color:var(--ink-mute)">Notulen lengkap dikirim H+2 ke seluruh peserta via email resmi yayasan.</div>
+    </footer>
+
+  </div>
+</div>
+
+<script>
+  // tab scroll-spy + smooth scroll
+  (function () {
+    const tabs = document.querySelectorAll('.tab');
+    const sections = Array.from(document.querySelectorAll('.section'));
+
+    tabs.forEach(t => {
+      t.addEventListener('click', () => {
+        const id = t.dataset.target;
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    const onScroll = () => {
+      const y = window.scrollY + 180;
+      let current = sections[0]?.id;
+      for (const s of sections) { if (s.offsetTop <= y) current = s.id; }
+      tabs.forEach(t => t.classList.toggle('active', t.dataset.target === current));
+    };
+    document.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // checkbox toggle
+    document.querySelectorAll('.action').forEach(a => {
+      a.addEventListener('click', () => {
+        const cb = a.querySelector('.checkbox');
+        cb.classList.toggle('checked');
+        a.classList.toggle('done', cb.classList.contains('checked'));
+      });
+    });
+
+    // chip toggle (visual only)
+    document.querySelectorAll('.chip').forEach(c => {
+      c.addEventListener('click', () => {
+        document.querySelectorAll('.chip').forEach(x => x.classList.remove('active'));
+        c.classList.add('active');
+      });
+    });
+
+    // dp option select
+    document.querySelectorAll('.dp-option').forEach(o => {
+      o.addEventListener('click', () => {
+        document.querySelectorAll('.dp-option').forEach(x => x.classList.remove('active'));
+        o.classList.add('active');
+      });
+    });
+  })();
+</script>
+</body>
+</html>
