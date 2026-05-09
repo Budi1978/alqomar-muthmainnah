@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal Divisi — Dar Tanur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#b8860b;--gold-dk:#8b6508;--gold-lt:#fdf6e3;--gold-bd:#e8d5a3;
+  --blue:#1d4ed8;--blue-lt:#eff6ff;--blue-bd:#bfdbfe;
+  --text:#1a1a2e;--text-lt:#6b7280;
+  --border:#e5e7eb;--bg:#f9f7f2;--white:#fff;
+  --err:#dc2626;--ok:#16a34a;--r:12px;
+}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px}
+
+/* Logo */
+.logo{text-align:center;margin-bottom:28px}
+.logo-icon{font-size:40px;margin-bottom:8px}
+.logo h1{font-size:26px;font-weight:700;color:var(--gold);letter-spacing:-.5px}
+.logo p{font-size:13px;color:var(--text-lt);margin-top:4px}
+
+/* Card */
+.card{background:var(--white);border-radius:var(--r);padding:32px;width:100%;
+  max-width:560px;box-shadow:0 4px 24px rgba(0,0,0,.09)}
+.card-title{font-size:18px;font-weight:700;color:var(--text);margin-bottom:6px}
+.card-sub{font-size:13px;color:var(--text-lt);margin-bottom:22px}
+
+/* Division grid */
+.div-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(138px,1fr));gap:10px}
+.div-btn{background:var(--gold-lt);border:1.5px solid var(--gold-bd);border-radius:9px;
+  padding:14px 8px;font-family:inherit;font-size:12.5px;font-weight:600;color:var(--text);
+  cursor:pointer;text-align:center;transition:all .15s;line-height:1.35}
+.div-btn:hover{background:var(--gold);border-color:var(--gold);color:#fff;
+  transform:translateY(-2px);box-shadow:0 4px 14px rgba(184,134,11,.3)}
+.div-btn.new-div{background:var(--blue-lt);border-color:var(--blue-bd);color:var(--blue)}
+.div-btn.new-div:hover{background:var(--blue);border-color:var(--blue);color:#fff;
+  box-shadow:0 4px 14px rgba(29,78,216,.3)}
+.div-badge{display:inline-block;font-size:10px;font-weight:700;background:var(--blue);
+  color:#fff;border-radius:20px;padding:1px 7px;margin-top:5px;letter-spacing:.3px}
+
+/* Step views */
+.view{display:none}.view.active{display:block}
+
+/* PIN step */
+.selected-tag{display:inline-flex;align-items:center;gap:10px;
+  background:var(--gold-lt);border:1px solid var(--gold-bd);border-radius:20px;
+  padding:7px 16px;font-size:13px;font-weight:600;color:var(--gold-dk);margin-bottom:20px}
+.change-btn{background:none;border:none;font-family:inherit;font-size:12px;
+  color:var(--text-lt);cursor:pointer;text-decoration:underline;padding:0}
+.inp-wrap{position:relative;margin-bottom:14px}
+.pin-inp{width:100%;padding:13px 44px 13px 16px;border:1.5px solid var(--border);
+  border-radius:9px;font-family:inherit;font-size:22px;letter-spacing:6px;
+  text-align:center;outline:none;transition:border-color .15s;background:var(--white)}
+.pin-inp:focus{border-color:var(--gold)}
+.pin-inp.err{border-color:var(--err);animation:shake .3s ease}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.eye-btn{position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  background:none;border:none;cursor:pointer;font-size:17px;color:var(--text-lt);padding:4px}
+.err-msg{font-size:13px;color:var(--err);margin-bottom:12px;display:none;
+  padding:10px 14px;background:#fef2f2;border-radius:8px;border:1px solid #fecaca}
+.err-msg.show{display:block}
+.submit-btn{width:100%;padding:13px;background:var(--gold);color:#fff;border:none;
+  border-radius:9px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;
+  transition:background .15s;letter-spacing:.3px}
+.submit-btn:hover{background:var(--gold-dk)}
+.submit-btn:active{transform:scale(.98)}
+
+/* Success */
+.success-icon{width:68px;height:68px;background:#dcfce7;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 18px}
+.success-view{text-align:center}
+.success-view h3{font-size:21px;font-weight:700;color:var(--text)}
+.success-view p{font-size:14px;color:var(--text-lt);margin-top:8px;line-height:1.6}
+.logout-btn{margin-top:24px;padding:10px 28px;background:var(--bg);
+  border:1.5px solid var(--border);border-radius:9px;font-family:inherit;
+  font-size:13px;font-weight:600;cursor:pointer;transition:all .15s}
+.logout-btn:hover{border-color:var(--gold);color:var(--gold)}
+
+footer{margin-top:22px;font-size:12px;color:var(--text-lt);text-align:center}
+
+@media(max-width:480px){
+  .card{padding:22px 14px}
+  .div-grid{grid-template-columns:repeat(2,1fr)}
+  .pin-inp{font-size:20px;letter-spacing:5px}
+}
+</style>
+</head>
+<body>
+
+<div class="logo">
+  <div class="logo-icon">🕌</div>
+  <h1>Dar Tanur</h1>
+  <p>Portal Akses Divisi Internal</p>
+</div>
+
+<div class="card">
+
+  <!-- Step 1: Pilih Divisi -->
+  <div class="view active" id="stepSelect">
+    <div class="card-title">Pilih Divisi Anda</div>
+    <div class="card-sub">Klik divisi Anda untuk melanjutkan proses masuk.</div>
+    <div class="div-grid" id="divGrid"></div>
+  </div>
+
+  <!-- Step 2: Masukkan PIN -->
+  <div class="view" id="stepPin">
+    <div class="selected-tag">
+      <span id="selectedName"></span>
+      <button class="change-btn" onclick="backToSelect()">Ganti ↩</button>
+    </div>
+    <div class="card-title">Masukkan PIN</div>
+    <div class="card-sub">Masukkan PIN khusus divisi Anda.</div>
+    <div class="inp-wrap">
+      <input type="password" id="pinInput" class="pin-inp" placeholder="· · · · · ·"
+        maxlength="8" autocomplete="off" onkeydown="if(event.key==='Enter')checkPin()">
+      <button class="eye-btn" onclick="togglePin()" type="button" id="eyeBtn" title="Tampilkan PIN">👁</button>
+    </div>
+    <p class="err-msg" id="errorMsg">❌ PIN salah. Silakan periksa kembali dan coba lagi.</p>
+    <button class="submit-btn" onclick="checkPin()">Masuk →</button>
+  </div>
+
+  <!-- Step 3: Sukses -->
+  <div class="view success-view" id="stepSuccess">
+    <div class="success-icon">✅</div>
+    <h3>Selamat Datang!</h3>
+    <p>Anda berhasil masuk sebagai<br><strong id="successDiv" style="color:var(--gold);font-size:16px"></strong></p>
+    <button class="logout-btn" onclick="logout()">↩ Keluar / Ganti Divisi</button>
+  </div>
+
+</div>
+
+<footer>© 2025 Dar Tanur &nbsp;·&nbsp; Portal Internal</footer>
+
+<script>
+const D = [
+  { id:'ticketing',    name:'Ticketing',           pin:'TIK830' },
+  { id:'hotel',        name:'Hotel',               pin:'HTL025' },
+  { id:'finance_cash', name:'Finance Cash',        pin:'FCS281' },
+  { id:'finance_pb',   name:'Finance Pembukuan',   pin:'FPB927' },
+  { id:'handling',     name:'Handling JKT',        pin:'HDL156' },
+  { id:'visa',         name:'Visa & Sisko',        pin:'VIS615' },
+  { id:'perlengkapan', name:'Perlengkapan',        pin:'PLK000' },
+  { id:'design',       name:'Design',              pin:'DSG483' },
+  { id:'corcomm',      name:'CorComm',             pin:'CMM892' },
+  { id:'legal',        name:'Legal',               pin:'LGL331' },
+  { id:'hr',           name:'HR',                  pin:'HRD455' },
+  { id:'receptionist', name:'Receptionist',        pin:'RCP882' },
+  { id:'it',           name:'IT Development',      pin:'ITD247', isNew:true }
+];
+
+let cur = null;
+
+const grid = document.getElementById('divGrid');
+D.forEach(d => {
+  const btn = document.createElement('button');
+  btn.className = 'div-btn' + (d.isNew ? ' new-div' : '');
+  btn.innerHTML = d.name + (d.isNew ? '<br><span class="div-badge">BARU</span>' : '');
+  btn.onclick = () => selectDiv(d);
+  grid.appendChild(btn);
+});
+
+function show(id) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function selectDiv(d) {
+  cur = d;
+  document.getElementById('selectedName').textContent = '🏢 ' + d.name;
+  document.getElementById('pinInput').value = '';
+  document.getElementById('pinInput').classList.remove('err');
+  document.getElementById('errorMsg').classList.remove('show');
+  document.getElementById('eyeBtn').textContent = '👁';
+  document.getElementById('pinInput').type = 'password';
+  show('stepPin');
+  setTimeout(() => document.getElementById('pinInput').focus(), 100);
+}
+
+function backToSelect() {
+  cur = null;
+  show('stepSelect');
+}
+
+function checkPin() {
+  const inp = document.getElementById('pinInput');
+  const err = document.getElementById('errorMsg');
+  if (!inp.value.trim()) { inp.focus(); return; }
+  if (inp.value.trim().toUpperCase() === cur.pin.toUpperCase()) {
+    document.getElementById('successDiv').textContent = cur.name;
+    show('stepSuccess');
+  } else {
+    inp.classList.add('err');
+    err.classList.add('show');
+    inp.value = '';
+    inp.focus();
+    setTimeout(() => inp.classList.remove('err'), 600);
+  }
+}
+
+function togglePin() {
+  const inp = document.getElementById('pinInput');
+  const eye = document.getElementById('eyeBtn');
+  inp.type = inp.type === 'password' ? 'text' : 'password';
+  eye.textContent = inp.type === 'password' ? '👁' : '🙈';
+}
+
+function logout() {
+  cur = null;
+  show('stepSelect');
+}
+</script>
+</body>
+</html>
