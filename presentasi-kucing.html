@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kehidupan Kucing — Presentasi Interaktif</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#080818;--card:#11112a;--card2:#1a1a38;
+  --orange:#ff8c42;--gold:#ffd700;--teal:#00d2d7;
+  --pink:#ff6b9d;--purple:#9b6bff;
+  --text:#f0f0f8;--muted:#7878aa;
+}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif}
+
+/* CANVAS */
+#cvs{position:fixed;inset:0;pointer-events:none;z-index:0}
+
+/* PROGRESS */
+.prog{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--orange),var(--gold));z-index:200;transition:width .5s ease;box-shadow:0 0 12px var(--orange)}
+
+/* TOP BAR */
+.topbar{position:fixed;top:14px;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:0 24px;pointer-events:none}
+.tb-auto{pointer-events:all;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:var(--muted);padding:5px 14px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;transition:all .3s;letter-spacing:.5px;backdrop-filter:blur(8px)}
+.tb-auto:hover,.tb-auto.on{background:rgba(255,140,66,.15);border-color:var(--orange);color:var(--orange)}
+.tb-count{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:1px}
+
+/* NAV */
+.nav-btn{position:fixed;top:50%;transform:translateY(-50%);z-index:200;width:44px;height:44px;border-radius:50%;border:2px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);backdrop-filter:blur(8px);color:white;font-size:17px;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center}
+.nav-btn:hover{background:var(--orange);border-color:var(--orange);box-shadow:0 0 20px rgba(255,140,66,.5);transform:translateY(-50%) scale(1.1)}
+.btn-prev{left:14px}.btn-next{right:14px}
+
+/* DOTS */
+.dots{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:200}
+.dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.18);cursor:pointer;transition:all .3s}
+.dot.on{width:24px;border-radius:4px;background:var(--orange);box-shadow:0 0 8px var(--orange)}
+
+/* SLIDES */
+.slides{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+.slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:64px 80px 70px;opacity:0;transform:translateX(50px) scale(.97);transition:all .55s cubic-bezier(.4,0,.2,1);pointer-events:none;z-index:1}
+.slide.active{opacity:1;transform:none;pointer-events:all}
+.slide.exit{opacity:0;transform:translateX(-50px) scale(.97)}
+.sc{width:100%;max-width:1080px;position:relative;z-index:2}
+
+/* TAG */
+.tag{display:inline-block;padding:5px 14px;border-radius:20px;font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+.t-or{background:rgba(255,140,66,.12);color:var(--orange);border:1px solid rgba(255,140,66,.3)}
+.t-te{background:rgba(0,210,215,.12);color:var(--teal);border:1px solid rgba(0,210,215,.3)}
+.t-pk{background:rgba(255,107,157,.12);color:var(--pink);border:1px solid rgba(255,107,157,.3)}
+.t-gd{background:rgba(255,215,0,.12);color:var(--gold);border:1px solid rgba(255,215,0,.3)}
+.t-pu{background:rgba(155,107,255,.12);color:var(--purple);border:1px solid rgba(155,107,255,.3)}
+
+/* TYPOGRAPHY */
+.h1{font-size:clamp(2.8rem,5.5vw,5rem);font-family:'Playfair Display',serif;line-height:1.1}
+.h2{font-size:clamp(2rem,3.5vw,3.2rem);font-family:'Playfair Display',serif;line-height:1.15}
+.gr{background:linear-gradient(135deg,var(--orange),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gt{background:linear-gradient(135deg,var(--teal),#a0f8ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gp{background:linear-gradient(135deg,var(--pink),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sub{font-size:15px;color:var(--muted);line-height:1.75;margin-top:12px}
+
+/* GRID */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+
+/* CARD */
+.card{background:var(--card);border-radius:16px;padding:22px;border:1px solid rgba(255,255,255,.06);transition:all .3s;position:relative;overflow:hidden}
+.card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.12);box-shadow:0 20px 40px rgba(0,0,0,.4)}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--orange),transparent);opacity:0;transition:opacity .3s}
+.card:hover::before{opacity:1}
+
+/* STAT CARD */
+.stat{background:var(--card);border-radius:20px;padding:28px 20px;text-align:center;border:1px solid rgba(255,255,255,.07)}
+.stat .icon{font-size:2.2rem;display:block;margin-bottom:10px}
+.stat .num{font-size:2.5rem;font-weight:800;display:block;margin-bottom:5px}
+.stat .lbl{font-size:12px;color:var(--muted);font-weight:600}
+
+/* FLIP CARD */
+.flip{perspective:1000px;cursor:pointer;height:175px}
+.flip-in{position:relative;width:100%;height:100%;transition:transform .65s;transform-style:preserve-3d}
+.flip:hover .flip-in{transform:rotateY(180deg)}
+.flip-f,.flip-b{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;text-align:center;border:1px solid rgba(255,255,255,.08)}
+.flip-f{background:var(--card)}
+.flip-b{background:var(--card2);transform:rotateY(180deg);font-size:12px;color:var(--muted);line-height:1.65}
+.flip-f .fi{font-size:2.6rem;margin-bottom:8px}
+.flip-f .fn{font-size:14px;font-weight:700}
+.flip-f .fs{font-size:11px;color:var(--muted);margin-top:3px}
+
+/* PROGRESS BAR IN SLIDE */
+.pb-wrap{margin:8px 0}
+.pb-lbl{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:5px}
+.pb-track{height:7px;background:rgba(255,255,255,.07);border-radius:4px;overflow:hidden}
+.pb-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--orange),var(--gold));width:0;transition:width 1.3s cubic-bezier(.4,0,.2,1)}
+
+/* FACT BOX */
+.fact{background:linear-gradient(135deg,rgba(255,140,66,.1),rgba(255,215,0,.06));border:1px solid rgba(255,140,66,.2);border-radius:14px;padding:18px 22px;position:relative;opacity:0;transform:translateY(18px);transition:all .5s}
+.fact.rev{opacity:1;transform:none}
+.fact .fn{position:absolute;top:-11px;left:18px;background:var(--orange);color:white;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800}
+
+/* BODY LABELS */
+.blbl{display:flex;align-items:center;gap:10px;padding:9px 14px;background:var(--card);border-radius:10px;border-left:3px solid var(--orange);margin-bottom:9px;transition:all .3s}
+.blbl:hover{background:var(--card2);transform:translateX(6px)}
+.blbl .bi{font-size:1.3rem}
+.blbl h4{font-size:13px;font-weight:700;margin-bottom:2px}
+.blbl p{font-size:11px;color:var(--muted)}
+
+/* CARE ITEM */
+.ci{display:flex;gap:14px;align-items:center;padding:13px 18px;background:var(--card);border-radius:12px;border:1px solid rgba(255,255,255,.06);margin-bottom:9px;transition:all .4s;opacity:0;transform:translateX(-20px)}
+.ci.vis{opacity:1;transform:none}
+.ci .ck{width:30px;height:30px;border-radius:50%;background:rgba(255,140,66,.12);border:2px solid var(--orange);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;transition:background .4s}
+.ci.done .ck{background:var(--orange)}
+.ci-text h4{font-size:13px;font-weight:700}
+.ci-text p{font-size:11px;color:var(--muted);margin-top:2px}
+
+/* BENEFIT */
+.ben{background:linear-gradient(135deg,var(--card),var(--card2));border-radius:16px;padding:20px;border:1px solid rgba(255,255,255,.07);display:flex;gap:14px;align-items:flex-start;transition:all .3s}
+.ben:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.3)}
+.ben .bi2{font-size:1.9rem;flex-shrink:0}
+.ben h4{font-size:13px;font-weight:700;margin-bottom:4px}
+.ben p{font-size:12px;color:var(--muted);line-height:1.6}
+
+/* BEHAV CARD */
+.beh{background:var(--card);border-radius:14px;padding:18px;text-align:center;border:1px solid rgba(255,255,255,.06);transition:all .3s}
+.beh:hover{transform:scale(1.04);border-color:rgba(255,140,66,.3)}
+.beh .be{font-size:2.2rem;display:block;margin-bottom:8px}
+.beh h4{font-size:13px;font-weight:700;margin-bottom:4px}
+.beh p{font-size:11px;color:var(--muted);line-height:1.6}
+
+/* ANIMATIONS */
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes tailwag{0%,100%{transform:rotate(0)}30%{transform:rotate(22deg)}70%{transform:rotate(-18deg)}}
+@keyframes blink{0%,44%,56%,100%{transform:scaleY(1)}50%{transform:scaleY(.08)}}
+@keyframes twinkle{0%,100%{opacity:.2;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
+@keyframes zzz{0%{opacity:0;transform:translateY(0) scale(.5)}50%{opacity:1}100%{opacity:0;transform:translateY(-38px) scale(1.2)}}
+@keyframes pawfall{0%{opacity:0;transform:translateY(-20px) rotate(var(--r))}20%{opacity:.7}100%{opacity:0;transform:translateY(60px) rotate(var(--r))}}
+@keyframes pulseRing{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.8);opacity:0}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes popIn{0%{transform:scale(0);opacity:0}70%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+
+.cat-float{animation:float 3.5s ease-in-out infinite}
+.tail-anim{transform-origin:0 50%;animation:tailwag 1.8s ease-in-out infinite}
+.eye-blink{animation:blink 4.5s ease-in-out infinite}
+.star-tw{animation:twinkle 2s ease-in-out infinite}
+.zzz-anim span{display:inline-block;color:var(--teal);animation:zzz 2.2s ease-in-out infinite}
+.zzz-anim span:nth-child(2){animation-delay:.6s;font-size:1.6rem}
+.zzz-anim span:nth-child(3){animation-delay:1.2s;font-size:2rem}
+.pop-in{animation:popIn .5s cubic-bezier(.34,1.56,.64,1) forwards}
+
+/* COVER BG */
+.cover-grad{position:absolute;inset:0;background:radial-gradient(ellipse at 25% 50%,rgba(255,140,66,.07) 0%,transparent 55%),radial-gradient(ellipse at 75% 30%,rgba(0,210,215,.06) 0%,transparent 50%)}
+
+/* CIRCULAR PROGRESS */
+.cprog{position:relative;width:100px;height:100px}
+.cprog svg{transform:rotate(-90deg)}
+.cprog-bg{fill:none;stroke:rgba(255,255,255,.07);stroke-width:8}
+.cprog-fill{fill:none;stroke-width:8;stroke-linecap:round;stroke-dasharray:283;stroke-dashoffset:283;transition:stroke-dashoffset 1.4s cubic-bezier(.4,0,.2,1)}
+.cprog .cval{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:1.1rem;font-weight:800}
+.cval small{font-size:9px;color:var(--muted);font-weight:600;margin-top:2px}
+
+/* TIMELINE */
+.tl{display:flex;flex-direction:column;gap:0}
+.tli{display:flex;gap:18px;position:relative;padding-bottom:20px}
+.tli:last-child{padding-bottom:0}
+.tl-l{flex-shrink:0;display:flex;flex-direction:column;align-items:center;width:36px}
+.tl-dot{width:36px;height:36px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:white;box-shadow:0 0 14px rgba(255,140,66,.4);flex-shrink:0}
+.tl-line{flex:1;width:2px;background:rgba(255,255,255,.07);margin-top:4px}
+.tl-r{flex:1;padding-top:6px}
+.tl-yr{font-size:11px;font-weight:800;color:var(--orange);letter-spacing:1px;margin-bottom:3px}
+.tl-tx{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* HEADING ACCENT */
+.accent-line{width:50px;height:3px;background:linear-gradient(90deg,var(--orange),var(--gold));border-radius:2px;margin:12px 0}
+
+/* QUOTE */
+.quote{border-left:3px solid var(--orange);padding:14px 20px;background:rgba(255,140,66,.05);border-radius:0 12px 12px 0;font-style:italic;color:var(--muted);font-size:14px;line-height:1.7;margin-top:14px}
+
+/* SENSOR CARD */
+.sncard{background:var(--card);border-radius:14px;padding:18px;border:1px solid rgba(255,255,255,.06);display:flex;gap:14px;align-items:flex-start;transition:all .3s}
+.sncard:hover{border-color:rgba(0,210,215,.3);box-shadow:0 0 20px rgba(0,210,215,.1);transform:translateY(-3px)}
+.sncard .sni{font-size:1.8rem;flex-shrink:0}
+.sncard h4{font-size:13px;font-weight:700;margin-bottom:4px}
+.sncard p{font-size:12px;color:var(--muted);line-height:1.6}
+
+/* OUTRO */
+.outro-bg{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(155,107,255,.08) 0%,transparent 60%)}
+</style>
+</head>
+<body>
+<canvas id="cvs"></canvas>
+
+<!-- PROGRESS BAR -->
+<div class="prog" id="prog"></div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <button class="tb-auto" id="autoBtn" onclick="toggleAuto()">▶ AUTO PLAY</button>
+  <div class="tb-count" id="cnt">1 / 11</div>
+</div>
+
+<!-- NAV -->
+<button class="nav-btn btn-prev" onclick="go(-1)">&#8592;</button>
+<button class="nav-btn btn-next" onclick="go(1)">&#8594;</button>
+
+<!-- DOTS -->
+<div class="dots" id="dots"></div>
+
+<!-- ═══════════════════════════════════════ -->
+<!--  SLIDES                                -->
+<!-- ═══════════════════════════════════════ -->
+<div class="slides">
+
+<!-- SLIDE 1: COVER -->
+<div class="slide active" id="s0">
+  <div class="cover-grad"></div>
+  <div class="sc" style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center">
+    <!-- LEFT -->
+    <div>
+      <div class="tag t-or">🐾 Presentasi Interaktif</div>
+      <h1 class="h1"><span class="gr">Kehidupan</span><br>Kucing</h1>
+      <div class="accent-line"></div>
+      <p class="sub">Eksplorasi mendalam tentang makhluk paling misterius, elegan, dan menggemaskan di dunia — dari anatomi luar biasa hingga psikologi tersembunyi mereka.</p>
+      <div style="display:flex;gap:16px;margin-top:28px;flex-wrap:wrap">
+        <div style="background:var(--card);border-radius:12px;padding:12px 18px;border:1px solid rgba(255,255,255,.07)">
+          <div style="font-size:11px;color:var(--muted);font-weight:700;letter-spacing:1px">SLIDE</div>
+          <div style="font-size:1.4rem;font-weight:800;color:var(--orange)">11</div>
+        </div>
+        <div style="background:var(--card);border-radius:12px;padding:12px 18px;border:1px solid rgba(255,255,255,.07)">
+          <div style="font-size:11px;color:var(--muted);font-weight:700;letter-spacing:1px">TOPIK</div>
+          <div style="font-size:1.4rem;font-weight:800;color:var(--teal)">6</div>
+        </div>
+        <div style="background:var(--card);border-radius:12px;padding:12px 18px;border:1px solid rgba(255,255,255,.07)">
+          <div style="font-size:11px;color:var(--muted);font-weight:700;letter-spacing:1px">FAKTA</div>
+          <div style="font-size:1.4rem;font-weight:800;color:var(--gold)">30+</div>
+        </div>
+      </div>
+    </div>
+    <!-- RIGHT: ANIMATED CAT -->
+    <div style="display:flex;justify-content:center;align-items:center">
+      <div class="cat-float" style="position:relative;width:260px;height:300px">
+        <svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg" width="260" height="300">
+          <!-- STARS -->
+          <circle cx="20" cy="20" r="2" fill="#ffd700" class="star-tw" style="animation-delay:0s"/>
+          <circle cx="170" cy="15" r="1.5" fill="#ffd700" class="star-tw" style="animation-delay:.5s"/>
+          <circle cx="185" cy="50" r="2.5" fill="#ffd700" class="star-tw" style="animation-delay:1s"/>
+          <circle cx="10" cy="80" r="1.5" fill="#ffd700" class="star-tw" style="animation-delay:1.5s"/>
+          <!-- BODY -->
+          <ellipse cx="100" cy="165" rx="58" ry="52" fill="#ff8c42"/>
+          <ellipse cx="100" cy="155" rx="42" ry="38" fill="#ffa060"/>
+          <!-- HEAD -->
+          <circle cx="100" cy="88" r="45" fill="#ff8c42"/>
+          <!-- EARS -->
+          <polygon points="65,52 50,18 88,47" fill="#ff8c42"/>
+          <polygon points="135,52 150,18 112,47" fill="#ff8c42"/>
+          <polygon points="69,50 58,26 85,48" fill="#ff6b9d" opacity=".6"/>
+          <polygon points="131,50 142,26 115,48" fill="#ff6b9d" opacity=".6"/>
+          <!-- FACE -->
+          <ellipse class="eye-blink" cx="82" cy="83" rx="9" ry="11" fill="#1a1a2e"/>
+          <ellipse class="eye-blink" cx="118" cy="83" rx="9" ry="11" fill="#1a1a2e"/>
+          <ellipse cx="82" cy="83" rx="5" ry="9" fill="#ffd700"/>
+          <ellipse cx="118" cy="83" rx="5" ry="9" fill="#ffd700"/>
+          <circle cx="82" cy="83" r="3" fill="#0a0a1a"/>
+          <circle cx="118" cy="83" r="3" fill="#0a0a1a"/>
+          <circle cx="80" cy="80" r="1.5" fill="white" opacity=".8"/>
+          <circle cx="116" cy="80" r="1.5" fill="white" opacity=".8"/>
+          <!-- NOSE -->
+          <polygon points="100,97 95,104 105,104" fill="#ff9999"/>
+          <!-- MOUTH -->
+          <path d="M 93 106 Q 100 112 107 106" stroke="#cc7777" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <!-- WHISKERS -->
+          <line x1="50" y1="98" x2="88" y2="101" stroke="white" stroke-width="1.5" opacity=".7"/>
+          <line x1="50" y1="104" x2="88" y2="104" stroke="white" stroke-width="1.5" opacity=".7"/>
+          <line x1="112" y1="101" x2="150" y2="98" stroke="white" stroke-width="1.5" opacity=".7"/>
+          <line x1="112" y1="104" x2="150" y2="104" stroke="white" stroke-width="1.5" opacity=".7"/>
+          <!-- PAWS -->
+          <ellipse cx="70" cy="213" rx="18" ry="12" fill="#e07030"/>
+          <ellipse cx="130" cy="213" rx="18" ry="12" fill="#e07030"/>
+          <!-- TAIL -->
+          <path class="tail-anim" d="M 152 180 Q 195 155 188 110 Q 182 80 165 95" stroke="#ff8c42" stroke-width="14" fill="none" stroke-linecap="round"/>
+          <!-- BELLY STRIPE -->
+          <ellipse cx="100" cy="160" rx="22" ry="28" fill="#ffb080" opacity=".5"/>
+          <!-- COLLAR -->
+          <rect x="67" y="127" width="66" height="10" rx="5" fill="#00d2d7" opacity=".9"/>
+          <circle cx="100" cy="137" r="5" fill="#ffd700"/>
+        </svg>
+        <!-- ZZZ (floating) -->
+        <div class="zzz-anim" style="position:absolute;top:10px;right:-10px;display:flex;gap:4px;flex-direction:column;align-items:center;font-size:1.1rem;font-weight:800">
+          <span>z</span><span>z</span><span>Z</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 2: STATISTIK -->
+<div class="slide" id="s1">
+  <div class="sc">
+    <div class="tag t-gd">📊 Fakta & Angka</div>
+    <h2 class="h2">Kucing dalam <span class="gr">Angka</span></h2>
+    <div class="accent-line"></div>
+    <div class="g4" style="margin-top:28px">
+      <div class="stat" style="border-top:3px solid var(--orange)">
+        <span class="icon">🌍</span>
+        <span class="num gr" data-target="500">0</span><span style="font-size:1.4rem;font-weight:800;color:var(--gold)">Juta</span>
+        <span class="lbl">Kucing peliharaan di dunia</span>
+      </div>
+      <div class="stat" style="border-top:3px solid var(--teal)">
+        <span class="icon">📅</span>
+        <span class="num gt" data-target="10000">0</span>
+        <span class="lbl">Tahun sejarah domestikasi</span>
+      </div>
+      <div class="stat" style="border-top:3px solid var(--pink)">
+        <span class="icon">😴</span>
+        <span class="num gp" data-target="16">0</span>
+        <span class="lbl">Jam tidur per hari rata-rata</span>
+      </div>
+      <div class="stat" style="border-top:3px solid var(--gold)">
+        <span class="icon">🔊</span>
+        <span class="num" style="background:linear-gradient(135deg,var(--gold),#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text" data-target="100">0</span>
+        <span class="lbl">Suara berbeda yang bisa dibuat</span>
+      </div>
+    </div>
+    <div class="g2" style="margin-top:18px">
+      <div class="card">
+        <h3 style="font-size:15px;font-weight:700;margin-bottom:14px">⚡ Kemampuan Fisik</h3>
+        <div class="pb-wrap"><div class="pb-lbl"><span>Kecepatan berlari</span><span>48 km/jam</span></div><div class="pb-track"><div class="pb-fill" data-w="72"></div></div></div>
+        <div class="pb-wrap"><div class="pb-lbl"><span>Tinggi lompatan</span><span>5× tinggi badan</span></div><div class="pb-track"><div class="pb-fill" data-w="88"></div></div></div>
+        <div class="pb-wrap"><div class="pb-lbl"><span>Pendengaran</span><span>64 kHz (manusia 20 kHz)</span></div><div class="pb-track"><div class="pb-fill" data-w="95"></div></div></div>
+        <div class="pb-wrap"><div class="pb-lbl"><span>Penciuman</span><span>14× lebih tajam dari manusia</span></div><div class="pb-track"><div class="pb-fill" data-w="82"></div></div></div>
+      </div>
+      <div class="card">
+        <h3 style="font-size:15px;font-weight:700;margin-bottom:14px">🐱 Kehidupan Kucing</h3>
+        <div class="pb-wrap"><div class="pb-lbl"><span>Usia rata-rata (dalam)</span><span>12–18 tahun</span></div><div class="pb-track"><div class="pb-fill" data-w="78" style="background:linear-gradient(90deg,var(--teal),var(--purple))"></div></div></div>
+        <div class="pb-wrap"><div class="pb-lbl"><span>Waktu merawat diri</span><span>30–50% hari</span></div><div class="pb-track"><div class="pb-fill" data-w="40" style="background:linear-gradient(90deg,var(--teal),var(--purple))"></div></div></div>
+        <div class="pb-wrap"><div class="pb-lbl"><span>Populasi Amerika Serikat</span><span>90 juta ekor</span></div><div class="pb-track"><div class="pb-fill" data-w="65" style="background:linear-gradient(90deg,var(--teal),var(--purple))"></div></div></div>
+        <div class="pb-wrap"><div class="pb-lbl"><span>Ras terdaftar di dunia</span><span>70+ ras</span></div><div class="pb-track"><div class="pb-fill" data-w="55" style="background:linear-gradient(90deg,var(--teal),var(--purple))"></div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 3: ANATOMI -->
+<div class="slide" id="s2">
+  <div class="sc split">
+    <!-- LEFT: CAT ILLUSTRATION -->
+    <div style="display:flex;justify-content:center">
+      <div style="position:relative">
+        <svg viewBox="0 0 200 260" width="220" height="280" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="100" cy="180" rx="62" ry="55" fill="#2a2a50"/>
+          <ellipse cx="100" cy="170" rx="46" ry="40" fill="#333360"/>
+          <circle cx="100" cy="95" r="48" fill="#2a2a50"/>
+          <polygon points="62,56 47,18 90,50" fill="#2a2a50"/>
+          <polygon points="138,56 153,18 110,50" fill="#2a2a50"/>
+          <polygon points="67,53 58,28 87,49" fill="#ff6b9d" opacity=".5"/>
+          <polygon points="133,53 142,28 113,49" fill="#ff6b9d" opacity=".5"/>
+          <ellipse cx="83" cy="90" rx="9" ry="11" fill="#0a0a18"/>
+          <ellipse cx="117" cy="90" rx="9" ry="11" fill="#0a0a18"/>
+          <ellipse cx="83" cy="90" rx="5" ry="9" fill="#ffd700"/>
+          <ellipse cx="117" cy="90" rx="5" ry="9" fill="#ffd700"/>
+          <circle cx="83" cy="90" r="3" fill="black"/>
+          <circle cx="117" cy="90" r="3" fill="black"/>
+          <circle cx="81" cy="87" r="1.5" fill="white" opacity=".8"/>
+          <circle cx="115" cy="87" r="1.5" fill="white" opacity=".8"/>
+          <polygon points="100,103 95,110 105,110" fill="#ff9999"/>
+          <line x1="48" y1="104" x2="88" y2="107" stroke="white" stroke-width="1.5" opacity=".6"/>
+          <line x1="48" y1="110" x2="88" y2="110" stroke="white" stroke-width="1.5" opacity=".6"/>
+          <line x1="112" y1="107" x2="152" y2="104" stroke="white" stroke-width="1.5" opacity=".6"/>
+          <line x1="112" y1="110" x2="152" y2="110" stroke="white" stroke-width="1.5" opacity=".6"/>
+          <ellipse cx="68" cy="228" rx="18" ry="12" fill="#1e1e40"/>
+          <ellipse cx="132" cy="228" rx="18" ry="12" fill="#1e1e40"/>
+          <path class="tail-anim" d="M 155 195 Q 196 170 190 125 Q 185 95 168 108" stroke="#2a2a50" stroke-width="13" fill="none" stroke-linecap="round"/>
+          <!-- POINTER DOTS -->
+          <circle cx="83" cy="90" r="5" fill="none" stroke="var(--orange)" stroke-width="1.5" opacity=".8"/>
+          <circle cx="100" cy="103" r="5" fill="none" stroke="var(--teal)" stroke-width="1.5" opacity=".8"/>
+          <circle cx="48" cy="107" r="5" fill="none" stroke="var(--gold)" stroke-width="1.5" opacity=".8"/>
+          <circle cx="100" cy="135" r="5" fill="none" stroke="var(--pink)" stroke-width="1.5" opacity=".8"/>
+          <circle cx="68" cy="228" r="5" fill="none" stroke="var(--purple)" stroke-width="1.5" opacity=".8"/>
+        </svg>
+      </div>
+    </div>
+    <!-- RIGHT: LABELS -->
+    <div>
+      <div class="tag t-te">🔬 Anatomi</div>
+      <h2 class="h2">Tubuh yang <span class="gt">Luar Biasa</span></h2>
+      <div class="accent-line"></div>
+      <div style="margin-top:18px">
+        <div class="blbl"><span class="bi" style="color:var(--orange)">👁️</span><div><h4>Mata — Penglihatan Super</h4><p>Bisa melihat dalam gelap 6× lebih baik dari manusia. Pupil vertikal untuk kontrol cahaya presisi.</p></div></div>
+        <div class="blbl"><span class="bi" style="color:var(--teal)">👃</span><div><h4>Hidung & Jakun — Sensor Ganda</h4><p>Organ vomeronasal (Jacobson) mendeteksi feromon. 200 juta reseptor penciuman.</p></div></div>
+        <div class="blbl"><span class="bi" style="color:var(--gold)">🐱</span><div><h4>Kumis — Sensor Lingkungan</h4><p>Vibrisae setinggi bahu untuk mengukur celah dan mendeteksi perubahan udara sekecil apapun.</p></div></div>
+        <div class="blbl"><span class="bi" style="color:var(--pink)">❤️</span><div><h4>Tulang — Ultra Fleksibel</h4><p>230 tulang (manusia 206). Tidak punya selangka kaku → bisa squeeze ke celah sempit.</p></div></div>
+        <div class="blbl"><span class="bi" style="color:var(--purple)">🐾</span><div><h4>Cakar — Bisa Ditarik</h4><p>Retractable claws — selalu tajam karena tidak menyentuh tanah. Cakar depan untuk menyerang.</p></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: INDERA & KOMUNIKASI -->
+<div class="slide" id="s3">
+  <div class="sc">
+    <div class="tag t-pk">📡 Indera & Komunikasi</div>
+    <h2 class="h2">Sistem <span class="gp">Super Sensor</span></h2>
+    <div class="accent-line"></div>
+    <div class="g3" style="margin-top:24px">
+      <div class="sncard"><div class="sni">👂</div><div><h4>Pendengaran Luar Biasa</h4><p>Mendengar hingga <strong style="color:var(--teal)">64 kHz</strong> (manusia hanya 20 kHz). Telinga bisa berputar 180° secara independen untuk melacak sumber bunyi dengan akurasi milimeter.</p></div></div>
+      <div class="sncard"><div class="sni">👁️</div><div><h4>Penglihatan Malam</h4><p>Lapisan tapetum lucidum memantulkan cahaya — membuat mata "bersinar" gelap. Penglihatan malam <strong style="color:var(--teal)">6× lebih tajam</strong> dari manusia. Blind spot minimal.</p></div></div>
+      <div class="sncard"><div class="sni">👃</div><div><h4>Penciuman Presisi</h4><p><strong style="color:var(--teal)">200 juta</strong> reseptor penciuman vs 5 juta manusia. Bisa mendeteksi kadar catnip 1 bagian per miliar. Mengenali pemilik dari bau.</p></div></div>
+      <div class="sncard"><div class="sni">😸</div><div><h4>Vokalisasi Khas</h4><p>Hanya purring yang dibuat saat <em>menghirup dan menghembuskan</em> napas. Frekuensi <strong style="color:var(--teal)">25–150 Hz</strong> terbukti mempercepat penyembuhan tulang.</p></div></div>
+      <div class="sncard"><div class="sni">🐾</div><div><h4>Keseimbangan Sempurna</h4><p>Vestibular apparatus ultra-sensitif + refleks righting. Kucing bisa selalu mendarat dengan kaki — bahkan dari ketinggian ekstrem (<em>cat righting reflex</em>).</p></div></div>
+      <div class="sncard"><div class="sni">📡</div><div><h4>Komunikasi Ekor</h4><p>Ekor tegak = percaya diri & senang. Ekor mengibas keras = frustrasi. Ekor menggembung = takut atau waspada. Ekor bergetar = sangat gembira.</p></div></div>
+    </div>
+    <div class="quote" style="margin-top:14px">"Kucing berkomunikasi dengan manusia menggunakan meow — bahasa yang mereka kembangkan khusus untuk berbicara dengan kita. Di antara sesama kucing, mereka jarang bersuara."</div>
+  </div>
+</div>
+
+<!-- SLIDE 5: PERILAKU & BAHASA TUBUH -->
+<div class="slide" id="s4">
+  <div class="sc">
+    <div class="tag t-or">💬 Bahasa Tubuh</div>
+    <h2 class="h2">Membaca <span class="gr">Ekspresi Kucing</span></h2>
+    <div class="accent-line"></div>
+    <div class="g4" style="margin-top:24px">
+      <div class="beh"><span class="be">😸</span><h4>Bahagia & Percaya Diri</h4><p>Ekor tegak, berjalan santai, mata setengah tertutup, purring keras, menggosok kepala ke pemilik.</p></div>
+      <div class="beh"><span class="be">😾</span><h4>Takut / Terancam</h4><p>Bulu berdiri, ekor mengembang, telinga rata, posisi merendah, pupil melebar, menggeram pelan.</p></div>
+      <div class="beh"><span class="be">😼</span><h4>Berburu Mode</h4><p>Tubuh rendah, mata melotot, pupil melebar, ekor bergerak pelan, bergerak dalam slow motion.</p></div>
+      <div class="beh"><span class="be">😺</span><h4>Mengundang Bermain</h4><p>Terlentang memperlihatkan perut, cakar out tapi tidak agresif, meow pendek berulang, ekor bergetar.</p></div>
+      <div class="beh"><span class="be">🙀</span><h4>Stres / Sakit</h4><p>Bersembunyi berlebihan, nafsu makan turun, terlalu banyak atau terlalu sedikit grooming, perubahan kebiasaan toilet.</p></div>
+      <div class="beh"><span class="be">😻</span><h4>Cinta & Kepercayaan</h4><p>Slow blink (eye kiss), head bunting, mengeluarkan aroma dari kelenjar pipi, tidur di dekat pemilik.</p></div>
+      <div class="beh"><span class="be">🐱</span><h4>Kneading / "Membuat Roti"</h4><p>Meremas dengan kaki depan — perilaku bayi yang dibawa ke dewasa. Tanda kenyamanan dan bonding.</p></div>
+      <div class="beh"><span class="be">😤</span><h4>Dominasi</h4><p>Tatapan langsung tanpa berkedip, menandai teritorial dengan urine/garukan, menduduki tempat tinggi.</p></div>
+    </div>
+    <div style="background:rgba(255,140,66,.06);border:1px solid rgba(255,140,66,.15);border-radius:12px;padding:14px 20px;margin-top:14px;display:flex;gap:16px;align-items:center">
+      <span style="font-size:1.8rem">💡</span>
+      <p style="font-size:13px;color:var(--muted);line-height:1.6"><strong style="color:var(--text)">Slow Blink Trick:</strong> Tatap kucing dengan tenang lalu perlahan tutup mata. Ini adalah cara kucing bilang "aku percaya kamu" — mereka akan membalas dengan slow blink juga.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 6: TIDUR & RITME -->
+<div class="slide" id="s5">
+  <div class="sc split">
+    <div>
+      <div class="tag t-pu">😴 Ritme Hidup</div>
+      <h2 class="h2">Master <span class="gp">Tidur</span> Dunia</h2>
+      <div class="accent-line"></div>
+      <p class="sub" style="margin-bottom:20px">Kucing adalah crepuscular — paling aktif saat fajar dan senja, mengikuti ritme mangsa alami mereka.</p>
+      <div class="g2" style="margin-bottom:16px">
+        <div class="stat" style="border-top:3px solid var(--purple)">
+          <span class="icon">🌙</span>
+          <span class="num gp" data-target="16">0</span>
+          <span class="lbl">Jam tidur per hari</span>
+        </div>
+        <div class="stat" style="border-top:3px solid var(--teal)">
+          <span class="icon">⚡</span>
+          <span class="num gt" data-target="70">0</span>
+          <span class="lbl">% tidur adalah light sleep</span>
+        </div>
+      </div>
+      <div class="card">
+        <h4 style="font-size:14px;font-weight:700;margin-bottom:12px">⏱️ Jadwal Harian Kucing</h4>
+        <div class="pb-wrap"><div class="pb-lbl"><span>🌙 Tidur & Istirahat</span><span>16 jam</span></div><div class="pb-track"><div class="pb-fill" data-w="67" style="background:linear-gradient(90deg,var(--purple),var(--pink))"></div></div></div>
+        <div class="pb-wrap"><div class="pb-lbl"><span>🧹 Grooming</span><span>4 jam</span></div><div class="pb-track"><div class="pb-fill" data-w="17" style="background:linear-gradient(90deg,var(--purple),var(--pink))"></div></div></div>
+        <div class="pb-wrap"><div class="pb-lbl"><span>🎯 Berburu / Bermain</span><span>2.5 jam</span></div><div class="pb-track"><div class="pb-fill" data-w="10" style="background:linear-gradient(90deg,var(--purple),var(--pink))"></div></div></div>
+        <div class="pb-wrap"><div class="pb-lbl"><span>🍽️ Makan & Minum</span><span>1.5 jam</span></div><div class="pb-track"><div class="pb-fill" data-w="6" style="background:linear-gradient(90deg,var(--purple),var(--pink))"></div></div></div>
+      </div>
+    </div>
+    <!-- SLEEPING CAT ILLUSTRATION -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:20px">
+      <div class="cat-float" style="position:relative">
+        <svg viewBox="0 0 220 160" width="240" height="175" xmlns="http://www.w3.org/2000/svg">
+          <!-- BODY (curled) -->
+          <ellipse cx="110" cy="110" rx="80" ry="40" fill="#1e1e3c"/>
+          <ellipse cx="90" cy="100" rx="55" ry="35" fill="#252550"/>
+          <!-- HEAD -->
+          <circle cx="55" cy="80" r="38" fill="#1e1e3c"/>
+          <!-- EARS -->
+          <polygon points="35,50 25,25 55,45" fill="#1e1e3c"/>
+          <polygon points="75,50 85,25 60,45" fill="#1e1e3c"/>
+          <polygon points="38,48 31,30 52,44" fill="#ff6b9d" opacity=".4"/>
+          <polygon points="72,48 79,30 63,44" fill="#ff6b9d" opacity=".4"/>
+          <!-- CLOSED EYES (sleeping) -->
+          <path d="M 40 78 Q 48 72 56 78" stroke="#ffd700" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M 60 78 Q 68 72 76 78" stroke="#ffd700" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <!-- NOSE -->
+          <polygon points="57,88 53,94 61,94" fill="#ff9999"/>
+          <!-- WHISKERS -->
+          <line x1="20" y1="90" x2="46" y2="92" stroke="white" stroke-width="1.5" opacity=".5"/>
+          <line x1="20" y1="95" x2="46" y2="95" stroke="white" stroke-width="1.5" opacity=".5"/>
+          <line x1="66" y1="92" x2="92" y2="90" stroke="white" stroke-width="1.5" opacity=".5"/>
+          <line x1="66" y1="95" x2="92" y2="95" stroke="white" stroke-width="1.5" opacity=".5"/>
+          <!-- TAIL CURLED -->
+          <path d="M 185 120 Q 210 80 190 55 Q 175 40 160 60 Q 148 75 155 95" stroke="#1e1e3c" stroke-width="12" fill="none" stroke-linecap="round"/>
+          <!-- PAWS peeking -->
+          <ellipse cx="90" cy="135" rx="22" ry="10" fill="#161630"/>
+          <ellipse cx="130" cy="135" rx="22" ry="10" fill="#161630"/>
+        </svg>
+        <!-- ZZZ animation -->
+        <div class="zzz-anim" style="position:absolute;top:-20px;right:30px;display:flex;gap:6px;align-items:flex-end;font-size:1rem;font-weight:800">
+          <span>z</span><span>z</span><span>Z</span>
+        </div>
+      </div>
+      <div class="card" style="width:100%;text-align:center">
+        <p style="font-size:13px;color:var(--muted);line-height:1.7">Kucing bisa bermimpi selama REM sleep — kamu bisa lihat gerakan kaki, ekor berkedut, dan suara-suara kecil. Mereka mungkin sedang berburu di mimpi! 🐭</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: RAS POPULER -->
+<div class="slide" id="s6">
+  <div class="sc">
+    <div class="tag t-or">🏆 Ras Populer</div>
+    <h2 class="h2">70+ Ras Kucing — <span class="gr">6 yang Paling Dicintai</span></h2>
+    <div class="accent-line"></div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:20px">Hover kartu untuk melihat fakta unik!</p>
+    <div class="g3">
+      <div class="flip"><div class="flip-in"><div class="flip-f"><div class="fi">🐈</div><div class="fn">Persian</div><div class="fs">Bulu panjang mewah</div></div><div class="flip-b"><strong style="color:var(--orange)">Fakta:</strong> Kucing paling populer di dunia. Temperamen tenang dan penyayang. Butuh grooming setiap hari. Umur 12–17 tahun. Cocok untuk apartemen.</div></div></div>
+      <div class="flip"><div class="flip-in"><div class="flip-f"><div class="fi">😸</div><div class="fn">Maine Coon</div><div class="fs">Ras terbesar domestik</div></div><div class="flip-b"><strong style="color:var(--teal)">Fakta:</strong> Bisa mencapai <strong>8–12 kg</strong>. Dijuluki "anjing di dunia kucing" karena suka air dan bisa dilatih. Bulu tahan air alami.</div></div></div>
+      <div class="flip"><div class="flip-in"><div class="flip-f"><div class="fi">🐱</div><div class="fn">Siamese</div><div class="fs">Paling vokal & sosial</div></div><div class="flip-b"><strong style="color:var(--pink)">Fakta:</strong> Salah satu ras tertua — bukti di Thailand abad ke-14. Sangat vokal, bisa berbicara "percakapan" panjang. Mata biru selalu.</div></div></div>
+      <div class="flip"><div class="flip-in"><div class="flip-f"><div class="fi">😺</div><div class="fn">British Shorthair</div><div class="fs">Bulat & karismatik</div></div><div class="flip-b"><strong style="color:var(--gold)">Fakta:</strong> Inspirasi Cheshire Cat di Alice in Wonderland. Sangat mandiri tapi loyal. Anak kucing tetap "kitten-like" hingga 3–5 tahun.</div></div></div>
+      <div class="flip"><div class="flip-in"><div class="flip-f"><div class="fi">🐯</div><div class="fn">Bengal</div><div class="fs">Motif macan liar</div></div><div class="flip-b"><strong style="color:var(--purple)">Fakta:</strong> Hasil persilangan dengan kucing hutan Asia liar. Sangat aktif, suka air dan bisa berenang. IQ tertinggi di antara kucing peliharaan.</div></div></div>
+      <div class="flip"><div class="flip-in"><div class="flip-f"><div class="fi">🐈‍⬛</div><div class="fn">Ragdoll</div><div class="fs">Peluk & lemas sempurna</div></div><div class="flip-b"><strong style="color:var(--teal)">Fakta:</strong> Nama "Ragdoll" karena tubuh mereka <em>benar-benar lemas</em> saat digendong. Salah satu ras paling jinak. Selalu punya mata biru.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 8: MANFAAT UNTUK MANUSIA -->
+<div class="slide" id="s7">
+  <div class="sc">
+    <div class="tag t-pk">❤️ Sains & Kesehatan</div>
+    <h2 class="h2">Kucing <span class="gp">Menyembuhkan</span> Kita</h2>
+    <div class="accent-line"></div>
+    <div class="g2" style="margin-top:22px;gap:14px">
+      <div class="ben"><div class="bi2">💓</div><div><h4>Kurangi Risiko Penyakit Jantung 30%</h4><p>Studi 10 tahun dari University of Minnesota: pemilik kucing 30% lebih jarang terkena serangan jantung dan stroke.</p></div></div>
+      <div class="ben"><div class="bi2">😌</div><div><h4>Turunkan Kortisol (Hormon Stres)</h4><p>Membelai kucing selama 10 menit menurunkan kadar kortisol secara signifikan. Efeknya setara dengan meditasi.</p></div></div>
+      <div class="ben"><div class="bi2">🦴</div><div><h4>Purring Perkuat Tulang</h4><p>Frekuensi purring 25–50 Hz merangsang pembentukan tulang dan penyembuhan jaringan. Digunakan dalam terapi fisik.</p></div></div>
+      <div class="ben"><div class="bi2">🧠</div><div><h4>Redakan Kecemasan & Depresi</h4><p>Terapi kucing (Animal-Assisted Therapy) terbukti efektif untuk PTSD, autisme, dan kecemasan sosial pada anak-anak.</p></div></div>
+      <div class="ben"><div class="bi2">💤</div><div><h4>Kualitas Tidur Lebih Baik</h4><p>60% pemilik kucing lebih memilih tidur dengan kucing mereka. Suara purring menciptakan efek "white noise" yang menenangkan.</p></div></div>
+      <div class="ben"><div class="bi2">👶</div><div><h4>Proteksi Alergi pada Bayi</h4><p>Bayi yang dibesarkan dengan kucing memiliki sistem imun lebih kuat dan 33% lebih kecil kemungkinan mengembangkan alergi.</p></div></div>
+    </div>
+    <div style="background:rgba(255,107,157,.07);border:1px solid rgba(255,107,157,.2);border-radius:12px;padding:14px 20px;margin-top:14px;display:flex;gap:12px;align-items:center">
+      <span style="font-size:1.5rem">🔬</span>
+      <p style="font-size:12px;color:var(--muted);line-height:1.6"><strong style="color:var(--pink)">Fakta Ilmiah:</strong> Purring kucing (25–150 Hz) cocok dengan frekuensi terapi ultrasound medis yang digunakan untuk penyembuhan jaringan — bukan kebetulan, ini evolusi!</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 9: CARA MERAWAT -->
+<div class="slide" id="s8">
+  <div class="sc split">
+    <div>
+      <div class="tag t-te">🛁 Perawatan</div>
+      <h2 class="h2">Panduan <span class="gt">Merawat Kucing</span></h2>
+      <div class="accent-line"></div>
+      <p class="sub" style="margin-bottom:18px">Checklist harian & bulanan untuk kucing yang sehat dan bahagia.</p>
+      <div id="careList">
+        <div class="ci" data-delay="0"><div class="ck">🍽️</div><div class="ci-text"><h4>Makan 2–3× Sehari</h4><p>Protein hewani sebagai sumber utama. Hindari makanan manusia.</p></div></div>
+        <div class="ci" data-delay="100"><div class="ck">💧</div><div class="ci-text"><h4>Air Segar Selalu Tersedia</h4><p>Kucing tidak cukup minum — pertimbangkan water fountain.</p></div></div>
+        <div class="ci" data-delay="200"><div class="ck">🏠</div><div class="ci-text"><h4>Kotak Pasir Bersih Tiap Hari</h4><p>1 kotak per kucing + 1 ekstra. Bersihkan minimal 1× sehari.</p></div></div>
+        <div class="ci" data-delay="300"><div class="ck">🪮</div><div class="ci-text"><h4>Grooming Rutin</h4><p>Sikat bulu 2–3× seminggu. Potong kuku setiap 2–3 minggu.</p></div></div>
+        <div class="ci" data-delay="400"><div class="ck">🎯</div><div class="ci-text"><h4>Waktu Bermain 15–30 Menit</h4><p>Simulasi berburu dengan mainan tongkat, laser, atau bola.</p></div></div>
+        <div class="ci" data-delay="500"><div class="ck">🏥</div><div class="ci-text"><h4>Check-up Veteriner Tahunan</h4><p>Vaksinasi, pengecekan gigi, dan tes darah rutin.</p></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:16px">
+        <h3 style="font-size:14px;font-weight:700;margin-bottom:16px">📊 Biaya Perawatan Tahunan (Estimasi IDR)</h3>
+        <div class="pb-wrap"><div class="pb-lbl"><span>🍽️ Makanan</span><span>Rp 1,8 – 4 Juta</span></div><div class="pb-track"><div class="pb-fill" data-w="60" style="background:linear-gradient(90deg,var(--teal),var(--purple))"></div></div></div>
+        <div class="pb-wrap"><div class="pb-lbl"><span>🏥 Veteriner</span><span>Rp 500rb – 1,5 Juta</span></div><div class="pb-track"><div class="pb-fill" data-w="25" style="background:linear-gradient(90deg,var(--teal),var(--purple))"></div></div></div>
+        <div class="pb-wrap"><div class="pb-lbl"><span>🧸 Mainan & Aksesori</span><span>Rp 300rb – 800rb</span></div><div class="pb-track"><div class="pb-fill" data-w="15" style="background:linear-gradient(90deg,var(--teal),var(--purple))"></div></div></div>
+        <div class="pb-wrap"><div class="pb-lbl"><span>🏠 Litter & Perlengkapan</span><span>Rp 600rb – 1,2 Juta</span></div><div class="pb-track"><div class="pb-fill" data-w="20" style="background:linear-gradient(90deg,var(--teal),var(--purple))"></div></div></div>
+      </div>
+      <div style="background:rgba(0,210,215,.07);border:1px solid rgba(0,210,215,.2);border-radius:12px;padding:14px 18px">
+        <h4 style="font-size:13px;font-weight:700;margin-bottom:8px;color:var(--teal)">⚠️ Makanan yang Berbahaya</h4>
+        <div style="display:flex;flex-wrap:wrap;gap:7px">
+          <span style="background:rgba(255,107,107,.12);border:1px solid rgba(255,107,107,.25);color:#ff7070;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700">Bawang</span>
+          <span style="background:rgba(255,107,107,.12);border:1px solid rgba(255,107,107,.25);color:#ff7070;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700">Cokelat</span>
+          <span style="background:rgba(255,107,107,.12);border:1px solid rgba(255,107,107,.25);color:#ff7070;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700">Anggur</span>
+          <span style="background:rgba(255,107,107,.12);border:1px solid rgba(255,107,107,.25);color:#ff7070;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700">Alkohol</span>
+          <span style="background:rgba(255,107,107,.12);border:1px solid rgba(255,107,107,.25);color:#ff7070;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700">Kafein</span>
+          <span style="background:rgba(255,107,107,.12);border:1px solid rgba(255,107,107,.25);color:#ff7070;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700">Xylitol</span>
+          <span style="background:rgba(255,107,107,.12);border:1px solid rgba(255,107,107,.25);color:#ff7070;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700">Susu</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 10: FAKTA MENGEJUTKAN -->
+<div class="slide" id="s9">
+  <div class="sc">
+    <div class="tag t-gd">🤯 Mind-Blowing Facts</div>
+    <h2 class="h2">Fakta yang <span class="gr">Mengejutkan</span></h2>
+    <div class="accent-line"></div>
+    <div class="g2" style="margin-top:20px;gap:14px" id="factGrid">
+      <div class="fact"><div class="fn">1</div><strong style="color:var(--orange)">Kucing tidak bisa merasakan manis</strong> — mereka tidak punya reseptor rasa manis. Itulah kenapa tidak tertarik dengan permen atau gula.</div>
+      <div class="fact" style="border-color:rgba(0,210,215,.2);background:linear-gradient(135deg,rgba(0,210,215,.08),rgba(155,107,255,.05))"><div class="fn" style="background:var(--teal)">2</div><strong style="color:var(--teal)">Setiap kucing punya "sidik hidung"</strong> unik seperti sidik jari manusia — pola pori-pori hidung tidak ada yang sama.</div>
+      <div class="fact" style="border-color:rgba(255,107,157,.2);background:linear-gradient(135deg,rgba(255,107,157,.08),rgba(155,107,255,.05))"><div class="fn" style="background:var(--pink)">3</div><strong style="color:var(--pink)">Kucing kidal atau kanan</strong> — studi menunjukkan kucing punya "tangan dominan" yang bisa diketahui dari pola bermain mereka.</div>
+      <div class="fact" style="border-color:rgba(255,215,0,.2);background:linear-gradient(135deg,rgba(255,215,0,.07),rgba(255,140,66,.05))"><div class="fn" style="background:var(--gold)">4</div><strong style="color:var(--gold)">Hanya meow untuk manusia</strong> — kucing dewasa tidak berkomunikasi dengan meow di antara sesama kucing. Meow dikembangkan khusus untuk manusia.</div>
+      <div class="fact"><div class="fn">5</div><strong style="color:var(--orange)">Kecepatan jantung 120–140 bpm</strong> saat istirahat (manusia 60–100 bpm) — dan ini normal dan sehat untuk mereka.</div>
+      <div class="fact" style="border-color:rgba(155,107,255,.2);background:linear-gradient(135deg,rgba(155,107,255,.08),rgba(0,210,215,.05))"><div class="fn" style="background:var(--purple)">6</div><strong style="color:var(--purple)">Membawa hadiah ke pemilik</strong> (hewan kecil, mainan) adalah perilaku mengajar — mereka menganggap kita tidak bisa berburu dan mengajari kita!</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 11: PENUTUP -->
+<div class="slide" id="s10">
+  <div class="outro-bg"></div>
+  <div class="sc" style="text-align:center;max-width:700px">
+    <div style="font-size:5rem;margin-bottom:20px;animation:float 3s ease-in-out infinite">😻</div>
+    <div class="tag t-pu" style="display:inline-block">🎉 Terima Kasih!</div>
+    <h1 class="h1" style="margin-top:14px"><span class="gp">Kucing adalah</span><br>Keajaiban Kecil</h1>
+    <div class="accent-line" style="margin:16px auto"></div>
+    <p class="sub" style="max-width:520px;margin:0 auto 28px">"Waktu yang dihabiskan bersama kucing tidak pernah sia-sia." — Sigmund Freud</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:28px">
+      <div style="background:var(--card);border:1px solid rgba(155,107,255,.2);border-radius:12px;padding:14px 20px;text-align:center">
+        <div style="font-size:1.8rem;margin-bottom:4px">🌍</div>
+        <div style="font-size:11px;color:var(--muted);font-weight:700">500 JUTA</div>
+        <div style="font-size:10px;color:var(--muted)">kucing di dunia</div>
+      </div>
+      <div style="background:var(--card);border:1px solid rgba(0,210,215,.2);border-radius:12px;padding:14px 20px;text-align:center">
+        <div style="font-size:1.8rem;margin-bottom:4px">📅</div>
+        <div style="font-size:11px;color:var(--muted);font-weight:700">10.000 TAHUN</div>
+        <div style="font-size:10px;color:var(--muted)">bersama manusia</div>
+      </div>
+      <div style="background:var(--card);border:1px solid rgba(255,215,0,.2);border-radius:12px;padding:14px 20px;text-align:center">
+        <div style="font-size:1.8rem;margin-bottom:4px">💓</div>
+        <div style="font-size:11px;color:var(--muted);font-weight:700">-30% RISIKO</div>
+        <div style="font-size:10px;color:var(--muted)">penyakit jantung</div>
+      </div>
+      <div style="background:var(--card);border:1px solid rgba(255,107,157,.2);border-radius:12px;padding:14px 20px;text-align:center">
+        <div style="font-size:1.8rem;margin-bottom:4px">😴</div>
+        <div style="font-size:11px;color:var(--muted);font-weight:700">16 JAM</div>
+        <div style="font-size:10px;color:var(--muted)">tidur per hari</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;justify-content:center">
+      <button onclick="gotoSlide(0)" style="background:linear-gradient(135deg,var(--orange),var(--gold));border:none;color:white;padding:12px 24px;border-radius:30px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:all .3s" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">↩ Ulangi dari Awal</button>
+      <button onclick="go(-1)" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:white;padding:12px 24px;border-radius:30px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:all .3s" onmouseover="this.style.background='rgba(255,255,255,.12)'" onmouseout="this.style.background='rgba(255,255,255,.07)'">← Kembali</button>
+    </div>
+  </div>
+</div>
+
+</div><!-- /slides -->
+
+<script>
+// ═══════════════════════════════════════
+// PARTICLE SYSTEM (Floating Paw Prints)
+// ═══════════════════════════════════════
+const cvs = document.getElementById('cvs');
+const ctx = cvs.getContext('2d');
+let particles = [];
+
+function resize(){cvs.width=innerWidth;cvs.height=innerHeight}
+resize();window.addEventListener('resize',resize);
+
+function drawPaw(ctx,x,y,size,alpha,rotation){
+  ctx.save();ctx.globalAlpha=alpha;ctx.translate(x,y);ctx.rotate(rotation);
+  ctx.fillStyle='rgba(255,140,66,1)';
+  // main pad
+  ctx.beginPath();ctx.ellipse(0,size*.4,size*.45,size*.4,0,0,Math.PI*2);ctx.fill();
+  // toes
+  const toes=[[-size*.4,-size*.1],[-.15*size,-size*.45],[.15*size,-size*.45],[.4*size,-size*.1]];
+  toes.forEach(([tx,ty])=>{ctx.beginPath();ctx.ellipse(tx,ty,size*.22,size*.18,0,0,Math.PI*2);ctx.fill();});
+  ctx.restore();
+}
+
+function spawnParticle(){
+  const edge=Math.random();
+  let x,y;
+  if(edge<.25){x=Math.random()*innerWidth;y=-30;}
+  else if(edge<.5){x=innerWidth+30;y=Math.random()*innerHeight;}
+  else if(edge<.75){x=Math.random()*innerWidth;y=innerHeight+30;}
+  else{x=-30;y=Math.random()*innerHeight;}
+  particles.push({x,y,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,size:Math.random()*8+4,alpha:0,maxAlpha:Math.random()*.18+.05,life:0,maxLife:Math.random()*300+200,rotation:Math.random()*Math.PI*2});
+}
+
+function animParticles(){
+  ctx.clearRect(0,0,cvs.width,cvs.height);
+  if(particles.length<25)spawnParticle();
+  particles=particles.filter(p=>{
+    p.life++;p.x+=p.vx;p.y+=p.vy;p.rotation+=.005;
+    const prog=p.life/p.maxLife;
+    p.alpha=prog<.1?prog*10*p.maxAlpha:prog>.8?(1-prog)*5*p.maxAlpha:p.maxAlpha;
+    drawPaw(ctx,p.x,p.y,p.size,p.alpha,p.rotation);
+    return p.life<p.maxLife;
+  });
+  requestAnimationFrame(animParticles);
+}
+animParticles();
+
+// ═══════════════════════════════════════
+// SLIDE NAVIGATION
+// ═══════════════════════════════════════
+const slides=document.querySelectorAll('.slide');
+const dotsEl=document.getElementById('dots');
+const progEl=document.getElementById('prog');
+const cntEl=document.getElementById('cnt');
+let cur=0,total=slides.length,autoTimer=null,autoOn=false;
+
+// Build dots
+slides.forEach((_,i)=>{
+  const d=document.createElement('div');
+  d.className='dot'+(i===0?' on':'');
+  d.onclick=()=>gotoSlide(i);
+  dotsEl.appendChild(d);
+});
+
+function updateUI(){
+  document.querySelectorAll('.dot').forEach((d,i)=>d.className='dot'+(i===cur?' on':''));
+  progEl.style.width=((cur+1)/total*100)+'%';
+  cntEl.textContent=(cur+1)+' / '+total;
+}
+
+function gotoSlide(idx){
+  if(idx===cur)return;
+  slides[cur].classList.remove('active');
+  slides[cur].classList.add('exit');
+  setTimeout(()=>slides[idx-1<cur?idx:idx].classList.remove('exit'),550);
+  const prev=cur;
+  cur=((idx%total)+total)%total;
+  slides[cur].classList.add('active');
+  setTimeout(()=>slides[prev].classList.remove('exit'),550);
+  updateUI();
+  triggerSlideAnim(cur);
+}
+
+function go(dir){
+  const next=((cur+dir)%total+total)%total;
+  slides[cur].classList.remove('active');
+  if(dir>0)slides[cur].classList.add('exit');
+  else{slides[cur].style.transition='none';slides[cur].style.transform='translateX(-50px) scale(.97)';slides[cur].style.opacity='0';setTimeout(()=>{slides[cur].style.transition='';},20);}
+  const prev=cur;cur=next;
+  slides[cur].classList.add('active');
+  if(dir<=0){slides[prev].style.transform='';slides[prev].style.opacity='';}
+  setTimeout(()=>slides[prev].classList.remove('exit'),600);
+  updateUI();
+  triggerSlideAnim(cur);
+}
+
+// Keyboard
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' ')go(1);
+  if(e.key==='ArrowLeft')go(-1);
+  if(e.key==='Escape')stopAuto();
+});
+
+// Touch swipe
+let tx=0;
+document.addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+document.addEventListener('touchend',e=>{const d=tx-e.changedTouches[0].clientX;if(Math.abs(d)>40)go(d>0?1:-1);},{passive:true});
+
+// Autoplay
+function toggleAuto(){
+  autoOn=!autoOn;
+  document.getElementById('autoBtn').className='tb-auto'+(autoOn?' on':'');
+  document.getElementById('autoBtn').textContent=autoOn?'⏸ PAUSE':'▶ AUTO PLAY';
+  if(autoOn)autoTimer=setInterval(()=>go(1),4500);
+  else stopAuto();
+}
+function stopAuto(){autoOn=false;clearInterval(autoTimer);document.getElementById('autoBtn').textContent='▶ AUTO PLAY';document.getElementById('autoBtn').className='tb-auto';}
+
+// ═══════════════════════════════════════
+// PER-SLIDE ANIMATIONS
+// ═══════════════════════════════════════
+function triggerSlideAnim(idx){
+  // Progress bars
+  const slide=slides[idx];
+  setTimeout(()=>{
+    slide.querySelectorAll('.pb-fill').forEach(b=>{const w=b.dataset.w||'0';b.style.width=w+'%';});
+  },200);
+
+  // Counters
+  slide.querySelectorAll('[data-target]').forEach(el=>{
+    const target=+el.dataset.target;
+    let start=0;const dur=1600;const step=Date.now();
+    function tick(){
+      const elapsed=Date.now()-step;const prog=Math.min(elapsed/dur,1);
+      const eased=1-Math.pow(1-prog,3);
+      el.textContent=Math.round(start+(target-start)*eased).toLocaleString();
+      if(prog<1)requestAnimationFrame(tick);
+    }tick();
+  });
+
+  // Care items slide in
+  if(idx===8){
+    const items=slide.querySelectorAll('.ci');
+    items.forEach((it,i)=>{
+      setTimeout(()=>{it.classList.add('vis');setTimeout(()=>it.classList.add('done'),300+i*80);},200+i*120);
+    });
+  }
+
+  // Facts reveal
+  if(idx===9){
+    const facts=slide.querySelectorAll('.fact');
+    facts.forEach((f,i)=>setTimeout(()=>f.classList.add('rev'),i*150+200));
+  }
+}
+
+// Init first slide
+triggerSlideAnim(0);
+</script>
+</body>
+</html>
