@@ -200,7 +200,7 @@ Digunakan untuk SEO. Perbarui `sitemap.xml` saat menambah halaman baru. Sitemap 
 
 ## Custom Claude Skills
 
-Dua skill Claude Code tersimpan di `.claude/skills/` dan dapat dipanggil dengan slash command:
+Lima skill Claude Code tersimpan di `.claude/skills/` dan dapat dipanggil dengan slash command:
 
 ### `/desain-profesional`
 ```
@@ -213,6 +213,35 @@ Menghasilkan brief desain lengkap dan actionable untuk kebutuhan visual sekolah 
 /konten-sosmed [platform] [jenis konten] [topik]
 ```
 Menghasilkan konten media sosial siap posting untuk Instagram dan TikTok — caption, carousel, script video, dan kalender konten — sesuai brand voice Al-Qomar.
+
+### `/analisa-keuangan`
+```
+/analisa-keuangan [jenis analisis] [data/konteks]
+```
+Analisis keuangan tingkat master: laporan keuangan, valuasi bisnis, proyeksi cashflow, DCF, rasio keuangan, perencanaan anggaran, dan analisis pajak lembaga pendidikan. Output setara laporan konsultan Big4.
+
+### `/presentasi-pro`
+```
+/presentasi-pro [jenis dokumen] [topik/tujuan] [konteks]
+```
+Menghasilkan konten siap pakai untuk PowerPoint/PPT (slide-by-slide), Word (SOP, proposal, laporan, kontrak), dan Excel (template, dashboard, formula). Mencakup panduan koneksi ke Google Drive MCP untuk edit file langsung.
+
+### `/riset-ekspert`
+```
+/riset-ekspert [topik atau pertanyaan]
+```
+Riset mendalam di semua bidang: pendidikan, hukum, bisnis, teknologi, keuangan, dan regulasi Indonesia. Output berformat laporan profesional dengan data, benchmark, dan rekomendasi tindakan. Tambah `--singkat` untuk jawaban cepat.
+
+## Konfigurasi Permissions (`.claude/settings.json`)
+
+File `.claude/settings.json` dikonfigurasi untuk auto-approve operasi yang sering dipakai agar eksekusi lebih cepat tanpa konfirmasi berulang:
+
+- **Read, Glob, Grep** — baca dan cari file
+- **Edit, Write** — tulis dan edit file
+- **Bash(git *)** — semua operasi git
+- **Bash(ls, cat, head, tail, find, grep, echo, wc, stat, du, df, pwd, date)** — utilitas shell baca-saja
+- **Bash(cp, mv, mkdir, touch)** — manajemen file dasar
+- **Bash(jq, curl, python3, node, npx)** — tools pemrosesan data dan script
 
 ## Aset Gambar
 
