@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Offline — Al-Qomar Muthmainnah School</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#1a5c38">
+<link rel="icon" href="/logo/logo.png" type="image/png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="/css/pages.css">
+<style>
+  body { display: flex; flex-direction: column; min-height: 100vh; }
+  .offline-wrap {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 40px 24px;
+  }
+  .offline-icon { font-size: 80px; margin-bottom: 20px; }
+  .offline-wrap h1 { color: var(--h); font-size: clamp(28px, 5vw, 40px); margin-bottom: 12px; }
+  .offline-wrap p { color: var(--text-soft); max-width: 500px; margin: 0 auto 24px; }
+</style>
+</head>
+<body>
+<div class="offline-wrap">
+  <div>
+    <div class="offline-icon">📡</div>
+    <h1>Anda Sedang Offline</h1>
+    <p>Sepertinya koneksi internet Anda terputus. Silakan periksa koneksi dan coba lagi.</p>
+    <button class="cta-btn" style="background:var(--h); color:#fff !important; border:none; cursor:pointer;" onclick="location.reload()">
+      Coba Lagi
+    </button>
+  </div>
+</div>
+</body>
+</html>

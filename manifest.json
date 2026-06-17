@@ -1,0 +1,61 @@
+{
+  "name": "Al-Qomar Muthmainnah School",
+  "short_name": "Al-Qomar",
+  "description": "Sekolah Islam Terpadu Jakarta Barat — KB, TKIT, SDIT, SMPIT. Program Tahfidz Al-Qur'an, Akreditasi A, Kurikulum Merdeka.",
+  "start_url": "/?utm_source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#1a5c38",
+  "lang": "id",
+  "dir": "ltr",
+  "categories": ["education", "kids"],
+  "icons": [
+    {
+      "src": "/logo/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "PPDB 2026/2027",
+      "short_name": "Daftar PPDB",
+      "description": "Pendaftaran Peserta Didik Baru",
+      "url": "/?utm_source=pwa#ppdb",
+      "icons": [{ "src": "/logo/logo.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Berita Sekolah",
+      "short_name": "Berita",
+      "description": "Pengumuman & kegiatan terbaru",
+      "url": "/berita?utm_source=pwa",
+      "icons": [{ "src": "/logo/logo.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Hubungi Kami",
+      "short_name": "Kontak",
+      "description": "WhatsApp & telepon sekolah",
+      "url": "/?utm_source=pwa#kontak",
+      "icons": [{ "src": "/logo/logo.png", "sizes": "192x192" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/images/og-image.jpg",
+      "sizes": "1200x630",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "Halaman utama Al-Qomar Muthmainnah School"
+    }
+  ],
+  "prefer_related_applications": false
+}
