@@ -46,12 +46,13 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "EducationalOrganization",
+  "@type": ["School", "EducationalOrganization"],
   "name": "Al-Qomar Muthmainnah School",
-  "alternateName": "YPIPC Al-Qomar",
+  "alternateName": ["YPIPC Al-Qomar", "Sekolah Islam Terpadu Al-Qomar Muthmainnah", "Al-Qomar Muthmainnah Islamic School"],
   "url": "https://alqomar.sch.id",
   "logo": "https://alqomar.sch.id/logo/logo.png",
-  "description": "Sekolah Islam Terpadu di Jakarta Barat dengan jenjang KB, TKIT, SDIT, dan SMPIT. Program Tahfidz Al-Quran terintegrasi, Kurikulum Merdeka, dan akreditasi A.",
+  "image": "https://alqomar.sch.id/logo/logo.png",
+  "description": "Sekolah Islam Terpadu (SIT) di Jakarta Barat dengan jenjang KB, TKIT, SDIT, dan SMPIT. Program Tahfidz Al-Quran terintegrasi, Kurikulum Merdeka, dan akreditasi A. Berlokasi di Kalideres, Jakarta Barat.",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Jl. Kamal Raya No.1 Tegal Alur",
@@ -60,6 +61,21 @@
     "postalCode": "11820",
     "addressCountry": "ID"
   },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -6.125217,
+    "longitude": 106.723293
+  },
+  "hasMap": "https://maps.google.com/?q=-6.125217,106.723293",
+  "areaServed": [
+    { "@type": "City", "name": "Jakarta Barat" },
+    { "@type": "Place", "name": "Kalideres" },
+    { "@type": "Place", "name": "Tegal Alur" },
+    { "@type": "Place", "name": "Cengkareng" },
+    { "@type": "Place", "name": "Kamal" },
+    { "@type": "Place", "name": "Kapuk" },
+    { "@type": "Place", "name": "Rawa Buaya" }
+  ],
   "telephone": "+62-21-55968344",
   "email": "info@alqomar.sch.id",
   "foundingDate": "1991",
@@ -71,6 +87,50 @@
     "https://www.instagram.com/alqomar.school",
     "https://www.facebook.com/alqomarschool",
     "https://www.youtube.com/channel/UCA3iOPu9iYC7ZOD4PyW9VPw"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Beranda", "item": "https://alqomar.sch.id/" },
+    { "@type": "ListItem", "position": 2, "name": "PPDB 2026/2027", "item": "https://alqomar.sch.id/ppdb.html" },
+    { "@type": "ListItem", "position": 3, "name": "Berita & Kegiatan", "item": "https://alqomar.sch.id/berita" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Apakah ada program beasiswa atau keringanan biaya?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yayasan Pendidikan Islam Purnama Cendekia menyediakan program keringanan biaya bagi keluarga yang membutuhkan. Silakan hubungi bagian administrasi sekolah untuk informasi persyaratan dan proses pengajuan secara langsung." }
+    },
+    {
+      "@type": "Question",
+      "name": "Bagaimana sistem Full Day School di Al-Qomar?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Kegiatan belajar berlangsung Senin–Jumat pukul 06.30–15.00 WIB, diisi pembelajaran akademik, pembiasaan ibadah (Dhuha, Dzuhur), tahfidz, One Day One Ayat, dan ekstrakurikuler." }
+    },
+    {
+      "@type": "Question",
+      "name": "Berapa target hafalan Al-Qur'an per jenjang?",
+      "acceptedAnswer": { "@type": "Answer", "text": "TKIT: hafalan surat-surat pendek juz 30. SDIT: target minimal 3 juz selama 6 tahun melalui program ODOA (One Day One Ayat). SMPIT: melanjutkan hafalan dari SDIT dengan target tambahan dan penguatan tajwid." }
+    },
+    {
+      "@type": "Question",
+      "name": "Apa saja persyaratan dokumen untuk PPDB?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Dokumen umum: Akta kelahiran, Kartu Keluarga, Foto 3x4, Ijazah/Raport jenjang sebelumnya (untuk SDIT & SMPIT), dan Surat keterangan sehat. Persyaratan lengkap ada di formulir pendaftaran online di alqomar.sch.id/spmb-online." }
+    },
+    {
+      "@type": "Question",
+      "name": "Di mana lokasi Al-Qomar Muthmainnah School?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Al-Qomar Muthmainnah School berlokasi di Jl. Kamal Raya No.1 Tegal Alur, Kalideres, Jakarta Barat 11820, dan melayani wilayah Kalideres, Cengkareng, Kamal, Tegal Alur, dan sekitarnya di Jakarta Barat." }
+    }
   ]
 }
 </script>
@@ -2509,6 +2569,7 @@ function toggleFaq(el){
         <li><a href="https://alqomar.sch.id/spmb-online" target="_blank">Syarat Pendaftaran</a></li>
         <li><a href="https://alqomar.sch.id/berita" target="_blank">Berita Terkini</a></li>
         <li><a href="https://alqomar.sch.id/event" target="_blank">Agenda &amp; Event</a></li>
+        <li><a href="/sekolah-islam-jakarta-barat">Sekolah Islam Jakarta Barat</a></li>
       </ul>
     </div>
   </div>
