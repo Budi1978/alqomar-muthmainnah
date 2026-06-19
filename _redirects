@@ -1,7 +1,12 @@
-# Redirect 404 URLs dari Google Search Console ke anchor yang benar
+# Redirect 404 URLs lama dari Google Search Console ke anchor yang benar
 /user/register          /#ppdb      301
 /eksplore               /#galeri    301
 /tentang-kami           /#tentang   301
-/berita/*               /#berita    301
 /program/smpit          /#jenjang   301
-/event                  /#event     301
+
+# Halaman detail berita: render lewat template, slug dibaca dari URL oleh JS.
+# (Rewrite 200 — file statis seperti /berita/ index tetap diutamakan Netlify)
+/berita/*               /berita-detail.html   200
+
+# Konsolidasi duplikat: arahkan berita.html lama ke URL bersih /berita
+/berita.html            /berita     301!
