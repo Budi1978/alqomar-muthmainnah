@@ -2,9 +2,10 @@ User-agent: *
 Allow: /
 
 # Halaman internal & arsip — jangan diindeks (hindari duplicate content)
-Disallow: /login-divisi.html
-Disallow: /index-live.html
-Disallow: /index-live-latest.html
+Disallow: /login-divisi
+Disallow: /index-live
+Disallow: /index-live-latest
 Disallow: /_backup/
 
-Sitemap: https://alqomar.sch.id/sitemap.xml
+Sitemap: https://www.alqomar.sch.id/sitemap.xml
+Sitemap: https://www.alqomar.sch.id/sitemap-berita.xml
