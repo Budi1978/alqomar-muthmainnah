@@ -1,11 +1,8 @@
 User-agent: *
 Allow: /
 
-# Halaman internal & arsip — jangan diindeks (hindari duplicate content)
+# Portal internal — jangan diindeks
 Disallow: /login-divisi
-Disallow: /index-live
-Disallow: /index-live-latest
-Disallow: /_backup/
 
 Sitemap: https://www.alqomar.sch.id/sitemap.xml
 Sitemap: https://www.alqomar.sch.id/sitemap-berita.xml
