@@ -3,8 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Berita - Al-Qomar Muthmainnah</title>
-  <meta name="description" content="Berita terkini dari Al-Qomar Muthmainnah" />
+  <title>Berita — Al-Qomar Muthmainnah School</title>
+  <meta name="description" content="Berita dan kegiatan terkini Al-Qomar Muthmainnah School — Sekolah Islam Terpadu di Jakarta Barat." />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Al-Qomar Muthmainnah School - YPIPC" />
+  <link rel="canonical" href="https://alqomar.sch.id/berita" id="meta-canonical" />
+
+  <!-- Open Graph (diperbarui dinamis oleh JS per artikel) -->
+  <meta property="og:type" content="article" id="meta-og-type" />
+  <meta property="og:title" content="Berita — Al-Qomar Muthmainnah School" id="meta-og-title" />
+  <meta property="og:image" content="https://alqomar.sch.id/logo/logo.png" id="meta-og-image" />
+  <meta property="og:site_name" content="Al-Qomar Muthmainnah School" />
+  <meta property="og:locale" content="id_ID" />
+  <meta name="twitter:card" content="summary_large_image" id="meta-tw-card" />
+
+  <link rel="icon" type="image/png" href="https://alqomar.sch.id/logo/logo.png" />
+  <meta name="theme-color" content="#1a5c38" />
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -522,11 +536,49 @@
   function renderBerita(berita) {
     document.title = berita.judul + ' — Al-Qomar Muthmainnah';
 
-    // Meta OG untuk share
-    const ogDesc = document.createElement('meta');
-    ogDesc.setAttribute('property', 'og:description');
-    ogDesc.content = berita.ringkasan || '';
-    document.head.appendChild(ogDesc);
+    // ── Meta SEO & share, diperbarui per artikel ──
+    const url = window.location.href.split('?')[0];
+    const desc = (berita.ringkasan || 'Berita dan kegiatan Al-Qomar Muthmainnah School, Sekolah Islam Terpadu di Jakarta Barat.').slice(0, 200);
+    const img = berita.foto_url || 'https://alqomar.sch.id/logo/logo.png';
+
+    const setMeta = (attr, key, val) => {
+      let el = document.head.querySelector(`meta[${attr}="${key}"]`);
+      if (!el) { el = document.createElement('meta'); el.setAttribute(attr, key); document.head.appendChild(el); }
+      el.setAttribute('content', val);
+    };
+
+    setMeta('name', 'description', desc);
+    setMeta('property', 'og:title', berita.judul);
+    setMeta('property', 'og:description', desc);
+    setMeta('property', 'og:url', url);
+    setMeta('property', 'og:image', img);
+    setMeta('name', 'twitter:title', berita.judul);
+    setMeta('name', 'twitter:description', desc);
+    setMeta('name', 'twitter:image', img);
+
+    const canon = document.getElementById('meta-canonical');
+    if (canon) canon.setAttribute('href', url);
+
+    // ── Data terstruktur Article (Schema.org) ──
+    const ld = {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "headline": berita.judul,
+      "description": desc,
+      "image": img,
+      "datePublished": berita.tanggal || undefined,
+      "mainEntityOfPage": { "@type": "WebPage", "@id": url },
+      "author": { "@type": "Organization", "name": "Al-Qomar Muthmainnah School" },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Al-Qomar Muthmainnah School",
+        "logo": { "@type": "ImageObject", "url": "https://alqomar.sch.id/logo/logo.png" }
+      }
+    };
+    const ldScript = document.createElement('script');
+    ldScript.type = 'application/ld+json';
+    ldScript.textContent = JSON.stringify(ld);
+    document.head.appendChild(ldScript);
 
     document.getElementById('judul-berita').textContent = berita.judul;
     document.getElementById('tanggal-berita').textContent = formatTanggal(berita.tanggal);
