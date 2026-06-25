@@ -19,6 +19,7 @@ Ini adalah **vault memori Obsidian** untuk proyek website Al-Qomar Muthmainnah. 
 - [[konvensi-kode]] — aturan CSS/JS/HTML yang wajib diikuti
 
 ### Catatan Berjalan
+- [[workshop-guru-ta-2026-2027]] — workshop guru 4 hari (Selasa–Jumat), materi, tugas & rundown
 - Folder `catatan/` — fakta, temuan, dan info yang berguna untuk diingat
 - Folder `keputusan/` — log keputusan teknis & desain (ADR ringan)
 
@@ -32,4 +33,4 @@ Ini adalah **vault memori Obsidian** untuk proyek website Al-Qomar Muthmainnah. 
 ## 📌 Catatan Aktif / TODO
 *(Tambahkan hal yang sedang berjalan atau perlu ditindaklanjuti di sini)*
 
-- Belum ada.
+- Persiapan **Workshop Guru TA 2026/2027** (Selasa–Jumat) — handbook: `docs/handbook-workshop-guru-2026.md`. #todo finalisasi tanggal & narasumber.
