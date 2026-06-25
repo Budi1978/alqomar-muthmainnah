@@ -40,6 +40,15 @@ alqomar-muthmainnah/
 └── caption-ppdb-ig.txt     # Teks caption Instagram untuk kampanye PPDB
 ```
 
+## Memori Proyek (Obsidian Memory)
+
+Folder `memory/` adalah **vault Obsidian** yang berfungsi sebagai memori jangka panjang Claude. Tujuannya menyimpan konteks penting (keputusan, konvensi, fakta, hal yang sudah dicoba) agar **bertahan antar sesi**.
+
+- **Otomatis dimuat**: SessionStart hook `.claude/hooks/load-memory.sh` (terdaftar di `.claude/settings.json`) menyuntikkan `memory/index.md` ke konteks tiap sesi.
+- **Dikelola lewat skill**: jalankan `/obsidian-memory` untuk menyimpan, mencari, atau memperbarui catatan.
+- **Struktur**: `index.md` (MOC) · `konteks-proyek.md` · `konvensi-kode.md` · `catatan/` · `keputusan/` · `templates/`
+- Bisa dibuka langsung di aplikasi Obsidian (Open folder as vault → `memory/`).
+
 ## Teknologi yang Digunakan
 
 - **HTML5** — markup semantik dengan desain responsif
