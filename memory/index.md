@@ -33,4 +33,4 @@ Ini adalah **vault memori Obsidian** untuk proyek website Al-Qomar Muthmainnah. 
 ## 📌 Catatan Aktif / TODO
 *(Tambahkan hal yang sedang berjalan atau perlu ditindaklanjuti di sini)*
 
-- Persiapan **Workshop Guru TA 2026/2027** (Selasa–Jumat) — handbook: `docs/handbook-workshop-guru-2026.md`. #todo finalisasi tanggal & narasumber.
+- Persiapan **Workshop Guru TA 2026/2027** (Selasa–Jumat) — handbook: `docs/Handbook-Workshop-Guru-2026.docx`. #todo finalisasi tanggal & narasumber.
