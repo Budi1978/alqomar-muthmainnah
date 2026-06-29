@@ -32,4 +32,4 @@ Ini adalah **vault memori Obsidian** untuk proyek website Al-Qomar Muthmainnah. 
 ## 📌 Catatan Aktif / TODO
 *(Tambahkan hal yang sedang berjalan atau perlu ditindaklanjuti di sini)*
 
-- Belum ada.
+- [[catatan/review-skill-connector-agent|Review Skill, Connector & Agent Claude]] — penilaian tooling Claude untuk proyek (2026-06-29). TODO: cek manual connector `mcp_cool` (Composio); pertimbangkan matikan connector yang tidak relevan.
