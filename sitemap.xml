@@ -19,12 +19,6 @@
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://alqomar.sch.id/spmb-online</loc>
-    <lastmod>2026-06-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://alqomar.sch.id/berita</loc>
     <lastmod>2026-06-19</lastmod>
     <changefreq>daily</changefreq>
@@ -35,24 +29,6 @@
     <lastmod>2026-06-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://alqomar.sch.id/guru.html</loc>
-    <lastmod>2026-06-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://alqomar.sch.id/tahfidz.html</loc>
-    <lastmod>2026-06-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://alqomar.sch.id/rqaq.html</loc>
-    <lastmod>2026-06-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://alqomar.sch.id/berita/hari-pahlawan-10-november-2025</loc>
