@@ -4,6 +4,20 @@
 /tentang-kami           /#tentang   301
 /program/smpit          /#jenjang   301
 
+# CTA pendaftaran: /spmb-online dirujuk di seluruh situs tapi halamannya belum ada.
+# Sementara diarahkan ke halaman PPDB (302 agar mudah dialihkan ke form asli nanti).
+/spmb-online            /ppdb.html  302
+/spmb-online.html       /ppdb.html  302
+
+# Halaman yang di-link/terdaftar di sitemap tapi file-nya belum dibuat
+/rqaq.html              /#rumah-quran   302
+/guru.html              /#guru          302
+/tahfidz.html           /#jenjang       302
+
+# URL tanpa ekstensi yang dipakai di link internal (jangan andalkan Pretty URLs)
+/event                          /event.html                         200
+/sekolah-islam-jakarta-barat    /sekolah-islam-jakarta-barat.html   200
+
 # Halaman detail berita: render lewat template, slug dibaca dari URL oleh JS.
 # (Rewrite 200 — file statis seperti /berita/ index tetap diutamakan Netlify)
 /berita/*               /berita-detail.html   200

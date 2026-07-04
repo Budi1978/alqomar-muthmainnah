@@ -12,7 +12,7 @@
   <!-- Open Graph (diperbarui dinamis oleh JS per artikel) -->
   <meta property="og:type" content="article" id="meta-og-type" />
   <meta property="og:title" content="Berita — Al-Qomar Muthmainnah School" id="meta-og-title" />
-  <meta property="og:image" content="https://alqomar.sch.id/logo/logo.png" id="meta-og-image" />
+  <meta property="og:image" content="https://alqomar.sch.id/images/og-image.jpg" id="meta-og-image" />
   <meta property="og:site_name" content="Al-Qomar Muthmainnah School" />
   <meta property="og:locale" content="id_ID" />
   <meta name="twitter:card" content="summary_large_image" id="meta-tw-card" />
@@ -539,7 +539,7 @@
     // ── Meta SEO & share, diperbarui per artikel ──
     const url = window.location.href.split('?')[0];
     const desc = (berita.ringkasan || 'Berita dan kegiatan Al-Qomar Muthmainnah School, Sekolah Islam Terpadu di Jakarta Barat.').slice(0, 200);
-    const img = berita.foto_url || 'https://alqomar.sch.id/logo/logo.png';
+    const img = berita.foto_url || 'https://alqomar.sch.id/images/og-image.jpg';
 
     const setMeta = (attr, key, val) => {
       let el = document.head.querySelector(`meta[${attr}="${key}"]`);
