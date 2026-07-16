@@ -1,175 +1,74 @@
-# ===================================================================
-# Al-Qomar Muthmainnah School — .htaccess
-# Hostinger Apache configuration
-# Last updated: 2026-05-15
-# ===================================================================
+# ---------- 0. URL CANONICALIZATION ----------
+DirectoryIndex index.html
 
-# -------------------------------------------------------------------
-# 1. SECURITY HEADERS
-# -------------------------------------------------------------------
-<IfModule mod_headers.c>
-    # HSTS — Force HTTPS for 1 year
-    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+<IfModule mod_rewrite.c>
+  RewriteEngine On
 
-    # Prevent MIME-type sniffing
-    Header always set X-Content-Type-Options "nosniff"
+  RewriteRule ^index\.html$ / [R=301,L]
+  RewriteRule ^(ppdb|spmb-online|rqaq|guru|kb-tkit|sdit|smpit|tahfidz|event)\.html$ /$1 [R=301,L]
 
-    # Clickjacking protection
-    Header always set X-Frame-Options "SAMEORIGIN"
-
-    # Referrer policy — privacy friendly
-    Header always set Referrer-Policy "strict-origin-when-cross-origin"
-
-    # Disable unused browser features
-    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(self), interest-cohort=()"
-
-    # XSS protection (legacy but harmless)
-    Header always set X-XSS-Protection "1; mode=block"
-
-    # Remove server signature
-    Header unset X-Powered-By
-    Header unset Server
-
-    # Cross-Origin policies (loose to allow embeds: YouTube, Google Maps)
-    Header always set Cross-Origin-Opener-Policy "same-origin-allow-popups"
-
-    # CSP — clickjacking + paksa HTTPS. Sengaja TIDAK batasi script/style src
-    # supaya Tailwind CDN, Google Maps, YouTube, Firebase, Supabase tetap jalan.
-    Header always set Content-Security-Policy "frame-ancestors 'self'; upgrade-insecure-requests"
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(ppdb|spmb-online|rqaq|guru|kb-tkit|sdit|smpit|tahfidz|event)/?$ $1.html [L]
 </IfModule>
 
-# -------------------------------------------------------------------
-# 2. FORCE HTTPS + WWW
-# -------------------------------------------------------------------
-RewriteEngine On
+# ============================================================
+#  Al-Qomar Muthmainnah — Performance .htaccess
+#  Caching + Kompresi untuk Hostinger (LiteSpeed/Apache)
+#  Dibuat: optimasi PageSpeed Juni 2026
+# ============================================================
 
-# Force HTTPS
-RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://www.alqomar.sch.id/$1 [R=301,L]
-
-# Force www (apex -> www)
-RewriteCond %{HTTP_HOST} ^alqomar\.sch\.id$ [NC]
-RewriteRule ^(.*)$ https://www.alqomar.sch.id/$1 [R=301,L]
-
-# -------------------------------------------------------------------
-# 2b. CLEAN URL BERITA — /berita/<slug> -> berita-detail.html?slug=<slug>
-# WAJIB ADA. Kalau hilang, semua link "Baca Selengkapnya"/"Salin Link" 404.
-# -------------------------------------------------------------------
-RewriteRule ^berita/([^/]+)/?$ /berita-detail.php?slug=$1 [L,QSA]
-
-# Sitemap berita dinamis: /sitemap-berita.xml -> sitemap-berita.php (tarik dari Supabase)
-RewriteRule ^sitemap-berita\.xml$ /sitemap-berita.php [L]
-
-# -------------------------------------------------------------------
-# 3. PRETTY URLs — hilangkan .html
-# -------------------------------------------------------------------
-# /berita -> /berita.html (internal rewrite)
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.html -f
-RewriteRule ^([^\.]+)$ $1.html [NC,L]
-
-# /berita.html -> /berita (visible redirect, SEO clean)
-RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
-RewriteRule ^ /%1 [R=301,L]
-
-# -------------------------------------------------------------------
-# 4. CUSTOM ERROR PAGES
-# -------------------------------------------------------------------
-ErrorDocument 404 /404.html
-ErrorDocument 403 /404.html
-ErrorDocument 500 /404.html
-
-# -------------------------------------------------------------------
-# 5. BROWSER CACHE — Aggressive caching for static assets
-# -------------------------------------------------------------------
-<IfModule mod_expires.c>
-    ExpiresActive On
-
-    # HTML — cache pendek 1 jam (shell statik; konten dinamis via JS/Supabase). PHP tetap no-cache via mod_headers.
-    ExpiresByType text/html "access plus 1 hour"
-
-    # CSS & JS — 1 year (versi via query string saat update)
-    ExpiresByType text/css "access plus 1 year"
-    ExpiresByType application/javascript "access plus 1 year"
-    ExpiresByType text/javascript "access plus 1 year"
-
-    # Images — 1 year
-    ExpiresByType image/jpeg "access plus 1 year"
-    ExpiresByType image/jpg "access plus 1 year"
-    ExpiresByType image/png "access plus 1 year"
-    ExpiresByType image/webp "access plus 1 year"
-    ExpiresByType image/avif "access plus 1 year"
-    ExpiresByType image/svg+xml "access plus 1 year"
-    ExpiresByType image/x-icon "access plus 1 year"
-
-    # Fonts — 1 year
-    ExpiresByType font/woff "access plus 1 year"
-    ExpiresByType font/woff2 "access plus 1 year"
-    ExpiresByType application/font-woff "access plus 1 year"
-    ExpiresByType application/font-woff2 "access plus 1 year"
-
-    # Manifest & feeds
-    ExpiresByType application/manifest+json "access plus 1 day"
-    ExpiresByType application/rss+xml "access plus 1 hour"
-    ExpiresByType application/xml "access plus 1 hour"
+# ---------- 1. KOMPRESI (Gzip / Brotli) ----------
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/css text/javascript application/javascript application/json image/svg+xml application/xml
 </IfModule>
-
-<IfModule mod_headers.c>
-    # Cache-Control headers
-    <FilesMatch "\.(css|js|jpg|jpeg|png|webp|avif|svg|gif|ico|woff|woff2|ttf|eot)$">
-        Header set Cache-Control "public, max-age=31536000, immutable"
-    </FilesMatch>
-
-    <FilesMatch "\.(html|htm)$">
-        Header set Cache-Control "public, max-age=3600, must-revalidate"
-    </FilesMatch>
-
-    <FilesMatch "\.php$">
-        Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0"
-        Header set Pragma "no-cache"
-    </FilesMatch>
-
-    <FilesMatch "(manifest\.json|sw\.js)$">
-        Header set Cache-Control "no-cache, no-store, must-revalidate"
-    </FilesMatch>
-</IfModule>
-
-# -------------------------------------------------------------------
-# 6. GZIP / BROTLI COMPRESSION
-# -------------------------------------------------------------------
 <IfModule mod_deflate.c>
-    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript
-    AddOutputFilterByType DEFLATE application/javascript application/json application/xml
-    AddOutputFilterByType DEFLATE application/rss+xml application/atom+xml
-    AddOutputFilterByType DEFLATE image/svg+xml font/woff font/woff2
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript application/json image/svg+xml application/xml application/x-font-ttf font/woff font/woff2
 </IfModule>
 
-# -------------------------------------------------------------------
-# 7. PROTECT SENSITIVE FILES
-# -------------------------------------------------------------------
-<FilesMatch "^(\.htaccess|\.env|\.git|.*\.bak|.*backup.*|.*-backup.*)$">
-    Require all denied
-</FilesMatch>
+# ---------- 2. CACHE LIFETIME (Expires) ----------
+<IfModule mod_expires.c>
+  ExpiresActive On
 
-# Block hidden files except .well-known/
-RedirectMatch 404 /\.(?!well-known)
+  # Gambar — cache 1 tahun (di-hash/diganti nama saat update)
+  ExpiresByType image/webp                "access plus 1 year"
+  ExpiresByType image/jpeg                "access plus 1 year"
+  ExpiresByType image/png                 "access plus 1 year"
+  ExpiresByType image/gif                 "access plus 1 year"
+  ExpiresByType image/svg+xml             "access plus 1 year"
+  ExpiresByType image/x-icon              "access plus 1 year"
 
-# -------------------------------------------------------------------
-# 8. MIME TYPES
-# -------------------------------------------------------------------
-<IfModule mod_mime.c>
-    AddType image/webp .webp
-    AddType image/avif .avif
-    AddType font/woff2 .woff2
-    AddType application/manifest+json .webmanifest
+  # Font — cache 1 tahun
+  ExpiresByType font/woff2                "access plus 1 year"
+  ExpiresByType font/woff                 "access plus 1 year"
+  ExpiresByType application/x-font-ttf    "access plus 1 year"
+
+  # CSS & JS — cache 1 bulan
+  ExpiresByType text/css                  "access plus 1 month"
+  ExpiresByType text/javascript           "access plus 1 month"
+  ExpiresByType application/javascript    "access plus 1 month"
+
+  # HTML — cache pendek agar update konten cepat tampil
+  ExpiresByType text/html                 "access plus 10 minutes"
 </IfModule>
 
-# -------------------------------------------------------------------
-# 9. DISABLE DIRECTORY LISTING
-# -------------------------------------------------------------------
-Options -Indexes
+# ---------- 3. CACHE-CONTROL HEADERS ----------
+<IfModule mod_headers.c>
+  # Aset statis: immutable, cache panjang
+  <FilesMatch "\.(webp|jpe?g|png|gif|svg|ico|woff2?|ttf|css|js)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  # HTML: boleh di-revalidate
+  <FilesMatch "\.(html|php)$">
+    Header set Cache-Control "public, max-age=600, must-revalidate"
+  </FilesMatch>
+  # Keamanan ringan
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
 
-# -------------------------------------------------------------------
-# 10. DEFAULT CHARSET
-# -------------------------------------------------------------------
-AddDefaultCharset UTF-8
+# ---------- 4. KEEP-ALIVE ----------
+<IfModule mod_headers.c>
+  Header set Connection keep-alive
+</IfModule>

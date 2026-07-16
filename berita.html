@@ -279,7 +279,7 @@ footer{background:var(--h);color:#fff;padding:40px 0 20px}
 <!-- BERITA GRID -->
 <div class="berita-section">
   <div class="berita-header">
-    <div class="berita-count" id="beritaCount">Memuat berita...</div>
+    <div class="berita-count" id="beritaCount">Berita terbaru sedang disiapkan...</div>
   </div>
   <div class="bgrid" id="beritaGrid">
     <!-- skeleton -->
@@ -313,7 +313,7 @@ footer{background:var(--h);color:#fff;padding:40px 0 20px}
   <a class="wab" href="https://wa.me/628111597678?text=Halo%20Al-Qomar%20Muthmainnah%20School%2C%20saya%20ingin%20bertanya." target="_blank" aria-label="Chat WhatsApp">💬</a>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const _sb = supabase.createClient(
   'https://gzcgyqntluhxxrvbcwin.supabase.co',
@@ -329,18 +329,45 @@ let displayed = 0;
 const PER_PAGE = 9;
 let activeFilter = 'semua';
 let searchQuery = '';
+const BERITA_FALLBACK = [
+  {
+    id: 'fallback-ppdb',
+    judul: 'PPDB 2026/2027 Al-Qomar Muthmainnah Telah Dibuka',
+    ringkasan: 'Pendaftaran peserta didik baru untuk jenjang KB, TKIT, SDIT, dan SMPIT sudah dibuka. Orang tua dapat berkonsultasi dan mendaftar melalui admin sekolah.',
+    tanggal: '2026-04-20',
+    foto_url: 'images/IMG_7809.webp',
+    kategori: 'Berita'
+  },
+  {
+    id: 'fallback-tahfidz',
+    judul: 'Munaqosyah Tahfidz Jadi Agenda Pembinaan Siswa Secara Berkala',
+    ringkasan: 'Program tahfidz terus diperkuat melalui evaluasi hafalan, pembiasaan murojaah, dan pembinaan karakter Islami di lingkungan sekolah.',
+    tanggal: '2026-04-15',
+    foto_url: 'images/Kegiatan_belajar.webp',
+    kategori: 'Prestasi'
+  },
+  {
+    id: 'fallback-akademik',
+    judul: 'Pembelajaran Aktif dan Kurikulum Merdeka Diterapkan di Setiap Jenjang',
+    ringkasan: 'Kegiatan belajar siswa dirancang aktif, terarah, dan terintegrasi nilai Islam untuk membangun akhlak, kompetensi, dan kemandirian.',
+    tanggal: '2026-04-05',
+    foto_url: 'images/Ekskul_pramuka.JPG',
+    kategori: 'Akademik'
+  }
+];
 
 function cardHTML(b, i) {
   var foto = b.foto_url
     ? '<img src="'+b.foto_url+'" alt="'+escHtml(b.judul)+'" loading="lazy" onerror="this.parentElement.innerHTML=\'<div class=bno-img>📰</div>\'">'
     : '<div class="bno-img">📰</div>';
+  var link = String(b.id || '').indexOf('fallback-') === 0 ? '/spmb-online.html' : '/berita-detail.html?id=' + b.id;
   return '<article class="bc">'
     +'<div class="bimg">'+foto+'<span class="btag">Berita</span></div>'
     +'<div class="bb">'
     +'<div class="bdate">'+formatTgl(b.tanggal)+'</div>'
     +'<h2>'+escHtml(b.judul||'')+'</h2>'
     +'<p>'+escHtml(b.ringkasan||'')+'</p>'
-    +'<a href="/berita-detail.html?slug='+b.slug+'" class="rl">Baca Selengkapnya →</a>'
+    +'<a href="'+link+'" class="rl">Baca Selengkapnya →</a>'
     +'</div></article>';
 }
 
@@ -396,11 +423,15 @@ async function loadBerita(){
       .eq('aktif', true)
       .order('tanggal', {ascending: false});
     if(res.error) throw res.error;
-    allBerita = res.data || [];
+    allBerita = (res.data && res.data.length) ? res.data : BERITA_FALLBACK;
     applyFilter();
+    if (!res.data || !res.data.length) {
+      document.getElementById('beritaCount').textContent = 'Menampilkan informasi utama sekolah';
+    }
   } catch(e) {
-    document.getElementById('beritaGrid').innerHTML = '<div class="empty" style="grid-column:1/-1"><div class="empty-icon">⚠️</div><p>Gagal memuat berita. Silakan muat ulang halaman.</p></div>';
-    document.getElementById('beritaCount').textContent = '';
+    allBerita = BERITA_FALLBACK;
+    applyFilter();
+    document.getElementById('beritaCount').textContent = 'Menampilkan informasi utama sekolah';
     console.warn('Berita error:', e.message);
   }
 }
