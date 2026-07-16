@@ -310,12 +310,12 @@
     "name": "Al-Qomar Muthmainnah School",
     "url": "https://www.alqomar.sch.id"
   },
-  "url": "https://www.alqomar.sch.id/spmb-online.html",
+  "url": "https://www.alqomar.sch.id/spmb-online",
   "image": "https://www.alqomar.sch.id/images/og-image.jpg",
   "offers": {
     "@type": "Offer",
     "name": "Pendaftaran PPDB 2026/2027",
-    "url": "https://www.alqomar.sch.id/spmb-online.html",
+    "url": "https://www.alqomar.sch.id/spmb-online",
     "price": "0",
     "priceCurrency": "IDR",
     "availability": "https://schema.org/InStock",
@@ -350,7 +350,7 @@
       "@type": "ListItem",
       "position": 4,
       "name": "Kalender & Agenda",
-      "item": "https://www.alqomar.sch.id/event.html"
+      "item": "https://www.alqomar.sch.id/event"
     }
   ]
 }
@@ -969,13 +969,13 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
           <a href="#jenjang">SDIT Al-Qomar</a>
           <a href="#jenjang">SMPIT Al-Qomar</a>
           <a href="/tahfidz.html" style="color:var(--h);font-weight:700;border-top:2px solid var(--ep)">📖 Tahfidz Al-Qur'an</a>
-          <a href="/rqaq.html" style="color:var(--e);font-weight:700">🕌 Rumah Quran (RQAQ)</a>
+          <a href="/rqaq" style="color:var(--e);font-weight:700">🕌 Rumah Quran (RQAQ)</a>
           <a href="#munaqosyah" style="border-top:1px solid #eee">Munaqosyah</a>
-          <a href="/event.html">Kalender Kegiatan</a>
+          <a href="/event">Kalender Kegiatan</a>
         </div>
       </li>
       <li><a href="#berita">Berita</a></li>
-      <li><a href="/guru.html">Tim Pengajar</a></li>
+      <li><a href="/guru">Tim Pengajar</a></li>
       <li><a href="#galeri">Galeri</a></li>
       <li><a href="#kontak">Kontak</a></li>
       <li><a href="/ppdb.html" class="ncta">Daftar PPDB</a></li>
@@ -1000,7 +1000,7 @@ function doSearch(q){
   if(!q||q.length<2){res.innerHTML='';return;}
   var kw=q.toLowerCase();
   var data=[
-    {l:'PPDB 2026/2027 Pendaftaran Dibuka',u:'/spmb-online.html'},
+    {l:'PPDB 2026/2027 Pendaftaran Dibuka',u:'/spmb-online'},
     {l:'KB dan TKIT Muthmainnah',u:'#jenjang'},
     {l:'SDIT Al-Qomar',u:'#jenjang'},
     {l:'SMPIT Al-Qomar',u:'#jenjang'},
@@ -1012,8 +1012,8 @@ function doSearch(q){
     {l:'Galeri Kegiatan',u:'#galeri'},
     {l:'FAQ',u:'#faq'},
     {l:'Kontak dan Lokasi',u:'#kontak'},
-    {l:'Tim Pengajar',u:'/guru.html'},
-    {l:'Kalender Kegiatan',u:'/event.html'},
+    {l:'Tim Pengajar',u:'/guru'},
+    {l:'Kalender Kegiatan',u:'/event'},
   ];
   var hits=data.filter(function(d){return d.l.toLowerCase().indexOf(kw)!==-1}).slice(0,6);
   if(hits.length===0){res.innerHTML='<div class="srch-empty">Tidak ditemukan: "'+q+'"</div>';return;}
@@ -1036,7 +1036,7 @@ document.addEventListener('click',function(e){
         <h1 class="stit">Mendidik Generasi<br><em>Qur'ani</em> yang Unggul</h1>
         <p class="sdesc">Membentuk anak bangsa berakhlak mulia, berprestasi akademik, dan cinta Al-Qur'an — bersama Yayasan Pendidikan Islam Purnama Cendekia sejak 1991.</p>
         <div class="sbtns">
-          <a href="https://www.alqomar.sch.id/spmb-online.html" target="_blank" class="bg"><span>Daftar PPDB 2026/2027</span></a>
+          <a href="https://www.alqomar.sch.id/spmb-online" target="_blank" class="bg"><span>Daftar PPDB 2026/2027</span></a>
           <a href="#tentang" class="bw">Kenali Sekolah Kami</a>
         </div>
       </div>
@@ -1075,7 +1075,7 @@ document.addEventListener('click',function(e){
         <h2 class="stit">Fondasi Kuat<br><em>Dari Usia</em> Dini</h2>
         <p class="sdesc">Mulai perjalanan pendidikan anak Anda dari yang terbaik — suasana belajar yang hangat, Islami, dan menyenangkan dengan pengenalan Al-Qur'an sejak usia dini.</p>
         <div class="sbtns">
-          <a href="https://www.alqomar.sch.id/spmb-online.html" target="_blank" class="bg"><span>Daftar Sekarang</span></a>
+          <a href="https://www.alqomar.sch.id/spmb-online" target="_blank" class="bg"><span>Daftar Sekarang</span></a>
           <a href="#kontak" class="bw">Hubungi Kami</a>
         </div>
       </div>
@@ -1088,7 +1088,7 @@ document.addEventListener('click',function(e){
         <h2 class="stit">Guru Terbaik<br><em>Untuk Buah Hati</em> Anda</h2>
         <p class="sdesc">Tim pengajar profesional dan berdedikasi, siap membimbing setiap anak dengan penuh kasih sayang menuju prestasi akademik dan akhlak mulia.</p>
         <div class="sbtns">
-          <a href="/guru.html" class="bg"><span>Kenali Tim Kami</span></a>
+          <a href="/guru" class="bg"><span>Kenali Tim Kami</span></a>
           <a href="#kontak" class="bw">Hubungi Kami</a>
         </div>
       </div>
@@ -1132,7 +1132,7 @@ document.addEventListener('click',function(e){
     <div class="ayat-cd-prog-top"><span>Kuota terisi</span><span class="ayat-cd-pct">80%</span></div>
     <div class="ayat-cd-bar"><div class="ayat-cd-fill"></div></div>
     <div class="ayat-cd-warn">⚠️ Sisa kuota sangat terbatas!</div>
-    <a href="https://www.alqomar.sch.id/spmb-online.html" target="_blank" class="ayat-cd-btn">Daftar Sekarang →</a>
+    <a href="https://www.alqomar.sch.id/spmb-online" target="_blank" class="ayat-cd-btn">Daftar Sekarang →</a>
   </div>
 </section>
 <script>
@@ -1565,7 +1565,7 @@ document.addEventListener('click',function(e){
         </div>
 
         <div style="display:flex;gap:12px;flex-wrap:wrap">
-          <a href="rqaq.html" style="background:var(--h);color:#fff;padding:12px 28px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;display:inline-block">Lihat Selengkapnya</a>
+          <a href="/rqaq" style="background:var(--h);color:#fff;padding:12px 28px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;display:inline-block">Lihat Selengkapnya</a>
           <a href="https://wa.me/628111597678" target="_blank" rel="noopener"
              style="background:#25D366;color:#fff;padding:12px 28px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;display:inline-block">
             💬 WhatsApp
@@ -1645,7 +1645,7 @@ function switchTab(id,btn){
         <h2 class="st">Tim <em>Pengajar Kami</em></h2>
         <p style="font-size:15px;color:#666;max-width:520px;line-height:1.7;margin-top:8px">Guru profesional bersertifikat yang berdedikasi membentuk generasi Qur'ani, unggul akademik, dan kokoh dalam karakter Islami.</p>
       </div>
-      <a href="/guru.html" style="display:inline-flex;align-items:center;gap:6px;color:var(--h);font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap;flex-shrink:0">Lihat Semua →</a>
+      <a href="/guru" style="display:inline-flex;align-items:center;gap:6px;color:var(--h);font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap;flex-shrink:0">Lihat Semua →</a>
     </div>
     <div class="tpg rv" style="margin-top:40px">
       <div class="tpc">
@@ -1687,7 +1687,7 @@ function switchTab(id,btn){
       <div class="tp-stat"><div class="tp-stat-num">33+</div><div class="tp-stat-label">Tahun Mendidik</div></div>
     </div>
     <div style="text-align:center;margin-top:32px" class="rv">
-      <a href="/guru.html" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--h),var(--h3));color:#fff;padding:13px 32px;border-radius:6px;font-weight:700;font-size:14px;text-decoration:none;transition:.2s" onmouseover="this.style.opacity='.9'" onmouseout="this.style.opacity='1'">👨‍🏫 Lihat Profil Lengkap Semua Guru →</a>
+      <a href="/guru" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--h),var(--h3));color:#fff;padding:13px 32px;border-radius:6px;font-weight:700;font-size:14px;text-decoration:none;transition:.2s" onmouseover="this.style.opacity='.9'" onmouseout="this.style.opacity='1'">👨‍🏫 Lihat Profil Lengkap Semua Guru →</a>
     </div>
   </div>
 </section>
@@ -2646,7 +2646,7 @@ function switchTab(id,btn){
         <p class="sl">Kalender Kegiatan</p>
         <h2 class="st">Agenda &amp; <em>Event</em></h2>
       </div>
-      <a href="/event.html" style="color:var(--h);font-size:13px;font-weight:700;text-decoration:none;border:2px solid var(--h);padding:9px 20px;border-radius:6px;transition:.2s;white-space:nowrap" onmouseover="this.style.background='var(--h)';this.style.color='#fff'" onmouseout="this.style.background='';this.style.color='var(--h)'">Lihat Semua →</a>
+      <a href="/event" style="color:var(--h);font-size:13px;font-weight:700;text-decoration:none;border:2px solid var(--h);padding:9px 20px;border-radius:6px;transition:.2s;white-space:nowrap" onmouseover="this.style.background='var(--h)';this.style.color='#fff'" onmouseout="this.style.background='';this.style.color='var(--h)'">Lihat Semua →</a>
     </div>
     <div class="evg rv" id="kegiatan-grid">
     </div>
@@ -2751,7 +2751,7 @@ function switchTab(id,btn){
       </div>
       <div class="faqc">
         <div class="faqh" onclick="toggleFaq(this)"><p>Kapan PPDB 2026/2027 dibuka dan bagaimana cara mendaftar?</p><span class="faqarr">▾</span></div>
-        <div class="faqb"><p>PPDB 2026/2027 Al-Qomar Muthmainnah telah dibuka untuk jenjang KB, TKIT, SDIT, dan SMPIT. Pendaftaran online melalui <a href="https://www.alqomar.sch.id/spmb-online.html" style="color:var(--h);font-weight:600">alqomar.sch.id/spmb-online</a> atau langsung ke sekolah. Hubungi (021) 55968344 / WhatsApp untuk informasi lebih lanjut.</p></div>
+        <div class="faqb"><p>PPDB 2026/2027 Al-Qomar Muthmainnah telah dibuka untuk jenjang KB, TKIT, SDIT, dan SMPIT. Pendaftaran online melalui <a href="https://www.alqomar.sch.id/spmb-online" style="color:var(--h);font-weight:600">alqomar.sch.id/spmb-online</a> atau langsung ke sekolah. Hubungi (021) 55968344 / WhatsApp untuk informasi lebih lanjut.</p></div>
       </div>
     </div>
     <div style="text-align:center;margin-top:32px;font-size:13.5px;color:#888" class="rv">
@@ -2803,7 +2803,7 @@ document.addEventListener('click',function(e){
   }
 });
 var _searchData=[
-  {label:'PPDB 2026/2027 — Pendaftaran Dibuka',url:'/spmb-online.html'},
+  {label:'PPDB 2026/2027 — Pendaftaran Dibuka',url:'/spmb-online'},
   {label:'KB & TKIT Muthmainnah',url:'#jenjang'},
   {label:'SDIT Al-Qomar',url:'#jenjang'},
   {label:'SMPIT Al-Qomar',url:'#jenjang'},
@@ -2815,10 +2815,10 @@ var _searchData=[
   {label:'Galeri Kegiatan',url:'#galeri'},
   {label:'FAQ Pertanyaan Umum',url:'#faq'},
   {label:'Kontak & Lokasi',url:'#kontak'},
-  {label:'Tim Pengajar',url:'/guru.html'},
+  {label:'Tim Pengajar',url:'/guru'},
   {label:'Santunan Yatim & Dhuafa',url:'#santunan'},
-  {label:'Kalender Kegiatan',url:'/event.html'},
-  {label:'Rumah Quran Al-Qomar (RQAQ)',url:'/rqaq.html'},
+  {label:'Kalender Kegiatan',url:'/event'},
+  {label:'Rumah Quran Al-Qomar (RQAQ)',url:'/rqaq'},
   {label:'Akreditasi A BAN-S/M',url:'#profil'},
 ];
 function doSearch(q){
@@ -3148,7 +3148,7 @@ function toggleFaq(el){
         <li><a href="/ppdb.html#jadwal">Jadwal Seleksi</a></li>
         <li><a href="/ppdb.html#syarat">Syarat Pendaftaran</a></li>
         <li><a href="/berita.html">Berita Terkini</a></li>
-        <li><a href="/event.html">Agenda &amp; Event</a></li>
+        <li><a href="/event">Agenda &amp; Event</a></li>
       </ul>
     </div>
   </div>
