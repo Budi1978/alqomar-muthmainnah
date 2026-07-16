@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Itinerary Umroh - Tanur Muthmainnah</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Amiri:wght@400;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f5f5f5; color: #333; }
+  .page { max-width: 800px; margin: 0 auto; background: #fff; }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #1a5c38 0%, #2a8a54 100%);
+    color: #fff;
+    padding: 40px 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '✦';
+    position: absolute;
+    top: 10px; right: 20px;
+    font-size: 80px;
+    opacity: 0.1;
+  }
+  .header::after {
+    content: '✦';
+    position: absolute;
+    bottom: 10px; left: 20px;
+    font-size: 60px;
+    opacity: 0.1;
+  }
+  .header h1 {
+    font-family: 'Amiri', serif;
+    font-size: 28px;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+  }
+  .header h2 {
+    font-size: 16px;
+    font-weight: 400;
+    opacity: 0.9;
+    margin-bottom: 15px;
+  }
+  .header .badge {
+    display: inline-block;
+    background: #c8922a;
+    color: #fff;
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .header .route {
+    margin-top: 12px;
+    font-size: 13px;
+    opacity: 0.85;
+    letter-spacing: 0.5px;
+  }
+
+  /* Bismillah */
+  .bismillah {
+    text-align: center;
+    padding: 25px 20px;
+    font-family: 'Amiri', serif;
+    font-size: 28px;
+    color: #1a5c38;
+    background: #fdf3e0;
+    border-bottom: 3px solid #c8922a;
+  }
+
+  /* Day Section */
+  .day {
+    padding: 25px 30px;
+    border-bottom: 1px solid #e8e8e8;
+  }
+  .day:last-of-type { border-bottom: none; }
+  .day-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+  }
+  .day-num {
+    background: #1a5c38;
+    color: #fff;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .day-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a5c38;
+  }
+
+  /* Table */
+  .itinerary-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .itinerary-table th {
+    background: #f0e9d8;
+    padding: 8px 12px;
+    text-align: left;
+    font-weight: 700;
+    color: #1a5c38;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .itinerary-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: top;
+  }
+  .itinerary-table tr:last-child td { border-bottom: none; }
+  .waktu {
+    font-weight: 600;
+    color: #c8922a;
+    white-space: nowrap;
+    width: 80px;
+  }
+  .flight {
+    background: #fdf3e0;
+    font-weight: 700;
+  }
+  .flight .waktu { color: #1a5c38; }
+  .sub-list {
+    margin: 5px 0 0 15px;
+    list-style: none;
+  }
+  .sub-list li {
+    padding: 2px 0;
+    position: relative;
+    padding-left: 15px;
+  }
+  .sub-list li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    color: #c8922a;
+    font-size: 8px;
+    top: 5px;
+  }
+  .highlight {
+    font-weight: 700;
+    color: #1a5c38;
+  }
+
+  /* Info Sections */
+  .info-section {
+    padding: 25px 30px;
+    border-bottom: 1px solid #e8e8e8;
+  }
+  .info-section h3 {
+    font-size: 16px;
+    color: #1a5c38;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .info-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  .info-section ul li {
+    padding: 5px 0 5px 20px;
+    position: relative;
+    font-size: 14px;
+  }
+  .info-section ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #2a8a54;
+    font-weight: 700;
+  }
+  .info-section.exclude ul li::before {
+    content: '✕';
+    color: #c0392b;
+  }
+  .info-section.notes ul li::before {
+    content: '';
+    color: #c8922a;
+  }
+  .info-section.notes ul {
+    list-style: decimal;
+    padding-left: 20px;
+  }
+  .info-section.notes ul li {
+    padding-left: 5px;
+  }
+  .info-section.notes ul li::before {
+    content: none;
+  }
+
+  /* Footer */
+  .footer {
+    background: linear-gradient(135deg, #1a5c38 0%, #2a8a54 100%);
+    color: #fff;
+    padding: 30px;
+    text-align: center;
+  }
+  .footer h3 {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 5px;
+  }
+  .footer p {
+    font-style: italic;
+    opacity: 0.85;
+    font-size: 14px;
+  }
+
+  /* Print styles */
+  @media print {
+    body { background: #fff; }
+    .page { box-shadow: none; }
+    .day { page-break-inside: avoid; }
+  }
+  @media screen {
+    .page {
+      margin: 20px auto;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>ITINERARY PERJALANAN UMROH</h1>
+    <h2>Tanur Tour — Muthmainnah</h2>
+    <span class="badge">Paket Umroh 9 Hari</span>
+    <div class="route">Jakarta — Jeddah — Madinah — Makkah — Jakarta</div>
+  </div>
+
+  <!-- Bismillah -->
+  <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+
+  <!-- HARI 1 -->
+  <div class="day">
+    <div class="day-header">
+      <div class="day-num">01</div>
+      <div class="day-title">Keberangkatan dari Jakarta</div>
+    </div>
+    <table class="itinerary-table">
+      <thead><tr><th>Waktu</th><th>Kegiatan</th></tr></thead>
+      <tbody>
+        <tr><td class="waktu">Sore</td><td>Berkumpul di Terminal 3 Bandara Soekarno-Hatta</td></tr>
+        <tr><td class="waktu">Sore</td><td>Check-in & pengurusan bagasi</td></tr>
+        <tr><td class="waktu">Malam</td><td>Briefing manasik singkat oleh pembimbing</td></tr>
+        <tr class="flight"><td class="waktu">22:00</td><td>✈ Penerbangan menuju Jeddah (± 9 jam)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- HARI 2 -->
+  <div class="day">
+    <div class="day-header">
+      <div class="day-num">02</div>
+      <div class="day-title">Tiba di Madinah Al-Munawwarah</div>
+    </div>
+    <table class="itinerary-table">
+      <thead><tr><th>Waktu</th><th>Kegiatan</th></tr></thead>
+      <tbody>
+        <tr class="flight"><td class="waktu">05:00</td><td>✈ Tiba di Bandara Prince Mohammad bin Abdulaziz, Madinah</td></tr>
+        <tr><td class="waktu">Pagi</td><td>Transfer ke hotel (± 500m dari Masjid Nabawi)</td></tr>
+        <tr><td class="waktu">Pagi</td><td>Check-in hotel & istirahat</td></tr>
+        <tr><td class="waktu">Siang</td><td>Sholat Dzuhur berjamaah di Masjid Nabawi</td></tr>
+        <tr><td class="waktu">Siang</td><td>Makan siang</td></tr>
+        <tr><td class="waktu">Sore</td><td>Sholat Ashar di Masjid Nabawi</td></tr>
+        <tr><td class="waktu">Malam</td><td>Sholat Maghrib & Isya di Masjid Nabawi</td></tr>
+        <tr><td class="waktu">Malam</td><td>Makan malam & istirahat</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- HARI 3 -->
+  <div class="day">
+    <div class="day-header">
+      <div class="day-num">03</div>
+      <div class="day-title">Ziarah Kota Madinah</div>
+    </div>
+    <table class="itinerary-table">
+      <thead><tr><th>Waktu</th><th>Kegiatan</th></tr></thead>
+      <tbody>
+        <tr><td class="waktu">Pagi</td><td>Sholat Subuh di Masjid Nabawi (Raudhah bagi yang beruntung)</td></tr>
+        <tr><td class="waktu">Pagi</td><td>Sarapan di hotel</td></tr>
+        <tr><td class="waktu">Pagi</td><td>
+          <span class="highlight">Ziarah Madinah:</span>
+          <ul class="sub-list">
+            <li>Makam Baqi'</li>
+            <li>Masjid Quba (masjid pertama dalam Islam)</li>
+            <li>Masjid Qiblatain</li>
+            <li>Jabal Uhud & Makam Syuhada Uhud</li>
+            <li>Kebun Kurma</li>
+          </ul>
+        </td></tr>
+        <tr><td class="waktu">Siang</td><td>Sholat Dzuhur di Masjid Nabawi</td></tr>
+        <tr><td class="waktu">Siang</td><td>Makan siang</td></tr>
+        <tr><td class="waktu">Sore</td><td>Waktu bebas — ibadah / belanja oleh-oleh khas Madinah</td></tr>
+        <tr><td class="waktu">Malam</td><td>Sholat Maghrib & Isya di Masjid Nabawi</td></tr>
+        <tr><td class="waktu">Malam</td><td>Makan malam</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- HARI 4 -->
+  <div class="day">
+    <div class="day-header">
+      <div class="day-num">04</div>
+      <div class="day-title">Madinah — Ibadah Bebas</div>
+    </div>
+    <table class="itinerary-table">
+      <thead><tr><th>Waktu</th><th>Kegiatan</th></tr></thead>
+      <tbody>
+        <tr><td class="waktu">Pagi</td><td>Sholat Subuh di Masjid Nabawi</td></tr>
+        <tr><td class="waktu">Pagi</td><td>Sarapan</td></tr>
+        <tr><td class="waktu">Pagi–Sore</td><td>
+          Waktu bebas — perbanyak ibadah di Masjid Nabawi
+          <ul class="sub-list">
+            <li>Sholat di Raudhah</li>
+            <li>Ziarah ke makam Rasulullah SAW</li>
+            <li>Tadarus Al-Qur'an</li>
+          </ul>
+        </td></tr>
+        <tr><td class="waktu">Siang</td><td>Sholat Dzuhur berjamaah & makan siang</td></tr>
+        <tr><td class="waktu">Sore</td><td>Belanja oleh-oleh (kurma, tasbih, parfum, dll.)</td></tr>
+        <tr><td class="waktu">Malam</td><td>Sholat Maghrib & Isya</td></tr>
+        <tr><td class="waktu">Malam</td><td>Makan malam & persiapan menuju Makkah</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- HARI 5 -->
+  <div class="day">
+    <div class="day-header">
+      <div class="day-num">05</div>
+      <div class="day-title">Madinah → Makkah Al-Mukarramah</div>
+    </div>
+    <table class="itinerary-table">
+      <thead><tr><th>Waktu</th><th>Kegiatan</th></tr></thead>
+      <tbody>
+        <tr><td class="waktu">Pagi</td><td>Sholat Subuh di Masjid Nabawi (sholat terakhir di Madinah)</td></tr>
+        <tr><td class="waktu">Pagi</td><td>Sarapan & check-out hotel</td></tr>
+        <tr><td class="waktu">Pagi</td><td>Perjalanan Madinah → Makkah via bus AC (± 5–6 jam)<br>Melewati: Bi'r Ali (Miqat Dzulhulaifah) — <span class="highlight">niat & memakai ihram</span></td></tr>
+        <tr><td class="waktu">Siang</td><td>Tiba di Makkah, check-in hotel</td></tr>
+        <tr><td class="waktu">Siang</td><td>Istirahat sejenak & persiapan Umroh</td></tr>
+        <tr><td class="waktu">Sore</td><td>
+          <span class="highlight">Pelaksanaan Umroh:</span>
+          <ul class="sub-list">
+            <li>Thawaf (mengelilingi Ka'bah 7 kali)</li>
+            <li>Sholat 2 rakaat di belakang Maqam Ibrahim</li>
+            <li>Minum air Zamzam</li>
+            <li>Sa'i (Shafa — Marwah, 7 kali)</li>
+            <li>Tahallul (mencukur/memotong rambut)</li>
+          </ul>
+        </td></tr>
+        <tr><td class="waktu">Malam</td><td>Makan malam & istirahat</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- HARI 6 -->
+  <div class="day">
+    <div class="day-header">
+      <div class="day-num">06</div>
+      <div class="day-title">Makkah — Ibadah & Ziarah</div>
+    </div>
+    <table class="itinerary-table">
+      <thead><tr><th>Waktu</th><th>Kegiatan</th></tr></thead>
+      <tbody>
+        <tr><td class="waktu">Pagi</td><td>Sholat Subuh di Masjidil Haram</td></tr>
+        <tr><td class="waktu">Pagi</td><td>Sarapan</td></tr>
+        <tr><td class="waktu">Pagi</td><td>
+          <span class="highlight">Ziarah Makkah & sekitarnya:</span>
+          <ul class="sub-list">
+            <li>Jabal Rahmah (Arafah)</li>
+            <li>Padang Arafah</li>
+            <li>Muzdalifah</li>
+            <li>Mina (lokasi lempar jumrah)</li>
+            <li>Jabal Tsur</li>
+          </ul>
+        </td></tr>
+        <tr><td class="waktu">Siang</td><td>Sholat Dzuhur di Masjidil Haram</td></tr>
+        <tr><td class="waktu">Siang</td><td>Makan siang</td></tr>
+        <tr><td class="waktu">Sore</td><td>Waktu bebas — Thawaf sunnah / ibadah di Masjidil Haram</td></tr>
+        <tr><td class="waktu">Malam</td><td>Sholat Maghrib & Isya</td></tr>
+        <tr><td class="waktu">Malam</td><td>Makan malam</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- HARI 7 -->
+  <div class="day">
+    <div class="day-header">
+      <div class="day-num">07</div>
+      <div class="day-title">Makkah — Ibadah Bebas</div>
+    </div>
+    <table class="itinerary-table">
+      <thead><tr><th>Waktu</th><th>Kegiatan</th></tr></thead>
+      <tbody>
+        <tr><td class="waktu">Pagi</td><td>Sholat Subuh di Masjidil Haram</td></tr>
+        <tr><td class="waktu">Pagi</td><td>Sarapan</td></tr>
+        <tr><td class="waktu">Pagi–Sore</td><td>
+          <span class="highlight">Waktu bebas — perbanyak ibadah:</span>
+          <ul class="sub-list">
+            <li>Thawaf sunnah</li>
+            <li>Sholat di Hijr Ismail</li>
+            <li>Tadarus Al-Qur'an</li>
+            <li>Doa di Multazam</li>
+            <li>Minum air Zamzam</li>
+          </ul>
+        </td></tr>
+        <tr><td class="waktu">Malam</td><td>Sholat Maghrib & Isya berjamaah</td></tr>
+        <tr><td class="waktu">Malam</td><td>Makan malam</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- HARI 8 -->
+  <div class="day">
+    <div class="day-header">
+      <div class="day-num">08</div>
+      <div class="day-title">Makkah (Hari Terakhir) & Thawaf Wada'</div>
+    </div>
+    <table class="itinerary-table">
+      <thead><tr><th>Waktu</th><th>Kegiatan</th></tr></thead>
+      <tbody>
+        <tr><td class="waktu">Pagi</td><td>Sholat Subuh di Masjidil Haram</td></tr>
+        <tr><td class="waktu">Pagi</td><td>Sarapan</td></tr>
+        <tr><td class="waktu">Pagi</td><td>Belanja oleh-oleh di sekitar Makkah (Air Zamzam, kain, parfum, souvenir)</td></tr>
+        <tr><td class="waktu">Siang</td><td>Sholat Dzuhur & makan siang</td></tr>
+        <tr><td class="waktu">Sore</td><td><span class="highlight">Thawaf Wada' (Thawaf perpisahan)</span></td></tr>
+        <tr><td class="waktu">Sore</td><td>Check-out hotel</td></tr>
+        <tr><td class="waktu">Malam</td><td>Transfer ke Bandara King Abdulaziz, Jeddah (± 1,5 jam)</td></tr>
+        <tr class="flight"><td class="waktu">22:00</td><td>✈ Penerbangan kembali ke Jakarta</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- HARI 9 -->
+  <div class="day">
+    <div class="day-header">
+      <div class="day-num">09</div>
+      <div class="day-title">Tiba di Jakarta</div>
+    </div>
+    <table class="itinerary-table">
+      <thead><tr><th>Waktu</th><th>Kegiatan</th></tr></thead>
+      <tbody>
+        <tr class="flight"><td class="waktu">14:00</td><td>✈ Tiba di Bandara Soekarno-Hatta, Jakarta</td></tr>
+        <tr><td class="waktu">Sore</td><td>Pengurusan bagasi & imigrasi</td></tr>
+        <tr><td class="waktu">Sore</td><td>Penjemputan & kembali ke rumah masing-masing</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Fasilitas Termasuk -->
+  <div class="info-section">
+    <h3>Fasilitas Termasuk</h3>
+    <ul>
+      <li>Tiket pesawat PP Jakarta – Jeddah/Madinah</li>
+      <li>Hotel bintang 4/5 dekat Masjid Nabawi & Masjidil Haram</li>
+      <li>Makan 3x sehari (menu Indonesia)</li>
+      <li>Bus AC selama perjalanan</li>
+      <li>Visa Umroh</li>
+      <li>Pembimbing/Muthawwif berpengalaman</li>
+      <li>Air Zamzam 5 liter (bagasi)</li>
+      <li>Perlengkapan Umroh (koper, kain ihram, buku doa, tas jinjing)</li>
+      <li>Asuransi perjalanan</li>
+    </ul>
+  </div>
+
+  <!-- Tidak Termasuk -->
+  <div class="info-section exclude">
+    <h3>Tidak Termasuk</h3>
+    <ul>
+      <li>Pengeluaran pribadi & oleh-oleh</li>
+      <li>Biaya kelebihan bagasi</li>
+      <li>Tips guide & sopir (sukarela)</li>
+      <li>Vaksinasi meningitis</li>
+    </ul>
+  </div>
+
+  <!-- Catatan Penting -->
+  <div class="info-section notes">
+    <h3>Catatan Penting</h3>
+    <ul>
+      <li>Pastikan paspor berlaku minimal 7 bulan sebelum keberangkatan</li>
+      <li>Sertifikat vaksin meningitis wajib</li>
+      <li>Bawa obat-obatan pribadi secukupnya</li>
+      <li>Patuhi aturan pembimbing selama perjalanan</li>
+      <li>Jadwal dapat berubah menyesuaikan kondisi di lapangan</li>
+    </ul>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <h3>TANUR TOUR — Muthmainnah</h3>
+    <p>Melayani dengan hati, mengantar ke Baitullah</p>
+  </div>
+
+</div>
+
+</body>
+</html>
