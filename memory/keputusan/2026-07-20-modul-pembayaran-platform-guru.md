@@ -27,6 +27,17 @@ Dikerjakan 2026-07-20 di branch `claude/modul-pembayaran`:
   bulan + rekap per jenis/bulan/kelas
 - `docs/modul-pembayaran.md` — panduan aktivasi
 
+## Status akhir (2026-07-21): ✅ LIVE
+- Aplikasi live: **https://guru.alqomar.id** — hosting **Vercel**
+  (DNS cname.vercel-dns.com), deploy dari repo GitHub
+  `Budi1978/platform-guru-alqomar` branch main (sinkron dengan laptop).
+- Migration + trigger nominal baku + tarif TA 2026/2027 (10 baris)
+  sudah dijalankan Pak Budi di Supabase SQL Editor.
+- Menu Verifikasi di-gate role kepsek/bendahara (commit 1b003e2,
+  dikerjakan sesi Claude laptop).
+- Nominal = angka baku dari tarif; hanya kepsek yang bisa ubah tarif
+  (tab Tarif di halaman Verifikasi).
+
 ## Catatan penting
 - **Supabase MCP sesi Claude hanya ter-scope ke project "command center"
   (Tanur)** — TIDAK bisa akses project Platform Guru Tokyo. Migration
