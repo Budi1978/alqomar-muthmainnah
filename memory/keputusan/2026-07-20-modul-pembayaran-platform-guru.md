@@ -94,8 +94,17 @@ Dikerjakan 2026-07-20 di branch `claude/modul-pembayaran`:
   "sistem otomatis wajib punya jenset manual".
 - PR #13: tombol Export Excel di Rekapan (satu sheet per kelas,
   format buku) — backup offline.
-- Backlog: restyle hijau-emas, NIS 2460B/2610B, grouping bundel
-  antrian, migrasi app lama.
+- PR #14: semua sel angsuran kosong bisa diklik (masuk berurutan).
+
+## KEPUTUSAN ARSITEKTUR FINAL (Pak Budi, 2026-07-22)
+**DUA APLIKASI PERMANEN, TIDAK DIGABUNG:**
+- guru.alqomar.id = akademik (app HTML lama) — dikembangkan sendiri
+- spp.alqomar.id = keuangan (Next.js) — dikembangkan sendiri
+Alasan: fokus per domain, pengembangan independen, insiden salah satu
+tidak menjatuhkan yang lain. Rencana "migrasi besar" DIBATALKAN.
+
+- Backlog spp.alqomar.id: restyle hijau-emas, NIS 2460B/2610B
+  (menunggu TU), grouping bundel transfer gabungan di antrian.
 
 ## Catatan penting
 - **Supabase MCP sesi Claude hanya ter-scope ke project "command center"
