@@ -38,6 +38,24 @@ Dikerjakan 2026-07-20 di branch `claude/modul-pembayaran`:
 - Nominal = angka baku dari tarif; hanya kepsek yang bisa ubah tarif
   (tab Tarif di halaman Verifikasi).
 
+## Update 2026-07-21 (sore): data & akun LENGKAP
+- **Supabase MCP kini ter-scope ke org sekolah** (project lnacvtvufgsxnqhuezox
+  + website) — Claude bisa eksekusi SQL langsung, tidak lagi lewat SQL Editor
+  manual. (Org Tanur tidak lagi ter-scope dari koneksi ini.)
+- 561 siswa terimport (KB 6, TKIT 44, SDIT 310, SMPIT 201) di 22 kelas
+  TA 2026/2027; 22 akun wali kelas (wali.<kelas>@alqomar.id, password pola
+  Wali<KELAS>#2026) dibuat via SQL + diperbaiki kolom token NULL-nya
+  (bug login klasik akun buatan SQL).
+- Verifikator: ahmadbudisetiawan1@gmail.com (password app di-reset manual).
+- NIS sementara tersisa: 2460B (Fajar Okta, 9B), 2610B (Endah Zalfa, 9A) —
+  menunggu revisi TU.
+- guru.alqomar.id = app HTML lama (production, jangan diganggu). App Next.js
+  di platform-guru-alqomar-hc0587i27.vercel.app (Deployment Protection OFF,
+  project Vercel TIDAK git-connected — aman push ke GitHub).
+- TODO berikutnya: uji end-to-end Bu Ellida (5A) → bagikan 22 akun → alamat
+  cantik permanen (mis. bayar.alqomar.id) → merge halaman ganti-password →
+  restyle tema hijau-emas → rencana migrasi app lama.
+
 ## Catatan penting
 - **Supabase MCP sesi Claude hanya ter-scope ke project "command center"
   (Tanur)** — TIDAK bisa akses project Platform Guru Tokyo. Migration
