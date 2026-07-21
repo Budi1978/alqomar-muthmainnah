@@ -69,6 +69,17 @@ Dikerjakan 2026-07-20 di branch `claude/modul-pembayaran`:
 - Kelas seed 2025/2026 (22 kelas kosong) sudah dihapus.
 - Backlog: restyle hijau-emas, NIS 2460B/2610B, rencana migrasi app lama.
 
+## Update 2026-07-22: infrastruktur final
+- **Alamat resmi: https://spp.alqomar.id** (project Vercel baru `alqomar-spp`,
+  git-connected ke repo main → AUTO-DEPLOY setiap merge; tidak ada lagi
+  deploy manual dari laptop). alqomar-guru.vercel.app = cadangan/transisi.
+- guru.alqomar.id tetap app HTML lama, project Vercel lama, tidak tersentuh.
+- Fitur cicilan (PR #6) live: DK/DB diinput manual per cicilan, dibatasi
+  sisa tagihan (trigger DB), otomatis "LUNAS" saat tercukupi. SPP tetap
+  nominal baku terkunci. Tarif kegiatan SDIT: kelas 1 = 1,8jt; 2-6 = 1,7jt.
+- Backlog: tabel "Status Tagihan" per siswa (DK/DB progres+lunas), restyle
+  hijau-emas, NIS 2460B/2610B, migrasi app lama.
+
 ## Catatan penting
 - **Supabase MCP sesi Claude hanya ter-scope ke project "command center"
   (Tanur)** — TIDAK bisa akses project Platform Guru Tokyo. Migration
