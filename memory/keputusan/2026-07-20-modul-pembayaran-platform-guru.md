@@ -56,6 +56,19 @@ Dikerjakan 2026-07-20 di branch `claude/modul-pembayaran`:
   cantik permanen (mis. bayar.alqomar.id) → merge halaman ganti-password →
   restyle tema hijau-emas → rencana migrasi app lama.
 
+## Update 2026-07-21 (malam): LAUNCH READY
+- **Alamat resmi app pembayaran: https://alqomar-guru.vercel.app** (alias
+  stabil; tiap deploy baru cukup `vercel deploy` preview + re-alias — URL
+  tidak pernah berubah). guru.alqomar.id tetap app HTML lama (production).
+- Uji end-to-end LULUS: Bu Ellida (5A) input SPP Juli + foto bukti →
+  tampil di antrian kepsek dengan nominal terkunci Rp550.000.
+- Bugfix penting: RLS siswa/kelas tak bisa dibaca kepsek → tambah policy
+  kepsek_read_siswa & kepsek_read_kelas (is_kepsek()).
+- Badge merah antrian verifikasi di sidebar kepsek (refresh 60 dtk) +
+  halaman /dashboard/ganti-password — PR #5, sudah deploy.
+- Kelas seed 2025/2026 (22 kelas kosong) sudah dihapus.
+- Backlog: restyle hijau-emas, NIS 2460B/2610B, rencana migrasi app lama.
+
 ## Catatan penting
 - **Supabase MCP sesi Claude hanya ter-scope ke project "command center"
   (Tanur)** — TIDAK bisa akses project Platform Guru Tokyo. Migration
