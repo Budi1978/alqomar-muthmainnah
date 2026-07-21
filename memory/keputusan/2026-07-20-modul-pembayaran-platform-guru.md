@@ -83,8 +83,19 @@ Dikerjakan 2026-07-20 di branch `claude/modul-pembayaran`:
 - PR #8: form wali kelas jadi TIGA SEKSI sekaligus (SPP ceklis bulan +
   DK nominal + DB nominal, satu bukti transfer) untuk transfer gabungan;
   satu baris pembayaran per komponen, bukti_path sama.
-- Backlog: restyle hijau-emas, NIS 2460B/2610B, input tunai oleh kepsek,
-  grouping bundel di antrian verifikasi, migrasi app lama.
+- PR #9: metode tunai (kolom pembayaran.metode; bukti opsional untuk
+  tunai; kepsek verifikasi setelah uang diterima) + tanggal bayar di
+  sel rekapan. PR #10-11: Rekapan format buku sekolah persis (kop
+  Walas via kelas.wali_nama, kolom L|P, tanggal di sel bulan,
+  ANGSURAN I-V, Jumlah = total berjalan + LUNAS otomatis).
+- PR #12: Rekapan INTERAKTIF — kepsek klik sel kosong utk catat
+  langsung (auto-terverifikasi, RLS insert diubah: kepsek bebas
+  status), klik sel terisi utk detail/hapus. Filosofi Pak Budi:
+  "sistem otomatis wajib punya jenset manual".
+- PR #13: tombol Export Excel di Rekapan (satu sheet per kelas,
+  format buku) — backup offline.
+- Backlog: restyle hijau-emas, NIS 2460B/2610B, grouping bundel
+  antrian, migrasi app lama.
 
 ## Catatan penting
 - **Supabase MCP sesi Claude hanya ter-scope ke project "command center"
