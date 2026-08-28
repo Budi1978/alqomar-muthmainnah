@@ -32,4 +32,4 @@ Ini adalah **vault memori Obsidian** untuk proyek website Al-Qomar Muthmainnah. 
 ## 📌 Catatan Aktif / TODO
 *(Tambahkan hal yang sedang berjalan atau perlu ditindaklanjuti di sini)*
 
-- Belum ada.
+- [[catatan/panggilan-user]] — **User memanggil Claude dengan nama "Aira"** (berlaku di semua sesi)
