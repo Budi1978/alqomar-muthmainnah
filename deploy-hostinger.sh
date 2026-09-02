@@ -63,6 +63,25 @@ read -r -p "FTP username                     : " FTP_USER
 read -r -s -p "FTP password                     : " FTP_PASS
 echo
 
+# Bersihkan isian host: buang spasi, awalan skema, dan akhiran path.
+FTP_HOST="$(printf '%s' "$FTP_HOST" | tr -d '[:space:]')"
+FTP_HOST="${FTP_HOST#ftps://}"
+FTP_HOST="${FTP_HOST#ftp://}"
+FTP_HOST="${FTP_HOST#sftp://}"
+FTP_HOST="${FTP_HOST#*@}"
+FTP_HOST="${FTP_HOST%%/*}"
+FTP_USER="$(printf '%s' "$FTP_USER" | tr -d '[:space:]')"
+
+if [ -z "$FTP_HOST" ] || [ -z "$FTP_USER" ] || [ -z "$FTP_PASS" ]; then
+  echo
+  echo "Berhenti: host, username, dan password tidak boleh kosong."
+  echo "Ambil ketiganya di hPanel -> Files -> FTP Accounts, lalu jalankan lagi."
+  exit 1
+fi
+
+echo
+echo "Target: ftp://$FTP_HOST/$REMOTE_DIR/  (user: $FTP_USER)"
+
 # --ssl-reqd mewajibkan FTPS, supaya password tidak dikirim polos.
 CURL=(curl -sS --ssl-reqd --user "$FTP_USER:$FTP_PASS")
 
@@ -77,7 +96,7 @@ for f in "${UPLOAD[@]}"; do
       echo "  terkirim : $lokal  ->  $f  (nama diperbaiki otomatis)"
     fi
   else
-    echo "  GAGAL    : $f"
+    echo "  GAGAL    : $f  (curl keluar dengan kode $?)"
   fi
 done
 
