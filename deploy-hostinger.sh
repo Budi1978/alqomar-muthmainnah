@@ -13,12 +13,26 @@ set -euo pipefail
 
 REMOTE_DIR="public_html"
 
-# Berkas yang di-upload (timpa versi lama di server)
+# Berkas yang di-upload, format "nama-di-server". Nama lokal boleh berbeda:
+# unduhan dari browser sering mengubah .htaccess menjadi htaccess.txt, dan
+# skrip ini mengenali variasi itu lalu mengunggahnya dengan nama yang benar.
 UPLOAD=(
   "index.html"
   ".htaccess"
   "robots.txt"
 )
+
+# Cari berkas lokal untuk sebuah nama tujuan; cetak path yang ditemukan.
+cari_lokal() {
+  local tujuan="$1" kandidat
+  for kandidat in "$tujuan" "${tujuan#.}" "${tujuan#.}.txt" "$tujuan.txt"; do
+    if [ -f "$kandidat" ]; then
+      printf '%s' "$kandidat"
+      return 0
+    fi
+  done
+  return 1
+}
 
 # Snapshot lama yang harus dihapus dari server — sudah dipindah ke _backup/ di repo
 HAPUS=(
@@ -36,7 +50,12 @@ HAPUS=(
 )
 
 for f in "${UPLOAD[@]}"; do
-  [ -f "$f" ] || { echo "Berhenti: $f tidak ada. Jalankan skrip dari folder repositori."; exit 1; }
+  cari_lokal "$f" >/dev/null || {
+    echo "Berhenti: tidak menemukan berkas untuk '$f' di folder ini."
+    echo "Pastikan skrip dijalankan dari folder yang berisi index.html, .htaccess"
+    echo "(atau htaccess.txt hasil unduhan), dan robots.txt."
+    exit 1
+  }
 done
 
 read -r -p "FTP host (mis. ftp.alqomar.sch.id): " FTP_HOST
@@ -50,8 +69,13 @@ CURL=(curl -sS --ssl-reqd --user "$FTP_USER:$FTP_PASS")
 echo
 echo "== Upload =="
 for f in "${UPLOAD[@]}"; do
-  if "${CURL[@]}" -T "$f" "ftp://$FTP_HOST/$REMOTE_DIR/$f"; then
-    echo "  terkirim : $f"
+  lokal="$(cari_lokal "$f")"
+  if "${CURL[@]}" -T "$lokal" "ftp://$FTP_HOST/$REMOTE_DIR/$f"; then
+    if [ "$lokal" = "$f" ]; then
+      echo "  terkirim : $f"
+    else
+      echo "  terkirim : $lokal  ->  $f  (nama diperbaiki otomatis)"
+    fi
   else
     echo "  GAGAL    : $f"
   fi
