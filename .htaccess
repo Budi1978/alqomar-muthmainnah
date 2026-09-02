@@ -4,9 +4,29 @@ DirectoryIndex index.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
+  # --- Host & protokol kanonik: https://www.alqomar.sch.id ---
+  # Tanpa aturan ini, empat alamat (http/https x www/non-www) melayani isi yang
+  # sama dan Google menghitungnya sebagai situs terpisah. Dua aturan terpisah
+  # dipakai (bukan satu dengan [OR]) supaya presedensi kondisi tidak ambigu;
+  # setiap varian tetap sampai tujuan dalam satu kali redirect.
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^ https://www.alqomar.sch.id%{REQUEST_URI} [R=301,L,NE]
+
+  RewriteCond %{HTTP_HOST} !^www\.alqomar\.sch\.id$ [NC]
+  RewriteRule ^ https://www.alqomar.sch.id%{REQUEST_URI} [R=301,L,NE]
+
+  # --- .html -> URL bersih ---
+  # Syarat REDIRECT_STATUS kosong membatasi aturan ini pada permintaan langsung
+  # dari browser. Tanpa syarat itu, hasil rewrite internal di bawah (/sdit ->
+  # sdit.html) ikut kena aturan ini dan dikembalikan lagi ke /sdit — setiap URL
+  # bersih jadi loop redirect tak berujung.
+  RewriteCond %{ENV:REDIRECT_STATUS} ^$
   RewriteRule ^index\.html$ / [R=301,L]
+
+  RewriteCond %{ENV:REDIRECT_STATUS} ^$
   RewriteRule ^(ppdb|spmb-online|rqaq|guru|kb-tkit|sdit|smpit|tahfidz|event)\.html$ /$1 [R=301,L]
 
+  # --- URL bersih dilayani oleh berkas .html-nya (rewrite internal, bukan redirect) ---
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^(ppdb|spmb-online|rqaq|guru|kb-tkit|sdit|smpit|tahfidz|event)/?$ $1.html [L]

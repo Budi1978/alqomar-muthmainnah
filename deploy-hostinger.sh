@@ -20,6 +20,31 @@ UPLOAD=(
   "index.html"
   ".htaccess"
   "robots.txt"
+  "sitemap.xml"
+  # Halaman jenjang — dibangun ulang 2026-09-02 (sebelumnya tanpa CSS sama sekali)
+  "sdit.html"
+  "smpit.html"
+  "kb-tkit.html"
+  # Halaman dengan canonical yang diseragamkan ke https://www.alqomar.sch.id
+  "404.html"
+  "berita.html"
+  "event.html"
+  "tahfidz.html"
+  "login-divisi.html"
+  "sekolah-islam-jakarta-barat.html"
+  # Kanonikalisasi wajib diulang di subfolder berita/ — lihat komentar di berkasnya
+  "berita/.htaccess"
+  # Artikel berita — canonical & og:url ikut diseragamkan ke www
+  "berita/al-qomar-muthmainnah-berbagi-takjil-satu-bulan-penuh-untuk-masyarakat.html"
+  "berita/index.html"
+  "berita/pelaksanaan-tes-potensi-akademik-tpa-kelas-9-smpit-al-qomar.html"
+  "berita/puasa-bukan-halangan-semangat-belajar-siswa-al-qomar-justru-makin-membara-di-bul.html"
+  "berita/rapat-evaluasi-sumatif-tengah-semester-genap-bersama-dewan-guru-dan-yayasan.html"
+  "berita/selamat-berlibur-siswa-siswi-sholeh-sholehah-al-qomar.html"
+  "berita/shalat-idul-fitri-1447-h-al-qomar-muthmainnah-merajut-kebersamaan-di-lapangan-se.html"
+  "berita/tarawih-berjamaah-dan-tadarus-al-quran-semangat-ramadhan-siswa-al-qomar-tak-pern.html"
+  "berita/tpa-try-out-ke-2-berlangsung-lancar-di-al-qomar-muthmainnah.html"
+  "berita/vortex-2026-lomba-futsal-mobile-legend-poster-smpit-alqomar-2.html"
 )
 
 # Cari berkas lokal untuk sebuah nama tujuan; cetak path yang ditemukan.
@@ -118,7 +143,7 @@ echo
 echo "== Upload =="
 for f in "${UPLOAD[@]}"; do
   lokal="$(cari_lokal "$f")"
-  if "${CURL[@]}" -T "$lokal" "ftp://$FTP_HOST/$REMOTE_DIR/$f"; then
+  if "${CURL[@]}" --ftp-create-dirs -T "$lokal" "ftp://$FTP_HOST/$REMOTE_DIR/$f"; then
     if [ "$lokal" = "$f" ]; then
       echo "  terkirim : $f"
     else

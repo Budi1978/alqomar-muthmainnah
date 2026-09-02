@@ -1,4 +1,16 @@
 RewriteEngine On
+
+# --- Host & protokol kanonik ---
+# Wajib diulang di sini: mod_rewrite tidak mewarisi aturan dari .htaccess induk
+# begitu sebuah subfolder punya RewriteEngine On sendiri. Tanpa dua baris ini,
+# seluruh URL di bawah /berita/ lolos dari kanonikalisasi www dan HTTPS.
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://www.alqomar.sch.id%{REQUEST_URI} [R=301,L,NE]
+
+RewriteCond %{HTTP_HOST} !^www\.alqomar\.sch\.id$ [NC]
+RewriteRule ^ https://www.alqomar.sch.id%{REQUEST_URI} [R=301,L,NE]
+
+# --- /berita/<slug> dirender oleh berita/index.html ---
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ /berita/index.html [L,QSA]
