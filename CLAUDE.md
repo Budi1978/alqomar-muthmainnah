@@ -5,7 +5,7 @@
 **Website Sekolah Al-Qomar Muthmainnah** — website statis multi-halaman untuk lembaga pendidikan Islam di bawah naungan Yayasan Pendidikan Islam Purnama Cendekia (YPIPC), berlokasi di Jakarta Barat, Indonesia. Sekolah ini beroperasi di empat jenjang pendidikan: KB (Kelompok Bermain), TKIT (Taman Kanak-Kanak Islam Terpadu), SDIT (Sekolah Dasar Islam Terpadu), dan SMPIT (Sekolah Menengah Pertama Islam Terpadu).
 
 - **Domain**: alqomar.sch.id (dikonfigurasi melalui file `CNAME`)
-- **Hosting**: Netlify
+- **Hosting**: Hostinger (LiteSpeed/Apache) — konfigurasi via `.htaccess`
 - **Bahasa konten**: Bahasa Indonesia
 - **Alamat**: Jl. Kamal Raya No.1 Tegal Alur, Kalideres, Jakarta Barat
 - **Telepon**: (021) 55968344
@@ -30,8 +30,9 @@ alqomar-muthmainnah/
 ├── docs/                   # Dokumen pendukung
 ├── images/                 # Aset gambar
 ├── IMG_5490.jpg            # Gambar aset (diupload langsung ke root)
-├── _headers                # Header HTTP kustom Netlify (CSP, cache, keamanan)
-├── _redirects              # Aturan redirect/rewrite Netlify
+├── .htaccess               # Konfigurasi aktif: rewrite, cache, kompresi, redirect
+├── _headers                # (tidak aktif) warisan Netlify
+├── _redirects              # (tidak aktif) warisan Netlify
 ├── CNAME                   # Domain kustom: alqomar.sch.id
 ├── robots.txt              # Instruksi crawler mesin pencari
 ├── sitemap.xml             # Sitemap XML untuk SEO
@@ -146,13 +147,24 @@ Semua JavaScript ada di akhir setiap file HTML (di dalam tag `<script>` sebelum 
 - **Mobile menu** (`toggleNav()`) — toggle hamburger menu pada layar kecil
 - **Tampilan tanggal** — menampilkan hari dan tanggal saat ini dalam Bahasa Indonesia
 
-## Konfigurasi Netlify
+## Konfigurasi Server
 
-### `_headers`
-Mendefinisikan header HTTP untuk semua halaman: Content Security Policy (CSP), X-Frame-Options, X-Content-Type-Options, dan header keamanan lainnya. Edit file ini untuk mengizinkan sumber eksternal baru (font, embed, API).
+Situs berjalan di **Hostinger (LiteSpeed/Apache)**, jadi satu-satunya konfigurasi
+yang benar-benar aktif adalah `.htaccess`.
 
-### `_redirects`
-Mendefinisikan aturan redirect dan rewrite URL. URL `/berita/` diarahkan ke `berita/index.html` untuk URL yang bersih.
+### `.htaccess` (root) — AKTIF
+Mengatur seluruh perilaku server: URL bersih tanpa `.html` (`/guru`, `/sdit`,
+`/ppdb`, dst.), kompresi Gzip/Brotli, cache lifetime, header keamanan, dan
+redirect 301 folder arsip `_backup/`. **Semua aturan redirect/header baru harus
+ditulis di sini.**
+
+### `berita/.htaccess` — AKTIF
+Rewrite agar `/berita/<slug>` dirender oleh `berita/index.html`.
+
+### `_headers` & `_redirects` — TIDAK AKTIF
+Format khusus Netlify, warisan hosting lama. Diabaikan sepenuhnya oleh
+Hostinger. Jangan andalkan file ini; kalau butuh redirect atau header, edit
+`.htaccess`.
 
 ### `robots.txt` & `sitemap.xml`
 Digunakan untuk SEO. Perbarui `sitemap.xml` saat menambah halaman baru.
@@ -162,10 +174,11 @@ Digunakan untuk SEO. Perbarui `sitemap.xml` saat menambah halaman baru.
 ### Melakukan Perubahan
 1. Edit file HTML yang relevan secara langsung
 2. Buka file di browser lokal untuk pratinjau
-3. Commit dan push ke branch `main` untuk deploy otomatis ke Netlify
+3. Commit dan push ke branch `main` (GitHub = penyimpanan kode, **bukan** pemicu deploy)
+4. Deploy manual ke Hostinger — lihat bagian Deployment
 
 ### Tidak Ada Build Step
-Tidak ada proses build, transpilasi, atau bundling. Perubahan langsung di-deploy apa adanya.
+Tidak ada proses build, transpilasi, atau bundling. File di-upload apa adanya.
 
 ### Tidak Ada Testing Otomatis
 Tidak ada framework atau file testing. Verifikasi perubahan dilakukan melalui inspeksi visual di browser di berbagai ukuran layar.
@@ -173,11 +186,25 @@ Tidak ada framework atau file testing. Verifikasi perubahan dilakukan melalui in
 ### Backup Manual
 Sebelum melakukan perubahan besar pada `index.html`, simpan salinan backup di `_backup/` dengan format `index.html.YYYY-MM-DD`.
 
-**Semua file backup/snapshot wajib berada di `_backup/`, jangan di root.** File HTML di root ikut ter-deploy dan bisa terindeks Google sebagai konten duplikat. Folder `_backup/` sudah diblokir lewat `robots.txt` dan diarahkan 301 ke beranda di `_redirects`.
+**Semua file backup/snapshot wajib berada di `_backup/`, jangan di root.** File HTML di root ikut ter-deploy dan bisa terindeks Google sebagai konten duplikat. Folder `_backup/` sudah diblokir lewat `robots.txt` dan diarahkan 301 ke beranda di `.htaccess`. Folder `_backup/` tidak perlu ikut di-upload ke Hostinger.
 
 ## Deployment
 
-Push ke branch `main` → Netlify otomatis build dan deploy ke `alqomar.sch.id`.
+**Push ke GitHub tidak men-deploy apa pun.** Hostinger tidak terhubung otomatis
+ke repositori ini, jadi setiap perubahan harus di-upload manual ke server.
+
+Langkah di hPanel Hostinger → **File Manager** → `public_html`:
+1. Upload file HTML yang berubah (timpa file lama)
+2. Upload `.htaccess` bila aturan server ikut berubah
+3. Hard refresh browser (Ctrl+Shift+R) — `.htaccess` men-cache HTML 10 menit,
+   jadi perubahan bisa tertunda sebentar
+
+Alternatif: hubungkan Hostinger ke repositori lewat hPanel → **Git**, lalu klik
+*Deploy* setiap selesai push (atau pasang auto-deploy webhook) agar langkah
+upload manual tidak perlu diulang tiap kali.
+
+Yang **tidak** perlu di-upload: `_backup/`, `_headers`, `_redirects`, `memory/`,
+`docs/`, `CLAUDE.md`.
 
 ## Konvensi Penting
 

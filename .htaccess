@@ -72,3 +72,15 @@ DirectoryIndex index.html
 <IfModule mod_headers.c>
   Header set Connection keep-alive
 </IfModule>
+
+# ---------- 5. ARSIP & SNAPSHOT LAMA ----------
+# File snapshot/backup dipindah ke _backup/ (2026-09-02).
+# Folder arsip ditutup untuk publik, URL lama diarahkan 301 agar tidak 404.
+<IfModule mod_alias.c>
+  RedirectMatch 301 ^/_backup(/.*)?$                  /
+  RedirectMatch 301 ^/index-live.*\.html$             /
+  RedirectMatch 301 ^/index-backup-.*\.html$          /
+  RedirectMatch 301 ^/images/index-live\.html$        /
+  RedirectMatch 301 ^/berita-detail-backup-.*\.html$  /berita
+  RedirectMatch 301 ^/berita-backup-.*\.html$         /berita
+</IfModule>
