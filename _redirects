@@ -10,3 +10,19 @@
 
 # Konsolidasi duplikat: arahkan berita.html lama ke URL bersih /berita
 /berita.html            /berita     301!
+
+# Snapshot & backup lama dipindah ke _backup/ (2026-09-02).
+# URL lama diarahkan ke beranda agar tidak jadi 404 di Search Console.
+/index-live.html                        /         301
+/index-live-latest.html                 /         301
+/index-live-backup-20260515.html        /         301
+/index-live-backup-20260515-163308.html /         301
+/index-live-backup-20260517-233925.html /         301
+/index-live-backup-bergabung-20260515.html /      301
+/index-backup-2026-04-27.html           /         301
+/berita-backup-20260517-233925.html     /berita   301
+/berita-detail-backup-20260614-005713.html /berita 301
+/images/index-live.html                 /         301
+
+# Folder arsip tidak boleh diakses publik
+/_backup/*                              /         301

@@ -4,5 +4,8 @@ Allow: /
 # Portal internal — jangan diindeks
 Disallow: /login-divisi
 
+# Arsip internal — jangan diindeks
+Disallow: /_backup/
+
 Sitemap: https://www.alqomar.sch.id/sitemap.xml
 Sitemap: https://www.alqomar.sch.id/sitemap-berita.xml

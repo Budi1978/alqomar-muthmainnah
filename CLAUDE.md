@@ -21,12 +21,10 @@ alqomar-muthmainnah/
 ├── event.html              # Halaman daftar event/kegiatan
 ├── ppdb.html               # Halaman PPDB (Pendaftaran Peserta Didik Baru)
 ├── login-divisi.html       # Halaman login untuk divisi internal
-├── index-live.html         # Snapshot live sebelumnya (~197 KB)
-├── index-live-latest.html  # Snapshot live terbaru (besar, berisi data inline)
 ├── berita/                 # Subdirektori berita — URL bersih /berita/
 │   ├── index.html          # Daftar berita (dapat diakses di /berita/)
 │   └── .htaccess           # Konfigurasi URL rewrite Apache
-├── _backup/                # Backup berterima tanggal
+├── _backup/                # Arsip: backup bertanggal + snapshot index-live lama
 │   ├── index.html.2026-04-14
 │   └── index.html.2026-04-15
 ├── docs/                   # Dokumen pendukung
@@ -174,6 +172,8 @@ Tidak ada framework atau file testing. Verifikasi perubahan dilakukan melalui in
 
 ### Backup Manual
 Sebelum melakukan perubahan besar pada `index.html`, simpan salinan backup di `_backup/` dengan format `index.html.YYYY-MM-DD`.
+
+**Semua file backup/snapshot wajib berada di `_backup/`, jangan di root.** File HTML di root ikut ter-deploy dan bisa terindeks Google sebagai konten duplikat. Folder `_backup/` sudah diblokir lewat `robots.txt` dan diarahkan 301 ke beranda di `_redirects`.
 
 ## Deployment
 
