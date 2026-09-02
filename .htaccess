@@ -84,3 +84,16 @@ DirectoryIndex index.html
   RedirectMatch 301 ^/berita-detail-backup-.*\.html$  /berita
   RedirectMatch 301 ^/berita-backup-.*\.html$         /berita
 </IfModule>
+
+# ---------- 6. PROTEKSI FILE NON-PUBLIK ----------
+# Penting bila situs di-deploy lewat Git: isi repositori (termasuk .git)
+# ikut masuk ke public_html dan bisa diunduh siapa saja tanpa aturan ini.
+<IfModule mod_rewrite.c>
+  RewriteRule ^\.git(/|$)                - [F,L]
+  RewriteRule ^\.claude(/|$)             - [F,L]
+  RewriteRule ^memory(/|$)               - [F,L]
+  RewriteRule ^docs(/|$)                 - [F,L]
+  RewriteRule ^\.env                     - [F,L]
+  RewriteRule ^_(headers|redirects)$     - [F,L]
+  RewriteRule ^.+\.md$                   - [F,L]
+</IfModule>
