@@ -82,8 +82,37 @@ fi
 echo
 echo "Target: ftp://$FTP_HOST/$REMOTE_DIR/  (user: $FTP_USER)"
 
-# --ssl-reqd mewajibkan FTPS, supaya password tidak dikirim polos.
-CURL=(curl -sS --ssl-reqd --user "$FTP_USER:$FTP_PASS")
+# Pilih mode koneksi teraman yang diterima server, dari yang paling ketat.
+# Server Hostinger kadang memakai sertifikat yang kedaluwarsa; dalam kondisi itu
+# FTPS tetap dipakai (password terenkripsi) hanya tanpa verifikasi sertifikat.
+uji_mode() {
+  curl -sS --max-time 25 "$@" --user "$FTP_USER:$FTP_PASS" \
+    -o /dev/null "ftp://$FTP_HOST/$REMOTE_DIR/" 2>/dev/null
+}
+
+if uji_mode --ssl-reqd; then
+  MODE=(--ssl-reqd)
+  echo "Koneksi: FTPS, sertifikat terverifikasi."
+elif uji_mode --ssl-reqd -k; then
+  MODE=(--ssl-reqd -k)
+  echo "Koneksi: FTPS aktif, tetapi sertifikat server tidak valid (kedaluwarsa)."
+  echo "         Password tetap terenkripsi. Laporkan sertifikat ini ke Hostinger."
+elif uji_mode; then
+  echo
+  echo "PERINGATAN: server menolak enkripsi. FTP polos mengirim password"
+  echo "            tanpa perlindungan dan bisa disadap di jaringan publik."
+  read -r -p "Lanjutkan tanpa enkripsi? (ketik: ya) " JAWAB
+  [ "$JAWAB" = "ya" ] || { echo "Dibatalkan."; exit 1; }
+  MODE=()
+  echo "Koneksi: FTP polos."
+else
+  echo
+  echo "Berhenti: tidak bisa tersambung ke ftp://$FTP_HOST/$REMOTE_DIR/"
+  echo "Periksa kembali host, username, dan password di hPanel -> FTP Accounts."
+  exit 1
+fi
+
+CURL=(curl -sS "${MODE[@]}" --user "$FTP_USER:$FTP_PASS")
 
 echo
 echo "== Upload =="
@@ -109,6 +138,11 @@ for f in "${HAPUS[@]}"; do
     echo "  dilewati : $f (mungkin sudah tidak ada)"
   fi
 done
+
+echo
+echo "== Isi public_html setelah deploy =="
+"${CURL[@]}" "ftp://$FTP_HOST/$REMOTE_DIR/" 2>/dev/null \
+  | grep -iE "index|robots|htaccess" || echo "  (daftar tidak bisa dibaca)"
 
 echo
 echo "Selesai. Buka https://alqomar.sch.id/?v=$(date +%s) untuk memeriksa hasilnya."
