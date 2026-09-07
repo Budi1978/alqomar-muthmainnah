@@ -17,9 +17,31 @@ REMOTE_DIR="public_html"
 # unduhan dari browser sering mengubah .htaccess menjadi htaccess.txt, dan
 # skrip ini mengenali variasi itu lalu mengunggahnya dengan nama yang benar.
 UPLOAD=(
-  "index.html"
   ".htaccess"
   "robots.txt"
+  "sitemap.xml"
+  "sitemap-berita.php"
+  "index.html"
+  "spmb-online.html"
+  "ppdb.html"
+  "privacy.html"
+  "sdit.html"
+  "smpit.html"
+  "kb-tkit.html"
+  "tahfidz.html"
+  "event.html"
+  "berita.html"
+  "login-divisi.html"
+  "sekolah-islam-jakarta-barat.html"
+  "berita/index.html"
+  "berita/al-qomar-muthmainnah-berbagi-takjil-satu-bulan-penuh-untuk-masyarakat.html"
+  "berita/pelaksanaan-tes-potensi-akademik-tpa-kelas-9-smpit-al-qomar.html"
+  "berita/puasa-bukan-halangan-semangat-belajar-siswa-al-qomar-justru-makin-membara-di-bul.html"
+  "berita/rapat-evaluasi-sumatif-tengah-semester-genap-bersama-dewan-guru-dan-yayasan.html"
+  "berita/selamat-berlibur-siswa-siswi-sholeh-sholehah-al-qomar.html"
+  "berita/shalat-idul-fitri-1447-h-al-qomar-muthmainnah-merajut-kebersamaan-di-lapangan-se.html"
+  "berita/tarawih-berjamaah-dan-tadarus-al-quran-semangat-ramadhan-siswa-al-qomar-tak-pern.html"
+  "berita/tpa-try-out-ke-2-berlangsung-lancar-di-al-qomar-muthmainnah.html"
 )
 
 # Cari berkas lokal untuk sebuah nama tujuan; cetak path yang ditemukan.
@@ -52,8 +74,8 @@ HAPUS=(
 for f in "${UPLOAD[@]}"; do
   cari_lokal "$f" >/dev/null || {
     echo "Berhenti: tidak menemukan berkas untuk '$f' di folder ini."
-    echo "Pastikan skrip dijalankan dari folder yang berisi index.html, .htaccess"
-    echo "(atau htaccess.txt hasil unduhan), dan robots.txt."
+    echo "Pastikan skrip dijalankan dari folder hasil unduhan repositori"
+    echo "(berisi index.html, .htaccess atau htaccess.txt, dan folder berita/)."
     exit 1
   }
 done
