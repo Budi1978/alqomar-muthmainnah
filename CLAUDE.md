@@ -31,8 +31,6 @@ alqomar-muthmainnah/
 ├── images/                 # Aset gambar
 ├── IMG_5490.jpg            # Gambar aset (diupload langsung ke root)
 ├── .htaccess               # Konfigurasi aktif: rewrite, cache, kompresi, redirect
-├── _headers                # (tidak aktif) warisan Netlify
-├── _redirects              # (tidak aktif) warisan Netlify
 ├── CNAME                   # Domain kustom: alqomar.sch.id
 ├── robots.txt              # Instruksi crawler mesin pencari
 ├── sitemap.xml             # Sitemap XML untuk SEO
@@ -161,20 +159,23 @@ ditulis di sini.**
 ### `berita/.htaccess` — AKTIF
 Rewrite agar `/berita/<slug>` dirender oleh `berita/index.html`.
 
-### `_headers` & `_redirects` — AKTIF DI NETLIFY, diabaikan Hostinger
-Repositori ini **masih tersambung ke Netlify** (project `alqomarschid`);
-setiap pull request memicu deploy preview. Jadi kedua berkas ini bukan warisan
-mati — mereka berlaku pada apa pun yang dilayani Netlify, dan **diabaikan**
-oleh Hostinger.
+### `_headers` & `_redirects` — SUDAH DIHAPUS (7 Sep 2026)
+Netlify tidak dipakai lagi. Kedua berkas itu hanya dibaca Netlify dan
+diabaikan Hostinger, sehingga menjadi konfigurasi mati yang isinya
+bertentangan dengan `.htaccess` — sumber kekeliruan saat menelusuri
+perilaku situs. Keduanya dihapus dari repositori.
 
-Konsekuensinya: setiap aturan redirect atau header baru harus ditulis
-**di dua tempat** — `.htaccess` untuk Hostinger dan `_headers`/`_redirects`
-untuk Netlify — supaya perilaku situs sama di kedua jalur.
+**Satu-satunya konfigurasi server adalah `.htaccess`.** Jangan membuat
+ulang `_headers`, `_redirects`, atau `netlify.toml`.
 
-Perhatikan `_redirects` memaksa `/berita.html` menjadi `/berita` (`301!`).
-URL arsip berita yang berlaku di kedua host adalah **`/berita`**.
-Jangan membuat pengalihan apa pun menuju `/berita.html` atau `/berita`
-dari dalam `berita/index.html` — itu menciptakan loop tak berujung.
+Jika koneksi Netlify masih terpasang di GitHub, cabut lewat
+**Settings → Webhooks** pada repositori, atau **Site configuration →
+Build & deploy → Unlink repository** di dasbor Netlify.
+
+Catatan perilaku: `berita/index.html` tanpa slug menampilkan daftar berita
+langsung dari database, tanpa pengalihan. Jangan menggantinya dengan
+redirect ke `/berita` atau `/berita.html` — keduanya kembali ke berkas ini
+dan menghasilkan loop.
 
 ### `robots.txt` & `sitemap.xml`
 Digunakan untuk SEO. Perbarui `sitemap.xml` saat menambah halaman baru.
@@ -213,8 +214,8 @@ Alternatif: hubungkan Hostinger ke repositori lewat hPanel → **Git**, lalu kli
 *Deploy* setiap selesai push (atau pasang auto-deploy webhook) agar langkah
 upload manual tidak perlu diulang tiap kali.
 
-Yang **tidak** perlu di-upload: `_backup/`, `_headers`, `_redirects`, `memory/`,
-`docs/`, `CLAUDE.md`.
+Yang **tidak** perlu di-upload: `_backup/`, `memory/`, `docs/`, `CLAUDE.md`,
+dan `deploy-hostinger.sh`.
 
 ## Konvensi Penting
 

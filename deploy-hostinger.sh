@@ -62,6 +62,8 @@ HAPUS=(
   "berita-backup-20260517-233925.html"
   "berita-detail-backup-20260614-005713.html"
   "images/index-live.html"
+  "_headers"
+  "_redirects"
   "berita/al-qomar-muthmainnah-berbagi-takjil-satu-bulan-penuh-untuk-masyarakat.html"
   "berita/puasa-bukan-halangan-semangat-belajar-siswa-al-qomar-justru-makin-membara-di-bul.html"
   "berita/tarawih-berjamaah-dan-tadarus-al-quran-semangat-ramadhan-siswa-al-qomar-tak-pern.html"
