@@ -183,10 +183,10 @@ body{background:var(--cream);overflow-x:hidden}
         <svg viewBox="0 0 24 24" class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
       <button onclick="document.getElementById('search-box').classList.toggle('hidden');setTimeout(()=>{var i=document.getElementById('search-input');if(i&&!document.getElementById('search-box').classList.contains('hidden'))i.focus();},10)" aria-label="Cari" class="hidden sm:grid h-10 w-10 place-items-center rounded-xl border border-emerald-900/10 text-emerald-800 hover:text-gold-600 hover:border-gold-500 transition-colors cursor-pointer"><svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg></button>
-      <button id="mnav-btn" type="button" onclick="(function(b){var m=document.getElementById('mnav');var buka=m.classList.toggle('hidden')===false;b.setAttribute('aria-expanded',buka?'true':'false');})(this)" aria-label="Menu" aria-expanded="false" aria-controls="mnav" class="lg:hidden grid h-10 w-10 place-items-center rounded-xl border border-emerald-900/10 text-emerald-800 hover:text-gold-600 hover:border-gold-500 transition-colors cursor-pointer"><svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/></svg></button>
+      <button onclick="document.getElementById('mnav').classList.toggle('hidden')" aria-label="Menu" class="lg:hidden grid h-10 w-10 place-items-center rounded-xl border border-emerald-900/10 text-emerald-800 hover:text-gold-600 hover:border-gold-500 transition-colors cursor-pointer"><svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/></svg></button>
     </div>
   </nav>
-  <div id="mnav" class="hidden lg:hidden mx-auto max-w-7xl mt-2 rounded-2xl bg-cream border border-emerald-900/10 shadow-xl shadow-emerald-900/15 p-3 grid sm:grid-cols-2 gap-1 text-sm font-600 text-emerald-900" onclick="if(event.target.tagName==='A'){this.classList.add('hidden');var b=document.getElementById('mnav-btn');if(b)b.setAttribute('aria-expanded','false');}">
+  <div id="mnav" class="hidden lg:hidden mx-auto max-w-7xl mt-2 rounded-2xl bg-cream border border-emerald-900/10 shadow-xl shadow-emerald-900/15 p-3 grid sm:grid-cols-2 gap-1 text-sm font-600 text-emerald-900" onclick="if(event.target.tagName==='A')this.classList.add('hidden')">
     <a href="#beranda" class="rounded-xl px-4 py-2.5 hover:bg-emerald-700/5 hover:text-gold-600">Beranda</a>
     <a href="#profil" class="rounded-xl px-4 py-2.5 hover:bg-emerald-700/5 hover:text-gold-600">Profil &amp; Sejarah</a>
     <a href="#legalitas" class="rounded-xl px-4 py-2.5 hover:bg-emerald-700/5 hover:text-gold-600">Legalitas</a>
@@ -601,17 +601,13 @@ body{background:var(--cream);overflow-x:hidden}
       <h3 class="font-display font-700 text-2xl sm:text-3xl text-emerald-950 flex items-center gap-2"><svg viewBox="0 0 24 24" class="h-6 w-6 text-emerald-700" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> Kirim Pesan kepada Kami</h3>
       <p class="mt-2 text-emerald-900/60 text-sm">Silakan isi formulir di bawah ini, tim kami akan merespons dalam 1×24 jam kerja.</p>
       <div class="mt-6 grid sm:grid-cols-2 gap-5">
-        <div><label class="lbl" for="k-nama">Nama Lengkap <span class="text-gold-600">*</span></label><input id="k-nama" class="fld" type="text" required aria-required="true" placeholder="Nama Anda"></div>
-        <div><label class="lbl" for="k-email">Email <span class="text-gold-600">*</span></label><input id="k-email" class="fld" type="email" required aria-required="true" placeholder="email@contoh.com"></div>
-        <div><label class="lbl" for="k-wa">No. WhatsApp</label><input id="k-wa" class="fld" type="tel" inputmode="tel" maxlength="20" placeholder="08xx xxxx xxxx"></div>
+        <div><label class="lbl" for="k-nama">Nama Lengkap <span class="text-gold-600">*</span></label><input id="k-nama" class="fld" type="text" placeholder="Nama Anda"></div>
+        <div><label class="lbl" for="k-email">Email <span class="text-gold-600">*</span></label><input id="k-email" class="fld" type="email" placeholder="email@contoh.com"></div>
+        <div><label class="lbl" for="k-wa">No. WhatsApp</label><input id="k-wa" class="fld" type="tel" placeholder="08xx xxxx xxxx"></div>
         <div><label class="lbl" for="k-subjek">Subjek</label><select id="k-subjek" class="fld"><option>Informasi Umum</option><option>PPDB / Pendaftaran</option><option>Program &amp; Kurikulum</option><option>Biaya Pendidikan</option><option>Kunjungan Sekolah</option><option>Lainnya</option></select></div>
-        <div class="sm:col-span-2"><label class="lbl" for="k-pesan">Pesan <span class="text-gold-600">*</span></label><textarea id="k-pesan" class="fld" rows="4" maxlength="2000" required aria-required="true" placeholder="Tuliskan pesan atau pertanyaan Anda..."></textarea></div>
+        <div class="sm:col-span-2"><label class="lbl" for="k-pesan">Pesan <span class="text-gold-600">*</span></label><textarea id="k-pesan" class="fld" rows="4" placeholder="Tuliskan pesan atau pertanyaan Anda..."></textarea></div>
       </div>
-      <label for="k-setuju" class="mt-5 flex items-start gap-3 cursor-pointer">
-        <input id="k-setuju" type="checkbox" required aria-required="true" class="mt-0.5 h-5 w-5 shrink-0 rounded border-emerald-900/25 accent-emerald-700 cursor-pointer">
-        <span class="text-sm text-emerald-900/75">Saya setuju data kontak saya diproses untuk menjawab pesan ini, sesuai <a href="/privacy.html" target="_blank" rel="noopener" class="font-700 text-emerald-700 underline">Kebijakan Privasi</a>. <span class="text-gold-600">*</span></span>
-      </label>
-      <p id="k-msg" class="hidden mt-5 rounded-xl px-4 py-3 text-sm font-600" role="alert" aria-live="assertive"></p>
+      <p id="k-msg" class="hidden mt-5 rounded-xl px-4 py-3 text-sm font-600"></p>
       <button id="k-submit" type="submit" class="mt-6 w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-700 to-emerald-900 px-8 py-4 font-700 text-cream shadow-xl shadow-emerald-900/30 cursor-pointer transition-transform hover:scale-[1.02] disabled:opacity-60"><svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg> <span id="k-submit-label">Kirim Pesan</span></button>
     </form>
   </div>
@@ -629,7 +625,7 @@ body{background:var(--cream);overflow-x:hidden}
     <div><h4 class="font-700 text-cream mb-4">Jenjang</h4><ul class="space-y-2 text-sm"><li>KB Muthmainnah</li><li>TKIT Muthmainnah</li><li>SDIT Al-Qomar</li><li>SMPIT Al-Qomar</li></ul></div>
     <div><h4 class="font-700 text-cream mb-4">Kontak</h4><ul class="space-y-2 text-sm"><li>Jl. Kamal Raya No.1 Tegal Alur, Kalideres, Jakarta Barat 11820</li><li>Telp (021) 55968344</li><li><a href="mailto:contact@alqomar.sch.id">contact@alqomar.sch.id</a></li></ul></div>
   </div>
-  <div class="mx-auto max-w-7xl mt-12 pt-6 border-t border-cream/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-cream/45"><p>© 2026 Yayasan Pendidikan Islam Purnama Cendekia · Al-Qomar Muthmainnah. · <a href="/privacy.html" class="underline hover:text-gold-300">Kebijakan Privasi</a> · <a href="/syarat.html" class="underline hover:text-gold-300">Syarat &amp; Ketentuan</a></p><p class="font-arabic text-base text-gold-300/70">وَقُلْ رَّبِّ زِدْنِيْ عِلْمًا</p></div>
+  <div class="mx-auto max-w-7xl mt-12 pt-6 border-t border-cream/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-cream/45"><p>© 2026 Yayasan Pendidikan Islam Purnama Cendekia · Al-Qomar Muthmainnah.</p><p class="font-arabic text-base text-gold-300/70">وَقُلْ رَّبِّ زِدْنِيْ عِلْمًا</p></div>
 </footer>
 
 <!-- MODAL BERITA (inline reader) -->
@@ -649,7 +645,7 @@ body{background:var(--cream);overflow-x:hidden}
 
 <a href="https://wa.me/628111597678?text=Assalamu%27alaikum%2C%20Admin%20Al-Qomar%20Muthmainnah.%20Saya%20tertarik%20dengan%20PPDB%202026%2F2027%20dan%20ingin%20informasi%20lebih%20lanjut.%20%F0%9F%99%8F" target="_blank" rel="noopener" class="fixed bottom-5 right-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-2xl shadow-emerald-900/30 floaty cursor-pointer" aria-label="Chat WhatsApp PPDB"><svg viewBox="0 0 24 24" class="h-7 w-7" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1012 2zm5.6 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.2-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6c-.2.2-.3.4-.1.7.2.3.9 1.4 1.9 2.3 1.3 1.1 2.3 1.5 2.6 1.6.3.1.5.1.7-.1l.8-1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.2.1.6 0 1z"/></svg></a>
 
-<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 // ---- UI effects ----
 const prog=document.getElementById('progress');
@@ -748,16 +744,7 @@ function openLightbox(u){const lb=document.getElementById('lightbox');document.g
 function closeLightbox(){const lb=document.getElementById('lightbox');lb.classList.add('hidden');document.getElementById('lightbox-img').src='';if(document.getElementById('berita-modal').classList.contains('hidden'))document.body.style.overflow='';}
 addEventListener('keydown',e=>{if(e.key!=='Escape')return;if(!document.getElementById('lightbox').classList.contains('hidden')){closeLightbox();}else{closeBerita();}});
 
-// Versi SDK dipatok; bila gagal dimuat, rilis 2.x terakhir dipakai sebagai cadangan
-// agar konten dinamis dan formulir kontak tetap hidup.
-function muatSupabase(cb){
-  if(window.supabase)return cb();
-  const el=document.createElement('script');
-  el.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
-  el.onload=cb;el.onerror=cb;
-  document.head.appendChild(el);
-}
-function initDinamis(){
+document.addEventListener('DOMContentLoaded',function(){
   if(!window.supabase){console.warn('Supabase SDK gagal dimuat');return;}
   const sb=window.supabase.createClient(SB_URL,SB_KEY);
 
@@ -826,7 +813,6 @@ function initDinamis(){
     if(!nama){return msg('Nama lengkap wajib diisi.',true);}
     if(!email){return msg('Email wajib diisi.',true);}
     if(!pesan){return msg('Pesan wajib diisi.',true);}
-    if(!$id('k-setuju').checked){return msg('Mohon centang persetujuan sebelum mengirim pesan.',true);}
     const btn=$id('k-submit');btn.disabled=true;$id('k-submit-label').textContent='Mengirim...';
     let ok=false;
     try{const r=await sb.from('kontak').insert([{nama,email,wa,subjek,pesan,dibuat_pada:new Date().toISOString()}]);if(!r.error)ok=true;}catch(_){}
@@ -838,8 +824,7 @@ function initDinamis(){
     }
     btn.disabled=false;$id('k-submit-label').textContent='Kirim Pesan';
   });}
-}
-document.addEventListener('DOMContentLoaded',function(){muatSupabase(initDinamis);});
+});
 </script>
 </body>
 </html>

@@ -2,8 +2,8 @@
 <!--
   alqomar.sch.id — sitemap.xml
   Diperbaiki: 16 Juli 2026 (v4)
-  Perubahan v4: hapus landing page yang tidak lagi dipublikasikan,
-                samakan seluruh loc dengan route final tanpa .html
+  Perubahan v5 (7 Sep 2026): /berita/ diganti /berita.html (URL lama dialihkan
+                JavaScript ke arsip), tambah profil sekolah + halaman kepatuhan.
 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -71,8 +71,8 @@
 
   <!-- Berita / Artikel -->
   <url>
-    <loc>https://www.alqomar.sch.id/berita/</loc>
-    <lastmod>2026-06-19</lastmod>
+    <loc>https://www.alqomar.sch.id/berita.html</loc>
+    <lastmod>2026-09-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
@@ -91,6 +91,29 @@
     <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
+  </url>
+
+  <!-- Profil sekolah -->
+  <url>
+    <loc>https://www.alqomar.sch.id/sekolah-islam-jakarta-barat</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Halaman kepatuhan -->
+  <url>
+    <loc>https://www.alqomar.sch.id/privacy</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.alqomar.sch.id/syarat</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 
 </urlset>

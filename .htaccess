@@ -5,11 +5,14 @@ DirectoryIndex index.html
   RewriteEngine On
 
   RewriteRule ^index\.html$ / [R=301,L]
-  RewriteRule ^(ppdb|spmb-online|rqaq|guru|kb-tkit|sdit|smpit|tahfidz|event)\.html$ /$1 [R=301,L]
+  RewriteRule ^(ppdb|spmb-online|rqaq|guru|kb-tkit|sdit|smpit|tahfidz|event|privacy|syarat|sekolah-islam-jakarta-barat)\.html$ /$1 [R=301,L]
 
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^(ppdb|spmb-online|rqaq|guru|kb-tkit|sdit|smpit|tahfidz|event)/?$ $1.html [L]
+  RewriteRule ^(ppdb|spmb-online|rqaq|guru|kb-tkit|sdit|smpit|tahfidz|event|privacy|syarat|sekolah-islam-jakarta-barat)/?$ $1.html [L]
+
+  # Sitemap berita dinamis dilayani sebagai .xml (robots.txt menunjuk ke sini)
+  RewriteRule ^sitemap-berita\.xml$ /sitemap-berita.php [L]
 </IfModule>
 
 # ============================================================
@@ -62,10 +65,19 @@ DirectoryIndex index.html
   <FilesMatch "\.(html|php)$">
     Header set Cache-Control "public, max-age=600, must-revalidate"
   </FilesMatch>
-  # Keamanan ringan
+  # ---------- KEAMANAN ----------
   Header always set X-Content-Type-Options "nosniff"
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), interest-cohort=()"
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+  # CSP aktif — hanya aturan yang tidak mungkin merusak tampilan
+  Header always set Content-Security-Policy "frame-ancestors 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
+
+  # CSP penuh masih mode LAPORAN. Pantau pelanggaran di console browser
+  # beberapa minggu, lalu pindahkan nilai ini ke header di atas bila bersih.
+  Header always set Content-Security-Policy-Report-Only "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.googletagmanager.com https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://gzcgyqntluhxxrvbcwin.supabase.co https://i.ytimg.com https://www.googletagmanager.com https://*.google-analytics.com; connect-src 'self' https://gzcgyqntluhxxrvbcwin.supabase.co https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com https://www.google.com https://maps.google.com; upgrade-insecure-requests"
 </IfModule>
 
 # ---------- 4. KEEP-ALIVE ----------
@@ -81,7 +93,7 @@ DirectoryIndex index.html
   RedirectMatch 301 ^/index-live.*\.html$             /
   RedirectMatch 301 ^/index-backup-.*\.html$          /
   RedirectMatch 301 ^/images/index-live\.html$        /
-  RedirectMatch 301 ^/berita-detail-backup-.*\.html$  /berita
+  RedirectMatch 301 ^/berita-detail-backup-.*\.html$  /berita.html
   RedirectMatch 301 ^/berita-backup-.*\.html$         /berita
 </IfModule>
 

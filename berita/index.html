@@ -605,8 +605,8 @@
     const slug = getSlug();
 
     if (!slug || slug === 'berita') {
-      // Tidak ada slug — redirect ke halaman daftar berita
-      window.location.href = '/';
+      // Tidak ada slug — arahkan ke halaman arsip berita, bukan ke beranda
+      window.location.replace('/berita.html');
       return;
     }
 

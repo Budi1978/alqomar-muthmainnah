@@ -67,7 +67,7 @@
   <div class="mx-auto max-w-3xl">
     <div class="reveal inline-flex items-center gap-2 rounded-full border border-emerald-900/15 bg-cream/70 px-4 py-1.5 text-xs font-700 text-emerald-800 mb-6"><span class="h-2 w-2 rounded-full bg-gold-500"></span> Gelombang 1 Dibuka</div>
     <h1 class="reveal d1 font-display font-700 text-[2.4rem] leading-[1.06] sm:text-6xl text-emerald-950 tracking-tight">Pendaftaran Peserta<br><span class="shimmer">Didik Baru 2026/2027</span></h1>
-    <p class="reveal d2 mt-6 text-lg text-emerald-900/75 leading-relaxed">KB · TKIT · SDIT · SMPIT Al-Qomar Muthmainnah — Kalideres, Jakarta Barat. Isi formulir online di bawah. Nomor pendaftaran resmi terbit otomatis begitu data Anda tersimpan.</p>
+    <p class="reveal d2 mt-6 text-lg text-emerald-900/75 leading-relaxed">KB · TKIT · SDIT · SMPIT Al-Qomar Muthmainnah — Kalideres, Jakarta Barat. Isi formulir online di bawah, data tersimpan otomatis ke sistem sekolah.</p>
     <a href="#formulir" class="reveal d3 mt-8 inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-gold-400 to-gold-600 px-8 py-4 font-700 text-emerald-950 shadow-xl shadow-gold-500/30 cursor-pointer transition-transform hover:scale-[1.04]">Isi Formulir Sekarang<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
   </div>
 </section>
@@ -114,39 +114,32 @@
 <!-- FORMULIR -->
 <section id="formulir" class="py-20 px-5">
   <div class="mx-auto max-w-3xl">
-    <div class="text-center mb-10"><p class="reveal text-sm font-800 tracking-[.2em] text-gold-600 uppercase mb-4">Formulir Online</p><h2 class="reveal d1 font-display font-700 text-3xl sm:text-4xl text-emerald-950">Pengisian Formulir Pendaftaran</h2><p class="reveal d2 mt-3 text-emerald-900/60">Data disimpan di sistem sekolah. Anda menerima nomor pendaftaran resmi sebagai bukti.</p></div>
+    <div class="text-center mb-10"><p class="reveal text-sm font-800 tracking-[.2em] text-gold-600 uppercase mb-4">Formulir Online</p><h2 class="reveal d1 font-display font-700 text-3xl sm:text-4xl text-emerald-950">Pengisian Formulir Pendaftaran</h2><p class="reveal d2 mt-3 text-emerald-900/60">Data tersimpan otomatis ke sistem sekolah & dikirim ke admin via WhatsApp.</p></div>
 
     <form id="ppdb-form" class="reveal rounded-3xl bg-cream border border-emerald-900/10 p-6 sm:p-9 shadow-xl shadow-emerald-900/10 space-y-6" novalidate>
       <div>
         <span class="lbl">Jenjang Pendidikan <span class="text-gold-600">*</span></span>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          <label class="jenjang-opt"><input type="radio" name="jenjang" value="KB (Kelompok Bermain)" required aria-required="true"><span class="box block">KB</span></label>
+          <label class="jenjang-opt"><input type="radio" name="jenjang" value="KB (Kelompok Bermain)"><span class="box block">KB</span></label>
           <label class="jenjang-opt"><input type="radio" name="jenjang" value="TKIT Muthmainnah"><span class="box block">TKIT</span></label>
           <label class="jenjang-opt"><input type="radio" name="jenjang" value="SDIT Al-Qomar"><span class="box block">SDIT</span></label>
           <label class="jenjang-opt"><input type="radio" name="jenjang" value="SMPIT Al-Qomar"><span class="box block">SMPIT</span></label>
         </div>
       </div>
       <div class="grid sm:grid-cols-2 gap-5">
-        <div class="sm:col-span-2"><label class="lbl" for="nama-anak">Nama Lengkap Anak <span class="text-gold-600">*</span></label><input id="nama-anak" class="fld" type="text" required aria-required="true" placeholder="Nama sesuai akta kelahiran"></div>
+        <div class="sm:col-span-2"><label class="lbl" for="nama-anak">Nama Lengkap Anak <span class="text-gold-600">*</span></label><input id="nama-anak" class="fld" type="text" placeholder="Nama sesuai akta kelahiran"></div>
         <div><label class="lbl" for="tempat-lahir">Tempat Lahir</label><input id="tempat-lahir" class="fld" type="text" placeholder="Kota tempat lahir"></div>
         <div><label class="lbl" for="tgl-lahir">Tanggal Lahir</label><input id="tgl-lahir" class="fld" type="date"></div>
         <div><label class="lbl" for="jk">Jenis Kelamin</label><select id="jk" class="fld"><option value="">-- Pilih --</option><option>Laki-laki</option><option>Perempuan</option></select></div>
         <div><label class="lbl" for="asal-sekolah">Asal Sekolah</label><input id="asal-sekolah" class="fld" type="text" placeholder="Kosongkan jika belum sekolah"></div>
-        <div><label class="lbl" for="nama-ayah">Nama Ayah <span class="text-gold-600">*</span></label><input id="nama-ayah" class="fld" type="text" required aria-required="true" placeholder="Nama lengkap ayah"></div>
-        <div><label class="lbl" for="nama-ibu">Nama Ibu <span class="text-gold-600">*</span></label><input id="nama-ibu" class="fld" type="text" required aria-required="true" placeholder="Nama lengkap ibu"></div>
-        <div><label class="lbl" for="no-wa">No. WhatsApp Orang Tua <span class="text-gold-600">*</span></label><input id="no-wa" class="fld" type="tel" inputmode="tel" maxlength="20" required aria-required="true" placeholder="08xx xxxx xxxx"></div>
+        <div><label class="lbl" for="nama-ayah">Nama Ayah <span class="text-gold-600">*</span></label><input id="nama-ayah" class="fld" type="text" placeholder="Nama lengkap ayah"></div>
+        <div><label class="lbl" for="nama-ibu">Nama Ibu <span class="text-gold-600">*</span></label><input id="nama-ibu" class="fld" type="text" placeholder="Nama lengkap ibu"></div>
+        <div><label class="lbl" for="no-wa">No. WhatsApp Orang Tua <span class="text-gold-600">*</span></label><input id="no-wa" class="fld" type="tel" placeholder="08xx xxxx xxxx"></div>
         <div><label class="lbl" for="email">Email</label><input id="email" class="fld" type="email" placeholder="email@contoh.com"></div>
-        <div class="sm:col-span-2"><label class="lbl" for="alamat">Alamat</label><textarea id="alamat" class="fld" rows="2" maxlength="300" placeholder="Alamat lengkap termasuk RT/RW, Kelurahan, Kecamatan"></textarea></div>
-        <div class="sm:col-span-2"><label class="lbl" for="pesan">Pesan / Catatan</label><textarea id="pesan" class="fld" rows="2" maxlength="1000" placeholder="Opsional"></textarea></div>
+        <div class="sm:col-span-2"><label class="lbl" for="alamat">Alamat</label><textarea id="alamat" class="fld" rows="2" placeholder="Alamat lengkap termasuk RT/RW, Kelurahan, Kecamatan"></textarea></div>
+        <div class="sm:col-span-2"><label class="lbl" for="pesan">Pesan / Catatan</label><textarea id="pesan" class="fld" rows="2" placeholder="Opsional"></textarea></div>
       </div>
-      <div class="rounded-2xl border border-emerald-900/12 bg-emerald-50/40 p-4">
-        <p class="text-xs leading-relaxed text-emerald-900/75"><strong class="text-emerald-900">Pemberitahuan privasi PPDB.</strong> Data yang Anda isi (identitas anak, data orang tua/wali, dan kontak) kami kumpulkan hanya untuk memproses pendaftaran peserta didik baru tahun ajaran 2026/2027 dan menghubungi Anda kembali. Data disimpan pada penyedia basis data Supabase, diakses terbatas oleh panitia PPDB Al-Qomar Muthmainnah, dan disimpan selama proses seleksi hingga maksimal 1 tahun ajaran bila anak tidak jadi mendaftar. Anda berhak meminta koreksi atau penghapusan data kapan saja melalui <a href="https://wa.me/628111597678" target="_blank" rel="noopener" class="font-700 text-emerald-700 underline">WhatsApp admin</a> atau email <a href="mailto:info@purnamacendekia.sch.id" class="font-700 text-emerald-700 underline">info@purnamacendekia.sch.id</a>. Selengkapnya di <a href="/privacy.html" target="_blank" rel="noopener" class="font-700 text-emerald-700 underline">Kebijakan Privasi</a>.</p>
-        <label for="setuju" class="mt-3 flex items-start gap-3 cursor-pointer">
-          <input id="setuju" type="checkbox" required aria-required="true" class="mt-0.5 h-5 w-5 shrink-0 rounded border-emerald-900/25 accent-emerald-700 cursor-pointer">
-          <span class="text-sm font-600 text-emerald-900">Saya orang tua/wali yang sah dari anak di atas dan menyetujui data ini diproses untuk keperluan PPDB. <span class="text-gold-600">*</span></span>
-        </label>
-      </div>
-      <p id="form-msg" class="hidden rounded-xl px-4 py-3 text-sm font-600" role="alert" aria-live="assertive"></p>
+      <p id="form-msg" class="hidden rounded-xl px-4 py-3 text-sm font-600"></p>
       <button id="submit-btn" type="submit" class="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-700 to-emerald-900 px-8 py-4 font-700 text-cream shadow-xl shadow-emerald-900/30 cursor-pointer transition-transform hover:scale-[1.02] disabled:opacity-60 disabled:hover:scale-100">
         <span id="submit-label">Kirim Pendaftaran</span>
         <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -160,24 +153,10 @@
       <h2 class="font-display font-700 text-3xl">Pendaftaran Berhasil!</h2>
       <p class="mt-3 text-cream/80">Data Anda telah tersimpan di sistem sekolah.</p>
       <p id="no-pendaftaran" class="mt-4 inline-block rounded-xl bg-cream/10 px-5 py-2 font-700 text-gold-300 hidden"></p>
-      <p class="mt-4 text-sm text-cream/70">Simpan nomor pendaftaran di atas. Tekan tombol di bawah untuk mengirim konfirmasi ke admin lewat WhatsApp.</p>
       <div class="mt-7 flex flex-wrap justify-center gap-3">
         <a id="wa-link" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-2xl bg-[#25D366] text-white px-7 py-3.5 font-700 cursor-pointer transition-transform hover:scale-[1.04]"><svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1012 2z"/></svg> Kirim Konfirmasi WhatsApp</a>
         <a href="/" class="inline-flex items-center gap-2 rounded-2xl border-2 border-cream/25 px-7 py-3.5 font-700 text-cream cursor-pointer hover:border-gold-400 hover:text-gold-300"><svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M11 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg> Kembali ke Beranda</a>
       </div>
-    </div>
-
-    <!-- GAGAL SIMPAN -->
-    <div id="gagal-panel" class="hidden mt-6 rounded-3xl border-2 border-amber-300 bg-amber-50 p-7 text-center shadow-lg">
-      <div class="mx-auto grid h-16 w-16 place-items-center rounded-full bg-amber-400 text-amber-950 mb-4"><svg viewBox="0 0 24 24" class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4M12 17h.01M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L14.7 3.9a2 2 0 00-3.4 0z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <h3 class="font-display font-700 text-2xl text-amber-950">Pendaftaran Belum Tersimpan</h3>
-      <p id="gagal-alasan" class="mt-3 text-sm text-amber-900"></p>
-      <p class="mt-3 text-sm text-amber-900/80">Isian Anda masih utuh di formulir di atas. Silakan coba kirim ulang, atau kirim manual ke admin lewat WhatsApp agar pendaftaran Anda tetap diproses.</p>
-      <div class="mt-6 flex flex-wrap justify-center gap-3">
-        <button type="button" id="coba-lagi" class="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-700 to-emerald-900 px-7 py-3.5 font-700 text-cream cursor-pointer transition-transform hover:scale-[1.04]">Coba Kirim Ulang</button>
-        <a id="wa-manual" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-2xl bg-[#25D366] text-white px-7 py-3.5 font-700 cursor-pointer transition-transform hover:scale-[1.04]"><svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1012 2z"/></svg> Kirim Manual via WhatsApp</a>
-      </div>
-      <p class="mt-4 text-xs text-amber-900/70">Dengan menekan tombol WhatsApp, isian formulir Anda disalin ke draf pesan. Pesan baru terkirim setelah Anda menekan tombol kirim di WhatsApp.</p>
     </div>
   </div>
 </section>
@@ -198,177 +177,77 @@
   </div>
 </footer>
 
-<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 const SB_URL='https://gzcgyqntluhxxrvbcwin.supabase.co';
 const SB_KEY='sb_publishable_F641BOnF7LUfmctyCmiJvw_yo6aiFXY';
-let __sb=null;
-function getSb(){if(!__sb&&window.supabase){__sb=window.supabase.createClient(SB_URL,SB_KEY);}return __sb;}
-// Versi SDK dipatok; bila gagal dimuat, ambil rilis 2.x terakhir sebagai cadangan.
-function muatSupabase(cb){
-  if(window.supabase)return cb();
-  const s=document.createElement('script');
-  s.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
-  s.onload=cb;s.onerror=cb;
-  document.head.appendChild(s);
-}
+let __sb=null;function getSb(){if(!__sb&&window.supabase){__sb=window.supabase.createClient(SB_URL,SB_KEY);}return __sb;}
 const $=id=>document.getElementById(id);
+function showMsg(text,type){const el=$('form-msg');el.textContent=text;el.className='rounded-xl px-4 py-3 text-sm font-600 '+(type==='error'?'bg-red-50 text-red-700 border border-red-200':'bg-emerald-50 text-emerald-800 border border-emerald-200');}
 
-function showMsg(text,type){
-  const el=$('form-msg');
-  el.textContent=text;
-  el.className='rounded-xl px-4 py-3 text-sm font-600 '+(type==='error'?'bg-red-50 text-red-700 border border-red-200':'bg-emerald-50 text-emerald-800 border border-emerald-200');
-}
-function hideMsg(){const el=$('form-msg');el.textContent='';el.className='hidden rounded-xl px-4 py-3 text-sm font-600';}
-function gagalkan(pesan,fokusId){
-  showMsg(pesan,'error');
-  if(fokusId){const f=$(fokusId);if(f){f.focus();f.scrollIntoView({behavior:'smooth',block:'center'});}}
-  return null;
-}
-function normalWa(v){
-  let t=String(v||'').replace(/[^0-9]/g,'');
-  if(t.indexOf('0')===0)t='62'+t.slice(1);
-  else if(t.indexOf('8')===0)t='62'+t;
-  return t;
-}
-
-// Kumpulkan + validasi isian. Mengembalikan null bila ada yang belum benar.
-function ambilData(){
+$('ppdb-form').addEventListener('submit',async function(e){
+  e.preventDefault();
   const jenjangEl=document.querySelector('input[name="jenjang"]:checked');
   const namaAnak=$('nama-anak').value.trim();
   const namaAyah=$('nama-ayah').value.trim();
   const namaIbu=$('nama-ibu').value.trim();
-  const waMentah=$('no-wa').value.trim();
-  const wa=normalWa(waMentah);
-  const email=$('email').value.trim();
-  const tgl=$('tgl-lahir').value;
+  const noWa=$('no-wa').value.trim();
+  if(!jenjangEl){return showMsg('Silakan pilih jenjang pendidikan.','error');}
+  if(!namaAnak){return showMsg('Nama lengkap anak wajib diisi.','error');}
+  if(!noWa){return showMsg('Nomor WhatsApp orang tua wajib diisi.','error');}
+  if(!namaAyah){return showMsg('Nama ayah wajib diisi.','error');}
+  if(!namaIbu){return showMsg('Nama ibu wajib diisi.','error');}
 
-  if(!jenjangEl)return gagalkan('Silakan pilih jenjang pendidikan.','nama-anak');
-  if(namaAnak.length<3)return gagalkan('Nama lengkap anak wajib diisi (minimal 3 karakter).','nama-anak');
-  if(namaAyah.length<3)return gagalkan('Nama ayah wajib diisi (minimal 3 karakter).','nama-ayah');
-  if(namaIbu.length<3)return gagalkan('Nama ibu wajib diisi (minimal 3 karakter).','nama-ibu');
-  if(!/^62[0-9]{8,13}$/.test(wa))return gagalkan('Nomor WhatsApp belum benar. Contoh: 0812 3456 7890.','no-wa');
-  if(email&&!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email))return gagalkan('Alamat email belum benar.','email');
-  if(tgl){
-    const d=new Date(tgl),kini=new Date();
-    if(isNaN(d.getTime())||d>kini)return gagalkan('Tanggal lahir tidak boleh melebihi hari ini.','tgl-lahir');
-    if(kini.getFullYear()-d.getFullYear()>25)return gagalkan('Tanggal lahir tidak masuk akal untuk calon peserta didik.','tgl-lahir');
-  }
-  if(!$('setuju').checked)return gagalkan('Mohon centang persetujuan pemrosesan data sebelum mengirim.','setuju');
-
-  return {
-    p_nama_siswa:namaAnak,
-    p_jenjang:jenjangEl.value,
-    p_nama_ayah:namaAyah,
-    p_nama_ibu:namaIbu,
-    p_telp:wa,
-    p_tempat_lahir:$('tempat-lahir').value.trim()||null,
-    p_tanggal_lahir:tgl||null,
-    p_jenis_kelamin:$('jk').value||null,
-    p_asal_sekolah:$('asal-sekolah').value.trim()||null,
-    p_email:email||null,
-    p_alamat:$('alamat').value.trim()||null,
-    p_pesan:$('pesan').value.trim()||null
+  const btn=$('submit-btn');btn.disabled=true;$('submit-label').textContent='Menyimpan data pendaftaran...';
+  const data={
+    nama_siswa:namaAnak, jenjang:jenjangEl.value,
+    tempat_lahir:$('tempat-lahir').value.trim()||null,
+    tanggal_lahir:$('tgl-lahir').value||null,
+    jenis_kelamin:$('jk').value||null,
+    asal_sekolah:$('asal-sekolah').value.trim()||null,
+    nama_ayah:namaAyah, nama_ibu:namaIbu, nama_wali:namaAyah,
+    telp:noWa, email:$('email').value.trim()||null,
+    alamat:$('alamat').value.trim()||null,
+    pesan:$('pesan').value.trim()||null,
+    sumber:'website', tahun_ajaran:'2026/2027'
   };
-}
-
-function tglIndonesia(v){
-  if(!v)return '-';
-  try{return new Date(v).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});}catch(e){return v;}
-}
-// Pesan ringkas — dipakai hanya setelah data benar-benar tersimpan.
-function pesanKonfirmasi(d,no){
-  return '*KONFIRMASI PENDAFTARAN PPDB 2026/2027*\n*Al-Qomar Muthmainnah School*\n\n'+
-    '*No. Pendaftaran:* '+no+'\n'+
-    '*Nama Anak:* '+d.p_nama_siswa+'\n'+
-    '*Jenjang:* '+d.p_jenjang+'\n'+
-    '*No. WA Orang Tua:* '+d.p_telp+'\n\n'+
-    'Data sudah tersimpan di sistem sekolah. Mohon informasi langkah selanjutnya. Terima kasih.';
-}
-// Pesan lengkap — hanya untuk jalur darurat saat penyimpanan gagal, agar data tidak hilang.
-function pesanDarurat(d){
-  return '*PENDAFTARAN PPDB 2026/2027 (KIRIM MANUAL)*\n*Al-Qomar Muthmainnah School*\n\n'+
-    '_Penyimpanan otomatis gagal, data dikirim manual oleh orang tua._\n\n'+
-    '*Jenjang:* '+d.p_jenjang+'\n'+
-    '*Nama Anak:* '+d.p_nama_siswa+'\n'+
-    '*TTL:* '+(d.p_tempat_lahir||'-')+', '+tglIndonesia(d.p_tanggal_lahir)+'\n'+
-    '*Jenis Kelamin:* '+(d.p_jenis_kelamin||'-')+'\n'+
-    '*Asal Sekolah:* '+(d.p_asal_sekolah||'-')+'\n'+
-    '*Nama Ayah:* '+d.p_nama_ayah+'\n'+
-    '*Nama Ibu:* '+d.p_nama_ibu+'\n'+
-    '*No. WA:* '+d.p_telp+'\n'+
-    '*Email:* '+(d.p_email||'-')+'\n'+
-    '*Alamat:* '+(d.p_alamat||'-')+'\n'+
-    '*Catatan:* '+(d.p_pesan||'-');
-}
-const waUrl=t=>'https://wa.me/628111597678?text='+encodeURIComponent(t);
-
-function tampilkanSukses(d,no){
-  $('gagal-panel').classList.add('hidden');
-  hideMsg();
-  const np=$('no-pendaftaran');
-  np.textContent='No. Pendaftaran: '+no;
-  np.classList.remove('hidden');
-  $('wa-link').href=waUrl(pesanKonfirmasi(d,no));
-  $('ppdb-form').style.display='none';
-  const sp=$('success-panel');
-  sp.classList.remove('hidden');sp.classList.add('in');
-  sp.scrollIntoView({behavior:'smooth',block:'center'});
-}
-function tampilkanGagal(d,alasan){
-  // Formulir tetap terlihat dan isinya tidak dihapus.
-  showMsg('Pendaftaran BELUM tersimpan. '+alasan,'error');
-  $('gagal-alasan').textContent=alasan;
-  $('wa-manual').href=waUrl(pesanDarurat(d));
-  const gp=$('gagal-panel');
-  gp.classList.remove('hidden');
-  gp.scrollIntoView({behavior:'smooth',block:'center'});
-}
-
-let __sedangKirim=false;
-async function kirimPendaftaran(){
-  if(__sedangKirim)return;
-  const d=ambilData();
-  if(!d)return;
-
-  __sedangKirim=true;
-  const btn=$('submit-btn');
-  btn.disabled=true;
-  $('submit-label').textContent='Menyimpan data pendaftaran...';
-  $('gagal-panel').classList.add('hidden');
-  showMsg('Menyimpan data ke sistem sekolah...','info');
-
-  let no=null,alasan='';
+  let noPendaftaran=null;
   try{
     const sb=getSb();
-    if(!sb)throw new Error('Koneksi ke sistem pendaftaran tidak tersedia. Periksa jaringan Anda.');
-    const res=await sb.rpc('daftar_spmb',d);
-    if(res.error)throw new Error(res.error.message||'Sistem pendaftaran menolak data.');
-    if(!res.data)throw new Error('Sistem tidak mengembalikan nomor pendaftaran.');
-    no=res.data;
-  }catch(err){
-    console.error('Pendaftaran gagal:',err);
-    alasan=err&&err.message?err.message:'Terjadi gangguan pada sistem pendaftaran.';
-  }
+    if(!sb) throw new Error('Supabase SDK tidak termuat');
+    const res=await sb.from('spmb_pendaftar').insert([data]).select('no_pendaftaran');
+    if(res.error) throw res.error;
+    if(res.data&&res.data[0]) noPendaftaran=res.data[0].no_pendaftaran;
+  }catch(err){console.error('Supabase error:',err);showMsg('Sistem pendaftaran sibuk — data akan dikirim via WhatsApp agar admin tetap dapat memproses.','error');}
 
-  btn.disabled=false;
-  $('submit-label').textContent='Kirim Pendaftaran';
-  __sedangKirim=false;
+  // WA message (selalu jalan)
+  const tgl=$('tgl-lahir').value;
+  const tglF=tgl?new Date(tgl).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'}):'-';
+  let msg='*FORMULIR PENDAFTARAN PPDB 2026/2027*\n*Al-Qomar Muthmainnah School*\n\n';
+  if(noPendaftaran) msg+='*NO. PENDAFTARAN:* '+noPendaftaran+'\n\n';
+  msg+='*JENJANG:* '+jenjangEl.value+'\n';
+  msg+='*Nama Anak:* '+namaAnak+'\n';
+  msg+='*TTL:* '+($('tempat-lahir').value.trim()||'-')+', '+tglF+'\n';
+  msg+='*Jenis Kelamin:* '+($('jk').value||'-')+'\n';
+  msg+='*Asal Sekolah:* '+($('asal-sekolah').value.trim()||'-')+'\n';
+  msg+='*Nama Ayah:* '+namaAyah+'\n';
+  msg+='*Nama Ibu:* '+namaIbu+'\n';
+  msg+='*No. WA:* '+noWa+'\n';
+  msg+='*Email:* '+($('email').value.trim()||'-')+'\n';
+  msg+='*Alamat:* '+($('alamat').value.trim()||'-')+'\n';
+  msg+='*Pesan:* '+($('pesan').value.trim()||'-');
+  const waUrl='https://wa.me/628111597678?text='+encodeURIComponent(msg);
+  $('wa-link').href=waUrl;
 
-  // Sukses HANYA bila server mengonfirmasi nomor pendaftaran.
-  if(no)tampilkanSukses(d,no);
-  else tampilkanGagal(d,alasan);
-}
-
-$('ppdb-form').addEventListener('submit',function(e){e.preventDefault();kirimPendaftaran();});
-$('coba-lagi').addEventListener('click',function(){
-  $('gagal-panel').classList.add('hidden');
-  kirimPendaftaran();
+  if(noPendaftaran){const np=$('no-pendaftaran');np.textContent='No. Pendaftaran: '+noPendaftaran;np.classList.remove('hidden');}
+  $('ppdb-form').style.display='none';
+  const sp=$('success-panel');sp.classList.remove('hidden');sp.classList.add('in');
+  sp.scrollIntoView({behavior:'smooth',block:'center'});
+  window.open(waUrl,'_blank');
 });
-muatSupabase(function(){getSb();});
 </script>
 </body>
 </html>
