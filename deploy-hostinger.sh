@@ -33,15 +33,8 @@ UPLOAD=(
   "berita.html"
   "login-divisi.html"
   "sekolah-islam-jakarta-barat.html"
+  "berita/.htaccess"
   "berita/index.html"
-  "berita/al-qomar-muthmainnah-berbagi-takjil-satu-bulan-penuh-untuk-masyarakat.html"
-  "berita/pelaksanaan-tes-potensi-akademik-tpa-kelas-9-smpit-al-qomar.html"
-  "berita/puasa-bukan-halangan-semangat-belajar-siswa-al-qomar-justru-makin-membara-di-bul.html"
-  "berita/rapat-evaluasi-sumatif-tengah-semester-genap-bersama-dewan-guru-dan-yayasan.html"
-  "berita/selamat-berlibur-siswa-siswi-sholeh-sholehah-al-qomar.html"
-  "berita/shalat-idul-fitri-1447-h-al-qomar-muthmainnah-merajut-kebersamaan-di-lapangan-se.html"
-  "berita/tarawih-berjamaah-dan-tadarus-al-quran-semangat-ramadhan-siswa-al-qomar-tak-pern.html"
-  "berita/tpa-try-out-ke-2-berlangsung-lancar-di-al-qomar-muthmainnah.html"
 )
 
 # Cari berkas lokal untuk sebuah nama tujuan; cetak path yang ditemukan.
@@ -69,6 +62,15 @@ HAPUS=(
   "berita-backup-20260517-233925.html"
   "berita-detail-backup-20260614-005713.html"
   "images/index-live.html"
+  "berita/al-qomar-muthmainnah-berbagi-takjil-satu-bulan-penuh-untuk-masyarakat.html"
+  "berita/puasa-bukan-halangan-semangat-belajar-siswa-al-qomar-justru-makin-membara-di-bul.html"
+  "berita/tarawih-berjamaah-dan-tadarus-al-quran-semangat-ramadhan-siswa-al-qomar-tak-pern.html"
+  "berita/rapat-evaluasi-sumatif-tengah-semester-genap-bersama-dewan-guru-dan-yayasan.html"
+  "berita/pelaksanaan-tes-potensi-akademik-tpa-kelas-9-smpit-al-qomar.html"
+  "berita/shalat-idul-fitri-1447-h-al-qomar-muthmainnah-merajut-kebersamaan-di-lapangan-se.html"
+  "berita/tpa-try-out-ke-2-berlangsung-lancar-di-al-qomar-muthmainnah.html"
+  "berita/selamat-berlibur-siswa-siswi-sholeh-sholehah-al-qomar.html"
+  "berita/vortex-2026-lomba-futsal-mobile-legend-poster-smpit-alqomar-2.html"
 )
 
 for f in "${UPLOAD[@]}"; do

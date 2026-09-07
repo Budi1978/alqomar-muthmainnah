@@ -109,3 +109,18 @@ DirectoryIndex index.html
   RewriteRule ^_(headers|redirects)$     - [F,L]
   RewriteRule ^.+\.md$                   - [F,L]
 </IfModule>
+
+# ---------- 7. ARTIKEL BERITA STATIS LAMA ----------
+# Isi 9 artikel ini sudah ada di database dan tayang di /berita/<slug>.
+# Berkas .html lama dialihkan agar tidak jadi konten duplikat di Google.
+<IfModule mod_alias.c>
+  RedirectMatch 301 ^/berita/al-qomar-muthmainnah-berbagi-takjil-satu-bulan-penuh-untuk-masyarakat\.html$ /berita/al-qomar-muthmainnah-berbagi-takjil-satu-bulan-penuh-untuk-masyarakat
+  RedirectMatch 301 ^/berita/puasa-bukan-halangan-semangat-belajar-siswa-al-qomar-justru-makin-membara-di-bul\.html$ /berita/puasa-bukan-halangan-semangat-belajar-siswa-al-qomar-justru-makin-membara-di-bul
+  RedirectMatch 301 ^/berita/tarawih-berjamaah-dan-tadarus-al-quran-semangat-ramadhan-siswa-al-qomar-tak-pern\.html$ /berita/tarawih-berjamaah-dan-tadarus-al-quran-semangat-ramadhan-siswa-al-qomar-tak-pern
+  RedirectMatch 301 ^/berita/rapat-evaluasi-sumatif-tengah-semester-genap-bersama-dewan-guru-dan-yayasan\.html$ /berita/rapat-evaluasi-sumatif-tengah-semester-genap-bersama-dewan-guru-dan-yayasan
+  RedirectMatch 301 ^/berita/pelaksanaan-tes-potensi-akademik-tpa-kelas-9-smpit-al-qomar\.html$ /berita/pelaksanaan-tes-potensi-akademik-tpa-kelas-9-smpit-alqomar
+  RedirectMatch 301 ^/berita/shalat-idul-fitri-1447-h-al-qomar-muthmainnah-merajut-kebersamaan-di-lapangan-se\.html$ /berita/shalat-idul-fitri-1447-h-alqomar-muthmainnah-merajut-kebersamaan-di-lapangan-sekolah
+  RedirectMatch 301 ^/berita/tpa-try-out-ke-2-berlangsung-lancar-di-al-qomar-muthmainnah\.html$ /berita/tpa-try-out-ke2-berlangsung-lancar-di-al-qomar-muthmainnah
+  RedirectMatch 301 ^/berita/selamat-berlibur-siswa-siswi-sholeh-sholehah-al-qomar\.html$ /berita/selamat-berlibur-siswasiswi-sholeh-sholehah-al-qomar
+  RedirectMatch 301 ^/berita/vortex-2026-lomba-futsal-mobile-legend-poster-smpit-alqomar-2\.html$ /berita/vortex-2026-lomba-futsal-mobile-legend-poster-smpit-alqomar
+</IfModule>

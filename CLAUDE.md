@@ -161,10 +161,20 @@ ditulis di sini.**
 ### `berita/.htaccess` — AKTIF
 Rewrite agar `/berita/<slug>` dirender oleh `berita/index.html`.
 
-### `_headers` & `_redirects` — TIDAK AKTIF
-Format khusus Netlify, warisan hosting lama. Diabaikan sepenuhnya oleh
-Hostinger. Jangan andalkan file ini; kalau butuh redirect atau header, edit
-`.htaccess`.
+### `_headers` & `_redirects` — AKTIF DI NETLIFY, diabaikan Hostinger
+Repositori ini **masih tersambung ke Netlify** (project `alqomarschid`);
+setiap pull request memicu deploy preview. Jadi kedua berkas ini bukan warisan
+mati — mereka berlaku pada apa pun yang dilayani Netlify, dan **diabaikan**
+oleh Hostinger.
+
+Konsekuensinya: setiap aturan redirect atau header baru harus ditulis
+**di dua tempat** — `.htaccess` untuk Hostinger dan `_headers`/`_redirects`
+untuk Netlify — supaya perilaku situs sama di kedua jalur.
+
+Perhatikan `_redirects` memaksa `/berita.html` menjadi `/berita` (`301!`).
+URL arsip berita yang berlaku di kedua host adalah **`/berita`**.
+Jangan membuat pengalihan apa pun menuju `/berita.html` atau `/berita`
+dari dalam `berita/index.html` — itu menciptakan loop tak berujung.
 
 ### `robots.txt` & `sitemap.xml`
 Digunakan untuk SEO. Perbarui `sitemap.xml` saat menambah halaman baru.
