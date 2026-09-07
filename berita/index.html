@@ -430,7 +430,7 @@
     <div class="hero-inner">
       <div class="badge">📰 Berita Sekolah</div>
       <h1 id="judul-berita">–</h1>
-      <div class="meta">
+      <div class="meta" id="meta-berita">
         <div class="meta-item">
           <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <rect x="3" y="4" width="18" height="18" rx="2"/>
@@ -453,7 +453,7 @@
   <div class="foto-container" id="foto-container"></div>
 
   <!-- ARTIKEL -->
-  <div class="artikel-wrap">
+  <div class="artikel-wrap" id="artikel-wrap">
     <div class="ringkasan-box" id="ringkasan-box" style="display:none;">
       <p id="ringkasan-berita"></p>
     </div>
@@ -482,7 +482,7 @@
 
   <!-- BERITA LAINNYA -->
   <div class="berita-lain">
-    <div class="section-title">📌 Berita Lainnya</div>
+    <div class="section-title" id="judul-seksi">📌 Berita Lainnya</div>
     <div class="berita-grid" id="berita-lain-grid"></div>
   </div>
 </div>
@@ -600,14 +600,43 @@
     });
   }
 
+  // ── MODE ARSIP ──
+  // Tanpa slug, halaman ini menampilkan daftar berita langsung.
+  // Sengaja tidak memakai redirect: sebagian host memetakan
+  // /berita.html -> /berita -> berkas ini, sehingga redirect apa pun
+  // ke salah satu URL itu berpotensi jadi loop tak berujung.
+  async function tampilkanArsip() {
+    document.title = 'Berita & Kegiatan — Al-Qomar Muthmainnah';
+    document.getElementById('judul-berita').textContent = 'Berita & Kegiatan';
+    document.getElementById('meta-berita').style.display = 'none';
+    document.getElementById('foto-container').style.display = 'none';
+    document.getElementById('artikel-wrap').style.display = 'none';
+    document.getElementById('judul-seksi').textContent = '📌 Semua Berita';
+
+    try {
+      const { data, error } = await db
+        .from('berita')
+        .select('judul, slug, foto_url, tanggal')
+        .eq('aktif', true)
+        .order('tanggal', { ascending: false })
+        .limit(60);
+      if (error) throw error;
+      renderBeritaLain(data || []);
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('content').style.display = 'block';
+    } catch (err) {
+      console.error(err);
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('error').style.display = 'block';
+    }
+  }
+
   // ── MAIN LOAD ──
   async function loadBerita() {
     const slug = getSlug();
 
     if (!slug || slug === 'berita') {
-      // Tidak ada slug — redirect ke halaman daftar berita
-      window.location.href = '/';
-      return;
+      return tampilkanArsip();
     }
 
     try {

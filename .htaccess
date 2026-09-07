@@ -5,11 +5,14 @@ DirectoryIndex index.html
   RewriteEngine On
 
   RewriteRule ^index\.html$ / [R=301,L]
-  RewriteRule ^(ppdb|spmb-online|rqaq|guru|kb-tkit|sdit|smpit|tahfidz|event)\.html$ /$1 [R=301,L]
+  RewriteRule ^(ppdb|spmb-online|rqaq|guru|kb-tkit|sdit|smpit|tahfidz|event|privacy|syarat|sekolah-islam-jakarta-barat)\.html$ /$1 [R=301,L]
 
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^(ppdb|spmb-online|rqaq|guru|kb-tkit|sdit|smpit|tahfidz|event)/?$ $1.html [L]
+  RewriteRule ^(ppdb|spmb-online|rqaq|guru|kb-tkit|sdit|smpit|tahfidz|event|privacy|syarat|sekolah-islam-jakarta-barat)/?$ $1.html [L]
+
+  # Sitemap berita dinamis dilayani sebagai .xml (robots.txt menunjuk ke sini)
+  RewriteRule ^sitemap-berita\.xml$ /sitemap-berita.php [L]
 </IfModule>
 
 # ============================================================
@@ -62,10 +65,19 @@ DirectoryIndex index.html
   <FilesMatch "\.(html|php)$">
     Header set Cache-Control "public, max-age=600, must-revalidate"
   </FilesMatch>
-  # Keamanan ringan
+  # ---------- KEAMANAN ----------
   Header always set X-Content-Type-Options "nosniff"
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), interest-cohort=()"
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+  # CSP aktif — hanya aturan yang tidak mungkin merusak tampilan
+  Header always set Content-Security-Policy "frame-ancestors 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
+
+  # CSP penuh masih mode LAPORAN. Pantau pelanggaran di console browser
+  # beberapa minggu, lalu pindahkan nilai ini ke header di atas bila bersih.
+  Header always set Content-Security-Policy-Report-Only "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.googletagmanager.com https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://gzcgyqntluhxxrvbcwin.supabase.co https://i.ytimg.com https://www.googletagmanager.com https://*.google-analytics.com; connect-src 'self' https://gzcgyqntluhxxrvbcwin.supabase.co https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com https://www.google.com https://maps.google.com; upgrade-insecure-requests"
 </IfModule>
 
 # ---------- 4. KEEP-ALIVE ----------
@@ -81,7 +93,7 @@ DirectoryIndex index.html
   RedirectMatch 301 ^/index-live.*\.html$             /
   RedirectMatch 301 ^/index-backup-.*\.html$          /
   RedirectMatch 301 ^/images/index-live\.html$        /
-  RedirectMatch 301 ^/berita-detail-backup-.*\.html$  /berita
+  RedirectMatch 301 ^/berita-detail-backup-.*\.html$  /berita.html
   RedirectMatch 301 ^/berita-backup-.*\.html$         /berita
 </IfModule>
 
@@ -96,4 +108,19 @@ DirectoryIndex index.html
   RewriteRule ^\.env                     - [F,L]
   RewriteRule ^_(headers|redirects)$     - [F,L]
   RewriteRule ^.+\.md$                   - [F,L]
+</IfModule>
+
+# ---------- 7. ARTIKEL BERITA STATIS LAMA ----------
+# Isi 9 artikel ini sudah ada di database dan tayang di /berita/<slug>.
+# Berkas .html lama dialihkan agar tidak jadi konten duplikat di Google.
+<IfModule mod_alias.c>
+  RedirectMatch 301 ^/berita/al-qomar-muthmainnah-berbagi-takjil-satu-bulan-penuh-untuk-masyarakat\.html$ /berita/al-qomar-muthmainnah-berbagi-takjil-satu-bulan-penuh-untuk-masyarakat
+  RedirectMatch 301 ^/berita/puasa-bukan-halangan-semangat-belajar-siswa-al-qomar-justru-makin-membara-di-bul\.html$ /berita/puasa-bukan-halangan-semangat-belajar-siswa-al-qomar-justru-makin-membara-di-bul
+  RedirectMatch 301 ^/berita/tarawih-berjamaah-dan-tadarus-al-quran-semangat-ramadhan-siswa-al-qomar-tak-pern\.html$ /berita/tarawih-berjamaah-dan-tadarus-al-quran-semangat-ramadhan-siswa-al-qomar-tak-pern
+  RedirectMatch 301 ^/berita/rapat-evaluasi-sumatif-tengah-semester-genap-bersama-dewan-guru-dan-yayasan\.html$ /berita/rapat-evaluasi-sumatif-tengah-semester-genap-bersama-dewan-guru-dan-yayasan
+  RedirectMatch 301 ^/berita/pelaksanaan-tes-potensi-akademik-tpa-kelas-9-smpit-al-qomar\.html$ /berita/pelaksanaan-tes-potensi-akademik-tpa-kelas-9-smpit-alqomar
+  RedirectMatch 301 ^/berita/shalat-idul-fitri-1447-h-al-qomar-muthmainnah-merajut-kebersamaan-di-lapangan-se\.html$ /berita/shalat-idul-fitri-1447-h-alqomar-muthmainnah-merajut-kebersamaan-di-lapangan-sekolah
+  RedirectMatch 301 ^/berita/tpa-try-out-ke-2-berlangsung-lancar-di-al-qomar-muthmainnah\.html$ /berita/tpa-try-out-ke2-berlangsung-lancar-di-al-qomar-muthmainnah
+  RedirectMatch 301 ^/berita/selamat-berlibur-siswa-siswi-sholeh-sholehah-al-qomar\.html$ /berita/selamat-berlibur-siswasiswi-sholeh-sholehah-al-qomar
+  RedirectMatch 301 ^/berita/vortex-2026-lomba-futsal-mobile-legend-poster-smpit-alqomar-2\.html$ /berita/vortex-2026-lomba-futsal-mobile-legend-poster-smpit-alqomar
 </IfModule>
