@@ -4,12 +4,19 @@ DirectoryIndex index.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
+  # Paksa non-www -> www agar tidak ada duplikasi domain (canonical selalu www)
+  RewriteCond %{HTTP_HOST} ^alqomar\.sch\.id$ [NC]
+  RewriteRule ^(.*)$ https://www.alqomar.sch.id/$1 [R=301,L]
+
+  # Sitemap berita dinamis: URL .xml yang didaftarkan di robots.txt -> generator PHP
+  RewriteRule ^sitemap-berita\.xml$ /sitemap-berita.php [L]
+
   RewriteRule ^index\.html$ / [R=301,L]
-  RewriteRule ^(ppdb|spmb-online|rqaq|guru|kb-tkit|sdit|smpit|tahfidz|event)\.html$ /$1 [R=301,L]
+  RewriteRule ^(ppdb|spmb-online|rqaq|guru|kb-tkit|sdit|smpit|tahfidz|event|sekolah-islam-jakarta-barat|syarat|privacy|login-divisi)\.html$ /$1 [R=301,L]
 
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^(ppdb|spmb-online|rqaq|guru|kb-tkit|sdit|smpit|tahfidz|event)/?$ $1.html [L]
+  RewriteRule ^(ppdb|spmb-online|rqaq|guru|kb-tkit|sdit|smpit|tahfidz|event|sekolah-islam-jakarta-barat|syarat|privacy|login-divisi)/?$ $1.html [L]
 </IfModule>
 
 # ============================================================
