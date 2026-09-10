@@ -152,7 +152,7 @@ body{background:var(--cream);overflow-x:hidden}
             <a href="#profil" class="block rounded-xl px-4 py-2.5 hover:bg-emerald-700/5 hover:text-gold-600 transition-colors">Profil &amp; Sejarah</a>
             <a href="#profil" class="block rounded-xl px-4 py-2.5 hover:bg-emerald-700/5 hover:text-gold-600 transition-colors">Visi &amp; Misi</a>
             <a href="#legalitas" class="block rounded-xl px-4 py-2.5 hover:bg-emerald-700/5 hover:text-gold-600 transition-colors">Legalitas</a>
-            <a href="berita.html" class="block rounded-xl px-4 py-2.5 hover:bg-emerald-700/5 hover:text-gold-600 transition-colors">Santunan &amp; Kegiatan Sosial</a>
+            <a href="#santunan" class="block rounded-xl px-4 py-2.5 hover:bg-emerald-700/5 hover:text-gold-600 transition-colors">Santunan</a>
           </div>
         </div>
       </li>
@@ -168,7 +168,7 @@ body{background:var(--cream);overflow-x:hidden}
             <a href="#tahfidz" class="block rounded-xl px-4 py-2.5 font-700 text-emerald-800 hover:bg-emerald-700/5 hover:text-gold-600 transition-colors">Tahfidz Al-Qur'an</a>
             <a href="/rqaq" class="block rounded-xl px-4 py-2.5 font-700 text-gold-600 hover:bg-emerald-700/5 transition-colors">Rumah Quran (RQAQ)</a>
             <a href="#tahfidz" class="block rounded-xl px-4 py-2.5 hover:bg-emerald-700/5 hover:text-gold-600 transition-colors">Munaqosyah</a>
-            <a href="event.html" class="block rounded-xl px-4 py-2.5 hover:bg-emerald-700/5 hover:text-gold-600 transition-colors">Kalender Kegiatan</a>
+            <a href="#jadwal" class="block rounded-xl px-4 py-2.5 hover:bg-emerald-700/5 hover:text-gold-600 transition-colors">Kalender Kegiatan</a>
           </div>
         </div>
       </li>
@@ -264,7 +264,6 @@ body{background:var(--cream);overflow-x:hidden}
   <div class="marquee text-cream/90" id="kw-marquee"></div>
 </div>
 
-
 <!-- STATS -->
 <section class="py-20 px-5">
   <div class="mx-auto max-w-7xl grid grid-cols-2 lg:grid-cols-4 gap-5">
@@ -289,13 +288,12 @@ body{background:var(--cream);overflow-x:hidden}
       <div class="absolute -bottom-5 -left-3 h-20 w-20 bg-emerald-500/20 eight-star spin-slow" aria-hidden="true"></div>
     </div>
     <div>
-      <p class="reveal text-sm font-800 tracking-[.2em] text-gold-600 uppercase mb-4">Profil Sekolah</p>
-      <h2 class="reveal d1 font-display font-700 text-4xl sm:text-5xl text-emerald-950 leading-tight">Berakar pada <span class="text-emerald-700">Ilmu, Adab &amp; Amal</span></h2>
-      <p class="reveal d2 mt-6 text-lg text-emerald-900/70 leading-relaxed">Sejak 1991, di bawah <strong class="text-emerald-800">Yayasan Pendidikan Islam Purnama Cendekia</strong> — Al-Qomar Muthmainnah memadukan Kurikulum Merdeka dengan kurikulum diniyah Islam, membentuk anak yang berilmu, berakhlak, dan gemar beramal.</p>
-      <div class="reveal d3 mt-8 grid sm:grid-cols-3 gap-4">
-        <div class="rounded-2xl bg-cream-100 p-5 border border-emerald-900/10"><p class="font-700 text-emerald-900 flex items-center gap-2"><svg viewBox="0 0 24 24" class="h-5 w-5 text-gold-600" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h7a2 2 0 012 2v14a2 2 0 00-2-2H4z"/><path d="M20 4h-7a2 2 0 00-2 2v14a2 2 0 012-2h7z"/></svg> Ilmu</p><p class="mt-2 text-sm text-emerald-900/65 leading-relaxed">Kurikulum Merdeka & tahfidz terintegrasi, dibina Guru Penggerak.</p></div>
-        <div class="rounded-2xl bg-cream-100 p-5 border border-emerald-900/10"><p class="font-700 text-emerald-900 flex items-center gap-2"><svg viewBox="0 0 24 24" class="h-5 w-5 text-gold-600" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9.5-9A5 5 0 0112 5a5 5 0 019.5 7c-2.5 4.5-9.5 9-9.5 9z"/></svg> Adab</p><p class="mt-2 text-sm text-emerald-900/65 leading-relaxed">Pembiasaan ibadah & akhlak harian sebagai fondasi karakter.</p></div>
-        <div class="rounded-2xl bg-cream-100 p-5 border border-emerald-900/10"><p class="font-700 text-emerald-900 flex items-center gap-2"><svg viewBox="0 0 24 24" class="h-5 w-5 text-gold-600" fill="currentColor"><path d="M12 2l2.4 5.9L20.5 9l-4.6 4.1L17.2 20 12 16.8 6.8 20l1.3-6.9L3.5 9l6.1-1.1z"/></svg> Amal</p><p class="mt-2 text-sm text-emerald-900/65 leading-relaxed">Kepedulian sosial & kepemimpinan lewat kegiatan nyata siswa.</p></div>
+      <p class="reveal text-sm font-800 tracking-[.2em] text-gold-600 uppercase mb-4">Profil &amp; Sejarah</p>
+      <h2 class="reveal d1 font-display font-700 text-4xl sm:text-5xl text-emerald-950 leading-tight">Sekolah Islam Terpadu Berakar <span class="text-emerald-700">Sejak 1991</span></h2>
+      <p class="reveal d2 mt-6 text-lg text-emerald-900/70 leading-relaxed">Al-Qomar Muthmainnah berada di bawah naungan <strong class="text-emerald-800">Yayasan Pendidikan Islam Purnama Cendekia</strong>, di Kalideres, Jakarta Barat. Memadukan Kurikulum Merdeka dan kurikulum diniyah Islam dengan program Tahfidz Al-Qur'an terintegrasi.</p>
+      <div class="reveal d3 mt-8 grid sm:grid-cols-2 gap-5">
+        <div class="rounded-2xl bg-cream-100 p-5 border border-emerald-900/10"><p class="font-700 text-emerald-900 flex items-center gap-2"><svg viewBox="0 0 24 24" class="h-5 w-5 text-gold-600" fill="currentColor"><path d="M12 2l2.4 5.9L20.5 9l-4.6 4.1L17.2 20 12 16.8 6.8 20l1.3-6.9L3.5 9l6.1-1.1z"/></svg> Visi</p><p class="mt-2 text-sm text-emerald-900/65 leading-relaxed">Melahirkan generasi Qur'ani yang berkarakter, cerdas, dan berprestasi.</p></div>
+        <div class="rounded-2xl bg-cream-100 p-5 border border-emerald-900/10"><p class="font-700 text-emerald-900 flex items-center gap-2"><svg viewBox="0 0 24 24" class="h-5 w-5 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg> Misi</p><p class="mt-2 text-sm text-emerald-900/65 leading-relaxed">Membina akhlak Qur'ani, mengembangkan potensi akademik, dan menumbuhkan kemandirian.</p></div>
       </div>
     </div>
   </div>
@@ -318,20 +316,6 @@ body{background:var(--cream);overflow-x:hidden}
   </div>
 </section>
 
-<!-- JENJANG -->
-<section id="jenjang" class="py-24 px-5 bg-emerald-950 relative overflow-hidden">
-  <div class="absolute inset-0 opacity-[.07]" aria-hidden="true" style="background-image:url(&quot;data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23fcd34d' stroke-width='1'%3E%3Cpath d='M40 0l40 40-40 40L0 40z'/%3E%3Cpath d='M40 12l28 28-28 28-28-28z'/%3E%3Ccircle cx='40' cy='40' r='9'/%3E%3C/g%3E%3C/svg%3E&quot;)"></div>
-  <div class="relative mx-auto max-w-7xl">
-    <div class="text-center max-w-2xl mx-auto mb-14"><p class="reveal text-sm font-800 tracking-[.2em] text-gold-400 uppercase mb-4">Jenjang &amp; Program</p><h2 class="reveal d1 font-display font-700 text-4xl sm:text-5xl text-cream">Empat Jenjang dalam Satu Atap</h2><p class="reveal d2 mt-5 text-cream/70 text-lg">Pendidikan berkesinambungan dari usia dini hingga sekolah menengah pertama.</p></div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-      <article class="reveal card cursor-pointer rounded-3xl bg-gradient-to-b from-emerald-800 to-emerald-900 p-7 border border-gold-300/15"><span class="grid h-14 w-14 place-items-center rounded-2xl bg-gold-500/15 text-gold-300 mb-5"><svg viewBox="0 0 24 24" class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3"/><path d="M5 21a7 7 0 0114 0"/></svg></span><h3 class="font-display font-700 text-2xl text-cream">Kelompok Bermain</h3><p class="text-gold-300 text-sm font-600 mt-1">KB Muthmainnah · usia 2–4 th</p><p class="mt-3 text-cream/70 text-sm leading-relaxed">Stimulasi tumbuh kembang & pengenalan nilai Islam lewat bermain.</p></article>
-      <article class="reveal d1 card cursor-pointer rounded-3xl bg-gradient-to-b from-emerald-800 to-emerald-900 p-7 border border-gold-300/15"><span class="grid h-14 w-14 place-items-center rounded-2xl bg-gold-500/15 text-gold-300 mb-5"><svg viewBox="0 0 24 24" class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l9 4-9 4-9-4z"/><path d="M21 10v6M3 8v6c0 2 4 4 9 4s9-2 9-4"/></svg></span><h3 class="font-display font-700 text-2xl text-cream">TKIT Muthmainnah</h3><p class="text-gold-300 text-sm font-600 mt-1">Taman Kanak-Kanak · usia 4–6 th</p><p class="mt-3 text-cream/70 text-sm leading-relaxed">Calistung dasar, adab harian & pembiasaan ibadah yang menyenangkan.</p></article>
-      <article class="reveal d2 card cursor-pointer rounded-3xl bg-gradient-to-b from-emerald-800 to-emerald-900 p-7 border border-gold-300/15"><span class="grid h-14 w-14 place-items-center rounded-2xl bg-gold-500/15 text-gold-300 mb-5"><svg viewBox="0 0 24 24" class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h7a2 2 0 012 2v14a2 2 0 00-2-2H4z"/><path d="M20 4h-7a2 2 0 00-2 2v14a2 2 0 012-2h7z"/></svg></span><h3 class="font-display font-700 text-2xl text-cream">SDIT Al-Qomar</h3><p class="text-gold-300 text-sm font-600 mt-1">Kelas 1–6 · Sekolah Penggerak</p><p class="mt-3 text-cream/70 text-sm leading-relaxed">Kurikulum Merdeka, Tahfidz terintegrasi & pembinaan karakter Qur'ani.</p></article>
-      <article class="reveal d3 card cursor-pointer rounded-3xl bg-gradient-to-b from-gold-500 to-gold-600 p-7 text-emerald-950"><span class="grid h-14 w-14 place-items-center rounded-2xl bg-emerald-950/10 text-emerald-900 mb-5"><svg viewBox="0 0 24 24" class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 14l9-5-9-5-9 5z"/><path d="M12 14v7M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg></span><h3 class="font-display font-700 text-2xl">SMPIT Al-Qomar</h3><p class="text-emerald-900 text-sm font-700 mt-1">Kelas 7–9 · Akreditasi A</p><p class="mt-3 text-emerald-950/70 text-sm leading-relaxed">Penguatan akademik, kepemimpinan & akhlak menuju jenjang lanjutan.</p></article>
-    </div>
-  </div>
-</section>
-
 <!-- MENGAPA MEMILIH -->
 <section id="keunggulan" class="py-24 px-5">
   <div class="mx-auto max-w-7xl">
@@ -347,43 +331,16 @@ body{background:var(--cream);overflow-x:hidden}
   </div>
 </section>
 
-<!-- TAHFIDZ - PROGRAM INTERNAL -->
-<section id="tahfidz" class="py-24 px-5">
-  <div class="mx-auto max-w-7xl grid lg:grid-cols-2 gap-12 items-center">
-    <div class="reveal">
-      <p class="text-sm font-800 tracking-[.2em] text-gold-600 uppercase mb-4">Program Internal Sekolah</p>
-      <h2 class="font-display font-700 text-4xl sm:text-5xl text-emerald-950 leading-tight">Tahfidz Al-Qur'an, <span class="text-emerald-700">Menyatu dalam KBM</span></h2>
-      <p class="mt-6 text-lg text-emerald-900/70 leading-relaxed">Tahfidz bukan kegiatan tambahan, melainkan bagian tetap kurikulum harian seluruh siswa Al-Qomar — dari KB hingga SMPIT — dengan Metode Ummi dan capaian yang diuji berkala lewat Munaqosyah.</p>
-      <div class="mt-8 rounded-3xl bg-cream-100 border border-emerald-900/10 p-6 shadow-xl shadow-emerald-900/5 flex items-center gap-5"><span class="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 text-emerald-950"><svg viewBox="0 0 24 24" class="h-8 w-8" fill="currentColor"><path d="M12 2l2.4 5.9L20.5 9l-4.6 4.1L17.2 20 12 16.8 6.8 20l1.3-6.9L3.5 9l6.1-1.1z"/></svg></span><div><p class="text-2xl font-800 text-emerald-800">48 Siswa Raih Syahadah</p><p class="text-sm text-emerald-900/60">Munaqosyah Tahfidz · April 2026</p></div></div>
-    </div>
-    <div class="reveal d1 grid grid-cols-2 gap-4">
-      <div class="rounded-3xl bg-gradient-to-br from-emerald-700 to-emerald-900 p-6 text-cream"><p class="text-4xl font-800 text-gold-300">1</p><p class="font-700 mt-1">Juz · TKIT</p><p class="text-sm text-cream/65 mt-1">Juz 30 (Juz Amma)</p></div>
-      <div class="rounded-3xl bg-cream border border-emerald-900/10 p-6 shadow-lg shadow-emerald-900/5"><p class="text-4xl font-800 text-emerald-800">2</p><p class="font-700 text-emerald-900 mt-1">Juz · SDIT</p><p class="text-sm text-emerald-900/60 mt-1">Program ODOA 6 tahun</p></div>
-      <div class="rounded-3xl bg-cream border border-emerald-900/10 p-6 shadow-lg shadow-emerald-900/5 col-span-2"><p class="font-700 text-emerald-900">SMPIT — Penguatan Tajwid</p><p class="text-sm text-emerald-900/60 mt-1">Melanjutkan hafalan dari SDIT dengan target tambahan & penguatan tajwid.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- RQAQ - RUMAH QURAN (PROGRAM TERPISAH, TERBUKA UNTUK UMUM) -->
-<section id="rqaq" class="py-24 px-5 bg-cream-100">
-  <div class="mx-auto max-w-7xl grid lg:grid-cols-2 gap-12 items-center">
-    <div class="reveal">
-      <p class="text-sm font-800 tracking-[.2em] text-gold-600 uppercase mb-4">Rumah Quran Al-Qomar</p>
-      <div class="inline-flex items-center gap-2 rounded-full bg-emerald-700/10 border border-emerald-700/20 px-4 py-1.5 text-xs font-700 text-emerald-800 mb-4"><span class="h-1.5 w-1.5 rounded-full bg-gold-500"></span> Program terpisah · terbuka untuk umum</div>
-      <h2 class="font-display font-700 text-4xl sm:text-5xl text-emerald-950 leading-tight">RQAQ — <span class="text-emerald-700">Lembaga Tahfidz &amp; Tilawah</span></h2>
-      <p class="mt-6 text-lg text-emerald-900/70 leading-relaxed">RQAQ adalah lembaga tahfidz dan tilawah Al-Qur'an yang berdiri sejak 1991, berdiri sendiri di luar kegiatan belajar sekolah. Santrinya <strong class="text-emerald-800">tidak harus siswa Al-Qomar</strong> — terbuka untuk umum dari jenjang <strong class="text-emerald-800">TK hingga SMA</strong>.</p>
-      <p class="mt-4 text-emerald-900/65 leading-relaxed">Menggunakan <strong class="text-emerald-800">Metode Ummi</strong> (guru bersertifikasi resmi), sehingga setiap santri — baik dari Al-Qomar maupun dari luar — belajar dengan cara yang terstandar, menyenangkan, dan terbukti efektif.</p>
-      <div class="mt-6 flex flex-wrap gap-2.5">
-        <span class="rounded-full bg-emerald-700/10 text-emerald-800 text-sm font-600 px-4 py-2">Terbuka Untuk Umum</span>
-        <span class="rounded-full bg-emerald-700/10 text-emerald-800 text-sm font-600 px-4 py-2">Metode Ummi</span>
-        <span class="rounded-full bg-emerald-700/10 text-emerald-800 text-sm font-600 px-4 py-2">TK – SMA</span>
-        <span class="rounded-full bg-emerald-700/10 text-emerald-800 text-sm font-600 px-4 py-2">Sejak 1991</span>
-      </div>
-      <a href="/rqaq" class="mt-8 inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-700 to-emerald-900 px-7 py-4 font-700 text-cream shadow-xl shadow-emerald-900/30 cursor-pointer transition-transform hover:scale-[1.04]">Selengkapnya tentang RQAQ<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-    </div>
-    <div class="reveal d1 relative">
-      <div class="arch overflow-hidden aspect-[4/5] bg-gradient-to-b from-emerald-700 to-emerald-950 border-4 border-gold-300/50 shadow-2xl shadow-emerald-900/30 grid place-items-center"><p class="font-arabic text-6xl text-gold-200 text-center leading-relaxed px-6">وَقُلْ<br>رَّبِّ زِدْنِيْ<br>عِلْمًا</p></div>
-      <div class="absolute -top-4 -right-4 h-16 w-16 bg-gold-400/40 eight-star spin-slow" aria-hidden="true"></div>
+<!-- JENJANG -->
+<section id="jenjang" class="py-24 px-5 bg-emerald-950 relative overflow-hidden">
+  <div class="absolute inset-0 opacity-[.07]" aria-hidden="true" style="background-image:url(&quot;data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23fcd34d' stroke-width='1'%3E%3Cpath d='M40 0l40 40-40 40L0 40z'/%3E%3Cpath d='M40 12l28 28-28 28-28-28z'/%3E%3Ccircle cx='40' cy='40' r='9'/%3E%3C/g%3E%3C/svg%3E&quot;)"></div>
+  <div class="relative mx-auto max-w-7xl">
+    <div class="text-center max-w-2xl mx-auto mb-14"><p class="reveal text-sm font-800 tracking-[.2em] text-gold-400 uppercase mb-4">Jenjang &amp; Program</p><h2 class="reveal d1 font-display font-700 text-4xl sm:text-5xl text-cream">Empat Jenjang dalam Satu Atap</h2><p class="reveal d2 mt-5 text-cream/70 text-lg">Pendidikan berkesinambungan dari usia dini hingga sekolah menengah pertama.</p></div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <article class="reveal card cursor-pointer rounded-3xl bg-gradient-to-b from-emerald-800 to-emerald-900 p-7 border border-gold-300/15"><span class="grid h-14 w-14 place-items-center rounded-2xl bg-gold-500/15 text-gold-300 mb-5"><svg viewBox="0 0 24 24" class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3"/><path d="M5 21a7 7 0 0114 0"/></svg></span><h3 class="font-display font-700 text-2xl text-cream">Kelompok Bermain</h3><p class="text-gold-300 text-sm font-600 mt-1">KB Muthmainnah · usia 2–4 th</p><p class="mt-3 text-cream/70 text-sm leading-relaxed">Stimulasi tumbuh kembang & pengenalan nilai Islam lewat bermain.</p></article>
+      <article class="reveal d1 card cursor-pointer rounded-3xl bg-gradient-to-b from-emerald-800 to-emerald-900 p-7 border border-gold-300/15"><span class="grid h-14 w-14 place-items-center rounded-2xl bg-gold-500/15 text-gold-300 mb-5"><svg viewBox="0 0 24 24" class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l9 4-9 4-9-4z"/><path d="M21 10v6M3 8v6c0 2 4 4 9 4s9-2 9-4"/></svg></span><h3 class="font-display font-700 text-2xl text-cream">TKIT Muthmainnah</h3><p class="text-gold-300 text-sm font-600 mt-1">Taman Kanak-Kanak · usia 4–6 th</p><p class="mt-3 text-cream/70 text-sm leading-relaxed">Calistung dasar, adab harian & pembiasaan ibadah yang menyenangkan.</p></article>
+      <article class="reveal d2 card cursor-pointer rounded-3xl bg-gradient-to-b from-emerald-800 to-emerald-900 p-7 border border-gold-300/15"><span class="grid h-14 w-14 place-items-center rounded-2xl bg-gold-500/15 text-gold-300 mb-5"><svg viewBox="0 0 24 24" class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h7a2 2 0 012 2v14a2 2 0 00-2-2H4z"/><path d="M20 4h-7a2 2 0 00-2 2v14a2 2 0 012-2h7z"/></svg></span><h3 class="font-display font-700 text-2xl text-cream">SDIT Al-Qomar</h3><p class="text-gold-300 text-sm font-600 mt-1">Kelas 1–6 · Sekolah Penggerak</p><p class="mt-3 text-cream/70 text-sm leading-relaxed">Kurikulum Merdeka, Tahfidz terintegrasi & pembinaan karakter Qur'ani.</p></article>
+      <article class="reveal d3 card cursor-pointer rounded-3xl bg-gradient-to-b from-gold-500 to-gold-600 p-7 text-emerald-950"><span class="grid h-14 w-14 place-items-center rounded-2xl bg-emerald-950/10 text-emerald-900 mb-5"><svg viewBox="0 0 24 24" class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 14l9-5-9-5-9 5z"/><path d="M12 14v7M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg></span><h3 class="font-display font-700 text-2xl">SMPIT Al-Qomar</h3><p class="text-emerald-900 text-sm font-700 mt-1">Kelas 7–9 · Akreditasi A</p><p class="mt-3 text-emerald-950/70 text-sm leading-relaxed">Penguatan akademik, kepemimpinan & akhlak menuju jenjang lanjutan.</p></article>
     </div>
   </div>
 </section>
@@ -415,11 +372,34 @@ body{background:var(--cream);overflow-x:hidden}
   </div>
 </section>
 
-<!-- PRESTASI / BUKTI PERTUMBUHAN -->
+<!-- RQAQ - RUMAH QURAN -->
+<section id="rqaq" class="py-24 px-5 bg-cream-100">
+  <div class="mx-auto max-w-7xl grid lg:grid-cols-2 gap-12 items-center">
+    <div class="reveal">
+      <p class="text-sm font-800 tracking-[.2em] text-gold-600 uppercase mb-4">Rumah Quran Al-Qomar</p>
+      <h2 class="font-display font-700 text-4xl sm:text-5xl text-emerald-950 leading-tight">RQAQ — <span class="text-emerald-700">Lembaga Tahfidz &amp; Tilawah</span></h2>
+      <p class="mt-6 text-lg text-emerald-900/70 leading-relaxed">RQAQ adalah lembaga tahfidz dan tilawah Al-Qur'an yang berdiri sejak 1991, membimbing santri dari jenjang <strong class="text-emerald-800">TK hingga SMA</strong> dengan metode pembelajaran yang terarah.</p>
+      <p class="mt-4 text-emerald-900/65 leading-relaxed">Menggunakan <strong class="text-emerald-800">Metode Ummi</strong> (guru bersertifikasi resmi), sehingga setiap santri belajar dengan cara yang terstandar, menyenangkan, dan terbukti efektif.</p>
+      <div class="mt-6 flex flex-wrap gap-2.5">
+        <span class="rounded-full bg-emerald-700/10 text-emerald-800 text-sm font-600 px-4 py-2">Metode Ummi</span>
+        <span class="rounded-full bg-emerald-700/10 text-emerald-800 text-sm font-600 px-4 py-2">TK – SMA</span>
+        <span class="rounded-full bg-emerald-700/10 text-emerald-800 text-sm font-600 px-4 py-2">Guru Bersertifikasi</span>
+        <span class="rounded-full bg-emerald-700/10 text-emerald-800 text-sm font-600 px-4 py-2">Sejak 1991</span>
+      </div>
+      <a href="/rqaq" class="mt-8 inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-700 to-emerald-900 px-7 py-4 font-700 text-cream shadow-xl shadow-emerald-900/30 cursor-pointer transition-transform hover:scale-[1.04]">Selengkapnya tentang RQAQ<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+    <div class="reveal d1 relative">
+      <div class="arch overflow-hidden aspect-[4/5] bg-gradient-to-b from-emerald-700 to-emerald-950 border-4 border-gold-300/50 shadow-2xl shadow-emerald-900/30 grid place-items-center"><p class="font-arabic text-6xl text-gold-200 text-center leading-relaxed px-6">وَقُلْ<br>رَّبِّ زِدْنِيْ<br>عِلْمًا</p></div>
+      <div class="absolute -top-4 -right-4 h-16 w-16 bg-gold-400/40 eight-star spin-slow" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRESTASI -->
 <section id="prestasi" class="py-24 px-5">
   <div class="mx-auto max-w-7xl">
     <div class="flex flex-wrap items-end justify-between gap-4 mb-12">
-      <div><p class="reveal text-sm font-800 tracking-[.2em] text-gold-600 uppercase mb-4">Bukti Pertumbuhan</p><h2 class="reveal d1 font-display font-700 text-4xl sm:text-5xl text-emerald-950">Akademik, Karakter & Prestasi</h2></div>
+      <div><p class="reveal text-sm font-800 tracking-[.2em] text-gold-600 uppercase mb-4">Prestasi &amp; Penghargaan</p><h2 class="reveal d1 font-display font-700 text-4xl sm:text-5xl text-emerald-950">Bakat Berkembang, Prestasi Mengalir</h2></div>
       <div class="reveal d2 flex flex-wrap gap-2"><span class="rounded-full bg-emerald-700 text-cream text-xs font-700 px-4 py-2">Sekolah Penggerak</span><span class="rounded-full bg-gold-500 text-emerald-950 text-xs font-700 px-4 py-2">Akreditasi A (Unggul)</span><span class="rounded-full bg-emerald-700 text-cream text-xs font-700 px-4 py-2">Guru Penggerak</span></div>
     </div>
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -432,20 +412,30 @@ body{background:var(--cream);overflow-x:hidden}
   </div>
 </section>
 
-<!-- AKTIVITAS SEKOLAH: dokumentasi kegiatan, galeri & video (Supabase) -->
+<!-- FOTO KEGIATAN (Supabase: program_pendidikan kategori=aktivitas) -->
 <section id="kegiatan" class="py-24 px-5 bg-cream-100">
   <div class="mx-auto max-w-7xl">
     <div class="text-center max-w-2xl mx-auto mb-12"><p class="reveal text-sm font-800 tracking-[.2em] text-gold-600 uppercase mb-4">Aktivitas Sekolah</p><h2 class="reveal d1 font-display font-700 text-4xl sm:text-5xl text-emerald-950">Belajar Lebih Bermakna</h2></div>
     <div id="kegiatan-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
       <div class="skel rounded-3xl h-72"></div><div class="skel rounded-3xl h-72"></div><div class="skel rounded-3xl h-72"></div>
     </div>
+  </div>
+</section>
 
-    <div id="galeri" class="text-center max-w-2xl mx-auto mt-16 mb-10"><p class="reveal text-sm font-800 tracking-[.2em] text-gold-600 uppercase mb-4">Galeri &amp; Ekstrakurikuler</p><h2 class="reveal d1 font-display font-700 text-4xl sm:text-5xl text-emerald-950">Momen di Al-Qomar</h2></div>
+<!-- GALERI & EKSKUL (Supabase: kegiatan) -->
+<section id="galeri" class="py-24 px-5 bg-emerald-950">
+  <div class="mx-auto max-w-7xl">
+    <div class="text-center max-w-2xl mx-auto mb-12"><p class="reveal text-sm font-800 tracking-[.2em] text-gold-400 uppercase mb-4">Galeri &amp; Ekstrakurikuler</p><h2 class="reveal d1 font-display font-700 text-4xl sm:text-5xl text-cream">Momen di Al-Qomar</h2></div>
     <div id="galeri-grid" class="grid grid-cols-2 lg:grid-cols-4 gap-4">
       <div class="skel rounded-3xl h-44"></div><div class="skel rounded-3xl h-44"></div><div class="skel rounded-3xl h-44"></div><div class="skel rounded-3xl h-44"></div>
     </div>
+  </div>
+</section>
 
-    <div id="video" class="text-center max-w-2xl mx-auto mt-16 mb-10"><p class="reveal text-sm font-800 tracking-[.2em] text-gold-600 uppercase mb-4">Video Kegiatan</p><h2 class="reveal d1 font-display font-700 text-4xl sm:text-5xl text-emerald-950">Pantau Aktivitas Kami</h2></div>
+<!-- VIDEO -->
+<section id="video" class="py-24 px-5">
+  <div class="mx-auto max-w-7xl">
+    <div class="text-center max-w-2xl mx-auto mb-12"><p class="reveal text-sm font-800 tracking-[.2em] text-gold-600 uppercase mb-4">Video Kegiatan</p><h2 class="reveal d1 font-display font-700 text-4xl sm:text-5xl text-emerald-950">Pantau Aktivitas Kami</h2></div>
     <div id="video-grid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5"></div>
   </div>
 </section>
@@ -459,6 +449,25 @@ body{background:var(--cream);overflow-x:hidden}
     </div>
     <div id="berita-grid" class="grid md:grid-cols-3 gap-6">
       <div class="skel rounded-3xl h-80"></div><div class="skel rounded-3xl h-80"></div><div class="skel rounded-3xl h-80"></div>
+    </div>
+  </div>
+</section>
+
+<!-- SANTUNAN -->
+<section id="santunan" class="py-24 px-5">
+  <div class="mx-auto max-w-7xl grid lg:grid-cols-2 gap-12 items-center">
+    <div class="reveal d1 relative order-2 lg:order-1 grid grid-cols-2 gap-3">
+      <button type="button" onclick="openLightbox('images/img_135.webp')" class="card cursor-zoom-in rounded-2xl overflow-hidden bg-emerald-800 aspect-[4/3] group relative"><img src="images/img_135.webp" alt="Ratusan Penerima Santunan Hadir" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" width="900" height="675" loading="lazy" onerror="this.style.opacity=.15"><span class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-emerald-950/90 to-transparent p-3 text-left text-cream text-xs font-600">Ratusan Penerima Hadir</span></button>
+      <button type="button" onclick="openLightbox('images/img_137.webp')" class="card cursor-zoom-in rounded-2xl overflow-hidden bg-emerald-800 aspect-[4/3] group relative"><img src="images/img_137.webp" alt="Kolaborasi YPIPC & Tanur Muthmainnah" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" width="900" height="675" loading="lazy" onerror="this.style.opacity=.15"><span class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-emerald-950/90 to-transparent p-3 text-left text-cream text-xs font-600">Kolaborasi YPIPC &amp; Tanur</span></button>
+      <button type="button" onclick="openLightbox('images/img_139.webp')" class="card cursor-zoom-in rounded-2xl overflow-hidden bg-emerald-800 aspect-[4/3] group relative"><img src="images/img_139.webp" alt="Penyerahan Paket Santunan" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" width="900" height="675" loading="lazy" onerror="this.style.opacity=.15"><span class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-emerald-950/90 to-transparent p-3 text-left text-cream text-xs font-600">Penyerahan Paket Santunan</span></button>
+      <button type="button" onclick="openLightbox('images/img_143.webp')" class="card cursor-zoom-in rounded-2xl overflow-hidden bg-emerald-800 aspect-[4/3] group relative"><img src="images/img_143.webp" alt="Tim Panitia Santunan" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" width="900" height="675" loading="lazy" onerror="this.style.opacity=.15"><span class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-emerald-950/90 to-transparent p-3 text-left text-cream text-xs font-600">Tim Panitia Santunan</span></button>
+      <div class="absolute -bottom-4 -right-4 h-16 w-16 bg-gold-400/40 eight-star spin-slow" aria-hidden="true"></div>
+    </div>
+    <div class="reveal order-1 lg:order-2">
+      <p class="text-sm font-800 tracking-[.2em] text-gold-600 uppercase mb-4">Khidmat &amp; Penuh Makna</p>
+      <h2 class="font-display font-700 text-4xl sm:text-5xl text-emerald-950 leading-tight">Santunan <span class="text-emerald-700">Kolaborasi YPIPC &amp; Tanur Muthmainnah</span></h2>
+      <p class="mt-6 text-lg text-emerald-900/70 leading-relaxed">Sebagai wujud kepedulian sosial, Yayasan Pendidikan Islam Purnama Cendekia bersama Tanur Muthmainnah menyelenggarakan kegiatan santunan yang dihadiri ratusan penerima manfaat — menanamkan nilai berbagi dan empati pada seluruh keluarga besar Al-Qomar.</p>
+      <div class="mt-7 inline-flex items-center gap-3 rounded-2xl bg-white border border-emerald-900/10 px-5 py-3 shadow-lg shadow-emerald-900/5"><span class="grid h-10 w-10 place-items-center rounded-xl bg-emerald-700 text-gold-300"><svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3v4M15 3v4M5 11h14M7 7h10a2 2 0 012 2v9a2 2 0 01-2 2H7a2 2 0 01-2-2V9a2 2 0 012-2z"/></svg></span><span class="font-700 text-emerald-900">Santunan YPIPC &amp; Tanur · 16 Februari 2026</span></div>
     </div>
   </div>
 </section>
@@ -488,6 +497,37 @@ body{background:var(--cream);overflow-x:hidden}
         <blockquote class="text-emerald-900/80 leading-relaxed">"Arafat jadi lebih mandiri dan bersemangat menghafal Al-Qur'an. Pembelajarannya menyenangkan, gurunya perhatian, dan nilai-nilai Islami benar-benar ditanamkan sejak kelas dasar. Alhamdulillah, pilihan yang tepat."</blockquote>
         <figcaption class="mt-6 flex items-center gap-3"><span class="grid h-11 w-11 place-items-center rounded-full bg-gold-500 text-emerald-950 font-700">MG</span><span><span class="block font-700 text-emerald-900">Ibu Maria Giptia</span><span class="block text-sm text-emerald-900/55">Orang tua Arafat Fahlevi · Kelas Cordova 2–4 B</span></span></figcaption>
       </figure>
+    </div>
+  </div>
+</section>
+
+<!-- TAHFIDZ / MUNAQOSYAH -->
+<section id="tahfidz" class="py-24 px-5">
+  <div class="mx-auto max-w-7xl grid lg:grid-cols-2 gap-12 items-center">
+    <div class="reveal">
+      <p class="text-sm font-800 tracking-[.2em] text-gold-600 uppercase mb-4">Munaqosyah Tahfidz</p>
+      <h2 class="font-display font-700 text-4xl sm:text-5xl text-emerald-950 leading-tight">Cinta Al-Qur'an, <span class="text-emerald-700">Diuji &amp; Diapresiasi</span></h2>
+      <p class="mt-6 text-lg text-emerald-900/70 leading-relaxed">Capaian hafalan siswa diuji dalam Munaqosyah berkala bersama penguji bersertifikat. Target hafalan: TKIT 1 juz, SDIT 2 juz melalui program One Day One Ayat, SMPIT melanjutkan dengan penguatan tajwid.</p>
+      <div class="mt-8 rounded-3xl bg-cream-100 border border-emerald-900/10 p-6 shadow-xl shadow-emerald-900/5 flex items-center gap-5"><span class="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 text-emerald-950"><svg viewBox="0 0 24 24" class="h-8 w-8" fill="currentColor"><path d="M12 2l2.4 5.9L20.5 9l-4.6 4.1L17.2 20 12 16.8 6.8 20l1.3-6.9L3.5 9l6.1-1.1z"/></svg></span><div><p class="text-2xl font-800 text-emerald-800">48 Siswa Raih Syahadah</p><p class="text-sm text-emerald-900/60">Munaqosyah Tahfidz · April 2026</p></div></div>
+    </div>
+    <div class="reveal d1 grid grid-cols-2 gap-4">
+      <div class="rounded-3xl bg-gradient-to-br from-emerald-700 to-emerald-900 p-6 text-cream"><p class="text-4xl font-800 text-gold-300">1</p><p class="font-700 mt-1">Juz · TKIT</p><p class="text-sm text-cream/65 mt-1">Juz 30 (Juz Amma)</p></div>
+      <div class="rounded-3xl bg-cream border border-emerald-900/10 p-6 shadow-lg shadow-emerald-900/5"><p class="text-4xl font-800 text-emerald-800">2</p><p class="font-700 text-emerald-900 mt-1">Juz · SDIT</p><p class="text-sm text-emerald-900/60 mt-1">Program ODOA 6 tahun</p></div>
+      <div class="rounded-3xl bg-cream border border-emerald-900/10 p-6 shadow-lg shadow-emerald-900/5 col-span-2"><p class="font-700 text-emerald-900">SMPIT — Penguatan Tajwid</p><p class="text-sm text-emerald-900/60 mt-1">Melanjutkan hafalan dari SDIT dengan target tambahan & penguatan tajwid.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- JADWAL ISLAMI -->
+<section id="jadwal" class="py-24 px-5 bg-emerald-950 relative overflow-hidden">
+  <div class="absolute inset-0 opacity-[.06]" aria-hidden="true" style="background-image:url(&quot;data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23fcd34d' stroke-width='1'%3E%3Cpath d='M40 0l40 40-40 40L0 40z'/%3E%3Ccircle cx='40' cy='40' r='9'/%3E%3C/g%3E%3C/svg%3E&quot;)"></div>
+  <div class="relative mx-auto max-w-7xl">
+    <div class="text-center max-w-2xl mx-auto mb-14"><p class="reveal text-sm font-800 tracking-[.2em] text-gold-400 uppercase mb-4">Jadwal &amp; Pembiasaan Islami</p><h2 class="reveal d1 font-display font-700 text-4xl sm:text-5xl text-cream">Hari yang Tertata Penuh Makna</h2><p class="reveal d2 mt-5 text-cream/70 text-lg">Full Day School · Senin–Jumat · 06.30–15.00 WIB</p></div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="reveal card cursor-default rounded-3xl bg-gradient-to-b from-emerald-800 to-emerald-900 p-7 border border-gold-300/15"><span class="grid h-12 w-12 place-items-center rounded-xl bg-gold-500/15 text-gold-300 mb-4"><svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19"/></svg></span><h3 class="font-700 text-lg text-cream">Dhuha Berjamaah</h3><p class="mt-2 text-sm text-cream/70">Pembiasaan ibadah sunnah harian sebagai bentuk syukur.</p></div>
+      <div class="reveal d1 card cursor-default rounded-3xl bg-gradient-to-b from-emerald-800 to-emerald-900 p-7 border border-gold-300/15"><span class="grid h-12 w-12 place-items-center rounded-xl bg-gold-500/15 text-gold-300 mb-4"><svg viewBox="0 0 24 24" class="h-6 w-6" fill="currentColor"><path d="M12 2l2.4 5.9L20.5 9l-4.6 4.1L17.2 20 12 16.8 6.8 20l1.3-6.9L3.5 9l6.1-1.1z"/></svg></span><h3 class="font-700 text-lg text-cream">One Day One Ayat</h3><p class="mt-2 text-sm text-cream/70">Program ODOA — hafalan konsisten setiap hari.</p></div>
+      <div class="reveal d2 card cursor-default rounded-3xl bg-gradient-to-b from-emerald-800 to-emerald-900 p-7 border border-gold-300/15"><span class="grid h-12 w-12 place-items-center rounded-xl bg-gold-500/15 text-gold-300 mb-4"><svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h7a2 2 0 012 2v14a2 2 0 00-2-2H4z"/><path d="M20 4h-7a2 2 0 00-2 2v14a2 2 0 012-2h7z"/></svg></span><h3 class="font-700 text-lg text-cream">Murojaah &amp; Tahfidz</h3><p class="mt-2 text-sm text-cream/70">Pengulangan & penguatan hafalan dengan Metode Ummi.</p></div>
+      <div class="reveal d3 card cursor-default rounded-3xl bg-gradient-to-br from-gold-500 to-gold-600 p-7 text-emerald-950"><span class="grid h-12 w-12 place-items-center rounded-xl bg-emerald-950/10 text-emerald-900 mb-4"><svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-4.5-9.5-9A5 5 0 0112 5a5 5 0 019.5 7c-2.5 4.5-9.5 9-9.5 9z"/></svg></span><h3 class="font-700 text-lg">Pembiasaan Adab</h3><p class="mt-2 text-sm text-emerald-950/70">Doa, adab, dan akhlak harian — fondasi karakter Qur'ani.</p></div>
     </div>
   </div>
 </section>
@@ -529,7 +569,10 @@ body{background:var(--cream);overflow-x:hidden}
     <div class="text-center mb-12"><p class="reveal text-sm font-800 tracking-[.2em] text-gold-400 uppercase mb-4">Pertanyaan Umum</p><h2 class="reveal d1 font-display font-700 text-4xl sm:text-5xl text-cream">FAQ — Yang Sering Ditanyakan</h2></div>
     <div id="faq-list" class="space-y-3">
       <details class="reveal group rounded-2xl bg-cream/5 border border-gold-300/15 px-6 py-1"><summary class="flex items-center justify-between gap-4 py-4 font-700 text-cream list-none cursor-pointer">Kapan PPDB 2026/2027 dibuka dan bagaimana cara mendaftar?<svg viewBox="0 0 24 24" class="h-5 w-5 shrink-0 text-gold-400 transition-transform group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></summary><p class="pb-5 text-cream/70 leading-relaxed">PPDB telah dibuka untuk jenjang KB, TKIT, SDIT, dan SMPIT. Pendaftaran online melalui alqomar.sch.id/spmb-online atau langsung ke sekolah. Hubungi (021) 55968344 untuk informasi lebih lanjut.</p></details>
+      <details class="reveal group rounded-2xl bg-cream/5 border border-gold-300/15 px-6 py-1"><summary class="flex items-center justify-between gap-4 py-4 font-700 text-cream list-none cursor-pointer">Berapa target hafalan Al-Qur'an per jenjang?<svg viewBox="0 0 24 24" class="h-5 w-5 shrink-0 text-gold-400 transition-transform group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></summary><p class="pb-5 text-cream/70 leading-relaxed">TKIT: target 1 juz (Juz 30). SDIT: target 2 juz selama 6 tahun melalui program ODOA. SMPIT: melanjutkan hafalan dari SDIT dengan target tambahan dan penguatan tajwid.</p></details>
+      <details class="reveal group rounded-2xl bg-cream/5 border border-gold-300/15 px-6 py-1"><summary class="flex items-center justify-between gap-4 py-4 font-700 text-cream list-none cursor-pointer">Bagaimana sistem Full Day School di Al-Qomar?<svg viewBox="0 0 24 24" class="h-5 w-5 shrink-0 text-gold-400 transition-transform group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></summary><p class="pb-5 text-cream/70 leading-relaxed">Kegiatan belajar berlangsung Senin–Jumat pukul 06.30–15.00 WIB. Hari diisi dengan pembelajaran akademik, pembiasaan ibadah (Dhuha, Dzuhur), tahfidz, One Day One Ayat, dan ekstrakurikuler.</p></details>
       <details class="reveal group rounded-2xl bg-cream/5 border border-gold-300/15 px-6 py-1"><summary class="flex items-center justify-between gap-4 py-4 font-700 text-cream list-none cursor-pointer">Apa saja persyaratan dokumen untuk PPDB?<svg viewBox="0 0 24 24" class="h-5 w-5 shrink-0 text-gold-400 transition-transform group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></summary><p class="pb-5 text-cream/70 leading-relaxed">Dokumen umum: Akta kelahiran, Kartu Keluarga, Foto 3x4, Ijazah/Raport jenjang sebelumnya (untuk SDIT &amp; SMPIT), dan Surat keterangan sehat.</p></details>
+      <details class="reveal group rounded-2xl bg-cream/5 border border-gold-300/15 px-6 py-1"><summary class="flex items-center justify-between gap-4 py-4 font-700 text-cream list-none cursor-pointer">Apakah ada program beasiswa atau keringanan biaya?<svg viewBox="0 0 24 24" class="h-5 w-5 shrink-0 text-gold-400 transition-transform group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></summary><p class="pb-5 text-cream/70 leading-relaxed">Yayasan Pendidikan Islam Purnama Cendekia menyediakan program keringanan biaya bagi keluarga yang membutuhkan. Silakan hubungi bagian administrasi sekolah.</p></details>
       <details class="reveal group rounded-2xl bg-cream/5 border border-gold-300/15 px-6 py-1"><summary class="flex items-center justify-between gap-4 py-4 font-700 text-cream list-none cursor-pointer">Berapa biaya PPDB dan SPP di Al-Qomar?<svg viewBox="0 0 24 24" class="h-5 w-5 shrink-0 text-gold-400 transition-transform group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></summary><p class="pb-5 text-cream/70 leading-relaxed">Informasi biaya PPDB dan SPP dapat diperoleh langsung dengan menghubungi bagian Tata Usaha melalui WhatsApp atau datang ke kantor sekolah.</p></details>
     </div>
   </div>
@@ -652,7 +695,7 @@ const SEARCH_DATA=[
  {l:'Keunggulan',u:'#keunggulan'},{l:'Jenjang KB · TKIT · SDIT · SMPIT',u:'#jenjang'},{l:'Tim Pengajar / Dewan Guru',u:'#guru'},
  {l:'RQAQ — Rumah Quran',u:'/rqaq'},{l:'Prestasi',u:'#prestasi'},{l:'Tahfidz & Munaqosyah',u:'#tahfidz'},
  {l:'Aktivitas Sekolah',u:'#kegiatan'},{l:'Galeri & Ekstrakurikuler',u:'#galeri'},{l:'Video Kegiatan',u:'#video'},
- {l:'Berita',u:'#berita'},{l:'Santunan',u:'berita.html'},{l:'Testimoni',u:'#testimoni'},{l:'Kalender Kegiatan',u:'event.html'},
+ {l:'Berita',u:'#berita'},{l:'Santunan',u:'#santunan'},{l:'Testimoni',u:'#testimoni'},{l:'Jadwal Islami',u:'#jadwal'},
  {l:'Alur PPDB',u:'#alur-ppdb'},{l:'Daftar PPDB Online',u:'/spmb-online'},{l:'FAQ',u:'#faq'},{l:'Kontak',u:'#kontak'}
 ];
 function doSearch(q){const res=document.getElementById('search-results');if(!q||q.length<2){res.innerHTML='';return;}
