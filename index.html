@@ -93,6 +93,8 @@ body{background:var(--cream);overflow-x:hidden}
 .card::after{content:'';position:absolute;top:0;left:-120%;width:60%;height:100%;transform:skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);transition:left .6s}
 .card:hover::after{left:140%}
 .arch{border-radius:50% 50% 14px 14px / 60% 60% 14px 14px}
+.hero-rays{background-image:repeating-conic-gradient(from 0deg at 50% 40%,rgba(253,251,243,.05) 0deg 1.2deg,transparent 1.2deg 9deg);pointer-events:none}
+.hero-vtext{writing-mode:vertical-rl;letter-spacing:.35em}
 .hero-slider{position:relative}
 .hero-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.035);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform 1.2s cubic-bezier(.16,1,.3,1)}
 .hero-slide.is-active{opacity:1;transform:scale(1)}
@@ -213,50 +215,74 @@ body{background:var(--cream);overflow-x:hidden}
 <main id="main">
 
 <!-- HERO -->
-<section id="beranda" class="relative min-h-[100svh] flex items-center pt-32 pb-20 px-5">
-  <svg class="absolute right-6 top-28 h-24 w-24 text-gold-400/60 floaty hidden sm:block" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 1 0 9.8 9.8z"/></svg>
-  <div class="absolute left-8 bottom-24 h-16 w-16 bg-emerald-500/30 eight-star spin-slow hidden md:block" aria-hidden="true"></div>
-  <div class="mx-auto max-w-7xl grid lg:grid-cols-12 gap-10 items-center w-full">
-    <div class="lg:col-span-7">
-      <p class="reveal font-arabic text-3xl sm:text-4xl text-emerald-700 mb-5">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
-      <div class="reveal d1 inline-flex items-center gap-2 rounded-full border border-emerald-900/15 bg-cream/70 px-4 py-1.5 text-xs font-700 text-emerald-800 backdrop-blur mb-6">
-        <span class="relative flex h-2 w-2"><span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold-500 opacity-75"></span><span class="relative inline-flex h-2 w-2 rounded-full bg-gold-500"></span></span>
-        PPDB 2026/2027 Segera Berakhir
+<section id="beranda" class="relative overflow-hidden bg-emerald-950 pt-36 pb-14 px-5">
+  <div class="hero-rays absolute inset-0" aria-hidden="true"></div>
+  <div class="absolute inset-0 opacity-[.05]" style="background-image:radial-gradient(rgba(253,251,243,.9) 1px,transparent 1px);background-size:26px 26px" aria-hidden="true"></div>
+  <div class="hero-vpanel absolute right-0 top-24 bottom-24 w-16 hidden xl:flex flex-col items-center justify-center gap-4 border-l border-gold-300/20" aria-hidden="true">
+    <svg viewBox="0 0 24 24" class="h-7 w-7 text-gold-400/70" fill="currentColor"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 1 0 9.8 9.8z"/></svg>
+    <p class="hero-vtext text-[11px] tracking-[.35em] font-700 text-gold-200/60">BERILMU · BERAKHLAK · BERMANFAAT</p>
+  </div>
+  <svg class="absolute left-4 bottom-4 h-28 w-28 text-gold-300/15 hidden sm:block" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 20l16-16M4 12l12-12M4 4h4M4 20h8M20 4v4M12 20h8v-8"/></svg>
+
+  <div class="mx-auto max-w-7xl relative grid lg:grid-cols-12 gap-10 lg:gap-8 items-center w-full">
+    <div class="lg:col-span-6">
+      <div class="reveal d1 inline-flex items-center gap-2 rounded-full bg-gold-500 px-4 py-1.5 text-xs font-700 text-emerald-950 mb-6">
+        Sekolah Islam Terpadu · KB, TKIT, SDIT, SMPIT
       </div>
-      <h1 class="reveal d2 font-display font-700 text-[2.6rem] leading-[1.05] sm:text-6xl xl:text-7xl text-emerald-950 tracking-tight">Mendidik Generasi <br><span class="shimmer">Qur'ani yang Unggul</span></h1>
-      <p class="reveal d3 mt-6 max-w-xl text-lg text-emerald-900/75 leading-relaxed">Membentuk anak bangsa berakhlak mulia, berprestasi akademik, dan cinta Al-Qur'an — bersama <strong class="text-emerald-800">Yayasan Pendidikan Islam Purnama Cendekia</strong> sejak 1991, di Kalideres, Jakarta Barat.</p>
-      <div class="reveal d4 mt-9 flex flex-wrap items-center gap-4">
-        <a href="#ppdb" class="group inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-700 to-emerald-900 px-7 py-4 font-700 text-cream shadow-xl shadow-emerald-900/30 cursor-pointer transition-transform hover:scale-[1.04]">Daftar PPDB 2026/2027<svg viewBox="0 0 24 24" class="h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <a href="#profil" class="inline-flex items-center gap-2 rounded-2xl border-2 border-emerald-900/15 bg-cream/60 px-7 py-4 font-700 text-emerald-900 backdrop-blur cursor-pointer transition-colors hover:border-gold-500 hover:text-gold-600">Kenali Sekolah Kami</a>
+      <h1 class="reveal d2 font-display font-700 text-[2.3rem] leading-[1.12] sm:text-5xl xl:text-6xl text-cream tracking-tight">Mendidik generasi Qur'ani yang berakhlak dan unggul</h1>
+      <p class="reveal d3 mt-6 max-w-xl text-cream/75 leading-relaxed">Sekolah Islam Terpadu di Kalideres, Jakarta Barat, di bawah Yayasan Pendidikan Islam Purnama Cendekia sejak 1991. Memadukan Kurikulum Merdeka, kurikulum diniyah Islam, dan program Tahfidz bersanad Metode Ummi.</p>
+
+      <div class="reveal d4 mt-7 flex flex-wrap items-center gap-3">
+        <a href="#ppdb" class="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-gold-500 to-gold-600 px-6 py-3.5 font-700 text-emerald-950 shadow-lg shadow-gold-500/20 cursor-pointer transition-transform hover:scale-[1.04]">Daftar PPDB 2026/2027<svg viewBox="0 0 24 24" class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#profil" class="inline-flex items-center gap-2 rounded-xl border-2 border-cream/25 px-6 py-3.5 font-700 text-cream cursor-pointer transition-colors hover:border-gold-400 hover:text-gold-300">Profil Sekolah</a>
+        <a href="#kontak" class="inline-flex items-center gap-1.5 px-2 py-3.5 font-700 text-gold-300 cursor-pointer transition-colors hover:text-gold-200">Konsultasi PPDB <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
-      <div class="reveal d4 mt-10 flex flex-wrap items-center gap-6 text-sm text-emerald-900/70">
-        <span class="inline-flex items-center gap-2"><svg viewBox="0 0 24 24" class="h-5 w-5 text-gold-600" fill="currentColor"><path d="M12 1l3 6 6 .9-4.5 4.3L17.5 19 12 15.8 6.5 19l1-6.8L3 7.9 9 7z"/></svg> Akreditasi <strong class="text-emerald-800">A (Unggul)</strong></span>
-        <span class="inline-flex items-center gap-2"><svg viewBox="0 0 24 24" class="h-5 w-5 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg> Sekolah Penggerak</span>
-        <span class="inline-flex items-center gap-2"><svg viewBox="0 0 24 24" class="h-5 w-5 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l9 4-9 4-9-4z"/><path d="M21 10v5M3 8.5V14c0 2 4 4 9 4s9-2 9-4" stroke-linecap="round"/></svg> Metode Ummi</span>
+
+      <div class="reveal d4 mt-7 max-w-lg rounded-2xl border border-gold-300/25 bg-cream/[.04] px-5 py-4">
+        <p class="font-arabic text-xl sm:text-2xl text-gold-200 text-right leading-relaxed">خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ</p>
+        <p class="mt-2 text-sm text-cream/65 italic">"Sebaik-baik kalian adalah yang belajar Al-Qur'an dan mengajarkannya." <span class="not-italic text-cream/45">(HR. Bukhari)</span></p>
       </div>
     </div>
-    <div class="lg:col-span-5 relative">
-      <div class="relative mx-auto max-w-sm">
-        <div class="arch hero-slider overflow-hidden border-4 border-gold-300/60 shadow-2xl shadow-emerald-900/40 aspect-[3/4] bg-emerald-900" data-hero-slider>
-          <img src="images/IMG_7809.webp" alt="Kegiatan siswa Al-Qomar Muthmainnah" class="hero-slide is-active" width="2048" height="921" loading="eager" fetchpriority="high">
-          <img src="images/Kegiatan_belajar.webp" alt="Kegiatan belajar siswa Al-Qomar" class="hero-slide" width="1600" height="738" loading="lazy">
-          <img src="images/Dewan_guru.webp" alt="Dewan guru Al-Qomar Muthmainnah" class="hero-slide" width="1920" height="1052" loading="lazy">
-          <img src="images/Ekskul_pramuka.webp" alt="Ekstrakurikuler pramuka Al-Qomar" class="hero-slide" width="1920" height="955" loading="lazy">
-          <div class="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-emerald-950/80 to-transparent"></div>
-          <p class="absolute bottom-5 left-5 font-arabic text-4xl text-gold-200">القمر</p>
-          <div class="absolute bottom-6 right-5 flex items-center gap-2" aria-label="Pilihan foto hero">
-            <button type="button" class="hero-dot is-active" aria-label="Tampilkan foto 1" data-hero-dot="0"></button>
-            <button type="button" class="hero-dot" aria-label="Tampilkan foto 2" data-hero-dot="1"></button>
-            <button type="button" class="hero-dot" aria-label="Tampilkan foto 3" data-hero-dot="2"></button>
-            <button type="button" class="hero-dot" aria-label="Tampilkan foto 4" data-hero-dot="3"></button>
+
+    <div class="lg:col-span-6">
+      <div class="relative">
+        <div class="relative overflow-hidden rounded-3xl border border-gold-300/25 shadow-2xl shadow-emerald-950/50 aspect-[16/11] bg-emerald-900">
+          <img src="images/IMG_7809.webp" alt="Gedung sekolah Al-Qomar Muthmainnah" class="h-full w-full object-cover" width="2048" height="921" loading="eager" fetchpriority="high">
+          <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-emerald-950/75 via-emerald-950/10 to-transparent"></div>
+          <div class="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-emerald-950/70 backdrop-blur px-3.5 py-1.5 text-xs font-700 text-cream">
+            <svg viewBox="0 0 24 24" class="h-3.5 w-3.5 text-gold-400" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+            Al-Qomar Muthmainnah · Kalideres, Jakarta Barat
+          </div>
+          <p class="absolute bottom-4 right-5 max-w-[55%] text-right font-display italic text-cream/90 text-sm sm:text-base leading-snug">Tempat terbaik tumbuhnya generasi sholeh dan berprestasi</p>
+        </div>
+
+        <div class="mt-4 grid grid-cols-2 gap-4">
+          <div class="relative overflow-hidden rounded-2xl border border-gold-300/20 aspect-[4/3] bg-emerald-900">
+            <img src="images/Kegiatan_belajar.webp" alt="Tahfidz bersanad metode Ummi" class="h-full w-full object-cover" width="1600" height="738" loading="lazy">
+            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-emerald-950/85 to-transparent px-3 pt-8 pb-3">
+              <span class="inline-grid h-7 w-7 place-items-center rounded-full bg-gold-500 text-emerald-950 mb-1"><svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor"><path d="M4 4h9a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4z"/><path d="M20 4h-9a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h10z" opacity=".55"/></svg></span>
+              <p class="text-xs font-700 text-cream leading-snug">Tahfidz Bersanad<br>Metode Ummi</p>
+            </div>
+          </div>
+          <div class="relative overflow-hidden rounded-2xl border border-gold-300/20 aspect-[4/3] bg-emerald-900">
+            <img src="images/Ekskul_TK.webp" alt="Pembiasaan One Day One Ayat" class="h-full w-full object-cover" width="1400" height="1050" loading="lazy">
+            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-emerald-950/85 to-transparent px-3 pt-8 pb-3">
+              <span class="inline-grid h-7 w-7 place-items-center rounded-full bg-gold-500 text-emerald-950 mb-1"><svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor"><path d="M17 21v-8H7v8M7 3v5h8"/><path d="M5 21V5a2 2 0 0 1 2-2h10.5L21 6.5V21a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></span>
+              <p class="text-xs font-700 text-cream leading-snug">Pembiasaan One Day<br>One Ayat</p>
+            </div>
           </div>
         </div>
-        <div class="floaty absolute -left-6 top-10 rounded-2xl bg-cream px-4 py-3 shadow-xl shadow-emerald-900/15 border border-emerald-900/10"><p class="text-2xl font-800 text-emerald-800">550<span class="text-gold-600">+</span></p><p class="text-[11px] font-600 text-emerald-900/60">Siswa Aktif</p></div>
-        <div class="floaty absolute -right-4 bottom-12 rounded-2xl bg-cream px-4 py-3 shadow-xl shadow-emerald-900/15 border border-emerald-900/10" style="animation-delay:-3s"><p class="text-2xl font-800 text-emerald-800">4</p><p class="text-[11px] font-600 text-emerald-900/60">Jenjang Satu Atap</p></div>
       </div>
     </div>
   </div>
-  <a href="#profil" class="absolute bottom-7 left-1/2 -translate-x-1/2 hidden sm:grid place-items-center h-10 w-6 rounded-full border-2 border-emerald-900/30" aria-label="Scroll ke bawah"><span class="scroll-dot h-2 w-2 rounded-full bg-gold-500"></span></a>
+
+  <div class="mx-auto max-w-7xl relative mt-10 flex flex-wrap items-center gap-x-8 gap-y-5 rounded-2xl border border-cream/10 bg-cream/[.03] px-6 py-5">
+    <div class="flex items-center gap-2.5"><svg viewBox="0 0 24 24" class="h-5 w-5 text-gold-400" fill="currentColor"><path d="M12 1l3 6 6 .9-4.5 4.3L17.5 19 12 15.8 6.5 19l1-6.8L3 7.9 9 7z"/></svg><span><span class="block font-700 text-cream text-sm">Akreditasi A</span><span class="block text-xs text-cream/55">Predikat unggul, BAN-S/M</span></span></div>
+    <div class="flex items-center gap-2.5"><svg viewBox="0 0 24 24" class="h-5 w-5 text-gold-400" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l9 4-9 4-9-4z"/><path d="M21 10v5M3 8.5V14c0 2 4 4 9 4s9-2 9-4" stroke-linecap="round"/></svg><span><span class="block font-700 text-cream text-sm">4 Jenjang</span><span class="block text-xs text-cream/55">KB sampai SMPIT satu atap</span></span></div>
+    <div class="flex items-center gap-2.5"><svg viewBox="0 0 24 24" class="h-5 w-5 text-gold-400" fill="currentColor"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 1 0 9.8 9.8z"/></svg><span><span class="block font-700 text-cream text-sm">Sekolah Penggerak</span><span class="block text-xs text-cream/55">Ditunjuk Kemendikbud RI</span></span></div>
+    <div class="flex items-center gap-2.5"><svg viewBox="0 0 24 24" class="h-5 w-5 text-gold-400" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3" stroke-linecap="round"/><circle cx="12" cy="12" r="9"/></svg><span><span class="block font-700 text-cream text-sm">Sejak 1991</span><span class="block text-xs text-cream/55">35 tahun mendidik</span></span></div>
+    <a href="https://wa.me/6221559683440" target="_blank" rel="noopener" class="ml-auto inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-gold-500 to-gold-600 px-5 py-3 text-sm font-700 text-emerald-950 shadow-lg shadow-gold-500/20 cursor-pointer transition-transform hover:scale-[1.04]"><svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20z"/><path d="M9 7.3c-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.4-.2.2-.9.9-.9 2.2s1 2.5 1.1 2.6c.1.2 1.9 3 4.7 4 2.3.9 2.7.7 3.2.7.5 0 1.6-.6 1.8-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.5-.4l-2-1c-.3-.1-.5-.2-.7.2l-.4.5c-.2.2-.4.3-.7.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.3-.4c.1-.1.2-.3.3-.5.1-.2 0-.4 0-.5L9 7.3z"/></svg>WhatsApp Admin</a>
+  </div>
 </section>
 
 <!-- MARQUEE -->
