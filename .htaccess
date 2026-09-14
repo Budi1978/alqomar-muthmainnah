@@ -83,6 +83,8 @@ DirectoryIndex index.html
   RedirectMatch 301 ^/images/index-live\.html$        /
   RedirectMatch 301 ^/berita-detail-backup-.*\.html$  /berita
   RedirectMatch 301 ^/berita-backup-.*\.html$         /berita
+  # Backup .php ikut ter-cover, bukan cuma .html
+  RedirectMatch 301 ^/.*-backup-[0-9]+.*\.php$        /
 </IfModule>
 
 # ---------- 6. PROTEKSI FILE NON-PUBLIK ----------

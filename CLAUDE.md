@@ -2,7 +2,9 @@
 
 ## Ringkasan Proyek
 
-**Website Sekolah Al-Qomar Muthmainnah** — website statis multi-halaman untuk lembaga pendidikan Islam di bawah naungan Yayasan Pendidikan Islam Purnama Cendekia (YPIPC), berlokasi di Jakarta Barat, Indonesia. Sekolah ini beroperasi di empat jenjang pendidikan: KB (Kelompok Bermain), TKIT (Taman Kanak-Kanak Islam Terpadu), SDIT (Sekolah Dasar Islam Terpadu), dan SMPIT (Sekolah Menengah Pertama Islam Terpadu).
+**Website Sekolah Al-Qomar Muthmainnah** — website multi-halaman untuk lembaga pendidikan Islam di bawah naungan Yayasan Pendidikan Islam Purnama Cendekia (YPIPC), berlokasi di Jakarta Barat, Indonesia. Sekolah ini beroperasi di empat jenjang pendidikan: KB (Kelompok Bermain), TKIT (Taman Kanak-Kanak Islam Terpadu), SDIT (Sekolah Dasar Islam Terpadu), dan SMPIT (Sekolah Menengah Pertama Islam Terpadu).
+
+Mayoritas halaman statis (HTML/CSS/JS inline, tanpa build system). Pengecualian: halaman detail berita punya lapisan PHP tipis untuk Open Graph server-side (lihat bagian **Integrasi Berita (PHP + Supabase)**).
 
 - **Domain**: alqomar.sch.id (dikonfigurasi melalui file `CNAME`)
 - **Hosting**: Hostinger (LiteSpeed/Apache) — konfigurasi via `.htaccess`
@@ -24,12 +26,13 @@ alqomar-muthmainnah/
 ├── berita/                 # Subdirektori berita — URL bersih /berita/
 │   ├── index.html          # Daftar berita (dapat diakses di /berita/)
 │   └── .htaccess           # Konfigurasi URL rewrite Apache
+├── berita-detail.php       # Server-side Open Graph untuk /berita-detail (lihat bagian Integrasi Berita)
+├── sitemap-berita.php      # Sitemap dinamis berita, tarik data dari Supabase
 ├── _backup/                # Arsip: backup bertanggal + snapshot index-live lama
 │   ├── index.html.2026-04-14
 │   └── index.html.2026-04-15
 ├── docs/                   # Dokumen pendukung
 ├── images/                 # Aset gambar
-├── IMG_5490.jpg            # Gambar aset (diupload langsung ke root)
 ├── .htaccess               # Konfigurasi aktif: rewrite, cache, kompresi, redirect
 ├── _headers                # (tidak aktif) warisan Netlify
 ├── _redirects              # (tidak aktif) warisan Netlify
@@ -57,6 +60,15 @@ Folder `memory/` adalah **vault Obsidian** yang berfungsi sebagai memori jangka 
 - **Embed eksternal** — Google Maps, video YouTube
 
 **Tidak ada build system, package manager, atau framework.** Semua CSS dan JavaScript ditulis secara inline di dalam setiap file HTML.
+
+## Integrasi Berita (PHP + Supabase)
+
+Konten berita disimpan di tabel `berita` pada Supabase project `gzcgyqntluhxxrvbcwin`, diakses lewat REST API pakai **publishable/anon key** (aman diekspos di kode server/klien — pastikan RLS tabel `berita` tetap read-only untuk role publik). Dua file PHP membaca data ini di sisi server (butuh PHP + `curl` aktif di hosting, beda dari halaman lain yang murni statis):
+
+- **`berita-detail.php`** — dipanggil dengan query `?slug=...`, mengambil `berita-detail.html` sebagai template lalu menyisipkan `<title>`, meta description, Open Graph, Twitter Card, dan JSON-LD (`NewsArticle` + `BreadcrumbList`) sesuai data artikel. Diperlukan karena crawler WhatsApp/Facebook/Telegram tidak menjalankan JavaScript, jadi meta tag dinamis harus sudah ada di HTML mentah. Juga menyisipkan tag Google Analytics 4 (`G-8C4R8ZTBWP`).
+- **`sitemap-berita.php`** — menghasilkan sitemap XML dinamis dari seluruh baris `berita` yang `aktif=true`, supaya artikel baru otomatis masuk sitemap tanpa edit manual.
+
+**Jangan taruh backup file `.php` di root** — sama seperti aturan backup `.html`, backup harus di `_backup/`. `.htaccess` sudah punya `RedirectMatch` untuk pola `*-backup-<angka>*.php` sebagai jaring pengaman, tapi jangan andalkan itu untuk sengaja menaruh file di root.
 
 ## Halaman-Halaman Website
 
