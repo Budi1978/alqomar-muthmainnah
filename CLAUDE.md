@@ -63,10 +63,12 @@ Folder `memory/` adalah **vault Obsidian** yang berfungsi sebagai memori jangka 
 
 ## Integrasi Berita (PHP + Supabase)
 
-Konten berita disimpan di tabel `berita` pada Supabase project `gzcgyqntluhxxrvbcwin`, diakses lewat REST API pakai **publishable/anon key** (aman diekspos di kode server/klien — pastikan RLS tabel `berita` tetap read-only untuk role publik). Dua file PHP membaca data ini di sisi server (butuh PHP + `curl` aktif di hosting, beda dari halaman lain yang murni statis):
+**Sudah aktif di production** (server Hostinger), bukan sekadar kode di repo. Konten berita disimpan di tabel `berita` pada Supabase project `gzcgyqntluhxxrvbcwin`, diakses lewat REST API / Supabase JS SDK pakai **anon/publishable key** (aman diekspos — pastikan RLS tabel `berita` tetap read-only untuk role publik). Dua file PHP terlibat (butuh PHP + `curl` aktif di hosting, beda dari halaman lain yang murni statis):
 
-- **`berita-detail.php`** — dipanggil dengan query `?slug=...`, mengambil `berita-detail.html` sebagai template lalu menyisipkan `<title>`, meta description, Open Graph, Twitter Card, dan JSON-LD (`NewsArticle` + `BreadcrumbList`) sesuai data artikel. Diperlukan karena crawler WhatsApp/Facebook/Telegram tidak menjalankan JavaScript, jadi meta tag dinamis harus sudah ada di HTML mentah. Juga menyisipkan tag Google Analytics 4 (`G-8C4R8ZTBWP`).
+- **`berita-detail.php`** — halaman lengkap detail artikel di `/berita/<slug>`. Bagian PHP di server mengambil data artikel dari Supabase REST API untuk mengisi `<title>`, meta description, Open Graph, Twitter Card, dan JSON-LD (`NewsArticle` + `BreadcrumbList`) — diperlukan karena crawler WhatsApp/Facebook/Telegram tidak menjalankan JavaScript. Body halaman lalu dirender di klien lewat Supabase JS SDK (`@supabase/supabase-js`), dengan sanitasi HTML konten CMS pakai **DOMPurify** (mitigasi stored XSS) dan transformasi URL gambar lewat Supabase Image Render API (`/storage/v1/render/image/public/...`).
 - **`sitemap-berita.php`** — menghasilkan sitemap XML dinamis dari seluruh baris `berita` yang `aktif=true`, supaya artikel baru otomatis masuk sitemap tanpa edit manual.
+
+**Penting soal sinkronisasi:** file `.php` ini pernah diedit langsung di server (bukan lewat repo ini), jadi kalau situs live berubah, cek dulu isi file di server sebelum menimpanya lewat upload dari repo — supaya tidak menghilangkan perubahan yang belum ter-commit balik ke Git.
 
 **Jangan taruh backup file `.php` di root** — sama seperti aturan backup `.html`, backup harus di `_backup/`. `.htaccess` sudah punya `RedirectMatch` untuk pola `*-backup-<angka>*.php` sebagai jaring pengaman, tapi jangan andalkan itu untuk sengaja menaruh file di root.
 
