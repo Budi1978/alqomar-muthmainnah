@@ -28,6 +28,11 @@ Bagian dari [[index]].
 2. **Setiap kali user paste/upload isi file dari server yang ternyata beda dari repo** → langsung commit & push versi server itu ke repo tanpa diminta dua kali, sebagai arsip/cadangan.
 3. **Setiap selesai satu pekerjaan/perbaikan** (bukan cuma di akhir sesi) → catat ringkas di memory ini (folder `catatan/` atau `keputusan/`) supaya sesi berikutnya tidak mengulang analisis dari nol. User eksplisit minta ini (14 Sept 2026): *"setiap selesai pekerjaan dicatat, jadi saya nga capek ngulang2"*.
 4. Kalau nemu file besar/aneh yang cuma ada di server (bukan di repo) atau sebaliknya, **tanya dulu** apakah itu sengaja atau residu, jangan langsung hapus/asumsikan.
+5. **Ketimpangan berlaku dua arah.** File di repo belum tentu pernah sampai ke server — dikonfirmasi 14 Sept 2026: `IMG_5490.jpg` dan `berita-detail-backup-20260614-010209.php` ada di repo tapi **tidak pernah ada** di `public_html` Hostinger. Jadi "ketemu di repo" ≠ "perlu dibersihkan di server juga" — cek server dulu sebelum minta user hapus sesuatu di sana.
+
+## Catatan Penting: Claude Tidak Punya Akses Langsung ke Hostinger
+
+Sesi Claude berjalan di sandbox tanpa kredensial FTP/API Hostinger, dan akses jaringan sandbox ke `alqomar.sch.id` diblokir. **Claude tidak bisa cek File Manager sendiri** — semua verifikasi kondisi live (isi `.htaccess`, ada/tidaknya file tertentu, dll) harus lewat screenshot/paste dari user. Jangan janji "saya cek sendiri" ke server.
 
 ## Tautan Terkait
 
