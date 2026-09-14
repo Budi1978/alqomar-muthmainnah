@@ -1,15 +1,45 @@
 # ---------- 0. URL CANONICALIZATION ----------
 DirectoryIndex index.html
+Options -Indexes
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
+  # ---------- APEX -> WWW (canonical host) ----------
+  RewriteCond %{HTTP_HOST} ^alqomar\.sch\.id [NC]
+  RewriteRule ^(.*)$ https://www.alqomar.sch.id/$1 [R=301,L]
+
+  # ---------- SITEMAP BERITA: .xml -> generator .php (JANGAN DIHAPUS) ----------
+  # Tanpa rule ini, sitemap-berita.xml 404 dan berita tidak terindeks Google.
+  RewriteRule ^sitemap-berita\.xml$ sitemap-berita.php [L]
+
   RewriteRule ^index\.html$ / [R=301,L]
-  RewriteRule ^(ppdb|spmb-online|rqaq|guru|kb-tkit|sdit|smpit|tahfidz|event)\.html$ /$1 [R=301,L]
+  # RewriteRule ^berita\.html$ /berita/ [R=301,L]
+  # ^ DIHAPUS 14/09/2026: /berita/ jadi folder fisik sungguhan (berkas artikel
+  # lama + index.html) hari ini, jadi Apache melayani folder itu duluan lewat
+  # DirectoryIndex SEBELUM rule redirect sempat jalan. Kalau ada yang mencoba
+  # balik ke berita.html dari dalam folder itu, redirect ini melempar lagi ke
+  # /berita/ -> LOOP TAK TERHINGGA (kejadian 14/09/2026, 30rb+ request/detik).
+  # /berita.html sekarang dilayani apa adanya (nama .html tetap di address bar,
+  # bukan cuma masalah kosmetik SEO minor).
+  RewriteRule ^(ppdb|spmb-online|rqaq|guru|kb-tkit|sdit|smpit|tahfidz|event|privacy|syarat|sekolah-islam-jakarta-barat)\.html$ /$1 [R=301,L]
 
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^(ppdb|spmb-online|rqaq|guru|kb-tkit|sdit|smpit|tahfidz|event)/?$ $1.html [L]
+  RewriteRule ^(ppdb|spmb-online|rqaq|guru|kb-tkit|sdit|smpit|tahfidz|event|privacy|syarat|sekolah-islam-jakarta-barat)/?$ $1.html [L]
+
+  # ---------- ARSIP BERITA: /berita/ tanpa slug -> isi berita.html ----------
+  # Kalau Apache SEMPAT sampai ke rule ini (belum tentu, folder fisik /berita/
+  # kadang dilayani duluan oleh DirectoryIndex) -> tampilkan arsip, bukan
+  # index.html folder ini (itu template artikel tunggal).
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^berita/?$ berita.html [L]
+
+  # ---------- CLEAN URL BERITA (JANGAN DIHAPUS) ----------
+  # /berita/{slug} -> berita-detail.php?slug={slug}
+  # Tanpa rule ini SEMUA artikel berita 404.
+  # Kejadian: 02/06, 04/06, 18/06, 19/07, 02/09 2026.
+  RewriteRule ^berita/([^/]+)/?$ berita-detail.php?slug=$1 [L,QSA]
 </IfModule>
 
 # ============================================================
@@ -66,6 +96,51 @@ DirectoryIndex index.html
   Header always set X-Content-Type-Options "nosniff"
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), interest-cohort=()"
+  # HSTS: paksa HTTPS 1 tahun (subdomain alqomar.sch.id sudah HTTPS semua)
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  # ---------- CSP AKTIF (diberlakukan 2026-09-07 malam) ----------
+  # Sebelumnya header aktif hanya memagari frame-ancestors/base-uri/object-src;
+  # seluruh pembatasan script/style/connect menumpuk di header Report-Only —
+  # dan Report-Only itu TIDAK punya report-uri/report-to, jadi pelanggarannya
+  # hanya muncul di console masing-masing pengunjung dan tak pernah terkumpul.
+  # Rencana "pantau beberapa minggu lalu aktifkan" tidak akan pernah punya data.
+  #
+  # Dasar allowlist di bawah: penelusuran host eksternal pada 14 halaman yang
+  # benar-benar tayang (beranda, ppdb, spmb-online, rqaq, guru, kb-tkit, sdit,
+  # smpit, tahfidz, event, privacy, syarat, profil, cms-alqomar.html).
+  # Yang terpakai hanya: cdn.jsdelivr.net, fonts.googleapis.com,
+  # fonts.gstatic.com, *.supabase.co, googletagmanager, i.ytimg.com,
+  # [www.google.com](https://www.google.com) (sematan peta). cdn.tailwindcss.com SUDAH TIDAK dipakai
+  # halaman mana pun sehingga dikeluarkan dari daftar.
+  #
+  # PENTING: 26 baris program_pendidikan menyimpan foto_url dengan host APEX
+  # (https://alqomar.sch.id/images-optimized-alqomar/...) sedangkan halaman
+  # disajikan dari www — bagi CSP itu ASAL LAIN. Tanpa apex di img-src,
+  # separuh foto kegiatan & galeri lenyap begitu kebijakan diberlakukan.
+  # Klien juga sudah menormalkan apex->www agar tidak membayar redirect 301,
+  # tapi entri di sini tetap dipertahankan sebagai jaring pengaman untuk
+  # halaman lain yang belum dinormalkan.
+  #
+  # cms-alqomar.html memuat cropper, quill, xlsx, dan supabase-js SEMUANYA dari
+  # cdn.jsdelivr.net — sudah masuk daftar, jadi insiden 17 Agu 2026 (CSP ketat
+  # mematikan Cropper/Quill) tidak terulang.
+  #
+  # 'unsafe-inline' pada script-src SENGAJA dipertahankan: seluruh halaman
+  # memakai <script> sebaris dan atribut onclick, sedangkan berkas .html statis
+  # di Hostinger tidak bisa menyuntik nonce per permintaan. Menghapusnya butuh
+  # pembongkaran seluruh penangan sebaris — dikerjakan terpisah, bukan diam-diam.
+  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: blob: https://www.alqomar.sch.id https://alqomar.sch.id https://*.supabase.co https://*.ytimg.com https://www.googletagmanager.com https://*.google-analytics.com https://www.google.com https://maps.gstatic.com; connect-src 'self' https://*.supabase.co https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com https://www.google.com https://maps.google.com; upgrade-insecure-requests"
+
+  # ---------- CSP TARGET (laporan saja, tidak memblokir) ----------
+  # Versi tanpa 'unsafe-inline' + Trusted Types. Ini SENGAJA melaporkan banyak
+  # pelanggaran di console: tiap pelanggaran menunjuk satu skrip sebaris yang
+  # harus dipindah ke berkas terpisah sebelum tahap berikutnya bisa diaktifkan.
+  Header always set Content-Security-Policy-Report-Only "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src 'self' https://cdn.jsdelivr.net https://www.googletagmanager.com; style-src 'self' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: blob: https://www.alqomar.sch.id https://alqomar.sch.id https://*.supabase.co https://*.ytimg.com https://www.googletagmanager.com https://*.google-analytics.com https://www.google.com https://maps.gstatic.com; connect-src 'self' https://*.supabase.co https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com https://www.google.com https://maps.google.com; require-trusted-types-for 'script'; upgrade-insecure-requests"
+
+  # Popup wa.me tetap terbuka; yang diputus hanya rujukan balik window.opener.
+  Header always set Cross-Origin-Opener-Policy "same-origin-allow-popups"
+  Header always set X-Permitted-Cross-Domain-Policies "none"
 </IfModule>
 
 # ---------- 4. KEEP-ALIVE ----------
