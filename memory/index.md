@@ -33,3 +33,4 @@ Ini adalah **vault memori Obsidian** untuk proyek website Al-Qomar Muthmainnah. 
 *(Tambahkan hal yang sedang berjalan atau perlu ditindaklanjuti di sini)*
 
 - [[catatan/panggilan-user]] — **User memanggil Claude dengan nama "Aira"** (berlaku di semua sesi)
+- [[catatan/sinkronisasi-repo-vs-production]] — ⚠️ **PENTING**: repo Git bisa basi dari server (Hostinger diedit langsung). Jangan asumsikan repo = kondisi live untuk `.htaccess`/`*.php`. Selalu catat progres tiap selesai pekerjaan, jangan tunggu akhir sesi.
