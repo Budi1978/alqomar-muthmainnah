@@ -279,10 +279,10 @@ body{background:var(--cream);overflow-x:hidden}
   <div class="mx-auto max-w-7xl grid lg:grid-cols-2 gap-14 items-center">
     <div class="reveal relative">
       <div class="grid grid-cols-2 gap-4">
-        <div class="arch overflow-hidden aspect-[3/4] bg-emerald-800 shadow-xl shadow-emerald-900/20"><img src="images/Kegiatan_belajar.webp" alt="Kegiatan belajar" class="h-full w-full object-cover" width="1600" height="738" loading="lazy" onerror="this.parentElement.classList.add('grid','place-items-center');this.outerHTML='<svg viewBox=0 0 24 24 class=h-16 w-16 fill=%23fcd34d><path d=M12 3l9 4-9 4-9-4z/></svg>'"></div>
+        <div class="arch overflow-hidden aspect-[3/4] bg-emerald-800 shadow-xl shadow-emerald-900/20"><img src="images/galeri/gal-015.webp" alt="Kegiatan belajar berbasis digital" class="h-full w-full object-cover" loading="lazy" onerror="this.parentElement.classList.add('grid','place-items-center');this.outerHTML='&lt;svg viewBox=&quot;0 0 24 24&quot; class=&quot;h-16 w-16&quot; fill=&quot;#fcd34d&quot;&gt;&lt;path d=&quot;M12 3l9 4-9 4-9-4z&quot;/&gt;&lt;/svg&gt;'"></div>
         <div class="space-y-4 mt-10">
-          <div class="relative rounded-3xl overflow-hidden aspect-square bg-emerald-800 shadow-xl shadow-emerald-900/20"><img src="https://gzcgyqntluhxxrvbcwin.supabase.co/storage/v1/object/public/cms-alqomar/uploads/1773826275751_x0belu93v1g.jpg" alt="Ekstrakurikuler Paskibra Al-Qomar" class="h-full w-full object-cover" loading="lazy" onerror="this.style.opacity=.2"></div>
-          <div class="rounded-3xl overflow-hidden aspect-[4/3] bg-emerald-700 shadow-xl shadow-emerald-900/5"><img src="images/Ekskul_pramuka.webp" alt="Ekstrakurikuler pramuka" class="h-full w-full object-cover" width="1920" height="955" loading="lazy" onerror="this.style.display='none'"></div>
+          <div class="relative rounded-3xl overflow-hidden aspect-square bg-emerald-800 shadow-xl shadow-emerald-900/20"><img src="https://gzcgyqntluhxxrvbcwin.supabase.co/storage/v1/object/public/cms-alqomar/uploads/1773826275751_x0belu93v1g.jpg" alt="Ekstrakurikuler Paskibra Al-Qomar" class="h-full w-full object-cover" loading="lazy" onerror="this.parentElement.classList.add('grid','place-items-center');this.outerHTML='&lt;svg viewBox=&quot;0 0 24 24&quot; class=&quot;h-14 w-14&quot; fill=&quot;#fcd34d&quot;&gt;&lt;path d=&quot;M12 3l9 4-9 4-9-4z&quot;/&gt;&lt;/svg&gt;'"></div>
+          <div class="rounded-3xl overflow-hidden aspect-[4/3] bg-emerald-700 shadow-xl shadow-emerald-900/5"><img src="images/galeri/gal-003.webp" alt="Upacara pramuka Al-Qomar" class="h-full w-full object-cover" loading="lazy" onerror="this.style.display='none'"></div>
         </div>
       </div>
       <div class="absolute -bottom-5 -left-3 h-20 w-20 bg-emerald-500/20 eight-star spin-slow" aria-hidden="true"></div>
@@ -745,8 +745,13 @@ function closeLightbox(){const lb=document.getElementById('lightbox');lb.classLi
 addEventListener('keydown',e=>{if(e.key!=='Escape')return;if(!document.getElementById('lightbox').classList.contains('hidden')){closeLightbox();}else{closeBerita();}});
 
 document.addEventListener('DOMContentLoaded',function(){
-  if(!window.supabase){console.warn('Supabase SDK gagal dimuat');return;}
-  const sb=window.supabase.createClient(SB_URL,SB_KEY);
+  const sb=window.supabase?window.supabase.createClient(SB_URL,SB_KEY):null;
+  if(!sb){
+    console.warn('Supabase SDK gagal dimuat — menampilkan status kosong, form tetap bisa lewat WhatsApp.');
+    emptyNote(document.getElementById('kegiatan-grid'),'Belum ada aktivitas dipublikasikan.');
+    emptyNote(document.getElementById('galeri-grid'),'<span class="text-cream/60">Galeri akan segera tersedia.</span>');
+    emptyNote(document.getElementById('berita-grid'),'Belum ada berita.');
+  }
 
   // Ticker pengumuman (dari CMS / tabel pengumuman, fallback statis)
   function showTicker(arr){
@@ -757,6 +762,7 @@ document.addEventListener('DOMContentLoaded',function(){
     const th=tw.offsetHeight||40;window.__tickerH=th;
     const navEl=document.getElementById('nav');navEl.style.top=th+'px';navEl.classList.remove('top-4','top-2');
   }
+  if(sb){
   sb.from('pengumuman').select('judul,tanggal_mulai').eq('aktif',true).order('tanggal_mulai',{ascending:false}).limit(6)
     .then(({data,error})=>{showTicker((!error&&data)?data.map(p=>p.judul):null);})
     .catch(()=>showTicker(null));
@@ -776,13 +782,6 @@ document.addEventListener('DOMContentLoaded',function(){
     }).catch(()=>{});
 
   // Berita (buka inline modal, tidak pindah halaman)
-  function renderBerita(data){const el=document.getElementById('berita-grid');if(!data||!data.length){emptyNote(el,'Belum ada berita.');return;}
-    window.__berita=data;
-    el.innerHTML=data.map((b,i)=>`<article onclick="openBerita(${i})" tabindex="0" role="button" onkeydown="if(event.key==='Enter')openBerita(${i})" class="reveal ${i%3?('d'+(i%3)):''} card cursor-pointer block rounded-3xl bg-cream border border-emerald-900/10 overflow-hidden shadow-lg shadow-emerald-900/5 focus:outline-none focus:ring-2 focus:ring-gold-500"><div class="aspect-[16/10] bg-emerald-800"><img ${'src'}="${esc(b.foto_url||'images/img_001.webp')}" alt="${esc(b.judul)}" class="h-full w-full object-cover" loading="lazy" onerror="this.style.opacity=.15"></div><div class="p-6"><span class="text-xs font-700 text-gold-600 uppercase tracking-wide">${esc(fmtTgl(b.tanggal))}</span>`+'<'+`h3 class="mt-2 font-700 text-lg text-emerald-900 leading-snug">${esc(b.judul)}</`+'h3>'+`${b.ringkasan?`<p class="mt-2 text-sm text-emerald-900/60 line-clamp-2">${esc(b.ringkasan)}</p>`:''}</div></article>`).join('');
-    observeReveal(el);}
-  window.loadAllBerita=function(ev){if(ev)ev.preventDefault();
-    sb.from('berita').select('id,judul,ringkasan,tanggal,foto_url,foto_urls,konten,slug,kategori').eq('aktif',true).order('tanggal',{ascending:false})
-      .then(({data})=>{renderBerita(data||[]);const b=document.getElementById('btn-berita-lain');if(b)b.style.display='none';document.getElementById('berita').scrollIntoView({behavior:'smooth'});}).catch(()=>{});};
   sb.from('berita').select('id,judul,ringkasan,tanggal,foto_url,foto_urls,konten,slug,kategori').eq('aktif',true).order('tanggal',{ascending:false}).limit(6)
     .then(({data,error})=>{if(error){emptyNote(document.getElementById('berita-grid'),'Belum ada berita.');return;}renderBerita(data);})
     .catch(()=>{});
@@ -801,6 +800,17 @@ document.addEventListener('DOMContentLoaded',function(){
       el.innerHTML=data.map((f,i)=>`<details class="reveal ${i%4?('d'+(i%4)):''} group rounded-2xl bg-cream/5 border border-gold-300/15 px-6 py-1"><summary class="flex items-center justify-between gap-4 py-4 font-700 text-cream list-none cursor-pointer">${esc(f.pertanyaan)}<svg viewBox="0 0 24 24" class="h-5 w-5 shrink-0 text-gold-400 transition-transform group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></summary><p class="pb-5 text-cream/70 leading-relaxed">${esc(f.jawaban)}</p></details>`).join('');
       observeReveal(el);
     }).catch(()=>{});
+  }
+
+  // Berita: dipakai baik saat Supabase aktif maupun tidak
+  function renderBerita(data){const el=document.getElementById('berita-grid');if(!data||!data.length){emptyNote(el,'Belum ada berita.');return;}
+    window.__berita=data;
+    el.innerHTML=data.map((b,i)=>`<article onclick="openBerita(${i})" tabindex="0" role="button" onkeydown="if(event.key==='Enter')openBerita(${i})" class="reveal ${i%3?('d'+(i%3)):''} card cursor-pointer block rounded-3xl bg-cream border border-emerald-900/10 overflow-hidden shadow-lg shadow-emerald-900/5 focus:outline-none focus:ring-2 focus:ring-gold-500"><div class="aspect-[16/10] bg-emerald-800"><img ${'src'}="${esc(b.foto_url||'images/img_001.webp')}" alt="${esc(b.judul)}" class="h-full w-full object-cover" loading="lazy" onerror="this.style.opacity=.15"></div><div class="p-6"><span class="text-xs font-700 text-gold-600 uppercase tracking-wide">${esc(fmtTgl(b.tanggal))}</span>`+'<'+`h3 class="mt-2 font-700 text-lg text-emerald-900 leading-snug">${esc(b.judul)}</`+'h3>'+`${b.ringkasan?`<p class="mt-2 text-sm text-emerald-900/60 line-clamp-2">${esc(b.ringkasan)}</p>`:''}</div></article>`).join('');
+    observeReveal(el);}
+  window.loadAllBerita=function(ev){if(ev)ev.preventDefault();
+    if(!sb)return;
+    sb.from('berita').select('id,judul,ringkasan,tanggal,foto_url,foto_urls,konten,slug,kategori').eq('aktif',true).order('tanggal',{ascending:false})
+      .then(({data})=>{renderBerita(data||[]);const b=document.getElementById('btn-berita-lain');if(b)b.style.display='none';document.getElementById('berita').scrollIntoView({behavior:'smooth'});}).catch(()=>{});};
 
   // Form Kirim Pesan -> tabel kontak + fallback WhatsApp
   const $id=id=>document.getElementById(id);
