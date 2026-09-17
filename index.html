@@ -1558,21 +1558,21 @@
                     </div>
                 </div>
                 <div class="wrap grid grid-3-fixed" style="margin-top:24px" id="cms-guru-pimpinan">
-                    <div class="card" style="display:flex;align-items:center;gap:13px">
+                    <div style="display:flex;align-items:center;gap:13px">
                         <img src="https://www.alqomar.sch.id/images/guru/ahmad-budi-setiawan.webp" alt="Ahmad Budi Setiawan" style="width:46px;height:46px;border-radius:12px;object-fit:cover;flex-shrink:0" loading="lazy"/>
                         <span>
                             <span style="display:block;font-weight:700;font-size:14.5px;color:var(--forest-800)">Ahmad Budi Setiawan</span>
                             <span style="display:block;font-size:12px;color:var(--muted)">Kepala Sekolah SDIT &amp; SMPIT</span>
                         </span>
                     </div>
-                    <div class="card" style="display:flex;align-items:center;gap:13px">
+                    <div style="display:flex;align-items:center;gap:13px">
                         <img src="https://www.alqomar.sch.id/images/guru/heny-fitriani.webp" alt="Heny Fitriani" style="width:46px;height:46px;border-radius:12px;object-fit:cover;flex-shrink:0" loading="lazy"/>
                         <span>
                             <span style="display:block;font-weight:700;font-size:14.5px;color:var(--forest-800)">Usth. Heny Fitriani, S.Pd</span>
                             <span style="display:block;font-size:12px;color:var(--muted)">Kepala Sekolah KB &amp; TKIT</span>
                         </span>
                     </div>
-                    <div class="card" style="display:flex;align-items:center;gap:13px">
+                    <div style="display:flex;align-items:center;gap:13px">
                         <img src="https://www.alqomar.sch.id/images/guru/suryadi-hartono-ruspandi.webp" alt="Suryadi H. Ruspandi" style="width:46px;height:46px;border-radius:12px;object-fit:cover;flex-shrink:0" loading="lazy"/>
                         <span>
                             <span style="display:block;font-weight:700;font-size:14.5px;color:var(--forest-800)">Suryadi H. Ruspandi</span>
@@ -2394,7 +2394,7 @@
                 return;
             el.innerHTML = data.map(function(g) {
                 var src = /^https?:\/\//.test(g.foto_url) ? g.foto_url : 'https://www.alqomar.sch.id/' + g.foto_url.replace(/^\//, '');
-                return '<div class="card" style="display:flex;align-items:center;gap:13px">' +
+                return '<div style="display:flex;align-items:center;gap:13px">' +
                 '<img src="' + esc(src) + '" alt="' + esc(g.nama) + '" style="width:46px;height:46px;border-radius:12px;object-fit:cover;flex-shrink:0" loading="lazy" />' +
                 '<span><span style="display:block;font-weight:700;font-size:14.5px;color:var(--forest-800)">' + esc(g.nama) + '</span>' +
                 '<span style="display:block;font-size:12px;color:var(--muted)">' + esc(g.jabatan) + '</span></span></div>';
