@@ -81,3 +81,8 @@ Bagian dari [[index]]. **Baca ini sebelum menyentuh apa pun yang berkaitan denga
 
 ## Tautan Terkait
 - [[platform-guru-tahfidz-odoa]] · [[sinkronisasi-repo-vs-production]]
+
+## Pelatihan Guru: tugas ATP (Lembar Kerja Penyusunan ATP, 19 Sep 2026)
+- File di Supabase Storage bucket `pelatihan-tugas`, folder pelatihan `-P1sJ0n_IvS4oLlBTPml` (44 file, 24 guru). Sandbox tidak bisa unduh (egress ke supabase.co ditolak); user kirim zip (40 file: 37 PDF + 3 DOCX) → diekstrak & dinilai per 6 tahap.
+- **Kebijakan user 19 Sep:** wali kelas paralel (2 rombel) mengumpulkan ATP yang SAMA: Een–Ulfa kls 1, Kustiah–Ningsih kls 2, Sjarni–Syafsila kls 3, Andi–Ninik kls 4, Ellida–Selvi kls 5, Fatma kls 6. Duplikat antar mereka = sah. Catatan: Fatma (kls 6) memakai dokumen identik kls 5 → perlu ATP kelas 6 sendiri. Belum mengumpulkan: Sjarniwati (kls 3), Andi Ilham & Ninik (kls 4).
+- Rubrik koreksi per tahap dipakai (contoh: `scratchpad/tugas-kurikulum/koreksi-ATP-Ulfa-2026-09-19.md`). Temuan berulang: CP versi 2022 vs diminta 046/H/KR/2025; CP elemen tersalin keliru (Menulis = Berbicara); TP memuat "dengan cara ..."; total JP tidak ditulis; Q5 dijawab "Ya" tanpa ATP kelas berikutnya.
