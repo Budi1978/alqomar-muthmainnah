@@ -36,6 +36,13 @@ Bagian dari [[index]]. Platform: **guru.alqomar.id** · repo `Budi1978/platform-
 - Target per kelas (keputusan user 19 Sep): **kelas 1–2 = 2 juz (30 & 29)**, munaqosyah Juz 30 di kelas 4 lalu Juz 29 s.d. kelas 6 + munaqosyah; **kelas 3–6 = 1 juz (Juz 30)**. Rincian TA ini: kelas 1 An-Nas–Al-Fil, kelas 2 Al-Humazah–Al-Fajr, kelas 3 tuntas Al-Ghasyiyah–An-Naba' + pra-munaqosyah, kelas 4 munaqosyah Juz 30, kelas 5–6 pemantapan/muroja'ah.
 - `src/lib/data/surah.ts` sudah punya Juz 29 lengkap.
 
+## Verifikasi 19 Sep 2026 (simulasi RLS di DB, semua lulus)
+- Pembimbing (wali 2A): lihat 11 halaqah, pegang hanya kelompoknya; insert setoran hari ini & kemarin OK, 2+ hari lalu DITOLAK, insert ke kelompok lain DITOLAK.
+- Pendamping (wali 9B = pendamping Kel 1): dikenali sebagai pembimbing Kel 1.
+- Koordinator tanpa cetak (Ellida): insert ke kelompok lain tanggal 10 hari lalu OK, baca 310 anggota, cetak = false.
+- Rifa, Ulfa, kepsek: cetak = true.
+- **Push ke `main` diblokir classifier sesi** → kode pendamping+Juz 29 ada di PR dari branch `claude/odoa-sk-pendamping`; user harus merge sendiri.
+
 ## Catatan teknis
 - Peran dihitung di `src/lib/tahfidz-akses.ts`; batas keras tetap di RLS.
 - `wali.2b@alqomar.id` ada di auth tapi tidak jadi wali kelas mana pun (Kelas 2B dipegang `wali.2c@alqomar.id`) — residu, tanya user sebelum dibersihkan.
