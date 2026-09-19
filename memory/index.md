@@ -34,3 +34,4 @@ Ini adalah **vault memori Obsidian** untuk proyek website Al-Qomar Muthmainnah. 
 
 - [[catatan/panggilan-user]] — **User memanggil Claude dengan nama "Aira"** (berlaku di semua sesi)
 - [[catatan/sinkronisasi-repo-vs-production]] — ⚠️ **PENTING**: repo Git bisa basi dari server (Hostinger diedit langsung). Jangan asumsikan repo = kondisi live untuk `.htaccess`/`*.php`. Selalu catat progres tiap selesai pekerjaan, jangan tunggu akhir sesi.
+- [[catatan/design-system-artifact]] — Design System artifact resmi (token, komponen, aset) diekstrak dari kode; sistem aktif = Tailwind emerald/gold/cream, `--h/--e` = legacy
