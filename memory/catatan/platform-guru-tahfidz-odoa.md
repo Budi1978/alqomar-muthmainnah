@@ -15,16 +15,19 @@ Bagian dari [[index]]. Platform: **guru.alqomar.id** · repo `Budi1978/platform-
 - Halaman Laporan tidak punya rekap tahfidz sama sekali.
 - Sandbox Claude **tidak bisa** akses guru.alqomar.id (egress diblokir) — verifikasi lewat DB Supabase + kode repo.
 
-## Keputusan kepsek (19 Sep 2026)
-- Input setoran **dibuka** untuk guru pembimbing (sebelumnya ditutup karena guru tidak mengisi sesuai waktu).
-- Cetak rapor ODOA hanya: kepsek/admin + **Rifa & Ulfa** (koordinator).
-- **5 koordinator** boleh melihat semua halaqah, tapi hanya Rifa & Ulfa yang boleh cetak.
+## Keputusan kepsek (19 Sep 2026) — aturan FINAL
+- Data halaqah/setoran lama **hilang karena insiden over storage** Supabase; sebelum itu modul sudah rapi. Halaqah harus dibuat ulang.
+- **Koordinator (5): Rifa, Ulfa, Een, Ellida, Imam** — mengisi & memeriksa SEMUA halaqah, tanpa batas tanggal, boleh buat halaqah/atur santri.
+- **Guru pembimbing** — hanya halaqahnya sendiri, saat setoran dibuka & dalam batas hari mundur.
+- **Cetak rapor: hanya Ulfa & Rifa** (+ kepsek/admin).
+- **Kepsek/admin** — semuanya (pengaturan buka/tutup, daftar koordinator).
+- Akun: Rifa `rifatul.hasanah@alqomar.id`, Imam `iman.paojan@alqomar.id` (keduanya dibuat Aira 19 Sep, password awal diserahkan ke user), Ulfa `wali.1b@`, Een `wali.1a@`, Ellida `wali.5a@alqomar.id`. Semua baris `guru` sudah tertaut.
 
 ## Yang sudah dikerjakan (branch `claude/tahfidz-akses-laporan` di repo platform)
 - Migrasi `supabase/migration_tahfidz_akses.sql` — **sudah diterapkan ke Supabase**: tabel `tahfidz_pengaturan` (buka/tutup + batas hari mundur, WIB), `tahfidz_koordinator` (+ `boleh_cetak_rapor`), RLS setoran menegakkan pengaturan, koordinator bisa baca semua, index unik anti setoran ganda.
 - Koordinator ber-hak cetak (sudah aktif di DB): **Ulfa = `wali.1b@alqomar.id`** (Saadiyah Ulfa, S.Pd) dan **Rifa = `rifatul.hasanah@alqomar.id`** (akun dibuat Aira 19 Sep 2026 lewat SQL, password awal diserahkan ke user, minta ganti di /dashboard/ganti-password). Baris `guru` keduanya sudah tertaut `user_id`.
 - UI: kartu "Pengaturan input setoran" (tombol buka/tutup) + kartu "Koordinator tahfidz" di tab Kelola Halaqah; dropdown pembimbing kini gabungan guru tertaut + wali kelas; halaman rapor menolak akun tanpa hak cetak; tab **Tahfidz ODOA** baru di Laporan (rekap per halaqah, export Excel/PDF).
-- Status: build lulus, belum di-merge ke `main` (Vercel deploy dari `main`).
+- Status: **sudah di-merge ke `main`** (2 commit: akses + revisi koordinator input penuh), Vercel deploy otomatis.
 
 ## Catatan teknis
 - Peran dihitung di `src/lib/tahfidz-akses.ts`; batas keras tetap di RLS.
