@@ -54,9 +54,9 @@ Folder `memory/` adalah **vault Obsidian** yang berfungsi sebagai memori jangka 
 ## Teknologi yang Digunakan
 
 - **HTML5** — markup semantik dengan desain responsif
-- **CSS3** — gaya tertanam menggunakan CSS custom properties, flexbox, dan grid
+- **CSS3** — `css/tailwind.min.css` (utilitas terkompilasi, tanpa build step) + `<style>` inline per halaman; halaman legacy memakai CSS custom properties, flexbox, dan grid
 - **Vanilla JavaScript** — tanpa framework atau library eksternal
-- **Google Fonts** — Plus Jakarta Sans, Amiri, Playfair Display
+- **Google Fonts** — Plus Jakarta Sans (teks), Fraunces (judul), Amiri (Arab); halaman legacy masih memuat Playfair Display / Cormorant Garamond
 - **Embed eksternal** — Google Maps, video YouTube
 
 **Tidak ada build system, package manager, atau framework.** Semua CSS dan JavaScript ditulis secara inline di dalam setiap file HTML.
@@ -86,18 +86,47 @@ Folder `memory/` adalah **vault Obsidian** yang berfungsi sebagai memori jangka 
 
 ## Variabel CSS (Sistem Desain)
 
-| Variabel | Nilai | Kegunaan |
-|----------|-------|----------|
-| `--h` | `#1a5c38` | Hijau utama (gelap) |
-| `--h2` | `#1e6e42` | Hijau menengah |
-| `--h3` | `#2a8a54` | Hijau terang |
-| `--e` | `#c8922a` | Emas utama |
-| `--e2` | `#e0a832` | Emas terang |
-| `--ep` | `#fdf3e0` | Latar belakang emas pucat |
-| `--kr` | `#faf7f2` | Latar belakang krem |
-| `--kr2` | `#f0e9d8` | Krem gelap / border |
+Sistem desain resmi (token, komponen, aset) terdokumentasi di artifact **Design System**:
+https://claude.ai/artifact/NFCQMTR4wGeQoUqv85VMoT — baca `project/README.md` dan `project/tokens.json` di sana sebelum menambah elemen baru. Catatan lokal: `memory/catatan/design-system-artifact.md`.
 
-Selalu gunakan variabel-variabel ini saat menambah elemen baru — jangan hardcode nilai warna.
+Ada **dua sistem** di repo ini. Halaman baru wajib memakai sistem aktif.
+
+### Sistem aktif — Tailwind terkompilasi (`index.html`, `spmb-online.html`, `rqaq.html`)
+
+Kelas utilitas dari `css/tailwind.min.css` (dibangun dari `css/tailwind.css`; tidak ada build step di repo — bila perlu kelas baru, tambahkan CSS manual di `<style>` halaman). Warna kustom:
+
+| Token | Nilai | Kegunaan |
+|-------|-------|----------|
+| `cream` | `#fdfbf3` | Latar halaman & kartu (`bg-cream`); juga `--cream` di `:root` |
+| `cream-100` | `#fbf6e9` | Latar section bergantian |
+| `emerald-700` | `#047857` | Warna brand: isi tombol, tile ikon, awal gradien CTA |
+| `emerald-800` | `#066149` | Latar galeri, tombol sekunder, teks sekunder |
+| `emerald-900` | `#064e3b` | Teks body, border & bayangan ber-alpha (`border-emerald-900/10`, `shadow-emerald-900/5`) |
+| `emerald-950` | `#03261c` | Judul, latar footer/section gelap, teks di atas gold |
+| `gold-300` | `#fcd34d` | Aksen di ground gelap (eyebrow, ikon, dot aktif) |
+| `gold-400` | `#fbbf24` | Awal gradien tombol gold |
+| `gold-500` | `#f59e0b` | Pill INFO, tile ikon, border fokus input |
+| `gold-600` | `#d97706` | Eyebrow & hover tautan di cream |
+| `#25D366` | — | Tombol WhatsApp melayang (warna merek WA, hardcode di `bg-[#25D366]`) |
+
+Catatan: `emerald-800` dan `emerald-950` **bukan** nilai default Tailwind; `gold-*` = skala amber Tailwind. Pola yang dipakai: gradien CTA `from-emerald-700 to-emerald-900` (teks `text-cream`) atau `from-gold-400 to-gold-600` (teks `text-emerald-950`, jangan putih); kartu `rounded-3xl bg-cream border border-emerald-900/10 p-7 shadow-lg shadow-emerald-900/5`; eyebrow `text-sm font-800 tracking-[.2em] text-gold-600 uppercase`; judul `font-display font-700 text-4xl sm:text-5xl text-emerald-950`.
+
+Font: `font-sans` = Plus Jakarta Sans, `font-display` = Fraunces, `font-arabic` = Amiri (semua Google Fonts). Radius: `rounded-xl` (nav, tile ikon, input) · `rounded-2xl` (tombol, navbar, media) · `rounded-3xl` (kartu) · `rounded-full` (pill, avatar).
+
+### Sistem legacy — variabel `--h/--e/--kr` (`event.html`, `berita.html`, `ppdb.html`, `berita-detail.html`)
+
+| Variabel | Nilai | Padanan di sistem aktif |
+|----------|-------|-------------------------|
+| `--h` | `#1a5c38` | `emerald-700` (isi) / `emerald-900` (teks) |
+| `--h2` | `#1e6e42` | `emerald-700` |
+| `--h3` | `#2a8a54` | `emerald-600` |
+| `--e` | `#c8922a` | `gold-500` (isi) / `gold-600` (teks) |
+| `--e2` | `#e0a832` | `gold-400` |
+| `--ep` | `#fdf3e0` | `gold-500/15` |
+| `--kr` | `#faf7f2` | `cream` |
+| `--kr2` | `#f0e9d8` | `border-emerald-900/10` |
+
+`berita.html` dan `ppdb.html` memakai varian nilai sedikit berbeda (`--h:#1B6B3A`, `--e:#C9A84C`, dst.). Saat menyunting halaman legacy, tetap pakai variabelnya (jangan hardcode hex); saat membangun ulang halaman, migrasikan ke sistem aktif sesuai tabel padanan.
 
 ## Bagian-Bagian `index.html` (berurutan)
 
@@ -223,7 +252,7 @@ Yang **tidak** perlu di-upload: `_backup/`, `_headers`, `_redirects`, `memory/`,
 ## Konvensi Penting
 
 - **Satu file HTML per halaman** — setiap halaman adalah file HTML mandiri dengan CSS dan JS inline-nya sendiri
-- **CSS custom properties** — selalu gunakan variabel `--h`, `--e`, dll. untuk konsistensi warna; jangan hardcode hex
+- **Token warna** — halaman baru pakai kelas Tailwind sistem aktif (`emerald-*`, `gold-*`, `cream`); halaman legacy pakai variabel `--h`, `--e`, dll. Jangan hardcode hex di keduanya (lihat bagian Variabel CSS)
 - **Nama kelas singkat** — ikuti pola penamaan 2–4 karakter yang sudah ada
 - **CSS per-section** — letakkan tag `<style>` tepat sebelum HTML bagian terkait, bukan di `<head>`
 - **Bahasa Indonesia** — semua konten yang tampil ke pengguna harus dalam Bahasa Indonesia

@@ -2,7 +2,7 @@
 judul: Konvensi Kode
 tipe: catatan
 tags: [konvensi, konteks]
-diperbarui: 2026-06-25
+diperbarui: 2026-09-19
 ---
 
 # Konvensi Kode
@@ -10,10 +10,12 @@ diperbarui: 2026-06-25
 Bagian dari [[index]]. Aturan ini **wajib** diikuti saat mengubah kode (ringkasan dari `CLAUDE.md`).
 
 ## CSS
-- **Selalu** pakai CSS custom properties, jangan hardcode hex:
-  `--h #1a5c38` (hijau utama) · `--h2 #1e6e42` · `--h3 #2a8a54` · `--e #c8922a` (emas) · `--e2 #e0a832` · `--ep #fdf3e0` · `--kr #faf7f2` · `--kr2 #f0e9d8`
-- Nama kelas **sangat singkat** (2–4 karakter), ikuti prefix per-section (`.ti`, `.nb`, `.sc`, `.jc`, `.faqg`, dst.)
-- Tag `<style>` diletakkan **tepat sebelum** HTML section terkait — bukan di `<head>`
+- **Dua sistem** — baca bagian "Variabel CSS" di CLAUDE.md dan artifact Design System ([[catatan/design-system-artifact]]):
+  - **Aktif** (`index.html`, `spmb-online.html`, `rqaq.html`): kelas Tailwind dari `css/tailwind.min.css` — `cream #fdfbf3` · `emerald-700 #047857` · `emerald-800 #066149` · `emerald-900 #064e3b` · `emerald-950 #03261c` · `gold-300 #fcd34d` · `gold-500 #f59e0b` · `gold-600 #d97706`. Font `font-sans` (Plus Jakarta Sans), `font-display` (Fraunces), `font-arabic` (Amiri).
+  - **Legacy** (`event.html`, `berita.html`, `ppdb.html`): variabel `--h #1a5c38` · `--h2` · `--h3` · `--e #c8922a` · `--e2` · `--ep` · `--kr #faf7f2` · `--kr2`. Tetap pakai variabelnya saat menyunting; migrasikan ke sistem aktif saat membangun ulang.
+- Jangan hardcode hex di kedua sistem (kecuali `bg-[#25D366]` WhatsApp yang memang begitu di sumber)
+- Halaman legacy: nama kelas **sangat singkat** (2–4 karakter), prefix per-section (`.ti`, `.nb`, `.sc`, `.jc`, `.faqg`, dst.); halaman aktif: utilitas Tailwind + sedikit kelas kustom (`.card`, `.reveal`, `.fld`, `.lbl`, `.marquee`)
+- Tag `<style>` kustom diletakkan **tepat sebelum** HTML section terkait — bukan di `<head>` (halaman aktif menaruh kelas global seperti `.reveal`/`.card` di `<head>`)
 
 ## JavaScript
 - **Vanilla JS saja** — tanpa jQuery/library eksternal
