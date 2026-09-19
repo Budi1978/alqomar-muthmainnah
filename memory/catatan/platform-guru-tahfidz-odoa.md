@@ -22,7 +22,7 @@ Bagian dari [[index]]. Platform: **guru.alqomar.id** · repo `Budi1978/platform-
 
 ## Yang sudah dikerjakan (branch `claude/tahfidz-akses-laporan` di repo platform)
 - Migrasi `supabase/migration_tahfidz_akses.sql` — **sudah diterapkan ke Supabase**: tabel `tahfidz_pengaturan` (buka/tutup + batas hari mundur, WIB), `tahfidz_koordinator` (+ `boleh_cetak_rapor`), RLS setoran menegakkan pengaturan, koordinator bisa baca semua, index unik anti setoran ganda.
-- Seed koordinator: **Ulfa = akun `wali.1b@alqomar.id`** (Saadiyah Ulfa, S.Pd) sudah ditandai boleh cetak. **Rifa (Rifatul Hasanah, S.Pd) belum punya akun login** — perlu dibuat dulu, lalu tambahkan di tab Kelola Halaqah.
+- Koordinator ber-hak cetak (sudah aktif di DB): **Ulfa = `wali.1b@alqomar.id`** (Saadiyah Ulfa, S.Pd) dan **Rifa = `rifatul.hasanah@alqomar.id`** (akun dibuat Aira 19 Sep 2026 lewat SQL, password awal diserahkan ke user, minta ganti di /dashboard/ganti-password). Baris `guru` keduanya sudah tertaut `user_id`.
 - UI: kartu "Pengaturan input setoran" (tombol buka/tutup) + kartu "Koordinator tahfidz" di tab Kelola Halaqah; dropdown pembimbing kini gabungan guru tertaut + wali kelas; halaman rapor menolak akun tanpa hak cetak; tab **Tahfidz ODOA** baru di Laporan (rekap per halaqah, export Excel/PDF).
 - Status: build lulus, belum di-merge ke `main` (Vercel deploy dari `main`).
 
