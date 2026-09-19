@@ -29,6 +29,13 @@ Bagian dari [[index]]. Platform: **guru.alqomar.id** · repo `Budi1978/platform-
 - UI: kartu "Pengaturan input setoran" (tombol buka/tutup) + kartu "Koordinator tahfidz" di tab Kelola Halaqah; dropdown pembimbing kini gabungan guru tertaut + wali kelas; halaman rapor menolak akun tanpa hak cetak; tab **Tahfidz ODOA** baru di Laporan (rekap per halaqah, export Excel/PDF).
 - Status: **sudah di-merge ke `main`** (2 commit: akses + revisi koordinator input penuh), Vercel deploy otomatis.
 
+## Halaqah dibuat ulang sesuai SK (19 Sep 2026)
+- Sumber: **SK Pembagian Kelompok ODOA TA 2026/2027 (13 Juli 2026)** + dokumen "Daftar Surah Juz 29 dan Juz 30" (user upload). Koordinator program ODOA menurut SK: **Iman Paojan, S.Pd.I**.
+- ODOA **hanya SDIT**: 11 kelompok = 11 rombel, nama "Kelompok N — Kelas <romawi>" (IA…VI). Anggota = seluruh siswa kelas (310 siswa).
+- Tiap kelompok **2 pembimbing**: wali kelas (`pembimbing_id`, akun `wali.*@alqomar.id`) + guru pendamping (`pendamping_id`, kolom baru). Pendamping tanpa akun (Widiya, Aranda Firdaus, Annisa Annahl R) hanya tercatat nama; kalau nanti dibuatkan akun, isi `pendamping_id`.
+- Target per kelas (keputusan user 19 Sep): **kelas 1–2 = 2 juz (30 & 29)**, munaqosyah Juz 30 di kelas 4 lalu Juz 29 s.d. kelas 6 + munaqosyah; **kelas 3–6 = 1 juz (Juz 30)**. Rincian TA ini: kelas 1 An-Nas–Al-Fil, kelas 2 Al-Humazah–Al-Fajr, kelas 3 tuntas Al-Ghasyiyah–An-Naba' + pra-munaqosyah, kelas 4 munaqosyah Juz 30, kelas 5–6 pemantapan/muroja'ah.
+- `src/lib/data/surah.ts` sudah punya Juz 29 lengkap.
+
 ## Catatan teknis
 - Peran dihitung di `src/lib/tahfidz-akses.ts`; batas keras tetap di RLS.
 - `wali.2b@alqomar.id` ada di auth tapi tidak jadi wali kelas mana pun (Kelas 2B dipegang `wali.2c@alqomar.id`) — residu, tanya user sebelum dibersihkan.
