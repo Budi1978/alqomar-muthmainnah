@@ -18,6 +18,7 @@ REMOTE_DIR="public_html"
 # skrip ini mengenali variasi itu lalu mengunggahnya dengan nama yang benar.
 UPLOAD=(
   "index.html"
+  "css/tailwind.min.css"
   ".htaccess"
   "robots.txt"
 )
