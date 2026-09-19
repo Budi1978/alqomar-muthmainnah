@@ -19,3 +19,9 @@ https://claude.ai/artifact/NFCQMTR4wGeQoUqv85VMoT (privat; dibagikan lewat menu 
 
 ## Cara memperbarui
 Baca `project/README.md` dan `project/tokens.json` di artifact, ubah file yang perlu, publish ke URL yang sama (jangan buat dari `type_url` lagi). `tokens.json` `meta.source` = github, jadi bisa di-re-sync dari repo.
+
+## Progres migrasi halaman legacy
+- **2026-09-19 — `event.html` selesai** dimigrasi ke sistem aktif (branch `claude/design-system-extraction-5zuukp`). Pola: Tailwind CDN + `tailwind.config` inline seperti `rqaq.html`, ditambah `fontWeight:{400..800}` supaya `font-700` bekerja (tanpa itu `font-700` di CDN v3 tidak jalan).
+- ⚠️ `css/tailwind.min.css` di repo **tidak memuat** kelas yang dipakai `index.html` (`font-700`, `pt-36`, `md:flex`, dll.) — file di repo basi dari server. Situs live tidak bisa diakses dari sandbox (proxy 403), jadi belum bisa dibandingkan.
+- Uji render: kompilasi Tailwind v3 lokal (npm) + headless Chromium; Chromium headless punya lebar minimum ±500px, uji mobile pakai `<iframe width=390>`.
+- Sisa halaman legacy: `berita.html`, `berita-detail.html`, `ppdb.html`, `berita/index.html`.
