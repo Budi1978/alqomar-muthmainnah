@@ -14,7 +14,14 @@ Bagian dari [[index]]. **Baca ini sebelum menyentuh apa pun yang berkaitan denga
 2. **guru.alqomar.id** — web internal guru: SEMUA aktivitas & pekerjaan kepsek + guru ada di sini. Menu: Beranda, Panduan, Data Guru, Data Siswa, RPP, Presensi, Jurnal, Nilai & Rapor, Jadwal, Tugas, Pelatihan Guru, Dokumenku, Supervisi, **Setoran ODOA**, Buat Soal, Notifikasi (Kepala Sekolah).
 3. **gaji.alqomar.id** — web gaji, pribadi user (Supabase `cuqwjgxipzwwecolbuav` "gaji-guru").
 
-## Arsitektur guru.alqomar.id (hasil investigasi, belum lihat kode)
+## Arsitektur guru.alqomar.id — SUDAH LIHAT KODE (19 Sep 2026, user upload Page Source)
+- **Satu file HTML ~1,28 MB, ~18 ribu baris**, judul "Platform Guru Al-Qomar". React 18 + **Babel standalone** (JSX dikompilasi di browser → nama variabel tidak diminifikasi), Chart.js. Arsip versi asli: `_backup/guru.alqomar.id/Platform_Guru_Al-Qomar.2026-09-19.asli.html` di repo ini.
+- **Backend:** Firebase project `alqomar-guru` — Auth + Realtime Database `https://alqomar-guru-default-rtdb.asia-southeast1.firebasedatabase.app` (data), Supabase Tokyo `lnacvtvufgsxnqhuezox` hanya Storage (bucket `dokumen_`, `pelatihan-tugas`). Claude tidak punya akses Firebase.
+- **Node RTDB terkait ODOA:** `halaqah/<hid>` (field `nama`, `pembimbing` = NIP, `daftarPembimbing{...nip}` sejak SK 13 Juli 2026, `anggota{siswaId:true}`), `odoa/<pushId>` (setoran: siswaId, tanggal, surah, nomor, dari, sampai, nilai), `odoaBulanan/<siswaId>__<YYYY-MM>` (nilai bulanan + ujianX), `odoaAwal/<siswaId>`. Pelatihan: `pelatihan/<pushId>`, `pelatihanSubmissions/`.
+- **Komponen:** `SetoranODOA({user,isPriv})` ~baris 10968; `CreatePelatihanModal` ~baris 15245. Helper akses ODOA sudah ada di app: `window._odoaKoordinator(user)`, `_odoaKoordinatorPenuh(user)` (Ulfa & Rifa: rekap semua, rekap ujian, terbitkan rapor), `_odoaBolehCetak`, `_odoaJenjangBoleh` (ODOA khusus SDIT). Guru identifikasi lewat **NIP** (`user.nip`), daftar guru di localStorage `alqomar_guru`.
+- **Bug diperbaiki 19 Sep 2026:** `CreatePelatihanModal.handleSave` memakai `deadlineISO` yang tidak pernah didefinisikan → "Can't find variable: deadlineISO". Fix: `const deadlineISO = new Date(deadline).toISOString()` + init edit pakai waktu lokal. File hasil fix dikirim ke user untuk di-upload manual (lokasi file di hosting belum diketahui; user sempat bersih-bersih public_html Hostinger).
+
+## Arsitektur (catatan investigasi awal, sebelum lihat kode)
 - **Kode: TIDAK ada di repo GitHub mana pun** yang bisa diakses (bukan `platform-guru-alqomar`, bukan `web-alqomar-next`). Kemungkinan HTML/JS statis di Hostinger (error JS tampil dengan nama variabel asli, tidak diminifikasi).
 - **Data aktivitas (pelatihan, tugas, jurnal, setoran ODOA, dll.): Firebase Realtime Database** — bukti: path file di bucket `pelatihan-tugas` berpola `-Ovns4PiTdsBtdtCWkqy/<id-guru>/…` (push ID Firebase). Claude tidak punya akses Firebase.
 - **File: Supabase Storage Tokyo** `lnacvtvufgsxnqhuezox`, bucket `dokumen_` (5.451 file, folder per guru = NIP/tanggal lahir/timestamp) dan `pelatihan-tugas` (234 file).
