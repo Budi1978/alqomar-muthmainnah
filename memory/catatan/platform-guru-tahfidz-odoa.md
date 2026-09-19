@@ -7,6 +7,12 @@ diperbarui: 2026-09-19
 
 # Platform Guru — Modul Tahfidz ODOA
 
+> [!danger] KOREKSI PENTING (19 Sep 2026, dari user)
+> **guru.alqomar.id BUKAN repo `platform-guru-alqomar`.** Aplikasi yang dipakai guru sehari-hari di guru.alqomar.id adalah aplikasi LAIN (menu: Beranda, Panduan, Data Guru, Data Siswa, RPP, Presensi, Jurnal, Nilai & Rapor, Jadwal, Tugas, Pelatihan Guru, Dokumenku, Supervisi, Setoran ODOA, Buat Soal, Notifikasi) — kemungkinan HTML statis di Hostinger dengan backend sendiri, kodenya TIDAK ada di repo GitHub mana pun yang bisa diakses Claude, dan backend-nya BUKAN Supabase Tokyo `lnacvtvufgsxnqhuezox` (tidak ada tabel jurnal/pelatihan/dokumen di sana).
+> Seluruh pekerjaan tahfidz di catatan ini (halaqah, koordinator, akun Rifa/Imam/Widiya/Aranda, RLS) diterapkan ke aplikasi Next.js + Supabase Tokyo — **bukan ke aplikasi yang dipakai guru**. Tidak merusak apa pun di guru.alqomar.id, tapi tidak berlaku di sana.
+> **Aturan user: TANYA DULU sebelum eksekusi apa pun.** Jangan asumsikan aplikasi/repo/database mana yang dimaksud. Minta URL + file sumber dulu.
+
+
 Bagian dari [[index]]. Platform: **guru.alqomar.id** · repo `Budi1978/platform-guru-alqomar` (Next.js 16 + Supabase Tokyo `lnacvtvufgsxnqhuezox`).
 
 ## Kondisi saat dicek (19 Sep 2026)

@@ -33,5 +33,5 @@ Ini adalah **vault memori Obsidian** untuk proyek website Al-Qomar Muthmainnah. 
 *(Tambahkan hal yang sedang berjalan atau perlu ditindaklanjuti di sini)*
 
 - [[catatan/panggilan-user]] — **User memanggil Claude dengan nama "Aira"** (berlaku di semua sesi)
-- [[catatan/platform-guru-tahfidz-odoa]] — Platform Guru (guru.alqomar.id): modul Tahfidz ODOA, aturan akses setoran/cetak rapor (19 Sep 2026), yang sudah dikerjakan
+- [[catatan/platform-guru-tahfidz-odoa]] — ⚠️ **guru.alqomar.id ≠ repo platform-guru-alqomar** (aplikasi guru yang asli kodenya tidak di GitHub). Pekerjaan tahfidz 19 Sep masuk ke app Next.js/Supabase Tokyo, bukan ke app guru. **Selalu tanya user sebelum eksekusi.**
 - [[catatan/sinkronisasi-repo-vs-production]] — ⚠️ **PENTING**: repo Git bisa basi dari server (Hostinger diedit langsung). Jangan asumsikan repo = kondisi live untuk `.htaccess`/`*.php`. Selalu catat progres tiap selesai pekerjaan, jangan tunggu akhir sesi.
