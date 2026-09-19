@@ -31,8 +31,11 @@ Bagian dari [[index]]. Platform: **guru.alqomar.id** · repo `Budi1978/platform-
 
 ## Halaqah dibuat ulang sesuai SK (19 Sep 2026)
 - Sumber: **SK Pembagian Kelompok ODOA TA 2026/2027 (13 Juli 2026)** + dokumen "Daftar Surah Juz 29 dan Juz 30" (user upload). Koordinator program ODOA menurut SK: **Iman Paojan, S.Pd.I**.
-- ODOA **hanya SDIT**: 11 kelompok = 11 rombel, nama "Kelompok N — Kelas <romawi>" (IA…VI). Anggota = seluruh siswa kelas (310 siswa).
-- Tiap kelompok **2 pembimbing**: wali kelas (`pembimbing_id`, akun `wali.*@alqomar.id`) + guru pendamping (`pendamping_id`, kolom baru). Pendamping tanpa akun (Widiya, Aranda Firdaus, Annisa Annahl R) hanya tercatat nama; kalau nanti dibuatkan akun, isi `pendamping_id`.
+- ODOA **hanya SDIT**, 310 siswa. SK: 11 kelompok = 11 rombel, tiap rombel 2 pembimbing, dan **daftar siswa dibagi dua kurung**: wali kelas pegang baris awal, pendamping baris akhir (Kelas VI tiga kurung: Rifa 1–6, Fatmarianti 7–23, Iman 24–37).
+- **Di DB dipecah jadi 23 sub-halaqah** "Kelompok N — Kelas X · <Nama guru>" (mis. "Kelompok 1 — Kelas IA · Een Muflihat" = 15 santri, "… · Rahayu Vina Purwanti" = 15). Tiap sub-halaqah `pembimbing_id` = guru itu; guru hanya melihat sub-halaqahnya. Batas kurung dibaca dari posisi label di PDF SK (heuristik), kalau ada yang meleset koordinator geser santri di Kelola Halaqah.
+- Pendamping tanpa akun (Widiya IIB, Aranda IVB, Annisa VA): sub-halaqahnya `pembimbing_id` null, `pendamping_id` = wali kelas sebagai cover sampai akun dibuat.
+- Pencocokan nama PDF↔DB: kunci 12 huruf pertama (tanpa spasi/tanda), sisanya berdasarkan urutan abjad; 310/310 cocok unik.
+- Bug yang ditemukan user 19 Sep ("kok nga ada kelasnya"): policy `siswa`/`kelas` lama hanya untuk wali kelas → pendamping & koordinator lihat 0 santri. Diperbaiki: policy `siswa_select_tahfidz` & `kelas_select_tahfidz` (fungsi security definer, hindari rekursi).
 - Target per kelas (keputusan user 19 Sep): **kelas 1–2 = 2 juz (30 & 29)**, munaqosyah Juz 30 di kelas 4 lalu Juz 29 s.d. kelas 6 + munaqosyah; **kelas 3–6 = 1 juz (Juz 30)**. Rincian TA ini: kelas 1 An-Nas–Al-Fil, kelas 2 Al-Humazah–Al-Fajr, kelas 3 tuntas Al-Ghasyiyah–An-Naba' + pra-munaqosyah, kelas 4 munaqosyah Juz 30, kelas 5–6 pemantapan/muroja'ah.
 - `src/lib/data/surah.ts` sudah punya Juz 29 lengkap.
 
@@ -41,6 +44,7 @@ Bagian dari [[index]]. Platform: **guru.alqomar.id** · repo `Budi1978/platform-
 - Pendamping (wali 9B = pendamping Kel 1): dikenali sebagai pembimbing Kel 1.
 - Koordinator tanpa cetak (Ellida): insert ke kelompok lain tanggal 10 hari lalu OK, baca 310 anggota, cetak = false.
 - Rifa, Ulfa, kepsek: cetak = true.
+- Setelah pemecahan: Een (wali 1A) pegang hanya sub-halaqahnya (15 santri), Rahayu Vina lihat 30 santri Kel 1 lalu 15 setelah split.
 - **Push ke `main` diblokir classifier sesi** → kode pendamping+Juz 29 ada di PR dari branch `claude/odoa-sk-pendamping`; user harus merge sendiri.
 
 ## Catatan teknis
