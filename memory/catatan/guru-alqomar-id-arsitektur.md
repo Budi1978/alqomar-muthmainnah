@@ -30,6 +30,7 @@ Bagian dari [[index]]. **Baca ini sebelum menyentuh apa pun yang berkaitan denga
 - **Matriks akses** (user): Admin 1 = semua + cetak rapor; Koordinator 5 = semua halaqah sesuai kewenangan, tidak cetak rapor; Pembimbing 22 = halaqah sendiri; Pencetak rapor 2 (Ulfa & Rifa); Siswa ±309 opsional lihat data sendiri (belum ada login siswa). → **Sudah sesuai kode.**
 - **Bagan data** (user): HALAQAH → ZIYADAH & MUROJAAH harian, masing-masing: Tanggal, Surah, Ayat, Juz, Nilai, Catatan → RIWAYAT SISWA.
 - **Gap:** app hanya punya ziyadah harian (`odoa/<siswaId>__<tgl>__<ts>`: siswaId, tanggal, nomor, surah, dari, sampai, nilai, oleh) — tanpa juz & catatan; murojaah hanya bulanan di `odoaBulanan` (murojaah1..4 + kelancaran1..4); riwayat siswa admin-only.
+- **Bagan ujian (user):** ziyadah+murojaah → perkembangan siswa → **UTS & UAS Al-Qur'an per semester** → rapor tahfizh → dicetak Ulfa & Rifa. Gap: app sekarang rapor **per bulan** (`odoaBulanan/<siswa>__<YYYY-MM>`, bulanKe I..), ujian disimpan per bulan (field ujianX). Perubahan ke semesteran = Paket B.
 - **Rencana:** Paket A (kecil): tampilkan nama pembimbing, panel "Atur Pembimbing Halaqah", buka `_ODOA_UNTUK_GURU`. Paket B (besar, belum disetujui): murojaah harian + juz + catatan + riwayat untuk pembimbing + rapor menyesuaikan; butuh desain node baru & rules RTDB.
 
 ## Hosting & alur deploy (dari ringkasan sesi 18 Sep 2026 yang di-upload user)
