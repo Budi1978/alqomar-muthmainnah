@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<!-- Google Analytics 4 --><script async src="https://www.googletagmanager.com/gtag/js?id=G-8C4R8ZTBWP"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-8C4R8ZTBWP");</script>
+<!-- Google Analytics 4 --><script async src="https://www.googletagmanager.com/gtag/js?id=G-8C4R8ZTBWP"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag('config','G-8C4R8ZTBWP');document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.href||'';if(/wa\.me\//.test(h))gtag('event','klik_whatsapp',{lokasi:location.pathname});else if(/spmb-online/.test(h))gtag('event','klik_daftar',{lokasi:location.pathname});});</script>
 <title>PPDB 2027/2028 Al-Qomar Muthmainnah | Pendaftaran KB · TKIT · SDIT · SMPIT</title>
 <meta name="description" content="Pendaftaran Peserta Didik Baru (PPDB/SPMB) 2027/2028 Al-Qomar Muthmainnah, Kalideres Jakarta Barat. Formulir online KB, TKIT, SDIT, SMPIT." />
 <link rel="canonical" href="https://www.alqomar.sch.id/spmb-online" />
@@ -18,7 +18,7 @@
 <meta name="twitter:title" content="PPDB 2027/2028 Al-Qomar Muthmainnah | Pendaftaran KB · TKIT · SDIT · SMPIT" />
 <meta name="twitter:description" content="Pendaftaran Peserta Didik Baru (PPDB/SPMB) 2027/2028 Al-Qomar Muthmainnah, Kalideres Jakarta Barat. Formulir online KB, TKIT, SDIT, SMPIT." />
 <meta name="twitter:image" content="https://www.alqomar.sch.id/images/og-image.jpg" />
-<link rel="icon" href="logo/favicon-32x32.png" sizes="32x32">
+<link rel="icon" href="logo/logo-32x32.png" sizes="32x32">
 <link rel="stylesheet" href="css/tailwind.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Amiri:wght@400;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Amiri:wght@400;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet"></noscript>
@@ -221,6 +221,7 @@ $('ppdb-form').addEventListener('submit',async function(e){
     const res=await sb.from('spmb_pendaftar').insert([data]).select('no_pendaftaran');
     if(res.error) throw res.error;
     if(res.data&&res.data[0]) noPendaftaran=res.data[0].no_pendaftaran;
+    if(typeof gtag==='function') gtag('event','generate_lead',{jenjang:jenjangEl.value});
   }catch(err){console.error('Supabase error:',err);showMsg('Sistem pendaftaran sibuk — data akan dikirim via WhatsApp agar admin tetap dapat memproses.','error');}
 
   // WA message (selalu jalan)

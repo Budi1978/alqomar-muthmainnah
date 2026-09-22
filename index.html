@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-8C4R8ZTBWP"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8C4R8ZTBWP');</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8C4R8ZTBWP');document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.href||'';if(/wa\.me\//.test(h))gtag('event','klik_whatsapp',{lokasi:location.pathname});else if(/spmb-online/.test(h))gtag('event','klik_daftar',{lokasi:location.pathname});});</script>
 <title>Al-Qomar Muthmainnah — Sekolah Islam Terpadu Jakarta Barat</title>
 <meta name="description" content="Sekolah Islam Terpadu Akreditasi A di Kalideres, Jakarta Barat. KB · TKIT · SDIT · SMPIT — Tahfidz Al-Qur'an, Sekolah Penggerak. PPDB 2027/2028 segera dibuka." />
 <link rel="canonical" href="https://www.alqomar.sch.id/" />
@@ -716,6 +716,9 @@ observeReveal();
 const SB_URL='https://gzcgyqntluhxxrvbcwin.supabase.co';
 const SB_KEY='sb_publishable_F641BOnF7LUfmctyCmiJvw_yo6aiFXY';
 const esc=s=>(s==null?'':String(s)).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const CMS_RE=/^https:\/\/[a-z0-9-]+\.supabase\.co\/storage\/v1\/object\/public\//i;
+// Upload CMS berupa PNG 1,5–3 MB; minta Supabase kecilkan + kirim WebP (sama seperti berita-detail.php)
+const imgCms=(u,w)=>{const t=String(u||'');return CMS_RE.test(t)?t.replace('/storage/v1/object/public/','/storage/v1/render/image/public/')+'?width='+w+'&quality=72&resize=contain':t;};
 const imgOf=it=>it.foto_url||('images/'+(it.img_file||'img_001.webp'));
 const fmtTgl=d=>{try{return new Date(d).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});}catch(e){return d||'';}};
 function emptyNote(el,msg){el.innerHTML='<p class="col-span-full text-center text-emerald-900/50 py-6">'+msg+'</p>';}
@@ -727,11 +730,11 @@ function openBerita(i){const b=(window.__berita||[])[i];if(!b)return;
   let galeri='';
   if(galFotos.length>1){
     galeri=`<div class="mt-8"><p class="text-sm font-800 tracking-[.15em] text-gold-600 uppercase mb-3">Galeri Kegiatan (${galFotos.length} foto)</p><div class="grid grid-cols-2 sm:grid-cols-3 gap-3">`+
-      galFotos.map(u=>`<button type="button" onclick="openLightbox('${esc(u)}')" class="block rounded-2xl overflow-hidden bg-emerald-800 aspect-[4/3] group cursor-zoom-in"><img ${'src'}="${esc(u)}" alt="${esc(b.judul)}" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" onerror="this.style.opacity=.15"></button>`).join('')+
+      galFotos.map(u=>`<button type="button" onclick="openLightbox('${esc(imgCms(u,1600))}')" class="block rounded-2xl overflow-hidden bg-emerald-800 aspect-[4/3] group cursor-zoom-in"><img ${'src'}="${esc(imgCms(u,600))}" alt="${esc(b.judul)}" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" onerror="this.style.opacity=.15"></button>`).join('')+
       `</div></div>`;
   }
   document.getElementById('berita-modal-body').innerHTML=
-   `<div class="aspect-[16/9] bg-emerald-800 rounded-t-3xl overflow-hidden"><img ${'src'}="${esc(cover)}" alt="${esc(b.judul)}" class="h-full w-full object-cover" onerror="this.style.opacity=.15"></div>`+
+   `<div class="aspect-[16/9] bg-emerald-800 rounded-t-3xl overflow-hidden"><img ${'src'}="${esc(imgCms(cover,1200))}" alt="${esc(b.judul)}" class="h-full w-full object-cover" onerror="this.style.opacity=.15"></div>`+
    `<div class="p-7 sm:p-10"><span class="inline-flex items-center gap-2 text-xs font-700 text-gold-600 uppercase tracking-wide"><svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>${esc(fmtTgl(b.tanggal))}${b.kategori?(' · '+esc(b.kategori)):''}</span>`+
    '<'+'h2 class="font-display font-700 text-3xl sm:text-4xl text-emerald-950 leading-tight mt-3">'+esc(b.judul)+'</'+'h2>'+
    `<div class="mt-6 text-emerald-900/80 leading-relaxed text-[17px]">${body}</div>`+
@@ -764,21 +767,21 @@ document.addEventListener('DOMContentLoaded',function(){
   // Foto kegiatan / aktivitas
   sb.from('program_pendidikan').select('judul, foto_url, img_file, tag, jenjang, urutan').eq('kategori','aktivitas').eq('aktif',true).order('urutan',{ascending:true})
     .then(({data,error})=>{const el=document.getElementById('kegiatan-grid');if(error||!data||!data.length){emptyNote(el,'Belum ada aktivitas dipublikasikan.');return;}
-      el.innerHTML=data.map((it,i)=>`<article class="reveal ${i%3?('d'+(i%3)):''} card cursor-pointer rounded-3xl overflow-hidden bg-cream border border-emerald-900/10 shadow-lg shadow-emerald-900/5"><div class="aspect-[4/3] bg-emerald-800"><img ${'src'}="${esc(imgOf(it))}" alt="${esc(it.judul)}" class="h-full w-full object-cover" loading="lazy" onerror="this.style.opacity=.15"></div><div class="p-5"><span class="text-xs font-700 text-gold-600 uppercase tracking-wide">${esc(it.tag||it.jenjang||'Kegiatan')}</span>`+'<'+`h3 class="mt-1.5 font-700 text-emerald-900 leading-snug">${esc(it.judul)}</`+'h3>'+`</div></article>`).join('');
+      el.innerHTML=data.map((it,i)=>`<article class="reveal ${i%3?('d'+(i%3)):''} card cursor-pointer rounded-3xl overflow-hidden bg-cream border border-emerald-900/10 shadow-lg shadow-emerald-900/5"><div class="aspect-[4/3] bg-emerald-800"><img ${'src'}="${esc(imgCms(imgOf(it),800))}" alt="${esc(it.judul)}" class="h-full w-full object-cover" loading="lazy" onerror="this.style.opacity=.15"></div><div class="p-5"><span class="text-xs font-700 text-gold-600 uppercase tracking-wide">${esc(it.tag||it.jenjang||'Kegiatan')}</span>`+'<'+`h3 class="mt-1.5 font-700 text-emerald-900 leading-snug">${esc(it.judul)}</`+'h3>'+`</div></article>`).join('');
       observeReveal(el);
     }).catch(()=>{});
 
   // Galeri + ekskul (program_pendidikan, kategori galeri/ekstrakurikuler)
   sb.from('program_pendidikan').select('judul, deskripsi, foto_url, img_file, jenjang, kategori, urutan').in('kategori',['ekstrakurikuler','galeri']).eq('aktif',true).order('urutan',{ascending:true})
     .then(({data,error})=>{const el=document.getElementById('galeri-grid');if(error||!data||!data.length){emptyNote(el,'<span class="text-cream/60">Galeri akan segera tersedia.</span>');return;}
-      el.innerHTML=data.map((it,i)=>`<figure class="reveal ${i%4?('d'+(i%4)):''} card cursor-pointer rounded-3xl overflow-hidden bg-emerald-900 ${i%5===0?'row-span-2':''}"><div class="relative h-full min-h-[176px]"><img ${'src'}="${esc(imgOf(it))}" alt="${esc(it.judul)}" class="h-full w-full object-cover" loading="lazy" onerror="this.style.opacity=.2"><figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-emerald-950/90 to-transparent p-4 text-cream text-sm font-600">${esc(it.judul)}${it.kategori==='ekstrakurikuler'?'<span class="block text-[11px] text-gold-300 font-700 uppercase tracking-wide">Ekskul</span>':''}</figcaption></div></figure>`).join('');
+      el.innerHTML=data.map((it,i)=>`<figure class="reveal ${i%4?('d'+(i%4)):''} card cursor-pointer rounded-3xl overflow-hidden bg-emerald-900 ${i%5===0?'row-span-2':''}"><div class="relative h-full min-h-[176px]"><img ${'src'}="${esc(imgCms(imgOf(it),800))}" alt="${esc(it.judul)}" class="h-full w-full object-cover" loading="lazy" onerror="this.style.opacity=.2"><figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-emerald-950/90 to-transparent p-4 text-cream text-sm font-600">${esc(it.judul)}${it.kategori==='ekstrakurikuler'?'<span class="block text-[11px] text-gold-300 font-700 uppercase tracking-wide">Ekskul</span>':''}</figcaption></div></figure>`).join('');
       el.classList.add('auto-rows-[176px]');observeReveal(el);
     }).catch(()=>{});
 
   // Berita (buka inline modal, tidak pindah halaman)
   function renderBerita(data){const el=document.getElementById('berita-grid');if(!data||!data.length){emptyNote(el,'Belum ada berita.');return;}
     window.__berita=data;
-    el.innerHTML=data.map((b,i)=>`<article onclick="openBerita(${i})" tabindex="0" role="button" onkeydown="if(event.key==='Enter')openBerita(${i})" class="reveal ${i%3?('d'+(i%3)):''} card cursor-pointer block rounded-3xl bg-cream border border-emerald-900/10 overflow-hidden shadow-lg shadow-emerald-900/5 focus:outline-none focus:ring-2 focus:ring-gold-500"><div class="aspect-[16/10] bg-emerald-800"><img ${'src'}="${esc(b.foto_url||'images/img_001.webp')}" alt="${esc(b.judul)}" class="h-full w-full object-cover" loading="lazy" onerror="this.style.opacity=.15"></div><div class="p-6"><span class="text-xs font-700 text-gold-600 uppercase tracking-wide">${esc(fmtTgl(b.tanggal))}</span>`+'<'+`h3 class="mt-2 font-700 text-lg text-emerald-900 leading-snug">${esc(b.judul)}</`+'h3>'+`${b.ringkasan?`<p class="mt-2 text-sm text-emerald-900/60 line-clamp-2">${esc(b.ringkasan)}</p>`:''}</div></article>`).join('');
+    el.innerHTML=data.map((b,i)=>`<article onclick="openBerita(${i})" tabindex="0" role="button" onkeydown="if(event.key==='Enter')openBerita(${i})" class="reveal ${i%3?('d'+(i%3)):''} card cursor-pointer block rounded-3xl bg-cream border border-emerald-900/10 overflow-hidden shadow-lg shadow-emerald-900/5 focus:outline-none focus:ring-2 focus:ring-gold-500"><div class="aspect-[16/10] bg-emerald-800"><img ${'src'}="${esc(imgCms(b.foto_url||'images/img_001.webp',800))}" alt="${esc(b.judul)}" class="h-full w-full object-cover" loading="lazy" onerror="this.style.opacity=.15"></div><div class="p-6"><span class="text-xs font-700 text-gold-600 uppercase tracking-wide">${esc(fmtTgl(b.tanggal))}</span>`+'<'+`h3 class="mt-2 font-700 text-lg text-emerald-900 leading-snug">${esc(b.judul)}</`+'h3>'+`${b.ringkasan?`<p class="mt-2 text-sm text-emerald-900/60 line-clamp-2">${esc(b.ringkasan)}</p>`:''}</div></article>`).join('');
     observeReveal(el);}
   window.loadAllBerita=function(ev){if(ev)ev.preventDefault();
     sb.from('berita').select('id,judul,ringkasan,tanggal,foto_url,foto_urls,konten,slug,kategori').eq('aktif',true).order('tanggal',{ascending:false})

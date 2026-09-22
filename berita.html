@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+<!-- Google Analytics 4 --><script async src="https://www.googletagmanager.com/gtag/js?id=G-8C4R8ZTBWP"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8C4R8ZTBWP');document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.href||'';if(/wa\.me\//.test(h))gtag('event','klik_whatsapp',{lokasi:location.pathname});else if(/spmb-online/.test(h))gtag('event','klik_daftar',{lokasi:location.pathname});});</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Berita & Kegiatan — Al-Qomar Muthmainnah School</title>
@@ -351,14 +352,22 @@ const BERITA_FALLBACK = [
     judul: 'Pembelajaran Aktif dan Kurikulum Merdeka Diterapkan di Setiap Jenjang',
     ringkasan: 'Kegiatan belajar siswa dirancang aktif, terarah, dan terintegrasi nilai Islam untuk membangun akhlak, kompetensi, dan kemandirian.',
     tanggal: '2026-04-05',
-    foto_url: 'images/Ekskul_pramuka.JPG',
+    foto_url: 'images/Ekskul_pramuka.webp',
     kategori: 'Akademik'
   }
 ];
 
+// Upload CMS berupa PNG 1,5–3 MB; minta Supabase kecilkan + kirim WebP (sama seperti berita-detail.php)
+var CMS_RE = /^https:\/\/[a-z0-9-]+\.supabase\.co\/storage\/v1\/object\/public\//i;
+function imgCms(u, w) {
+  var t = String(u || '');
+  if (!CMS_RE.test(t)) return t;
+  return t.replace('/storage/v1/object/public/', '/storage/v1/render/image/public/') + '?width=' + w + '&quality=72&resize=contain';
+}
+
 function cardHTML(b, i) {
   var foto = b.foto_url
-    ? '<img src="'+b.foto_url+'" alt="'+escHtml(b.judul)+'" loading="lazy" onerror="this.parentElement.innerHTML=\'<div class=bno-img>📰</div>\'">'
+    ? '<img src="'+imgCms(b.foto_url, 800)+'" alt="'+escHtml(b.judul)+'" loading="lazy" onerror="this.parentElement.innerHTML=\'<div class=bno-img>📰</div>\'">'
     : '<div class="bno-img">📰</div>';
   var link = String(b.id || '').indexOf('fallback-') === 0 ? '/spmb-online.html' : '/berita-detail.html?id=' + b.id;
   return '<article class="bc">'
