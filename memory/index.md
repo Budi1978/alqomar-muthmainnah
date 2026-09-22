@@ -34,4 +34,4 @@ Ini adalah **vault memori Obsidian** untuk proyek website Al-Qomar Muthmainnah. 
 
 - [[catatan/panggilan-user]] — **User memanggil Claude dengan nama "Aira"** (berlaku di semua sesi)
 - [[catatan/sinkronisasi-repo-vs-production]] — ⚠️ **PENTING**: repo Git bisa basi dari server (Hostinger diedit langsung). Jangan asumsikan repo = kondisi live untuk `.htaccess`/`*.php`. Selalu catat progres tiap selesai pekerjaan, jangan tunggu akhir sesi.
-- [[catatan/audit-website-2026-09-22]] — hasil audit menyeluruh 22 Sep 2026 + daftar perbaikan prioritas (belum dieksekusi)
+- [[catatan/audit-website-2026-09-22]] — hasil audit 22 Sep 2026 — poin 2 & 3 selesai di repo (belum upload), sisanya pending
