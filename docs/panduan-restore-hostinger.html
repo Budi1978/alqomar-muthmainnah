@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Panduan Restore Hostinger</title>
+<style>
+:root{--h:#1a5c38;--e:#c8922a;--ep:#fdf3e0;--kr:#faf7f2;--kr2:#f0e9d8;--tx:#1f2a24;--mut:#5d6b63;--hp:#673de6;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--kr:#141a17;--kr2:#2a332e;--tx:#e8efe9;--mut:#a3b1a8;--card:#1c2420;--ep:#2e2616}}
+*{box-sizing:border-box}body{margin:0;background:var(--kr);color:var(--tx);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+.w{max-width:760px;margin:0 auto;padding:24px 16px 48px}
+h1{font-size:1.5rem;margin:0 0 4px;color:var(--h)}@media (prefers-color-scheme:dark){h1,h2{color:#6fcf97}}
+.sub{color:var(--mut);margin:0 0 20px}
+.warn{background:var(--ep);border-left:4px solid var(--e);padding:12px 14px;border-radius:8px;margin:0 0 24px}
+h2{font-size:1.15rem;color:var(--h);margin:32px 0 12px}
+.step{display:flex;gap:12px;margin:0 0 16px}
+.n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--h);color:#fff;font-weight:700;display:grid;place-items:center}
+.st p{margin:2px 0 8px}
+.mock{border:1px solid var(--kr2);border-radius:10px;background:var(--card);overflow:hidden;font-size:14px}
+.bar{background:var(--hp);color:#fff;padding:8px 12px;font-weight:600}
+.side{display:flex}.side ul{list-style:none;margin:0;padding:8px;border-right:1px solid var(--kr2);min-width:150px}
+.side li{padding:6px 8px;border-radius:6px;color:var(--mut)}.side li.on{background:#ede7fd;color:var(--hp);font-weight:700}
+.main{padding:10px 12px;flex:1}
+.btn{display:inline-block;background:var(--hp);color:#fff;border-radius:6px;padding:5px 12px;font-weight:600;margin-top:6px}
+.row{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px dashed var(--kr2)}
+.row:last-child{border:0}.chk{width:14px;height:14px;border:2px solid var(--hp);border-radius:3px;flex:none}
+.chk.on{background:var(--hp)}
+.hl{outline:3px solid var(--e);outline-offset:2px;border-radius:6px}
+code{background:var(--kr2);padding:1px 5px;border-radius:4px;font-size:.9em}
+.note{font-size:13px;color:var(--mut)}
+</style>
+</head>
+<body><div class="w">
+<h1>Kembalikan Desain Website</h1>
+<p class="sub">Restore backup Hostinger, lalu kirim 15 file live ke Aira.</p>
+<div class="warn"><b>Catatan:</b> gambar tampilan di bawah adalah ilustrasi. Tampilan hPanel asli bisa sedikit berbeda, tapi nama menunya sama. Kotak <span style="outline:3px solid var(--e);padding:0 4px;border-radius:4px">bergaris emas</span> = yang diklik.</div>
+
+<h2>A. Restore backup (mengembalikan desain)</h2>
+
+<div class="step"><div class="n">1</div><div class="st"><p>Buka <b>hpanel.hostinger.com</b> → menu <b>Websites</b> → klik <b>Manage</b> di <code>alqomar.sch.id</code>.</p>
+<div class="mock"><div class="bar">hPanel · Websites</div><div class="main"><div class="row">🌐 <b>alqomar.sch.id</b><span style="flex:1"></span><span class="btn hl">Manage</span></div></div></div></div></div>
+
+<div class="step"><div class="n">2</div><div class="st"><p>Menu kiri: <b>Files → Backups</b>.</p>
+<div class="mock"><div class="bar">alqomar.sch.id</div><div class="side"><ul><li>Dashboard</li><li>Files ▾</li><li class="on hl">Backups</li><li>File Manager</li></ul><div class="main">Pilih jenis backup…</div></div></div></div></div>
+
+<div class="step"><div class="n">3</div><div class="st"><p>Pilih <b>File backups</b> (bukan Database), pilih tanggal <b>21 September 2026</b>, klik <b>Select files</b>.</p>
+<div class="mock"><div class="bar">Backups</div><div class="main">
+<div class="row"><b>File backups</b></div>
+<div class="row">Tanggal: <span class="hl" style="padding:2px 8px;border:1px solid var(--kr2)">21 Sep 2026 ▾</span><span style="flex:1"></span><span class="btn hl">Select files</span></div>
+</div></div><p class="note">Tidak ada 21 Sep? Pilih tanggal terakhir <b>sebelum</b> Bapak upload ZIP pertama.</p></div></div>
+
+<div class="step"><div class="n">4</div><div class="st"><p>Centang folder <code>public_html</code> → klik <b>Restore</b>. Tunggu sampai selesai.</p>
+<div class="mock"><div class="bar">Pilih file untuk dipulihkan</div><div class="main">
+<div class="row"><span class="chk on hl"></span>📁 public_html</div>
+<div class="row"><span class="chk"></span>📁 logs</div>
+<span class="btn hl">Restore</span></div></div></div></div>
+
+<div class="step"><div class="n">5</div><div class="st"><p>Buka <b>alqomar.sch.id</b>, tekan <b>Ctrl+Shift+R</b>. Desain harus sudah kembali seperti sebelumnya.</p></div></div>
+
+<h2>B. Kirim 15 file live ke Aira</h2>
+
+<div class="step"><div class="n">6</div><div class="st"><p><b>Files → File Manager</b> → masuk folder <code>public_html</code>.</p></div></div>
+
+<div class="step"><div class="n">7</div><div class="st"><p>Centang 15 file ini (semuanya langsung di <code>public_html</code>):</p>
+<div class="mock"><div class="bar">File Manager · public_html</div><div class="main">
+<div class="row"><span class="chk on"></span>index.html</div><div class="row"><span class="chk on"></span>berita.html</div><div class="row"><span class="chk on"></span>guru.html</div><div class="row"><span class="chk on"></span>rqaq.html</div><div class="row"><span class="chk on"></span>spmb-online.html</div><div class="row"><span class="chk on"></span>ppdb.html</div><div class="row"><span class="chk on"></span>tahfidz.html</div><div class="row"><span class="chk on"></span>event.html</div><div class="row"><span class="chk on"></span>kb-tkit.html</div><div class="row"><span class="chk on"></span>sdit.html</div><div class="row"><span class="chk on"></span>smpit.html</div><div class="row"><span class="chk on"></span>sekolah-islam-jakarta-barat.html</div><div class="row"><span class="chk on"></span>privacy.html</div><div class="row"><span class="chk on"></span>syarat.html</div><div class="row"><span class="chk on"></span>404.html</div>
+</div></div></div></div>
+
+<div class="step"><div class="n">8</div><div class="st"><p>Klik kanan → <b>Compress</b> → pilih <b>.zip</b>. Lalu klik kanan ZIP-nya → <b>Download</b>.</p>
+<div class="mock"><div class="bar">Menu klik kanan</div><div class="main"><div class="row">Rename</div><div class="row hl">🗜️ Compress</div><div class="row">⬇️ Download</div><div class="row">🗑️ Delete</div></div></div></div></div>
+
+<div class="step"><div class="n">9</div><div class="st"><p>Lampirkan ZIP itu ke chat Aira. Aira pasang ulang perbaikan (PPDB 2027/2028, GA, gambar) <b>di atas file live</b> tanpa mengubah desain.</p></div></div>
+
+<div class="warn" style="margin-top:24px"><b>Jangan</b> hapus apa pun di folder <code>images/</code> server.</div>
+</div></body></html>
