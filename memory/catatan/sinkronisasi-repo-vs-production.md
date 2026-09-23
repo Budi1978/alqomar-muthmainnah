@@ -46,3 +46,7 @@ Claude membuat ZIP upload dari branch yang bercabang dari `main` (16 Sep). Padah
 6. `main` BUKAN sumber kebenaran untuk file HTML. Sebelum mengubah/mengirim file apa pun untuk di-upload, **minta user download dulu file yang sedang live** (atau restore backup Hostinger), lalu terapkan perubahan di atas file live itu.
 7. Jangan pernah kirim file utuh untuk timpa server tanpa verifikasi basisnya = versi live.
 8. Daftar "gambar tidak terpakai" dihitung dari repo → TIDAK valid untuk server. Jangan hapus gambar di server berdasarkan daftar itu.
+
+### Hasil cek ulang 23 Sep 2026
+- 12 dari 15 file yang di-upload lebih TUA dari versi terbaru di branch lain (hanya guru.html, rqaq.html, syarat.html yang tidak mundur). Versi terbaru per file: index→jolly-volta (17 Sep), event→design-system-extraction (19 Sep), berita/tahfidz/kb-tkit/sdit/smpit/sekolah-islam→beautiful-franklin (9 Sep), ppdb/spmb-online/privacy→alqomar-security-audit (7 Sep), 404→cek-sistem (2 Sep).
+- **KRITIS**: spmb-online.html versi lama memakai insert langsung ke `spmb_pendaftar`, padahal sejak 7 Sep RLS hanya izinkan RPC `daftar_spmb` → pendaftaran online GAGAL tersimpan selama versi lama live. Log Supabase 22–23 Sep: 0 percobaan pendaftaran (tidak ada lead yang hilang per 23 Sep). Restore backup menyelesaikan ini.
