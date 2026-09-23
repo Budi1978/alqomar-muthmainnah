@@ -37,3 +37,12 @@ Sesi Claude berjalan di sandbox tanpa kredensial FTP/API Hostinger, dan akses ja
 ## Tautan Terkait
 
 - [[konteks-proyek]]
+
+## Insiden 23 Sep 2026 — Upload dari branch basi menimpa desain live
+
+Claude membuat ZIP upload dari branch yang bercabang dari `main` (16 Sep). Padahal banyak perubahan desain yang **sudah live tapi tidak pernah di-merge ke `main`**, tersebar di branch: `jolly-volta-k5cxy9` (redesain beranda 17 Sep), `design-system-extraction-5zuukp` (event.html 19 Sep), `blissful-fermat-50yo0r`, `gracious-babbage-c6ncjx`, `beautiful-franklin-x9uxqk`, `alqomar-security-audit-hdisvr`, `cek-sistem-c2wnam`. Hasil: desain live mundur ke versi lama.
+
+**Aturan tambahan (WAJIB):**
+6. `main` BUKAN sumber kebenaran untuk file HTML. Sebelum mengubah/mengirim file apa pun untuk di-upload, **minta user download dulu file yang sedang live** (atau restore backup Hostinger), lalu terapkan perubahan di atas file live itu.
+7. Jangan pernah kirim file utuh untuk timpa server tanpa verifikasi basisnya = versi live.
+8. Daftar "gambar tidak terpakai" dihitung dari repo → TIDAK valid untuk server. Jangan hapus gambar di server berdasarkan daftar itu.
