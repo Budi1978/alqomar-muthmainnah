@@ -2,7 +2,7 @@
 judul: Memory Index
 tipe: moc
 tags: [moc, index]
-diperbarui: 2026-06-25
+diperbarui: 2026-10-10
 ---
 
 # 🧠 Memory — Al-Qomar Muthmainnah
@@ -33,4 +33,5 @@ Ini adalah **vault memori Obsidian** untuk proyek website Al-Qomar Muthmainnah. 
 *(Tambahkan hal yang sedang berjalan atau perlu ditindaklanjuti di sini)*
 
 - [[catatan/panggilan-user]] — **User memanggil Claude dengan nama "Aira"** (berlaku di semua sesi)
+- [[catatan/audit-skill-dan-pdp]] — audit duplikasi skill + skill baru `pdp-indonesia` (UU PDP, scanner NIK/NISN/paspor/rekening). Ada TODO routing super-power & cek RLS.
 - [[catatan/sinkronisasi-repo-vs-production]] — ⚠️ **PENTING**: repo Git bisa basi dari server (Hostinger diedit langsung). Jangan asumsikan repo = kondisi live untuk `.htaccess`/`*.php`. Selalu catat progres tiap selesai pekerjaan, jangan tunggu akhir sesi.
