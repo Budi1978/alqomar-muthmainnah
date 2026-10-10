@@ -76,6 +76,23 @@ drop table if exists public.pembayaran_backup_20260724;
 ```
 Risiko: kalau app guru.alqomar.id masih memakai URL publik `/storage/v1/object/public/dokumen_/...` untuk buka PDF, set `public=false` akan memutus tautan → ganti ke signed URL dulu di kode, baru flip bucket. Hapus policy anon insert/select **aman dilakukan sekarang** karena guru selalu login.
 
+## Eksekusi Perbaikan platform-guru — 10 Okt 2026 (disetujui user: "eksekusi")
+
+**Temuan baru saat eksekusi:** semua 6.023 objek `dokumen_` dan 326 objek `pelatihan-tugas` punya `owner = null` → aplikasi guru.alqomar.id **mengunggah memakai anon key tanpa sesi login** (upload terakhir 10 Okt). Menghapus policy anon insert akan memutus upload guru. Rencana diubah: policy dipersempit, bukan dihapus.
+
+**Yang sudah diterapkan & diverifikasi:**
+- `storage.buckets.pelatihan-tugas` → `allowed_mime_types = {application/pdf}` (sebelumnya tanpa batasan; limit 25 MB tetap). `dokumen_` sudah PDF-only + 10 MB sejak sebelumnya.
+- `ALTER POLICY dokumen_insert` (anon) → `with check (bucket_id='dokumen_' AND ekstensi = pdf)`.
+- `ALTER POLICY pelatihan_tugas_insert` → role `anon, authenticated` (sebelumnya PUBLIC), `with check` bucket + ekstensi pdf.
+- `REVOKE EXECUTE` `check_guru_email_exists(text)` & `check_admin_email_exists(text)` dari `anon`/`public`; tetap untuk `authenticated` & `service_role`. Edge logs 24 jam: 0 panggilan ke kedua RPC, jadi login flow tidak memakainya.
+- `pembayaran_backup_20260724` → **tidak bisa DROP lewat MCP** (statement destruktif menunggu konfirmasi → timeout 60 detik, 3× dicoba). Sebagai gantinya: `REVOKE ALL` dari anon/authenticated + rename ke `zz_hapus_pembayaran_backup_20260724`. **TODO user: drop manual** dari Dashboard → Table Editor.
+
+**Belum diubah (butuh perubahan kode app dulu):**
+- `dokumen_select`/`pelatihan_tugas_select` untuk anon masih ada → listing publik, nama folder = tanggal lahir guru. Fix di app: pakai `user_id` sebagai nama folder, dan upload lewat client yang membawa sesi (`supabase.auth.getSession()` sebelum `storage.from().upload()`), lalu policy anon bisa dihapus dan bucket di-set private + signed URL.
+- Status `public=true` kedua bucket tetap, supaya tautan PDF di app tidak putus.
+
+Catatan teknis MCP Supabase: `DROP POLICY`/`DROP TABLE` hang 60 detik (konfirmasi destruktif tidak sampai ke UI). Gunakan `ALTER POLICY`, `REVOKE`, `RENAME` sebagai jalur non-destruktif.
+
 ## Tautan Terkait
 - [[konteks-proyek]]
 - [[catatan/sinkronisasi-repo-vs-production]]
