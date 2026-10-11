@@ -48,6 +48,7 @@ Folder `memory/` adalah **vault Obsidian** yang berfungsi sebagai memori jangka 
 
 - **Otomatis dimuat**: SessionStart hook `.claude/hooks/load-memory.sh` (terdaftar di `.claude/settings.json`) menyuntikkan `memory/index.md` ke konteks tiap sesi.
 - **Dikelola lewat skill**: jalankan `/obsidian-memory` untuk menyimpan, mencari, atau memperbarui catatan.
+- **Aturan riwayat (wajib)**: sebelum memperbaiki bug, baca `memory/catatan/riwayat-perbaikan.md` dan `git log --oneline -- <file>`; jangan tanya ulang hal yang sudah tercatat. Setelah perbaikan atau fitur baru berhasil, **langsung** tambah entri di `riwayat-perbaikan.md` / `riwayat-fitur.md` (jangan tunggu akhir sesi), satu commit per perbaikan. Untuk `.htaccess`/`*.php`, minta versi server dulu.
 - **Struktur**: `index.md` (MOC) · `konteks-proyek.md` · `konvensi-kode.md` · `catatan/` · `keputusan/` · `templates/`
 - Bisa dibuka langsung di aplikasi Obsidian (Open folder as vault → `memory/`).
 
