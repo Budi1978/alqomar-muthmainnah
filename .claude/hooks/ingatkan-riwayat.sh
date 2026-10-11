@@ -13,8 +13,8 @@ DIR="${CLAUDE_PROJECT_DIR:-$(git rev-parse --show-toplevel 2>/dev/null || pwd)}"
 cd "$DIR" 2>/dev/null || exit 0
 git rev-parse --git-dir >/dev/null 2>&1 || exit 0
 
-# Perubahan di luar memori/konfigurasi Claude.
-CHANGED="$(git status --porcelain -- . ':!memory' ':!.claude' ':!CLAUDE.md' 2>/dev/null)"
+# Perubahan di luar memori/konfigurasi Claude (file tes zz-hook-test* dikecualikan).
+CHANGED="$(git status --porcelain -- . ':!memory' ':!.claude' ':!CLAUDE.md' ':!zz-hook-test*' 2>/dev/null)"
 [ -z "$CHANGED" ] && exit 0
 
 # Sudah ada pembaruan riwayat?
