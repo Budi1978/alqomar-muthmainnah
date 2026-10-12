@@ -2,7 +2,7 @@
 judul: Riwayat Fitur Baru
 tipe: catatan
 tags: [proyek, fitur]
-diperbarui: 2026-10-11
+diperbarui: 2026-10-12
 ---
 
 # Riwayat Fitur Baru
@@ -14,6 +14,7 @@ Bagian dari [[index]]. Bug dicatat di [[riwayat-perbaikan]].
 
 | Tanggal | Fitur | File / lokasi | Catatan |
 |---|---|---|---|
+| 2026-10-12 | Naskah dokumen pencegahan perundungan SDIT (D01-D18 + lampiran kelas WK) berbentuk DOCX F4 | `docs/bullying-sdit/` | Draf belum disahkan; acuan Permendikdasmen 6/2026 + Kepmendikdasmen 17/2026 (Permendikbudristek 46/2023 sudah dicabut, jangan sebut TPPK/Satgas); data sekolah/kontak lokal = [DIISI SEKOLAH]; hanya kontak SAPA 129 yang terverifikasi. Bukan untuk di-upload ke Hostinger (folder `docs/`). Deck terkait: artifact Slides "Penanganan Bullying di Sekolah" |
 | 2026-10-11 | Hook Stop pengingat riwayat | `.claude/hooks/ingatkan-riwayat.sh`, `.claude/settings.json` | Blok sekali jika ada file berubah tapi riwayat belum diperbarui; abaikan `memory/`, `.claude/`, `CLAUDE.md`; aman dari loop via `stop_hook_active` |
 | 2026-09-14 | Dokumentasi integrasi berita PHP+Supabase | `CLAUDE.md`, `berita-detail.php`, `sitemap-berita.php` | Aktif di production; PHP + curl wajib di hosting |
 | 2026-09-02 | Skrip deploy FTPS ke Hostinger | skrip deploy (lihat `git show cb48333`) | Mode koneksi & kredensial divalidasi (`f40b186`, `d5685ef`, `a913cc9`); jangan commit kredensial |
