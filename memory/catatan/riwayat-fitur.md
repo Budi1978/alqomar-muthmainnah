@@ -14,6 +14,7 @@ Bagian dari [[index]]. Bug dicatat di [[riwayat-perbaikan]].
 
 | Tanggal | Fitur | File / lokasi | Catatan |
 |---|---|---|---|
+| 2026-10-21 | Tracker XLSX: tambah sheet Harian + Mingguan (rekap SUMIFS per rentang tanggal) | `docs/Tracker-Marketing-MD-Heny-Fitriani.xlsx` | Data dummy; non-website, tanpa deploy. Versi Google Sheets belum dibuat (tunggu konfirmasi upload ke Drive) |
 | 2026-10-21 | Tracker XLSX per anggota MD Heny (data DUMMY) | `docs/Tracker-Marketing-MD-Heny-Fitriani.xlsx` | 5 sheet (Petunjuk, Anggota, Referral, Bulanan, Rekap) dengan rumus & dropdown; non-website, tanpa deploy. Ganti data dummy sebelum dipakai |
 | 2026-10-21 | Template laporan MD Heny Fitriani (Tanur Muthmainnah, landscape DOCX) | `docs/Laporan-MD-Heny-Fitriani-Tanur-Muthmainnah.docx` | Non-website, tidak perlu upload ke Hostinger; angka masih kosong, tunggu data tim. Jangan diulang: pakai kop Tanur/MEJ, bukan Al-Qomar |
 | 2026-10-11 | Hook Stop pengingat riwayat | `.claude/hooks/ingatkan-riwayat.sh`, `.claude/settings.json` | Blok sekali jika ada file berubah tapi riwayat belum diperbarui; abaikan `memory/`, `.claude/`, `CLAUDE.md`; aman dari loop via `stop_hook_active` |
