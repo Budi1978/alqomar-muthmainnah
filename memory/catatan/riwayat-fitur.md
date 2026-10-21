@@ -14,6 +14,7 @@ Bagian dari [[index]]. Bug dicatat di [[riwayat-perbaikan]].
 
 | Tanggal | Fitur | File / lokasi | Catatan |
 |---|---|---|---|
+| 2026-10-21 | Template laporan MD Heny Fitriani (Tanur Muthmainnah, landscape DOCX) | `docs/Laporan-MD-Heny-Fitriani-Tanur-Muthmainnah.docx` | Non-website, tidak perlu upload ke Hostinger; angka masih kosong, tunggu data tim. Jangan diulang: pakai kop Tanur/MEJ, bukan Al-Qomar |
 | 2026-10-11 | Hook Stop pengingat riwayat | `.claude/hooks/ingatkan-riwayat.sh`, `.claude/settings.json` | Blok sekali jika ada file berubah tapi riwayat belum diperbarui; abaikan `memory/`, `.claude/`, `CLAUDE.md`; aman dari loop via `stop_hook_active` |
 | 2026-09-14 | Dokumentasi integrasi berita PHP+Supabase | `CLAUDE.md`, `berita-detail.php`, `sitemap-berita.php` | Aktif di production; PHP + curl wajib di hosting |
 | 2026-09-02 | Skrip deploy FTPS ke Hostinger | skrip deploy (lihat `git show cb48333`) | Mode koneksi & kredensial divalidasi (`f40b186`, `d5685ef`, `a913cc9`); jangan commit kredensial |
