@@ -65,5 +65,5 @@ Alternatif tanpa edit file: matikan Web Analytics di dashboard Cloudflare (Analy
 ## Catatan
 
 - Temuan "tautan rusak `/berita/w)`" di audit **bukan bug** — salah baca alat audit terhadap kode JS. Diabaikan.
-- `logo-512.png` diperbesar dari ikon 180 px yang ada di server, jadi agak lembut. Ganti dengan ekspor dari file master logo bila ada.
+- `logo-192.png` dan `logo-512.png` dibuat dari logo terbaru (1254 px, kiriman 10 Nov 2026) di atas latar hijau `#0d3b22` (sama dengan `background_color` manifest), logo 80% kanvas. Versi transparan resolusi penuh: `logo/logo-master-2026.png` di repo.
 - Setelah upload: hard refresh (Ctrl+Shift+R); HTML di-cache 10 menit.

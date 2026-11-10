@@ -38,3 +38,6 @@ Bagian dari [[index]].
 - Instagram: @alqomar.school · YouTube channel `UCA3iOPu9iYC7ZOD4PyW9VPw`
 
 > Sumber lengkap: lihat `CLAUDE.md` di root repo.
+
+## Logo
+- Logo resmi terbaru (kiriman user 10 Nov 2026): bintang 8 sisi hijau-emas, lafaz Allah, teks "AL QOMAR MUTHMAINNAH". Master transparan: `logo/logo-master-2026.png` (1121×1138). `logo/logo.png` di repo masih logo YPIPC lama — jangan dipakai untuk ikon situs.
