@@ -16,7 +16,7 @@ Audit dilakukan langsung ke server (curl + Chromium headless + advisor Supabase)
 - Sesi cloud butuh environment `alqomar-muthmainnah` (host situs + Supabase diizinkan) supaya bisa menguji live.
 
 ## Temuan terbuka
-> Paket perbaikan no. 1–7 di bawah sudah disiapkan di `_perbaikan/2026-11-10/` (menunggu upload). Tautan `/berita/w)` ternyata bukan bug.
+> Paket perbaikan no. 1–7 di bawah **sudah tayang & terverifikasi 10 Nov 2026**, kecuali no. 4 (beacon Cloudflare) yang sengaja dilewati. Tautan `/berita/w)` ternyata bukan bug.
 
 1. `berita-detail.php`: skrip inline utama diblokir CSP (hash tidak terdaftar) → "Berita Lainnya", Salin Link, pembaruan klien mati. Isi artikel tetap tampil karena dirender server.
 2. `aggregateRating` 4.8/120 di JSON-LD `/ppdb` dan `/berita` — tanpa ulasan tampil di halaman; risiko manual action Google.

@@ -19,7 +19,8 @@ Entri terbaru di atas. Entri berstatus "belum di-deploy" berarti bug masih ada d
 ---
 
 ## 2026-11-10 — Paket perbaikan audit live (no. 2–8)
-- **Status**: 🟡 file siap di `_perbaikan/2026-11-10/` — **belum di-upload** (Claude tanpa akses Hostinger); bagian Supabase ✅ selesai
+- **Status**: ✅ selesai & terverifikasi di live 10 Nov 2026 (user upload manual via File Manager). No. 6 (beacon Cloudflare/CDN Hostinger vs CSP) **sengaja dilewati** — manfaat kecil, risiko edit `.htaccess` besar.
+- **Catatan pelaksanaan**: di `berita-detail.php` hanya 1 baris diubah: `<script>` di atas `const SUPABASE_URL` → `<script src="/js/berita-detail.js?v=20261110">` (isi inline lama masih ada di file tapi diabaikan browser; `$KEY` PHP masih JWT lama — boleh dibersihkan nanti). Ikon 192/512 dibuat dari logo terbaru.
 - **Gejala**: `aggregateRating` 4.8/120 tanpa ulasan nyata; skrip inline `berita-detail.php` diblokir CSP; ikon manifest 404; robots tanpa Disallow; beacon Cloudflare diblokir CSP; tautan `.html` lama; anon key JWT lama.
 - **Solusi**: file live diunduh lalu ditambal minimal (lihat `PETUNJUK-UPLOAD.md`): hapus rating di `ppdb.html`/`berita.html` + baris `schema_markup` Supabase; skrip detail berita dipindah ke `/js/berita-detail.js` (kunci `sb_publishable_`); ikon 192/512; `robots.txt`; tautan bersih. `.htaccess` dan `berita-detail.php` butuh edit manual di server (instruksi cari-ganti disediakan).
 - **Jangan diulang**: menambal dari file repo (repo basi — dasar harus unduhan live). Menaruh skrip inline baru di halaman PHP tanpa mendaftarkan hash CSP — taruh di `/js/`.
