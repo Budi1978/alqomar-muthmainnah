@@ -15,7 +15,9 @@ Audit dilakukan langsung ke server (curl + Chromium headless + advisor Supabase)
 - WA resmi di live: `0811-1597-678`; email `contact@alqomar.sch.id`; IG `@alqomar.sekolahku` (CLAUDE.md masih data lama).
 - Sesi cloud butuh environment `alqomar-muthmainnah` (host situs + Supabase diizinkan) supaya bisa menguji live.
 
-## Temuan terbuka (belum diperbaiki)
+## Temuan terbuka
+> Paket perbaikan no. 1–7 di bawah sudah disiapkan di `_perbaikan/2026-11-10/` (menunggu upload). Tautan `/berita/w)` ternyata bukan bug.
+
 1. `berita-detail.php`: skrip inline utama diblokir CSP (hash tidak terdaftar) → "Berita Lainnya", Salin Link, pembaruan klien mati. Isi artikel tetap tampil karena dirender server.
 2. `aggregateRating` 4.8/120 di JSON-LD `/ppdb` dan `/berita` — tanpa ulasan tampil di halaman; risiko manual action Google.
 3. `site.webmanifest` menunjuk `/logo/logo-192.png` & `logo-512.png` → 404.

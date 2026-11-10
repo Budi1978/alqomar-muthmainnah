@@ -18,6 +18,14 @@ Entri terbaru di atas. Entri berstatus "belum di-deploy" berarti bug masih ada d
 
 ---
 
+## 2026-11-10 — Paket perbaikan audit live (no. 2–8)
+- **Status**: 🟡 file siap di `_perbaikan/2026-11-10/` — **belum di-upload** (Claude tanpa akses Hostinger); bagian Supabase ✅ selesai
+- **Gejala**: `aggregateRating` 4.8/120 tanpa ulasan nyata; skrip inline `berita-detail.php` diblokir CSP; ikon manifest 404; robots tanpa Disallow; beacon Cloudflare diblokir CSP; tautan `.html` lama; anon key JWT lama.
+- **Solusi**: file live diunduh lalu ditambal minimal (lihat `PETUNJUK-UPLOAD.md`): hapus rating di `ppdb.html`/`berita.html` + baris `schema_markup` Supabase; skrip detail berita dipindah ke `/js/berita-detail.js` (kunci `sb_publishable_`); ikon 192/512; `robots.txt`; tautan bersih. `.htaccess` dan `berita-detail.php` butuh edit manual di server (instruksi cari-ganti disediakan).
+- **Jangan diulang**: menambal dari file repo (repo basi — dasar harus unduhan live). Menaruh skrip inline baru di halaman PHP tanpa mendaftarkan hash CSP — taruh di `/js/`.
+- **Cek ulang**: `curl -s https://www.alqomar.sch.id/ppdb | grep -c aggregateRating` harus 0; buka artikel berita, konsol tanpa error CSP inline; `/logo/logo-512.png` 200.
+- **Bukan bug**: tautan `/berita/w)` (salah baca alat audit).
+
 ## 2026-09-14 — Repo `.htaccess` & `berita-detail.php` jauh beda dari production
 - **Status**: ✅ sudah disinkronkan di repo (versi server jadi acuan)
 - **Gejala**: Claude bekerja dengan asumsi repo = live, hasilnya salah; user mengulang penjelasan.
