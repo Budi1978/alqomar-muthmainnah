@@ -265,61 +265,832 @@ const DEF = () => ({
       ks:'Ahmad Budi Setiawan, S.E.',pembina:'Suryadi Hartono Ruspandi, S.H.',penilai:'',jabPenilai:'',tanggal:'2026-11-11',tahun:'2026/2027',kota:'Jakarta Barat'},
   skor:{}, cat:{}, dimNote:{}, doc:{},
   bf:{
-    '0-1':{st:'sudah',file:'KI-01 - Rekap Kehadiran dan Ketepatan Waktu Kepala Sekolah Bulan Juli sampai Oktober 2026.pdf',link:'',blob:false,todo:true,
-      note:'Draf KI-01 masih punya isian kuning yang belum final: (1) Tabel 3 / catatan September: hadir ditulis 16 agar jumlah sama dengan 17 hari efektif, cocokkan dengan cetakan mesin; (2) Tabel 5 no.5: waktu pertemuan PKKS 30 Okt 2026 "13.00 sampai ....."; (3) Subbab 4.3: hasil penelusuran selisih jam fingerprint vs Buku Piket belum diisi; (4) Gambar 4: tanggal foto "..... Oktober 2026".'},
-    '0-3':{st:'sudah',file:'KI-02 - Rekap Keikutsertaan Kepala Sekolah dalam Agenda Sekolah Bulan Juli sampai Oktober 2026.pdf',link:'',blob:false,todo:false,note:'KI-02 menjawab Butir 2 dan Butir 6 sekaligus (29 hlm).',pj:'Kepala Sekolah',nomor:''},
-    '0-4':{st:'sudah',file:'KI-05 - Instrumen dan Hasil Observasi Tanggung Jawab serta Penampilan Kepala SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf',link:'',blob:false,todo:false,note:'KI-05 menjawab Butir 5 dan Butir 8 sekaligus (30 hlm).',pj:'',nomor:''},
-    '0-5':{st:'sudah',file:'KI-10 - Rekap Wawancara Guru dan Staf (Butir 9, 10, 11).pdf | KI-11 - Rekap Wawancara Guru dan Staf (Butir 11).pdf',link:'',blob:false,todo:true,note:'KI-10 menjawab Butir 9, 10, 11; KI-11 judul dan sampulnya sama dengan KI-10 tetapi hanya menyebut Butir 11 — cek apakah KI-11 duplikat atau sengaja dipisah. Lembar wawancara di lampiran (nama responden, pelaksana, tanggal, tanda tangan) masih titik-titik: pastikan yang diunggah versi terisi.',pj:'Tim Pelaksana Wawancara',nomor:''},
-    '0-6':{st:'sudah',file:'KI-03 - Keterbukaan Anggaran melalui Website Sekolah.pdf | KI-12 - Keterbukaan Anggaran melalui Papan Informasi Pengelolaan Dana.pdf',link:'',blob:false,todo:false,note:'KI-03 (Butir 3, website) dan KI-12 (Butir 12, papan informasi).',pj:'',nomor:''},
-    '0-7':{st:'sudah',file:'KI-13 - Prosedur Akses Informasi Anggaran bagi Warga Sekolah Tahun Pelajaran 2026-2027.pdf',link:'',blob:false,todo:false,note:'',pj:'',nomor:''},
-    '0-8':{st:'sudah',file:'KI-04 - Kebijakan Pengamanan Dokumen Sekolah Tahun Pelajaran 2026-2027.pdf',link:'',blob:false,todo:true,note:'Lampiran 1 (rekap ijazah) masih memuat isian kosong: "Jumlah seluruh lulusan Tahun Pelajaran 2025/2026 adalah ..... murid, sehingga rekap ini memuat ..... dari seluruh ijazah lulusan."',pj:'',nomor:''},
-    '0-9':{st:'sudah',file:'KI-14.1 Surat Keputusan Nomor 001-SK-SDIT-AQ-VII-2026 tentang Pembagian Tugas.pdf | KI-14.2 Bukti Publikasi SK Pembagian Tugas Mengajar dan Tugas Tambahan Guru.pdf',link:'',blob:false,todo:false,note:'KI-14.1 = SK (4 hlm), KI-14.2 = bukti publikasi (26 hlm).',pj:'Kepala Sekolah',nomor:'001/SK/SDIT-AQ/VII/2026'},
-    '0-10':{st:'sudah',file:'KI-15 Kriteria Pemberian Reward, Hukuman, dan Rekomendasi Kenaikan Pangkat bagi Staf.pdf',link:'',blob:false,todo:true,note:'Lampiran memuat contoh surat dengan nomor dan tanggal masih titik-titik ("..../SP/SDIT-AQ/..../2026", "tanggal ........"). Pastikan itu memang formulir contoh, bukan surat yang sudah diterbitkan.',pj:'',nomor:''},
-    '0-11':{st:'sudah',file:'KI-16 Sistem Penilaian dan Sosialisasi Kriteria Ketercapaian Tujuan Pembelajaran.pdf | KI-20 - Surat Keterangan Bantuan PGRI untuk Guru.pdf',link:'',blob:false,todo:false,note:'KI-16 (Butir 16, 33 hlm) dan KI-20 (Butir 20, 12 hlm).',pj:'',nomor:''},
-    '0-12':{st:'sudah',file:'KI-17 Laporan Sistem Penerimaan Murid Baru (SPMB-PPDB) Tahun Pelajaran 2026-2027.pdf',link:'',blob:false,todo:false,note:'',pj:'Panitia SPMB',nomor:''},
-    '0-13':{st:'sudah',file:'KI-18 - Buku Inventaris Barang dan Rencana Perawatan Gedung.pdf',link:'',blob:false,todo:false,note:'',pj:'',nomor:''},
-    '0-14':{st:'sudah',file:'KI-19 - Daftar Penerima Bantuan KIP-PIP dan Keterbukaan Informasi.pdf',link:'',blob:false,todo:false,note:'',pj:'',nomor:''},
-    '0-15':{st:'sudah',file:'KI-21 - Dokumentasi Kanal Pengaduan dan Log Layanan Keluhan Orang Tua.pdf',link:'',blob:false,todo:false,note:'',pj:'',nomor:''},
-    '0-2':{st:'belum',file:'',link:'',blob:false,todo:true,note:'KI-07 (Jurnal Harian Kepala Sekolah, Butir 7) belum ada di arsip. Satu-satunya butir Dimensi I yang belum punya dokumen.',pj:'Kepala Sekolah',nomor:''},
-    /* Dimensi VI (komponen 6) — KU-88..KU-99 */
-    '5-1':{st:'sudah',file:'KU-88 - Sistem Penilaian dan Sosialisasi Kriteria Ketercapaian Tujuan Pembelajaran (KKTP).pdf',link:'',blob:false,todo:false,note:'KU-88 juga menjawab Butir 16 (Dimensi I) — sudah ada KI-16.',pj:'',nomor:''},
-    '5-2':{st:'sudah',file:'KU-89 - Lembar Hasil Observasi Lingkungan dan Fasilitas Sekolah Tahun Pelajaran 2026-2027.pdf',link:'',blob:false,todo:false,note:'Sampul KU-89 menyebut Butir 44, 80, 89, 90. KU-89 dan KU-90 berjudul dan sampul sama tetapi isinya berbeda — pastikan keduanya memang dimaksudkan terpisah.',pj:'',nomor:''},
-    '5-3':{st:'sudah',file:'KU-90 - Lembar Hasil Observasi Lingkungan dan Fasilitas Sekolah Tahun Pelajaran 2026-2027.pdf',link:'',blob:false,todo:false,note:'Sampul KU-90 menyebut Butir 44, 80, 89, 90 (sama dengan KU-89).',pj:'',nomor:''},
-    '5-4':{st:'sudah',file:'KU-91 - Jadwal dan Rencana Pemeliharaan Sarana dan Prasarana Tahun Pelajaran 2026-2027.pdf',link:'',blob:false,todo:false,note:'KU-91 juga menjawab Butir 29 dan 43 (Dimensi II).',pj:'',nomor:''},
-    '5-5':{st:'sudah',file:'KU-92 - Rekap Publikasi Sekolah melalui Website dan Media Sosial Tahun Pelajaran 2026-2027.pdf',link:'',blob:false,todo:true,note:'Judul daftar gambar menyebut akun "alqomar.sekolahku" — di CLAUDE.md akun resmi Instagram @alqomar.school dan Facebook alqomarschool. Cek apakah tautan/akun yang tercantum benar-benar aktif dan resmi. Dokumen ini juga menjawab Butir 70.',pj:'Humas / Admin medsos',nomor:''},
-    '5-6':{st:'sudah',file:'KU-93 - Leger Nilai dan Ketercapaian KKTP Semester Ganjil Tahun Pelajaran 2026-2027.pdf',link:'',blob:false,todo:true,note:'Sampul menulis "Dimensi IV: Komunikasi; Dimensi VI" padahal hanya memuat Butir 93 — cek apakah salah ketik.',pj:'Wakil Kepala Sekolah Kurikulum',nomor:''},
-    '5-7':{st:'sudah',file:'KU-94_Laporan Hasil dan Analisis TKA Murid Kelas 6 SDIT Al Qomar TP 2026-2027.pdf',link:'',blob:false,todo:true,note:'Daftar gambar: "Gambar . Pengarahan Kegiatan TKA" — nomor gambar pertama kosong (seharusnya Gambar 1).',pj:'',nomor:''},
-    '5-8':{st:'sudah',file:'KU-95_Rekapitulasi_Prestasi_Murid_SDIT_Al_Qomar_2026-2027.pdf',link:'',blob:false,todo:false,note:'Sampul menyebut Butir 95, 97, 98 sekaligus (rekap gabungan 30 hlm).',pj:'',nomor:''},
-    '5-9':{st:'sudah',file:'KU-96 - Laporan Data Alumni dan Lanjutan Studi Lulusan SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf',link:'',blob:false,todo:true,note:'Terkait KI-04: jumlah lulusan 2025/2026 di KI-04 masih kosong — samakan angkanya dengan data alumni di KU-96.',pj:'',nomor:''},
-    '5-10':{st:'sudah',file:'KU-97 - Rekapitulasi Prestasi Murid pada OSN-KSN, O2SN, dan FLS2N SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf',link:'',blob:false,todo:false,note:'Judul sama dengan KU-98 (sampul menyebut Butir 95, 97, 98); isi berbeda.',pj:'',nomor:''},
-    '5-11':{st:'sudah',file:'KU-98 - Rekapitulasi Prestasi Murid pada OSN-KSN, O2SN, dan FLS2N SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf',link:'',blob:false,todo:false,note:'Judul sama dengan KU-97; isi berbeda.',pj:'',nomor:''},
-    '5-12':{st:'sudah',file:'KU-99 - Program dan Laporan Kegiatan Ekstrakurikuler serta Organisasi Murid SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf',link:'',blob:false,todo:false,note:'KU-99 juga menjawab Butir 51 dan 72.',pj:'Pembina ekskul',nomor:''},
-    /* silang dimensi: dokumen KU yang menyebut butir dimensi lain di sampulnya */
-    '3-10':{st:'sudah',file:'KU-92 - Rekap Publikasi Sekolah melalui Website dan Media Sosial Tahun Pelajaran 2026-2027.pdf',link:'',blob:false,todo:false,note:'Dipenuhi KU-92 (menyebut Butir 70).',pj:'',nomor:''},
-    '1-25':{st:'sudah',file:'KU-99 - Program dan Laporan Kegiatan Ekstrakurikuler serta Organisasi Murid SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf',link:'',blob:false,todo:false,note:'Dipenuhi KU-99 (menyebut Butir 51).',pj:'',nomor:''},
-    '1-8':{st:'belum',file:'',link:'',blob:false,todo:false,note:'Sebagian: KU-91 menjawab Butir 29 dan 43. Butir 42 (Buku Inventaris terupdate) belum ada dokumennya di komponen 6 — Dimensi I punya KI-18 (inventaris), cek apakah cukup.',pj:'',nomor:''},
-    '1-15':{st:'belum',file:'',link:'',blob:false,todo:false,note:'Sebagian: KU-89/KU-90 menjawab Butir 44. Butir 36 (ketegasan menjalankan keputusan, observasi lapangan) belum ada dokumen.',pj:'',nomor:''},
-    /* Dimensi V (komponen 5) — IAK-71..IAK-87 */
-    '4-1':{st:'sudah',file:"IAK-71 - Berita Acara Rapat Penyusunan Kurikulum Satuan Pendidikan SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf",link:'',blob:false,todo:false,note:"",pj:'',nomor:''},
-    '4-2':{st:'sudah',file:"IAK-72 - Program dan Laporan Kegiatan Ekstrakurikuler serta Organisasi Murid SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf | KU-99 - Program dan Laporan Kegiatan Ekstrakurikuler serta Organisasi Murid SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf",link:'',blob:false,todo:false,note:"IAK-72 menyebut Butir 51, 72, 99 (sama dengan KU-99).",pj:'',nomor:''},
-    '4-3':{st:'sudah',file:"IAK-73 - Contoh Rencana Pelaksanaan Pembelajaran Terintegrasi Kearifan Lokal, Isu Global, Metode Aktif, dan Teknologi Digital.pdf | IAK-75 - Contoh Rencana Pelaksanaan Pembelajaran Terintegrasi Kearifan Lokal, Isu Global, Metode Aktif, dan Teknologi Digital.pdf",link:'',blob:false,todo:false,note:"IAK-73 dan IAK-75 sama-sama menyebut Butir 73 dan 75 — cek isinya agar tidak sekadar salinan.",pj:'',nomor:''},
-    '4-4':{st:'sudah',file:"IAK-74 - Laporan Refleksi dan Evaluasi Kurikulum Tahunan SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf",link:'',blob:false,todo:false,note:"",pj:'',nomor:''},
-    '4-5':{st:'sudah',file:"IAK-76 - Program dan Rekap Kegiatan Literasi dan Numerasi SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf",link:'',blob:false,todo:false,note:"IAK-76 juga menjawab Butir 86.",pj:'',nomor:''},
-    '4-6':{st:'sudah',file:"IAK-77 - Program Pendidikan Inklusif SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf",link:'',blob:false,todo:false,note:"",pj:'',nomor:''},
-    '4-7':{st:'sudah',file:"IAK-78 - Program dan Dokumentasi Komunitas Belajar Internal Guru Tahun Pelajaran 2026-2027.pdf",link:'',blob:false,todo:false,note:"IAK-78 juga menjawab Butir 55 (Dimensi III).",pj:'',nomor:''},
-    '4-8':{st:'sudah',file:"IAK-79 - Telaah Laporan Rapor Pendidikan 2026 dan Peta Masalah Berbasis Data Tahun Pelajaran 2026-2027.pdf",link:'',blob:false,todo:false,note:"IAK-79 juga menjawab Butir 33 (Dimensi II).",pj:'',nomor:''},
-    '4-9':{st:'sudah',file:"IAK-80 - Lembar Hasil Observasi Lingkungan dan Fasilitas Sekolah Tahun Pelajaran 2026-2027.pdf",link:'',blob:false,todo:false,note:"IAK-80 menyebut Butir 44, 80, 89, 90 (sama dengan KU-89/KU-90).",pj:'',nomor:''},
-    '4-10':{st:'sudah',file:"IAK-81 - Dokumentasi Penataan Ruang Kelas yang Fleksibel Tahun Pelajaran 2026-2027.pdf",link:'',blob:false,todo:false,note:"",pj:'',nomor:''},
-    '4-11':{st:'sudah',file:"IAK-82 - Dokumentasi Fasilitas Keamanan Sekolah Tahun Pelajaran 2026-2027.pdf",link:'',blob:false,todo:false,note:"",pj:'',nomor:''},
-    '4-12':{st:'sudah',file:"IAK-83 - Laporan Pengelolaan Sanitasi dan Air Bersih Semester Ganjil Tahun Pelajaran 2026-2027.pdf",link:'',blob:false,todo:false,note:"",pj:'',nomor:''},
-    '4-13':{st:'sudah',file:"IAK-84 - Program Pencegahan dan Penanganan Perundungan (Anti-Perundungan) SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf",link:'',blob:false,todo:false,note:"",pj:'',nomor:''},
-    '4-14':{st:'sudah',file:"IAK-85 - Program Budaya 5S.pdf",link:'',blob:false,todo:false,note:"",pj:'',nomor:''},
-    '4-15':{st:'sudah',file:"IAK-86 - Program dan Rekap Kegiatan Literasi dan Numerasi SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf",link:'',blob:false,todo:false,note:"IAK-86 juga menjawab Butir 76; IAK-76 dan IAK-86 judulnya sama (program literasi-numerasi) — cek tidak duplikat.",pj:'',nomor:''},
-    '4-16':{st:'sudah',file:"IAK-87 - Program Konseling dan Kebijakan Kesejahteraan Warga Sekolah SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf",link:'',blob:false,todo:false,note:"IAK-87 juga menjawab Butir 52 dan 57.",pj:'',nomor:''},
-    '2-5':{st:'sudah',file:"IAK-87 - Program Konseling dan Kebijakan Kesejahteraan Warga Sekolah SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf",link:'',blob:false,todo:false,note:"Dipenuhi IAK-87 (menyebut Butir 57).",pj:'',nomor:''},
-    '1-26':{st:'sudah',file:"IAK-87 - Program Konseling dan Kebijakan Kesejahteraan Warga Sekolah SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf",link:'',blob:false,todo:false,note:"Dipenuhi IAK-87 (menyebut Butir 52).",pj:'',nomor:''},
-    '1-12':{st:'sudah',file:"IAK-79 - Telaah Laporan Rapor Pendidikan 2026 dan Peta Masalah Berbasis Data Tahun Pelajaran 2026-2027.pdf",link:'',blob:false,todo:false,note:"Dipenuhi IAK-79 (menyebut Butir 33).",pj:'',nomor:''},
-    '2-3':{st:'sudah',file:"IAK-78 - Program dan Dokumentasi Komunitas Belajar Internal Guru Tahun Pelajaran 2026-2027.pdf",link:'',blob:false,todo:false,note:"Dipenuhi IAK-78 (menyebut Butir 55).",pj:'',nomor:''}
+   "0-1": {
+    "st": "sudah",
+    "file": "KI-01 - Rekap Kehadiran dan Ketepatan Waktu Kepala Sekolah Bulan Juli sampai Oktober 2026.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "Draf KI-01 masih punya isian kuning yang belum final: (1) Tabel 3 / catatan September: hadir ditulis 16 agar jumlah sama dengan 17 hari efektif, cocokkan dengan cetakan mesin; (2) Tabel 5 no.5: waktu pertemuan PKKS 30 Okt 2026 \"13.00 sampai .....\"; (3) Subbab 4.3: hasil penelusuran selisih jam fingerprint vs Buku Piket belum diisi; (4) Gambar 4: tanggal foto \"..... Oktober 2026\".",
+    "ph": 0,
+    "phn": ""
+   },
+   "0-2": {
+    "st": "belum",
+    "file": "",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "KI-07 (Jurnal Harian Kepala Sekolah, Butir 7) belum ada di arsip. Satu-satunya butir Dimensi I yang belum punya dokumen.",
+    "pj": "Kepala Sekolah",
+    "nomor": "",
+    "ph": 0,
+    "phn": ""
+   },
+   "0-3": {
+    "st": "sudah",
+    "file": "KI-02 - Rekap Keikutsertaan Kepala Sekolah dalam Agenda Sekolah Bulan Juli sampai Oktober 2026.pdf",
+    "link": "",
+    "blob": false,
+    "todo": false,
+    "note": "KI-02 menjawab Butir 2 dan Butir 6 sekaligus (29 hlm).",
+    "pj": "Kepala Sekolah",
+    "nomor": "",
+    "ph": 0,
+    "phn": ""
+   },
+   "0-4": {
+    "st": "sudah",
+    "file": "KI-05 - Instrumen dan Hasil Observasi Tanggung Jawab serta Penampilan Kepala SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": false,
+    "note": "KI-05 menjawab Butir 5 dan Butir 8 sekaligus (30 hlm).",
+    "pj": "",
+    "nomor": "",
+    "ph": 0,
+    "phn": ""
+   },
+   "0-5": {
+    "st": "belum",
+    "file": "KI-10 - Rekap Wawancara Guru dan Staf (Butir 9, 10, 11).pdf | KI-11 - Rekap Wawancara Guru dan Staf (Butir 11).pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "KI-10 menjawab Butir 9, 10, 11; KI-11 judul dan sampulnya sama dengan KI-10 tetapi hanya menyebut Butir 11 — cek apakah KI-11 duplikat atau sengaja dipisah. Lembar wawancara di lampiran (nama responden, pelaksana, tanggal, tanda tangan) masih titik-titik: pastikan yang diunggah versi terisi.",
+    "pj": "Tim Pelaksana Wawancara",
+    "nomor": "",
+    "ph": 1,
+    "phn": "KI-11: foto wawancara 26, 27, 28 Oktober 2026 di perpustakaan tanpa Kepala Sekolah; tanda tangan responden dan pelaksana di Lampiran 2 dan Tabel 9; 11 lembar"
+   },
+   "0-6": {
+    "st": "belum",
+    "file": "KI-03 - Keterbukaan Anggaran melalui Website Sekolah.pdf | KI-12 - Keterbukaan Anggaran melalui Papan Informasi Pengelolaan Dana.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "KI-03 (Butir 3, website) dan KI-12 (Butir 12, papan informasi).",
+    "pj": "",
+    "nomor": "",
+    "ph": 5,
+    "phn": "KI-12: foto Gambar 1–4 dengan tulisan papan terbaca dan tanggal pengambilan; foto/salinan naskah lama Juli–September dari map arsip TU; cuplikan register per • KI-12: tempel foto di sini"
+   },
+   "0-7": {
+    "st": "belum",
+    "file": "KI-13 - Prosedur Akses Informasi Anggaran bagi Warga Sekolah Tahun Pelajaran 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "",
+    "pj": "",
+    "nomor": "",
+    "ph": 4,
+    "phn": "KI-13: foto Gambar 1–3; daftar hadir sosialisasi 5 Oktober 2026 bertanda tangan 18 guru, 4 tendik, dan Ketua Komite; bukti sosialisasi kepada orang tua pada  • KI-13: tempel foto di sini"
+   },
+   "0-8": {
+    "st": "sudah",
+    "file": "KI-04 - Kebijakan Pengamanan Dokumen Sekolah Tahun Pelajaran 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "Lampiran 1 (rekap ijazah) masih memuat isian kosong: \"Jumlah seluruh lulusan Tahun Pelajaran 2025/2026 adalah ..... murid, sehingga rekap ini memuat ..... dari seluruh ijazah lulusan.\"",
+    "pj": "",
+    "nomor": "",
+    "ph": 0,
+    "phn": ""
+   },
+   "0-9": {
+    "st": "belum",
+    "file": "KI-14.1 Surat Keputusan Nomor 001-SK-SDIT-AQ-VII-2026 tentang Pembagian Tugas.pdf | KI-14.2 Bukti Publikasi SK Pembagian Tugas Mengajar dan Tugas Tambahan Guru.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "KI-14.1 = SK (4 hlm), KI-14.2 = bukti publikasi (26 hlm).",
+    "pj": "Kepala Sekolah",
+    "nomor": "001/SK/SDIT-AQ/VII/2026",
+    "ph": 7,
+    "phn": "KI-14.1: tanda tangan basah dan stempel sekolah pada blok penetapan; bukti publikasi SK (foto papan pengumuman, tangkapan layar grup/website), daftar hadir dan • KI-14.1: cek Dapodik Dapodik: L/P 5A • KI-14.2: tempel foto/tangkapan layar di sini"
+   },
+   "0-10": {
+    "st": "belum",
+    "file": "KI-15 Kriteria Pemberian Reward, Hukuman, dan Rekomendasi Kenaikan Pangkat bagi Staf.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "Lampiran memuat contoh surat dengan nomor dan tanggal masih titik-titik (\"..../SP/SDIT-AQ/..../2026\", \"tanggal ........\"). Pastikan itu memang formulir contoh, bukan surat yang sudah diterbitkan.",
+    "pj": "",
+    "nomor": "",
+    "ph": 1,
+    "phn": "KI-15: Lembar Pengesahan bertanda tangan Kepala Sekolah dan Ketua Yayasan serta berstempel; daftar hadir sosialisasi 20 Juli 2026 bertanda tangan 22 staf dan"
+   },
+   "0-11": {
+    "st": "belum",
+    "file": "KI-16 Sistem Penilaian dan Sosialisasi Kriteria Ketercapaian Tujuan Pembelajaran.pdf | KI-20 - Surat Keterangan Bantuan PGRI untuk Guru.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "KI-16 (Butir 16, 33 hlm) dan KI-20 (Butir 20, 12 hlm).",
+    "pj": "",
+    "nomor": "",
+    "ph": 2,
+    "phn": "KI-16: foto kegiatan Gambar 1–6, tangkapan layar website dan Instagram 21 Juli 2026, tanda terima edaran (292 lembar); nama asli orang tua/wali dan tanda tan • KI-20: tindakan Ahmad: sosialisasi tertulis bantuan/hibah kepada warga sekolah belum ada buktinya. Bila memang dilaksanakan, siapkan undangan bernomor, dafta"
+   },
+   "0-12": {
+    "st": "belum",
+    "file": "KI-17 Laporan Sistem Penerimaan Murid Baru (SPMB-PPDB) Tahun Pelajaran 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "",
+    "pj": "Panitia SPMB",
+    "nomor": "",
+    "ph": 1,
+    "phn": "KI-17: nomor dan tanggal SK Kepala Sekolah tentang Panitia Penerimaan Murid Baru beserta salinannya; juknis SPMB Dinas Pendidikan DKI Jakarta dan keputusan y"
+   },
+   "0-13": {
+    "st": "belum",
+    "file": "KI-18 - Buku Inventaris Barang dan Rencana Perawatan Gedung.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "",
+    "pj": "",
+    "nomor": "",
+    "ph": 3,
+    "phn": "KI-18: tanggal selesai perbaikan atau alasan penundaan • KI-18: tanggal selesai perbaikan atau alasan penundaan"
+   },
+   "0-14": {
+    "st": "belum",
+    "file": "KI-19 - Daftar Penerima Bantuan KIP-PIP dan Keterbukaan Informasi.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "",
+    "pj": "",
+    "nomor": "",
+    "ph": 1,
+    "phn": "KI-19: foto Gambar 1–4; Tabel 9 dan Tabel 10 bertanda tangan asli orang tua; tanda tangan dan stempel pada Lembar Pengesahan dan Lampiran 1–3; cetakan SK pen"
+   },
+   "0-15": {
+    "st": "belum",
+    "file": "KI-21 - Dokumentasi Kanal Pengaduan dan Log Layanan Keluhan Orang Tua.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "",
+    "pj": "",
+    "nomor": "",
+    "ph": 2,
+    "phn": "KI-21: 13.00 oleh dua petugas asli: nama petugas kedua • KI-21: foto dan tangkapan layar Gambar 1–6 (nomor telepon, email, halaman kontak website, Instagram/Facebook, kotak saran); salinan/foto buku log asli di Tat"
+   },
+   "1-1": {
+    "st": "belum",
+    "file": "KM-61_Laporan_Sosialisasi_Visi_Misi_Format_Diperbaiki.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "Dipenuhi KM-61 (menyebut Butir 22).",
+    "pj": "",
+    "nomor": "",
+    "ph": 2,
+    "phn": "KM-61: lampirkan lembar angket pemahaman staf dan rekap jawabannya sebagai dasar angka Tabel 4 • KM-61: lampirkan cuplikan notulen Rapat Evaluasi ASB 1 (2 September), ASTS (30 September), dan ASB 2 (28 Oktober 2026)"
+   },
+   "1-8": {
+    "st": "belum",
+    "file": "",
+    "link": "",
+    "blob": false,
+    "todo": false,
+    "note": "Sebagian: KU-91 menjawab Butir 29 dan 43. Butir 42 (Buku Inventaris terupdate) belum ada dokumennya di komponen 6 — Dimensi I punya KI-18 (inventaris), cek apakah cukup.",
+    "pj": "",
+    "nomor": "",
+    "ph": 0,
+    "phn": ""
+   },
+   "1-10": {
+    "st": "belum",
+    "file": "KM-68_Dokumen_Kerja_Sama_SDIT_Al_Qomar_2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "Dipenuhi KM-68 (menyebut Butir 31).",
+    "pj": "",
+    "nomor": "",
+    "ph": 11,
+    "phn": "KM-68: tertulis dengan Polsek Kalideres lalu catat di Tabel 2 dan lampirkan • KM-68: tercantum Biro 2 Hamsa perjalanan umroh Reward perjalanan pada umroh bagi guru naskah yang loyal dan [perlu data disiplin asli: nomor MoU Hamsa"
+   },
+   "1-12": {
+    "st": "belum",
+    "file": "IAK-79 - Telaah Laporan Rapor Pendidikan 2026 dan Peta Masalah Berbasis Data Tahun Pelajaran 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "Dipenuhi IAK-79 (menyebut Butir 33).",
+    "pj": "",
+    "nomor": "",
+    "ph": 4,
+    "phn": "IAK-79: sebutkan apakah ada angka yang berubah antara versi Juli dan versi 1 November 2026 • IAK-79: data Rapor Pendidikan 2024 bila tersedia, untuk tren lebih dari dua tahun"
+   },
+   "1-13": {
+    "st": "belum",
+    "file": "PG-58 - Catatan Kepala Sekolah dan Penanganan Situasi Darurat serta Konflik Internal SDS Al-Qomar.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "Dipenuhi PG-58 (menyebut Butir 34).",
+    "pj": "",
+    "nomor": "",
+    "ph": 3,
+    "phn": "PG-58: cetakan Rapor Pendidikan 2026 asli untuk mencocokkan Iklim keamanan 79,27; kesejahteraan psikologis murid 73,36 dan guru 84,41; keamanan dari kekerasa • PG-58: bukti pelaksanaan Tabel 13: daftar pengawas cadangan ASTS, catatan pemeriksaan listrik Oktober 2026, contoh pesan baku cuaca buruk; juga buku piket 3-"
+   },
+   "1-15": {
+    "st": "belum",
+    "file": "",
+    "link": "",
+    "blob": false,
+    "todo": false,
+    "note": "Sebagian: KU-89/KU-90 menjawab Butir 44. Butir 36 (ketegasan menjalankan keputusan, observasi lapangan) belum ada dokumen.",
+    "pj": "",
+    "nomor": "",
+    "ph": 0,
+    "phn": ""
+   },
+   "1-25": {
+    "st": "belum",
+    "file": "KU-99 - Program dan Laporan Kegiatan Ekstrakurikuler serta Organisasi Murid SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "Dipenuhi KU-99 (menyebut Butir 51).",
+    "pj": "",
+    "nomor": "",
+    "ph": 9,
+    "phn": "KU-99: cocokkan angka dengan laporan Rapor Pendidikan 2026 asli (78,39; 72,66 turun 6,26) • KU-99: pastikan jam Pramuka, Tari, Rohis, Karate, dan SALC; pukul 07.30 sampai 08.30 berada di dalam jam belajar 06.30 sampai 14.00/15.00, sehingga perlu dit"
+   },
+   "1-26": {
+    "st": "belum",
+    "file": "IAK-87 - Program Konseling dan Kebijakan Kesejahteraan Warga Sekolah SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf | PG-57 - Program Konseling dan Kebijakan Kesejahteraan Warga Sekolah SDS Al-Qomar.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "Dipenuhi IAK-87 dan PG-57 (Butir 52).",
+    "pj": "",
+    "nomor": "",
+    "ph": 10,
+    "phn": "IAK-87: nama psikolog mitra, lembaga, dan nomor izin praktik; psikolog ikut menandatangani BA 354/BA/SDIT-AQ/IX/2026 • IAK-87: nama lengkap dan gelar Dr. Dimo; surat/MoU dengan Puskesmas Kecamatan Kalideres dan Klinik Pratama Everwell; daftar hadir penyuluhan 31 Agustus 2026 • PG-57: bukti kemitraan anti perundungan dengan Kepolisian (surat/MoU dan kegiatan) bila penyuluhan atau kegiatan melibatkan Kepolisian"
+   },
+   "2-1": {
+    "st": "belum",
+    "file": "PG-53 - Pemetaan Kebutuhan Pengembangan Kompetensi Guru dan Analisis Kesenjangan Keterampilan SDS Al-Qomar.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "",
+    "pj": "",
+    "nomor": "",
+    "ph": 4,
+    "phn": "PG-53: rekap jawaban survei per guru (nama, topik dipilih, bentuk pelatihan, hambatan, kesediaan berbagi) dan 18 angket asli bertanda tangan • PG-53: cetakan/tangkapan layar Rapor Pendidikan 2026 indikator D.1.1, D.1.6, D.2.2, D.2.3, dan C.3"
+   },
+   "2-2": {
+    "st": "belum",
+    "file": "PG-54 - Laporan Fasilitasi dan Pengembangan Kompetensi PTK SDS Al-Qomar.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "",
+    "pj": "",
+    "nomor": "",
+    "ph": 3,
+    "phn": "PG-54: rekap JP per tenaga kependidikan (target 16 JP), daftar hadir bertanda tangan, dan bukti bimbingan teknis keempat sesi • PG-54: salinan 66 sertifikat asli per guru, cetakan riwayat/sertifikat Ruang GTK, surat tugas dan surat rekomendasi bertanda tangan dan berstempel, serta fot"
+   },
+   "2-3": {
+    "st": "belum",
+    "file": "PG-55 - Program dan Dokumentasi Komunitas Belajar Internal Guru SDS Al-Qomar.pdf | IAK-78 - Program dan Dokumentasi Komunitas Belajar Internal Guru Tahun Pelajaran 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "PG-55 dan IAK-78 sama-sama menyebut Butir 55/78.",
+    "pj": "",
+    "nomor": "",
+    "ph": 11,
+    "phn": "PG-55: cuplikan Rapor Pendidikan 2026 yang memuat Manajemen Kelas 62,38, Asesmen Holistik 51,44, dan penurunan Refleksi 10,39 • PG-55: nama 4 guru yang tidak hadir pada 14 Agustus 2026 beserta alasannya, sesuai daftar hadir asli • IAK-78: lampirkan halaman Rapor Pendidikan 2026 (Manajemen Kelas, Asesmen Holistik, Refleksi, Penerapan Praktik Inovatif)"
+   },
+   "2-4": {
+    "st": "belum",
+    "file": "PG-56 - Laporan Bimbingan Teknis Tenaga Kependidikan SDS Al-Qomar.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "",
+    "pj": "",
+    "nomor": "",
+    "ph": 5,
+    "phn": "PG-56: catatan pembinaan rutin dua pekanan (tanggal, nama staf, topik, tindak lanjut) dari arsip Tata Usaha • PG-56: daftar periksa keterampilan (skala 0-100) yang terisi untuk nilai sebelum dan sesudah di Tabel 4, termasuk nilai Ellida Siregar pada keterampilan arsi"
+   },
+   "2-5": {
+    "st": "belum",
+    "file": "PG-57 - Program Konseling dan Kebijakan Kesejahteraan Warga Sekolah SDS Al-Qomar.pdf | IAK-87 - Program Konseling dan Kebijakan Kesejahteraan Warga Sekolah SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "Dipenuhi PG-57 dan IAK-87 (Butir 57).",
+    "pj": "",
+    "nomor": "",
+    "ph": 10,
+    "phn": "PG-57: bukti kemitraan anti perundungan dengan Kepolisian (surat/MoU dan kegiatan) bila penyuluhan atau kegiatan melibatkan Kepolisian • PG-57: tanggal pengamatan tiap catatan guru mata pelajaran dan satu contoh lembar catatan guru mapel yang terisi • IAK-87: nama psikolog mitra, lembaga, dan nomor izin praktik; psikolog ikut menandatangani BA 354/BA/SDIT-AQ/IX/2026"
+   },
+   "2-6": {
+    "st": "belum",
+    "file": "PG-58 - Catatan Kepala Sekolah dan Penanganan Situasi Darurat serta Konflik Internal SDS Al-Qomar.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "PG-58 juga menjawab Butir 34 (Dimensi II).",
+    "pj": "",
+    "nomor": "",
+    "ph": 3,
+    "phn": "PG-58: cetakan Rapor Pendidikan 2026 asli untuk mencocokkan Iklim keamanan 79,27; kesejahteraan psikologis murid 73,36 dan guru 84,41; keamanan dari kekerasa • PG-58: bukti pelaksanaan Tabel 13: daftar pengawas cadangan ASTS, catatan pemeriksaan listrik Oktober 2026, contoh pesan baku cuaca buruk; juga buku piket 3-"
+   },
+   "2-7": {
+    "st": "belum",
+    "file": "PG-59 - Administrasi Kepegawaian dan Pengelolaan Arsip Berkas PTK SDS Al-Qomar.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "",
+    "pj": "",
+    "nomor": "",
+    "ph": 5,
+    "phn": "PG-59: nama-nama jenjang kepegawaian yayasan beserta nomor dan tanggal peraturan/SK YPIPC yang menetapkannya • PG-59: contoh nyata surat usulan Kepala Sekolah kepada yayasan dan SK yayasan tentang kenaikan jenjang (minimal satu pegawai, boleh disamarkan) bila pernah a"
+   },
+   "2-8": {
+    "st": "belum",
+    "file": "PG-60 - SK Penugasan Strategis Guru dan Tenaga Kependidikan SDS Al-Qomar.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "SK penugasan strategis Nomor 002/SK/SDIT-AQ/VII/2026 (3 hlm).",
+    "pj": "",
+    "nomor": "002/SK/SDIT-AQ/VII/2026",
+    "ph": 2,
+    "phn": "PG-60: nomor dan tanggal peraturan/keputusan YPIPC • PG-60: salinan SK Nomor 001/SK/SDIT-AQ/VII/2026 tentang pembagian tugas pokok (berkas KI-14.1) bertanda tangan; SK ini bertanda tangan basah dan berstempel p"
+   },
+   "3-1": {
+    "st": "belum",
+    "file": "KM-61_Laporan_Sosialisasi_Visi_Misi_Format_Diperbaiki.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "KM-61 juga menjawab Butir 22 (Dimensi II).",
+    "pj": "",
+    "nomor": "",
+    "ph": 2,
+    "phn": "KM-61: lampirkan lembar angket pemahaman staf dan rekap jawabannya sebagai dasar angka Tabel 4 • KM-61: lampirkan cuplikan notulen Rapat Evaluasi ASB 1 (2 September), ASTS (30 September), dan ASB 2 (28 Oktober 2026)"
+   },
+   "3-2": {
+    "st": "belum",
+    "file": "KM-62_Rekap_Media_Komunikasi_Format_Diperbaiki.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "",
+    "pj": "",
+    "nomor": "",
+    "ph": 2,
+    "phn": "KM-62: sebutkan yang harus disiapkan nomor pengumuman di Tabel 3 yang perlu dijelaskan ulang • KM-62: tambahkan Gambar 5 foto mading sekolah (mis. pengumuman ASB 2 atau Kokurikuler) beserta tanggalnya"
+   },
+   "3-3": {
+    "st": "belum",
+    "file": "KM-63 - Laporan Apresiasi dan Umpan Balik Positif atas Kinerja Staf Tahun Pelajaran 2026-2027 Fix.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "",
+    "pj": "",
+    "nomor": "",
+    "ph": 1,
+    "phn": "KM-63: tambahkan foto apel Juli (panitia MPLS) dan foto penyerahan Piagam Guru Disiplin Een Muflihat, S.Pd, 5 Oktober 2026; lampirkan sertifikat/piagam asli "
+   },
+   "3-4": {
+    "st": "belum",
+    "file": "KM-64_Instrumen_Rekap_Wawancara_Murid_Format_Diperbaiki.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "",
+    "pj": "",
+    "nomor": "",
+    "ph": 2,
+    "phn": "KM-64: lampirkan bukti awal tindak lanjut, mis. foto kotak usul murid atau jadwal buka perpustakaan saat istirahat • KM-64: lampirkan ke-22 lembar wawancara asli yang diisi dan ditandatangani pewawancara"
+   },
+   "3-5": {
+    "st": "belum",
+    "file": "KM-65 - Rekap Kehadiran Kepala Sekolah dalam Acara Murid Tahun Pelajaran 2026-2027 Fix.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "",
+    "pj": "",
+    "nomor": "",
+    "ph": 1,
+    "phn": "KM-65: lampirkan salinan agenda kerja Kepala Sekolah atau catatan Tata Usaha sumber Tabel 1"
+   },
+   "3-6": {
+    "st": "belum",
+    "file": "KM-66_Laporan_Perkembangan_Sekolah_dan_Murid_2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "",
+    "pj": "",
+    "nomor": "",
+    "ph": 3,
+    "phn": "KM-66: lampirkan bukti penyampaian rutin di luar rapor, mis. tangkapan layar grup kelas, contoh buku penghubung, dan surat edaran bulanan • KM-66: lampirkan salinan SK Wali Kelas"
+   },
+   "3-7": {
+    "st": "belum",
+    "file": "KM-67_Dokumentasi_Kanal_Pengaduan_dan_Log_Layanan_Orang_Tua.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "KM-67 juga menjawab Butir 21 (Dimensi I).",
+    "pj": "",
+    "nomor": "",
+    "ph": 2,
+    "phn": "KM-67: lampirkan contoh bukti tanggapan nyata tanpa identitas pelapor (balasan email/Instagram, formulir kotak saran terisi) dan foto halaman buku log Tata U • KM-67: pastikan tangkapan layar adalah akun resmi alqomar.sekolahku"
+   },
+   "3-8": {
+    "st": "belum",
+    "file": "KM-68_Dokumen_Kerja_Sama_SDIT_Al_Qomar_2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "KM-68 juga menjawab Butir 31 (Dimensi II). Memuat banyak penanda nomor/naskah MoU — kerja sama harus berdokumen asli bertanda tangan.",
+    "pj": "",
+    "nomor": "",
+    "ph": 11,
+    "phn": "KM-68: tertulis dengan Polsek Kalideres lalu catat di Tabel 2 dan lampirkan • KM-68: tercantum Biro 2 Hamsa perjalanan umroh Reward perjalanan pada umroh bagi guru naskah yang loyal dan [perlu data disiplin asli: nomor MoU Hamsa"
+   },
+   "3-9": {
+    "st": "belum",
+    "file": "KM-69 - Laporan Kegiatan Kemasyarakatan di Lingkungan Sekitar SDIT Al Qomar TP 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "",
+    "pj": "",
+    "nomor": "",
+    "ph": 4,
+    "phn": "KM-69: lampirkan catatan atau undangan rapat RW 06 tanggal 5 Agustus 2026 • KM-69: lampirkan rincian kuitansi atau buku kas dana sosial"
+   },
+   "3-10": {
+    "st": "belum",
+    "file": "KM-70 - Rekap Publikasi Sekolah melalui Website dan Media Sosial TP 2026-2027.pdf | KU-92 - Rekap Publikasi Sekolah melalui Website dan Media Sosial Tahun Pelajaran 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "KM-70 menyebut Butir 70 dan 92; KU-92 menjawab Butir 92 (Dimensi VI).",
+    "pj": "",
+    "nomor": "",
+    "ph": 14,
+    "phn": "KM-70: Fullday 4 Religion dan MABIT Kanal Tautan Unggahan data asli: tanggal 30 sampai 31 tayang asli, Oktober 2026 tidak sebelum 30 SDIT Al Qomar Oktober We • KM-70: ganti tautan pemendek (l1nq.com, sl1nk.com, acesse.one, l1nk.dev) dengan alamat asli unggahan; pisahkan tautan Instagram dan Facebook HUT RI yang saat • KU-92: tanggal latihan/ta mpil Tim Senam; Website 15 18 Sekolah Septemb September & er 2026 2026 Instagra jatuh m pada pekan Ujian Praktik ASTS dan tidak ada"
+   },
+   "4-1": {
+    "st": "belum",
+    "file": "IAK-71 - Berita Acara Rapat Penyusunan Kurikulum Satuan Pendidikan SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "",
+    "pj": "",
+    "nomor": "",
+    "ph": 6,
+    "phn": "IAK-71: nama guru lengkap dan jabatan wakil Erlangga • IAK-71: rekap angket orang tua dan contoh lembar analisis kebutuhan murid untuk dilampirkan"
+   },
+   "4-2": {
+    "st": "belum",
+    "file": "IAK-72 - Program dan Laporan Kegiatan Ekstrakurikuler serta Organisasi Murid SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf | KU-99 - Program dan Laporan Kegiatan Ekstrakurikuler serta Organisasi Murid SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "IAK-72 menyebut Butir 51, 72, 99 (sama dengan KU-99).",
+    "pj": "",
+    "nomor": "",
+    "ph": 15,
+    "phn": "IAK-72: lampirkan halaman Rapor Pendidikan 2026 yang memuat skor 78,39 dan 72,66 • IAK-72: contoh notulen/proposal kegiatan buatan murid, mis. bazar kelas atau jadwal petugas Rohis • KU-99: cocokkan angka dengan laporan Rapor Pendidikan 2026 asli (78,39; 72,66 turun 6,26)"
+   },
+   "4-3": {
+    "st": "belum",
+    "file": "IAK-73 - Contoh Rencana Pelaksanaan Pembelajaran Terintegrasi Kearifan Lokal, Isu Global, Metode Aktif, dan Teknologi Digital.pdf | IAK-75 - Contoh Rencana Pelaksanaan Pembelajaran Terintegrasi Kearifan Lokal, Isu Global, Metode Aktif, dan Teknologi Digital.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "IAK-73 dan IAK-75 sama-sama menyebut Butir 73 dan 75 — cek isinya agar tidak sekadar salinan.",
+    "pj": "",
+    "nomor": "",
+    "ph": 8,
+    "phn": "IAK-73: cetakan halaman Rapor Pendidikan 2026 (Metode Pembelajaran 66,28; Penerapan Praktik Inovatif 75,58; Asesmen Holistik 51,44) • IAK-73: aspek yang belum terpenuhi per guru dari lembar telaah RPP kelima guru tersebut • IAK-75: cetakan halaman Rapor Pendidikan 2026 (Metode Pembelajaran 66,28; Penerapan Praktik Inovatif 75,58; Asesmen Holistik 51,44)"
+   },
+   "4-4": {
+    "st": "belum",
+    "file": "IAK-74 - Laporan Refleksi dan Evaluasi Kurikulum Tahunan SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "",
+    "pj": "",
+    "nomor": "",
+    "ph": 5,
+    "phn": "IAK-74: kegiatan dan tanggal kehadiran Pengawas, untuk dicantumkan di daftar hadir/notulen • IAK-74: pastikan jam pelaksanaan lokakarya 9 Juli"
+   },
+   "4-5": {
+    "st": "belum",
+    "file": "IAK-76 - Program dan Rekap Kegiatan Literasi dan Numerasi SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "IAK-76 juga menjawab Butir 86.",
+    "pj": "",
+    "nomor": "",
+    "ph": 3,
+    "phn": "IAK-76: lampiran contoh karya: salinan puisi, cerpen, halaman jurnal baca, foto poster numerasi dan produk STEM; karya asli disiapkan saat pemeriksaan • IAK-76: rekap pemeriksaan jurnal baca per kelas, daftar pemenang dan nomor piagam Pekan Literasi, hasil evaluasi bulanan"
+   },
+   "4-6": {
+    "st": "belum",
+    "file": "IAK-77 - Program Pendidikan Inklusif SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "",
+    "pj": "",
+    "nomor": "",
+    "ph": 7,
+    "phn": "IAK-77: pastikan data 4 murid sudah final • IAK-77: tambahan rombel dan nama guru"
+   },
+   "4-7": {
+    "st": "belum",
+    "file": "IAK-78 - Program dan Dokumentasi Komunitas Belajar Internal Guru Tahun Pelajaran 2026-2027.pdf | PG-55 - Program dan Dokumentasi Komunitas Belajar Internal Guru SDS Al-Qomar.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "IAK-78 dan PG-55 sama-sama menyebut Butir 55/78.",
+    "pj": "",
+    "nomor": "",
+    "ph": 11,
+    "phn": "IAK-78: lampirkan halaman Rapor Pendidikan 2026 (Manajemen Kelas, Asesmen Holistik, Refleksi, Penerapan Praktik Inovatif) • IAK-78: pastikan jumlah hadir 14 Agustus dari daftar hadir asli • PG-55: cuplikan Rapor Pendidikan 2026 yang memuat Manajemen Kelas 62,38, Asesmen Holistik 51,44, dan penurunan Refleksi 10,39"
+   },
+   "4-8": {
+    "st": "belum",
+    "file": "IAK-79 - Telaah Laporan Rapor Pendidikan 2026 dan Peta Masalah Berbasis Data Tahun Pelajaran 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "IAK-79 juga menjawab Butir 33 (Dimensi II).",
+    "pj": "",
+    "nomor": "",
+    "ph": 4,
+    "phn": "IAK-79: sebutkan apakah ada angka yang berubah antara versi Juli dan versi 1 November 2026 • IAK-79: data Rapor Pendidikan 2024 bila tersedia, untuk tren lebih dari dua tahun"
+   },
+   "4-9": {
+    "st": "belum",
+    "file": "IAK-80 - Lembar Hasil Observasi Lingkungan dan Fasilitas Sekolah Tahun Pelajaran 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "IAK-80 menyebut Butir 44, 80, 89, 90 (sama dengan KU-89/KU-90).",
+    "pj": "",
+    "nomor": "",
+    "ph": 5,
+    "phn": "IAK-80: kutipan Buku Inventaris Barang (perabot ruang kelas dan perpustakaan) beserta tanggal pemutakhiran • IAK-80: tangkapan layar Rapor Pendidikan 2026 untuk angka yang dikutip"
+   },
+   "4-10": {
+    "st": "belum",
+    "file": "IAK-81 - Dokumentasi Penataan Ruang Kelas yang Fleksibel Tahun Pelajaran 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "",
+    "pj": "",
+    "nomor": "",
+    "ph": 7,
+    "phn": "IAK-81: hasil ukur ulang tiap ruang (ukuran, luas per murid, penataan utama) lalu hapus kata isian sementara • IAK-81: penataan yang tercatat dari lembar supervisi asli"
+   },
+   "4-11": {
+    "st": "belum",
+    "file": "IAK-82 - Dokumentasi Fasilitas Keamanan Sekolah Tahun Pelajaran 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "",
+    "pj": "",
+    "nomor": "",
+    "ph": 7,
+    "phn": "IAK-82: tangkapan layar Rapor Pendidikan 2026 • IAK-82: hasil hitung nyata kamera, rambu, denah, APAR, lampu darurat untuk mengganti isian sementara"
+   },
+   "4-12": {
+    "st": "belum",
+    "file": "IAK-83 - Laporan Pengelolaan Sanitasi dan Air Bersih Semester Ganjil Tahun Pelajaran 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "",
+    "pj": "",
+    "nomor": "",
+    "ph": 6,
+    "phn": "IAK-83: hitung ulang bilik toilet, keran wudu, titik cuci tangan, tempat sampah; sebutkan sumber patokan rasio 1:40, 1:25, 1:20 • IAK-83: nama laboratorium, nomor laporan, dan sertifikat hasil uji air 18 Agustus 2026"
+   },
+   "4-13": {
+    "st": "belum",
+    "file": "IAK-84 - Program Pencegahan dan Penanganan Perundungan (Anti-Perundungan) SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "",
+    "pj": "",
+    "nomor": "",
+    "ph": 5,
+    "phn": "IAK-84: cek judul resmi; Pasal 43 menyatakan TPPK lama berakhir, sesuaikan nama tim • IAK-84: salinan SK 421.2/015 (kebijakan) dan 421.2/016 (TPPK) bertanda tangan; cocokkan susunan Tabel 1 dengan SK"
+   },
+   "4-14": {
+    "st": "belum",
+    "file": "IAK-85 - Program Budaya 5S.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "",
+    "pj": "",
+    "nomor": "",
+    "ph": 5,
+    "phn": "IAK-85: hari, jam, dan lokasi piket yang berlaku • IAK-85: bentuk penguatan 5S yang benar-benar dilaksanakan"
+   },
+   "4-15": {
+    "st": "belum",
+    "file": "IAK-86 - Program dan Rekap Kegiatan Literasi dan Numerasi SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "IAK-86 juga menjawab Butir 76; IAK-76 dan IAK-86 judulnya sama (program literasi-numerasi) — cek tidak duplikat.",
+    "pj": "",
+    "nomor": "",
+    "ph": 5,
+    "phn": "IAK-86: tanggal nyata Pekan Literasi (610 Oktober = Selasa-Sabtu) dan pameran 8 Oktober • IAK-86: 3 Jurnal baca Catatan membaca harian murid Kelas 1 sampai jelaskan 4 selisih dengan 234 murid kelas 1-4"
+   },
+   "4-16": {
+    "st": "belum",
+    "file": "IAK-87 - Program Konseling dan Kebijakan Kesejahteraan Warga Sekolah SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf | PG-57 - Program Konseling dan Kebijakan Kesejahteraan Warga Sekolah SDS Al-Qomar.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "IAK-87 menyebut Butir 52, 57, 87; PG-57 menyebut Butir 52, 57, 87.",
+    "pj": "",
+    "nomor": "",
+    "ph": 10,
+    "phn": "IAK-87: nama psikolog mitra, lembaga, dan nomor izin praktik; psikolog ikut menandatangani BA 354/BA/SDIT-AQ/IX/2026 • IAK-87: nama lengkap dan gelar Dr. Dimo; surat/MoU dengan Puskesmas Kecamatan Kalideres dan Klinik Pratama Everwell; daftar hadir penyuluhan 31 Agustus 2026 • PG-57: bukti kemitraan anti perundungan dengan Kepolisian (surat/MoU dan kegiatan) bila penyuluhan atau kegiatan melibatkan Kepolisian"
+   },
+   "5-1": {
+    "st": "belum",
+    "file": "KU-88 - Sistem Penilaian dan Sosialisasi Kriteria Ketercapaian Tujuan Pembelajaran (KKTP).pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "KU-88 juga menjawab Butir 16 (Dimensi I) — sudah ada KI-16.",
+    "pj": "",
+    "nomor": "",
+    "ph": 2,
+    "phn": "KU-88: cocokkan skor Partisipasi Orang Tua 87,2 (naik 16,86) dan D.1.6 51,44 dengan Rapor Pendidikan 2026 asli, lampirkan cuplikan halamannya • KU-88: undangan bernomor bertanda tangan dan berstempel, daftar hadir Lampiran 2 dan 3 yang sudah ditandatangani, notulen asli bertanda tangan notulis, 292 l"
+   },
+   "5-2": {
+    "st": "belum",
+    "file": "KU-89 - Lembar Hasil Observasi Lingkungan dan Fasilitas Sekolah Tahun Pelajaran 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "Sampul KU-89 menyebut Butir 44, 80, 89, 90. KU-89 dan KU-90 berjudul dan sampul sama tetapi isinya berbeda — pastikan keduanya memang dimaksudkan terpisah.",
+    "pj": "",
+    "nomor": "",
+    "ph": 8,
+    "phn": "KU-89: cetakan halaman Rapor Pendidikan 2026 bagian fasilitas (Indeks Fasilitas, Sanitasi, Kelayakan Ruang, Ketersediaan Buku) • KU-89: kutipan Buku Inventaris Barang (meja dan kursi per kelas) dan inventaris perpustakaan (rak, meja, kursi, jumlah judul/eksemplar buku teks dan nonteks)"
+   },
+   "5-3": {
+    "st": "belum",
+    "file": "KU-90 - Lembar Hasil Observasi Lingkungan dan Fasilitas Sekolah Tahun Pelajaran 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "Sampul KU-90 menyebut Butir 44, 80, 89, 90 (sama dengan KU-89).",
+    "pj": "",
+    "nomor": "",
+    "ph": 8,
+    "phn": "KU-90: cetakan halaman Rapor Pendidikan 2026 bagian fasilitas (Indeks Fasilitas, Sanitasi, Kelayakan Ruang, Ketersediaan Buku) • KU-90: kutipan Buku Inventaris Barang (meja dan kursi per kelas) dan inventaris perpustakaan (rak, meja, kursi, jumlah judul/eksemplar buku teks dan nonteks)"
+   },
+   "5-4": {
+    "st": "belum",
+    "file": "KU-91 - Jadwal dan Rencana Pemeliharaan Sarana dan Prasarana Tahun Pelajaran 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "KU-91 juga menjawab Butir 29 dan 43 (Dimensi II).",
+    "pj": "",
+    "nomor": "",
+    "ph": 5,
+    "phn": "KU-91: cocokkan Indeks Fasilitas, Kelayakan Ruang, dan Sanitasi dengan cetakan Rapor Pendidikan 2026 • KU-91: konfirmasi jam pengerjaan pada kartu perawatan"
+   },
+   "5-5": {
+    "st": "belum",
+    "file": "KU-92 - Rekap Publikasi Sekolah melalui Website dan Media Sosial Tahun Pelajaran 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "Judul daftar gambar menyebut akun \"alqomar.sekolahku\" — di CLAUDE.md akun resmi Instagram @alqomar.school dan Facebook alqomarschool. Cek apakah tautan/akun yang tercantum benar-benar aktif dan resmi. Dokumen ini juga menjawab Butir 70.",
+    "pj": "Humas / Admin medsos",
+    "nomor": "",
+    "ph": 5,
+    "phn": "KU-92: tanggal latihan/ta mpil Tim Senam; Website 15 18 Sekolah Septemb September & er 2026 2026 Instagra jatuh m pada pekan Ujian Praktik ASTS dan tidak ada • KU-92: (tayang data asli: sehari tanggal setelah pasti batas Festival periode Anak rekap) Website Sholeh Sekolah Festival Anak TK se8 & Sholeh Kalideres Inst"
+   },
+   "5-6": {
+    "st": "belum",
+    "file": "KU-93 - Leger Nilai dan Ketercapaian KKTP Semester Ganjil Tahun Pelajaran 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "Sampul menulis \"Dimensi IV: Komunikasi; Dimensi VI\" padahal hanya memuat Butir 93 — cek apakah salah ketik.",
+    "pj": "Wakil Kepala Sekolah Kurikulum",
+    "nomor": "",
+    "ph": 14,
+    "phn": "KU-93: ganti isian sementara Tabel 2, Tabel 3, Tabel 4, dan Lampiran 1-11 dengan nilai asli dari aplikasi rapor ASB 1 dan ASTS; KKTP final per mapel dari per • KU-93: pada rekap sementara ketentuan ini belum terpenuhi (contoh 1A dan 4A), sehingga Tabel 2 dan Tabel 3 wajib dihitung ulang dari leger nilai asli"
+   },
+   "5-7": {
+    "st": "belum",
+    "file": "KU-94_Laporan Hasil dan Analisis TKA Murid Kelas 6 SDIT Al Qomar TP 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "Daftar gambar: \"Gambar . Pengarahan Kegiatan TKA\" — nomor gambar pertama kosong (seharusnya Gambar 1).",
+    "pj": "",
+    "nomor": "",
+    "ph": 5,
+    "phn": "KU-94: kutip nomor dan halaman POS/juknis TKA SD 2026 yang memuat kategori Istimewa, Baik, Memadai, Kurang • KU-94: laporan analisis butir/capaian per kompetensi dari portal TKA bila sudah tersedia"
+   },
+   "5-8": {
+    "st": "belum",
+    "file": "KU-95_Rekapitulasi_Prestasi_Murid_SDIT_Al_Qomar_2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "Sampul menyebut Butir 95, 97, 98 sekaligus (rekap gabungan 30 hlm).",
+    "pj": "",
+    "nomor": "",
+    "ph": 7,
+    "phn": "KU-95: tanggal lomba dan kelas saat lomba dari sertifikat asli • KU-95: tangkapan layar Rapor Pendidikan 2026 numerasi"
+   },
+   "5-9": {
+    "st": "belum",
+    "file": "KU-96 - Laporan Data Alumni dan Lanjutan Studi Lulusan SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "Terkait KI-04: jumlah lulusan 2025/2026 di KI-04 masih kosong — samakan angkanya dengan data alumni di KU-96.",
+    "pj": "",
+    "nomor": "",
+    "ph": 4,
+    "phn": "KU-96: pastikan tanggal rapat penetapan kelulusan pada undangan/notulen rapat • KU-96: daftar status akreditasi dan jalur seleksi setiap sekolah tujuan sebagai dasar penetapan 19 lulusan favorit/unggul"
+   },
+   "5-10": {
+    "st": "belum",
+    "file": "KU-97 - Rekapitulasi Prestasi Murid pada OSN-KSN, O2SN, dan FLS2N SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "Judul sama dengan KU-98 (sampul menyebut Butir 95, 97, 98); isi berbeda.",
+    "pj": "",
+    "nomor": "",
+    "ph": 8,
+    "phn": "KU-97: tanggal lomba lengkap, penyelenggara, dan salinan sertifikat setiap capaian; untuk indikator 95, bukti pembinaan atau keikutsertaan OSN/KSN/lomba sain • KU-97: jam latihan pasti tiap cabang"
+   },
+   "5-11": {
+    "st": "belum",
+    "file": "KU-98 - Rekapitulasi Prestasi Murid pada OSN-KSN, O2SN, dan FLS2N SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "Judul sama dengan KU-97; isi berbeda.",
+    "pj": "",
+    "nomor": "",
+    "ph": 8,
+    "phn": "KU-98: tanggal lomba lengkap, penyelenggara, dan salinan sertifikat setiap capaian; untuk indikator 95, bukti pembinaan atau keikutsertaan OSN/KSN/lomba sain • KU-98: jam latihan pasti tiap cabang"
+   },
+   "5-12": {
+    "st": "belum",
+    "file": "KU-99 - Program dan Laporan Kegiatan Ekstrakurikuler serta Organisasi Murid SDIT Al Qomar Tahun Pelajaran 2026-2027.pdf",
+    "link": "",
+    "blob": false,
+    "todo": true,
+    "note": "KU-99 juga menjawab Butir 51 dan 72.",
+    "pj": "Pembina ekskul",
+    "nomor": "",
+    "ph": 9,
+    "phn": "KU-99: cocokkan angka dengan laporan Rapor Pendidikan 2026 asli (78,39; 72,66 turun 6,26) • KU-99: pastikan jam Pramuka, Tari, Rohis, Karate, dan SALC; pukul 07.30 sampai 08.30 berada di dalam jam belajar 06.30 sampai 14.00/15.00, sehingga perlu dit"
+   }
   }
 });
 let S;
@@ -329,11 +1100,13 @@ function load(){
     const raw = localStorage.getItem(KEY);
     if(raw){
       const o = JSON.parse(raw);
-      S = {id:{...d.id,...(o.id||{})}, skor:o.skor||{}, cat:o.cat||{}, dimNote:o.dimNote||{}, doc:o.doc||{}, bf:{...d.bf,...(o.bf||{})}};
+      S = {id:{...d.id,...(o.id||{})}, skor:o.skor||{}, cat:o.cat||{}, dimNote:o.dimNote||{}, doc:o.doc||{}, bf:{...d.bf,...(o.bf||{})}, seedV:o.seedV};
+      if(o.seedV!==2){ Object.keys(d.bf).forEach(k=>{ S.bf[k]={...(S.bf[k]||{}),...d.bf[k]}; }); }  /* migrasi: data seed terbaru menimpa seed lama sekali saja */
+      S.seedV=2;
       return;
     }
   }catch(e){}
-  S = d;
+  S = d; S.seedV=2;
 }
 let saveT;
 function save(){
@@ -416,6 +1189,8 @@ function checklist(){
   const belum = []; for(let n=1;n<=TOTAL_IND;n++) if(!S.skor[n]) belum.push(n);
   if(belum.length) out.push(`<b>${belum.length}</b> indikator belum diberi skor: ${belum.slice(0,14).map(n=>`<a data-act="goInd" data-n="${n}">${n}</a>`).join(', ')}${belum.length>14?' …':''}`);
   const bb = BF.filter(b=>B(bfKey(b)).st!=='sudah');
+  const dr = BF.filter(b=>(B(bfKey(b)).ph||0)>0), nph = dr.reduce((s,b)=>s+B(bfKey(b)).ph,0);
+  if(dr.length) out.push(`<b>${dr.length}</b> bukti fisik masih DRAF: total <b>${nph}</b> penanda “[perlu data asli: …]” di dalam dokumen (data sementara / lampiran asli belum ditempel). Ganti sebelum dikirim ke penilai.`);
   if(bb.length) out.push(`<b>${bb.length}</b> bukti fisik belum diunggah / belum ditandai siap (buka tab Bukti Fisik, filter “Belum”)`);
   BF.filter(b=>B(bfKey(b)).todo).forEach(b=>out.push(`Perlu tindak lanjut — <a data-act="goBf" data-k="${bfKey(b)}">${DIMS[b.d].kode}.${b.no} ${esc(b.t)}</a>`));
   allDocKeys().forEach(k=>{const c=phCount(S.doc[k]); if(c){const b=BFMAP[k]; out.push(`Dokumen ${kodeOf(b)} masih ${c} isian [isi: …] — <a data-act="docOpen" data-k="${k}">buka editor</a>`);}});
@@ -430,7 +1205,7 @@ function rRingkasan(){
     <div class="card"><small>Skor total</small><b>${t.n?pct(t.pct):'–'}</b><br><em>${t.n?'rata-rata '+dec(t.avg)+' dari 4':'belum ada skor'}</em></div>
     <div class="card"><small>Predikat</small><b class="pred">${t.pred[0]}</b><br><em>${t.pred[1]}</em></div>
     <div class="card"><small>Indikator dinilai</small><b>${t.n}/${TOTAL_IND}</b><br><em>${t.final?'<span class="ok">FINAL — semua terisi</span>':'DRAFT — hasil final bila 99 terisi'}</em></div>
-    <div class="card"><small>Bukti fisik siap</small><b>${t.bfDone}/${BF.length}</b><br><em>${t.up}/${TOTAL_IND} indikator buktinya lengkap</em></div>
+    <div class="card"><small>Bukti fisik siap</small><b>${t.bfDone}/${BF.length}</b><br><em>${t.up}/${TOTAL_IND} indikator buktinya lengkap<br>${BF.filter(b=>(B(bfKey(b)).ph||0)>0).length} dokumen masih draf (ada penanda “perlu data asli”)</em></div>
   </div>
 
   <h2>Identitas</h2>
@@ -543,7 +1318,7 @@ function bfRow(b){
       </div>
       <div class="fl"><button class="btn sm gold" data-act="docOpen" data-k="${k}">${hasDoc(k)?'Edit dokumen':'Buat dokumen'}</button>${hasDoc(k)?`<button class="btn sm" data-act="docPrint" data-k="${k}">PDF</button><span class="badge ${phCount(S.doc[k])?'bpa':'bok'}">${phCount(S.doc[k])?phCount(S.doc[k])+' isian kosong':'terisi'}</span>`:''}</div>
     </td>
-    <td><input class="mini" data-f="bf.${k}.nomor" placeholder="No. SK / dokumen" value="${esc(x.nomor)}"><input class="mini" data-f="bf.${k}.pj" placeholder="Penanggung jawab" value="${esc(x.pj)}"><textarea rows="2" data-f="bf.${k}.note" placeholder="Catatan">${esc(x.note)}</textarea>
+    <td>${(x.ph>0)?`<div class="todo"><b>DRAF — ${x.ph} penanda “perlu data asli”</b><br>${esc(x.phn||'')}</div>`:''}<input class="mini" data-f="bf.${k}.nomor" placeholder="No. SK / dokumen" value="${esc(x.nomor)}"><input class="mini" data-f="bf.${k}.pj" placeholder="Penanggung jawab" value="${esc(x.pj)}"><textarea rows="2" data-f="bf.${k}.note" placeholder="Catatan">${esc(x.note)}</textarea>
       <label class="hint"><input type="checkbox" data-act="bfTodo" data-k="${k}" ${x.todo?'checked':''}> Perlu tindak lanjut</label></td></tr>`;
 }
 function rBukti(){
