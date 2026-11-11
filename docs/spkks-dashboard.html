@@ -961,7 +961,7 @@ const DEF = () => ({
     "ph": 2,
     "phn": "KM-61: lampirkan lembar angket pemahaman staf dan rekap jawabannya sebagai dasar angka Tabel 4 • KM-61: lampirkan cuplikan notulen Rapat Evaluasi ASB 1 (2 September), ASTS (30 September), dan ASB 2 (28 Oktober 2026)",
     "drv": "cek",
-    "drvn": "KM-61: nama berkas generik \"Dokumen KM-61\""
+    "drvn": "KM-61: nama berkas generik \"Dokumen KM-61\"; scan 32 hlm tanpa teks — ekspor PDF bertext"
    },
    "3-2": {
     "st": "sudah",
@@ -992,9 +992,9 @@ const DEF = () => ({
     "drvn": "KM-63: nama berkas generik"
    },
    "3-4": {
-    "st": "belum",
-    "file": "",
-    "link": "",
+    "st": "sudah",
+    "file": "KM-64 Instrumen dan Rekap Hasil Wawancara Murid TP 2026-2027.docx (folder lama 04-KOMUNIKASI)",
+    "link": "https://drive.google.com/file/d/17iyijPTSOE4TcSGCymomlZmtiFKfQ75i/view",
     "blob": false,
     "todo": true,
     "note": "",
@@ -1002,8 +1002,8 @@ const DEF = () => ({
     "nomor": "",
     "ph": 2,
     "phn": "KM-64: lampirkan bukti awal tindak lanjut, mis. foto kotak usul murid atau jadwal buka perpustakaan saat istirahat • KM-64: lampirkan ke-22 lembar wawancara asli yang diisi dan ditandatangani pewawancara",
-    "drv": "kurang",
-    "drvn": "Belum ada di Drive: KM-64"
+    "drv": "cek",
+    "drvn": "KM-64: hanya ada di folder lama 04-KOMUNIKASI (DOCX), belum di SIAP SPKKS 2026 — pindahkan/unggah PDF"
    },
    "3-5": {
     "st": "sudah",
@@ -1022,7 +1022,7 @@ const DEF = () => ({
    "3-6": {
     "st": "sudah",
     "file": "KM-66 Laporan Perkembangan Sekolah dan Murid 2026-2027.pdf",
-    "link": "https://drive.google.com/file/d/1ejVFpDl1Uu6BhVO8leF8dyr1D6cvnhGb/view",
+    "link": "https://drive.google.com/file/d/1FRU0Gw91idyMRDAETac4PadsUliVvUfC/view",
     "blob": false,
     "todo": false,
     "note": "",
@@ -1064,7 +1064,7 @@ const DEF = () => ({
    "3-9": {
     "st": "sudah",
     "file": "KM-69 Laporan Kegiatan Kemasyarakatan di Lingkungan Sekitar SDIT Al Qomar.pdf",
-    "link": "https://drive.google.com/file/d/1Cd6Z4ar9s6xjXtFTqOO_2y1jgX-e22--/view",
+    "link": "https://drive.google.com/file/d/1xZzOjns1teJwnsgQybWaNBpBqrAcYg04/view",
     "blob": false,
     "todo": false,
     "note": "",
@@ -1491,13 +1491,13 @@ function load(){
     if(raw){
       const o = JSON.parse(raw);
       S = {id:{...d.id,...(o.id||{})}, skor:o.skor||{}, cat:o.cat||{}, dimNote:o.dimNote||{}, doc:o.doc||{}, bf:{...d.bf,...(o.bf||{})}, seedV:o.seedV};
-      if(o.seedV!==3){ Object.keys(d.bf).forEach(k=>{ S.bf[k]={...(S.bf[k]||{}),...d.bf[k]}; }); }  /* migrasi: data seed terbaru menimpa seed lama sekali saja */
-      if(o.seedV!==4){ Object.keys(d.skor).forEach(k=>{ if(S.skor[k]==null) S.skor[k]=d.skor[k]; if(!S.cat[k]) S.cat[k]=d.cat[k]; }); }  /* skor penilaian desk mengisi butir yang belum dinilai */
-      S.seedV=4;
+      if(o.seedV!==5){ Object.keys(d.bf).forEach(k=>{ S.bf[k]={...(S.bf[k]||{}),...d.bf[k]}; }); }  /* migrasi: data seed terbaru menimpa seed lama sekali saja */
+      if(o.seedV!==5){ Object.keys(d.skor).forEach(k=>{ if(S.skor[k]==null) S.skor[k]=d.skor[k]; if(!S.cat[k]) S.cat[k]=d.cat[k]; }); }  /* skor penilaian desk mengisi butir yang belum dinilai */
+      S.seedV=5;
       return;
     }
   }catch(e){}
-  S = d; S.seedV=4;
+  S = d; S.seedV=5;
 }
 let saveT;
 function save(){
