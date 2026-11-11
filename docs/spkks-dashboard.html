@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Dashboard SPKKS SD — Al Qomar</title>
+<style>
+:root{
+  --h:#1a5c38;--h2:#1e6e42;--h3:#2a8a54;--e:#c8922a;--e2:#e0a832;--ep:#fdf3e0;--kr:#faf7f2;--kr2:#f0e9d8;
+  --tx:#1f2a24;--mu:#66736b;--bd:#e3dccb;--ok:#1f8a4c;--wa:#c8922a;--er:#b3392f;--wh:#fff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font:14px/1.5 "Segoe UI",Calibri,Arial,sans-serif;color:var(--tx);background:var(--kr)}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;margin:0;color:var(--h)}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+/* header */
+.top{background:linear-gradient(135deg,var(--h),var(--h2) 60%,var(--h3));color:#fff;padding:14px 20px;position:sticky;top:0;z-index:20;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.top::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,var(--e),var(--e2),var(--e))}
+.top-in{max-width:1240px;margin:0 auto;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.brand{flex:1 1 280px;min-width:0}
+.brand h1{color:#fff;font-size:19px;line-height:1.2}
+.brand small{opacity:.85;display:block;margin-top:2px}
+.stats{display:flex;gap:10px;flex-wrap:wrap}
+.st{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);border-radius:10px;padding:6px 12px;min-width:92px}
+.st b{display:block;font-size:18px;line-height:1.1}
+.st span{font-size:11px;opacity:.85}
+.acts{display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:1px solid var(--bd);background:#fff;color:var(--h);border-radius:8px;padding:7px 13px;font-weight:600}
+.btn:hover{background:var(--ep)}
+.btn.gold{background:var(--e);border-color:var(--e);color:#fff}
+.btn.gold:hover{background:var(--e2)}
+.btn.sm{padding:3px 9px;font-size:12px;font-weight:600}
+.btn.dg{color:var(--er)}
+.top .btn{border-color:rgba(255,255,255,.35);background:rgba(255,255,255,.12);color:#fff}
+.top .btn:hover{background:rgba(255,255,255,.25)}
+.top .btn.gold{background:var(--e);border-color:var(--e)}
+.tabs{max-width:1240px;margin:0 auto;display:flex;gap:4px;padding:14px 20px 0;overflow-x:auto}
+.tab{border:0;background:transparent;padding:9px 16px;border-radius:10px 10px 0 0;font-weight:700;color:rgba(255,255,255,.85);white-space:nowrap;border-bottom:3px solid transparent}
+.tab:hover{background:rgba(255,255,255,.15)}
+.tab.on{color:var(--h);background:#fff;border-bottom-color:var(--e)}
+main{max-width:1240px;margin:0 auto;padding:0 20px 60px}
+.pane{display:none;background:#fff;border:1px solid var(--bd);border-radius:0 12px 12px 12px;padding:20px;box-shadow:0 2px 10px rgba(26,92,56,.06)}
+.pane.on{display:block}
+.save{font-size:11px;opacity:.85;align-self:center}
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:18px}
+.card{border:1px solid var(--bd);border-left:5px solid var(--e);border-radius:10px;padding:12px 14px;background:var(--kr)}
+.card small{color:var(--mu);display:block}
+.card b{font-size:26px;font-family:Georgia,serif;color:var(--h);line-height:1.15}
+.card em{font-style:normal;font-size:12px;color:var(--mu)}
+.pred{font-size:44px!important}
+h2{font-size:18px;margin:22px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--kr2);display:flex;align-items:center;gap:8px}
+h2::before{content:"";width:10px;height:10px;background:var(--e);transform:rotate(45deg);flex:none}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px 16px}
+label.f{display:block;font-size:12px;font-weight:600;color:var(--mu)}
+label.f input,label.f textarea{display:block;width:100%;margin-top:3px;padding:7px 9px;border:1px solid var(--bd);border-radius:7px;background:#fff;color:var(--tx);font-weight:400;font-size:14px}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--e2);outline-offset:0}
+table{border-collapse:collapse;width:100%}
+th,td{border:1px solid var(--bd);padding:7px 9px;vertical-align:top;text-align:left}
+th{background:var(--h);color:#fff;font-size:12px;text-transform:uppercase;letter-spacing:.3px}
+tbody tr:nth-child(even) td{background:#fcfaf5}
+.num{text-align:center;white-space:nowrap}
+.bar{height:8px;background:var(--kr2);border-radius:5px;overflow:hidden;min-width:70px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--h3),var(--e))}
+.badge{display:inline-block;padding:2px 9px;border-radius:99px;font-size:12px;font-weight:700;background:var(--kr2);color:var(--mu);white-space:nowrap}
+.b4{background:#d6efdf;color:#0f6a37}.b3{background:#e3f1d3;color:#3d6e12}.b2{background:#fbeccb;color:#8a5a00}.b1{background:#f8d9d5;color:#a02a20}
+.bok{background:#d6efdf;color:#0f6a37}.bno{background:#f3e7e5;color:#a02a20}.bpa{background:#fbeccb;color:#8a5a00}
+.chip{display:inline-block;margin:1px 2px 1px 0;padding:1px 8px;border:1px solid var(--h3);border-radius:99px;color:var(--h);background:#fff;font-size:12px;font-weight:700;cursor:pointer}
+.chip:hover{background:var(--h);color:#fff}
+.chip.bf{border-color:var(--e);color:#8a5a00}
+.chip.bf:hover{background:var(--e);color:#fff}
+.ki{font-size:10px;color:var(--e);font-weight:700;letter-spacing:.4px}
+.doc{margin-top:4px;font-size:12px;color:var(--mu)}
+.doc b{color:var(--h)}
+/* toolbar */
+.tool{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.tool input[type=search],.tool select{padding:7px 10px;border:1px solid var(--bd);border-radius:8px;background:#fff;min-width:200px}
+.seg{display:inline-flex;border:1px solid var(--bd);border-radius:8px;overflow:hidden}
+.seg button{border:0;background:#fff;padding:7px 12px;font-weight:600;color:var(--mu)}
+.seg button.on{background:var(--h);color:#fff}
+.dhead td{background:var(--h2)!important;color:#fff;font-weight:700;font-family:Georgia,serif;font-size:14px}
+.dhead small{font-weight:400;opacity:.9;font-family:"Segoe UI",sans-serif;margin-left:8px}
+/* skor */
+.sk{display:inline-flex;gap:4px}
+.sk button{width:34px;height:34px;border-radius:8px;border:1.5px solid var(--bd);background:#fff;font-weight:700;color:var(--mu)}
+.sk button:hover{border-color:var(--h3)}
+.sk button.on{color:#fff;border-color:transparent}
+.sk button.on[data-v="4"]{background:#1f8a4c}.sk button.on[data-v="3"]{background:#6aa52b}.sk button.on[data-v="2"]{background:#d99a14}.sk button.on[data-v="1"]{background:#c0463b}
+td textarea,td input[type=text],td input[type=url]{width:100%;padding:5px 7px;border:1px solid var(--bd);border-radius:6px;background:#fff;resize:vertical}
+td textarea{min-height:44px}
+tr.flash td{animation:fl 1.8s}
+@keyframes fl{0%,40%{background:#fff0bd}100%{background:inherit}}
+.sw{position:relative;display:inline-block;width:42px;height:24px}
+.sw input{opacity:0;width:0;height:0}
+.sw span{position:absolute;inset:0;background:#cfc8b6;border-radius:24px;transition:.2s;cursor:pointer}
+.sw span::before{content:"";position:absolute;width:18px;height:18px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s}
+.sw input:checked+span{background:var(--ok)}
+.sw input:checked+span::before{transform:translateX(18px)}
+.fl{display:flex;gap:6px;flex-wrap:wrap;margin-top:5px;align-items:center}
+.hint{color:var(--mu);font-size:12px}
+.warn{background:var(--ep);border:1px solid #ecd9a8;border-radius:10px;padding:12px 16px}
+.warn ul{margin:6px 0 0;padding-left:20px}
+.warn li{margin:2px 0}
+.warn a{color:var(--h);font-weight:700;cursor:pointer;text-decoration:underline}
+.ok{color:var(--ok);font-weight:700}
+.todo{background:#fff5d6;border-left:3px solid var(--e);padding:3px 8px;border-radius:4px;font-size:12px;margin-top:4px}
+.pp{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.pp .card{border-left-width:5px}
+.pp p{margin:6px 0 10px;color:var(--mu)}
+/* print area */
+#print{display:none}
+@media (max-width:820px){
+  .top-in{gap:10px}.brand h1{font-size:16px}.pane{padding:12px;border-radius:0 0 12px 12px}main,.tabs{padding-left:10px;padding-right:10px}
+  table.rs,table.rs tbody,table.rs tr,table.rs td{display:block;width:100%}
+  table.rs thead{display:none}
+  table.rs tr{border:1px solid var(--bd);border-radius:10px;margin-bottom:10px;padding:6px;background:#fff}
+  table.rs td{border:0;padding:4px 6px}
+  table.rs tr.dhead{background:var(--h2);border-radius:8px}
+  table.rs tr:nth-child(even) td{background:transparent}
+}
+@page{size:A4;margin:14mm 14mm 16mm}
+@page land{size:A4 landscape;margin:12mm}
+@media print{
+  html,body{background:#fff!important}
+  .top,.tabs,main{display:none!important}
+  #print{display:block!important;font:11pt/1.45 "Times New Roman",Georgia,serif;color:#000}
+  #print h1,#print h2,#print h3{color:#000;font-family:"Times New Roman",serif;border:0}
+  #print h2::before{display:none}
+  #print table{font-size:9.5pt}
+  #print th{background:#1a5c38!important;color:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;font-size:8.5pt}
+  #print td,#print th{border:1px solid #777;padding:3px 5px}
+  #print tbody tr:nth-child(even) td{background:#fff}
+  #print tr{break-inside:avoid}
+  #print .pg{break-after:page}
+  #print .land{page:land}
+  #print .dhead td{background:#d9e8de!important;color:#000!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .kop{text-align:center;border-bottom:3px double #1a5c38;padding-bottom:8px;margin-bottom:14px}
+  .kop b{display:block;font-size:13pt;color:#1a5c38}
+  .kop span{font-size:9pt}
+  .cover{text-align:center;padding-top:50mm}
+  .cover h1{font-size:20pt;margin:14mm 0 4mm}
+  .cover p{margin:3px 0}
+  .sign{display:flex;justify-content:space-around;margin-top:18mm;text-align:center;break-inside:avoid}
+  .sign div{min-width:60mm}
+  .sign u{font-weight:bold}
+  .pb{border:1px solid #000;padding:2px 8px}
+}
+@media screen{
+  .kop,.cover,.sign{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <div class="brand">
+      <h1>Dashboard SPKKS — Jenjang SD</h1>
+      <small>Supervisi &amp; Penilaian Kinerja Kepala Sekolah · <span id="hd-sch"></span></small>
+    </div>
+    <div class="stats">
+      <div class="st"><b id="hs-nilai">0/99</b><span>Indikator dinilai</span></div>
+      <div class="st"><b id="hs-bf">0/87</b><span>Bukti fisik siap</span></div>
+      <div class="st"><b id="hs-pct">–</b><span>Skor total</span></div>
+    </div>
+    <div class="acts">
+      <button class="btn gold" data-act="print" data-m="full">Cetak / Simpan PDF</button>
+    </div>
+    <div class="save" id="saveMsg"></div>
+  </div>
+  <nav class="tabs" id="tabs">
+    <button class="tab on" data-tab="ringkasan">Ringkasan</button>
+    <button class="tab" data-tab="instrumen">Instrumen (99)</button>
+    <button class="tab" data-tab="bukti">Bukti Fisik (87)</button>
+    <button class="tab" data-tab="cetak">Cetak &amp; Cadangan</button>
+  </nav>
+</header>
+
+<main id="app">
+  <section class="pane on" id="p-ringkasan"></section>
+  <section class="pane" id="p-instrumen"></section>
+  <section class="pane" id="p-bukti"></section>
+  <section class="pane" id="p-cetak"></section>
+</main>
+
+<div id="print"></div>
+<input type="file" id="impFile" accept="application/json" hidden>
+<input type="file" id="attFile" hidden>
+
+<script>
+const DATA = {"dims": [{"kode": "I", "nama": "Kedisiplinan & Integritas", "ind": [{"no": 1, "t": "Hadir di sekolah tepat waktu sesuai ketentuan jam kerja. Tetap berada di sekolah hingga jam kerja berakhir, kecuali ada tugas dinas luar.", "doc": "Daftar Hadir Fingerprint, Buku Piket"}, {"no": 2, "t": "Menunjukkan konsistensi dalam mengikuti agenda sekolah (rapat, upacara, dll).", "doc": "Notulensi, Daftar Hadir, Dokumentasi"}, {"no": 3, "t": "Transparan dalam pengelolaan keuangan dan sumber daya sekolah.", "doc": "Papan pengumuman pengelolaan dana"}, {"no": 4, "t": "Menjaga kerahasiaan data atau dokumen negara yang bersifat sensitif.", "doc": "Keamanan dokumen (SPJ, Tanda Terima Ijazah)"}, {"no": 5, "t": "Berani mengakui kesalahan dan bertanggung jawab atas kebijakan yang dibuat.", "doc": "Lembar hasil observasi + foto dokumentasi"}, {"no": 6, "t": "Kehadiran Kegiatan Sekolah: Menghadiri upacara bendera, rapat guru, dan acara resmi sekolah lainnya.", "doc": "Notulen / Daftar Hadir Rapat"}, {"no": 7, "t": "Efektivitas Waktu: Memanfaatkan waktu kerja untuk supervisi, manajerial, dan pengembangan sekolah.", "doc": "Jurnal Harian Kepala Sekolah"}, {"no": 8, "t": "Pakaian dan Penampilan: Berpakaian rapi, bersih, dan sesuai dengan regulasi seragam yang berlaku.", "doc": "Lembar hasil observasi Langsung + foto dokumentasi"}, {"no": 9, "t": "Etika Komunikasi: Bertutur kata sopan, objektif, dan mampu berkomunikasi dengan baik kepada seluruh warga sekolah.", "doc": "Rekap hasil wawancara Guru/Staf + foto dokumentasi"}, {"no": 10, "t": "Integritas dan Kejujuran: Menunjukkan kesesuaian antara perkataan dan perbuatan dalam mengambil keputusan.", "doc": "Rekap hasil wawancara Guru/Staf + foto dokumentasi"}, {"no": 11, "t": "Pengendalian Diri: Mampu mengelola emosi dalam menghadapi konflik atau tekanan pekerjaan.", "doc": "Rekap hasil wawancara Guru/Staf + foto dokumentasi"}, {"no": 12, "t": "Adanya papan informasi realisasi anggaran (BOS/Komite) yang dipasang di area publik sekolah.", "doc": "Dokumentasi papan informasi"}, {"no": 13, "t": "Kemudahan akses bagi warga sekolah untuk menanyakan detail penggunaan anggaran.", "doc": "Prosedur akses"}, {"no": 14, "t": "Keterbukaan informasi mengenai pembagian tugas mengajar dan tugas tambahan guru.", "doc": "SK Pembagian Tugas terpublikasi"}, {"no": 15, "t": "Kejelasan kriteria pemberian reward, hukuman, atau rekomendasi kenaikan pangkat bagi staf.", "doc": "Dokumen kriteria tertulis"}, {"no": 16, "t": "Publikasi kriteria KKTP dan sistem penilaian kepada murid/orang tua.", "doc": "Dokumen sosialisasi (Undangan, Daftar Hadir, Notulen, Foto)"}, {"no": 17, "t": "Transparansi dalam proses SPMB/PPDB sesuai jalur yang ditetapkan.", "doc": "Laporan SPMB/PPDB & pengumuman"}, {"no": 18, "t": "Pengelolaan buku inventaris barang yang dapat diperiksa sewaktu-waktu.", "doc": "Buku Inventaris"}, {"no": 19, "t": "Keterbukaan informasi mengenai bantuan sosial (KIP/PIP) agar tepat sasaran.", "doc": "Daftar penerima bantuan"}, {"no": 20, "t": "Sosialisasi bantuan dari pihak ketiga atau hibah secara tertulis kepada warga sekolah.", "doc": "Dokumen sosialisasi (Undangan, Daftar Hadir, Notulen, Foto)"}, {"no": 21, "t": "Ketersediaan kotak saran, nomor pengaduan, atau kanal digital (website/sosmed) untuk kritik dan masukan.", "doc": "Dokumentasi kanal pengaduan"}]}, {"kode": "II", "nama": "Kepemimpinan & Managerial", "ind": [{"no": 22, "t": "Visi & Misi: Mengkomunikasikan visi-misi secara jelas dan menjadikannya dasar pengambilan keputusan.", "doc": "Dokumen Sosialisasi & Implementasi Visi"}, {"no": 23, "t": "Keteladanan: Menunjukkan integritas, kedisiplinan, dan etika kerja yang tinggi (menjadi role model).", "doc": "Absensi, observasi perilaku, testimoni guru"}, {"no": 24, "t": "Pemberdayaan Guru: Memotivasi dan memberi kesempatan guru untuk pengembangan diri (pelatihan/workshop).", "doc": "Surat tugas pelatihan, sertifikat guru, laporan Penggunaan Ruang GTK"}, {"no": 25, "t": "Iklim Sekolah: Menciptakan lingkungan sekolah yang aman, nyaman, dan kondusif bagi murid dan staf.", "doc": "Program sekolah aman nyaman, foto kegiatan"}, {"no": 26, "t": "Perencanaan (RKAS): Menyusun RKAS secara transparan, akuntabel, dan berbasis data (Rapor Pendidikan).", "doc": "Dokumen RKJM, RKT, dan RKAS"}, {"no": 27, "t": "Manajemen Kurikulum: Memastikan pelaksanaan kurikulum (KSP/Kurikulum Merdeka) berjalan efektif.", "doc": "Dokumen kurikulum, (jadwal pelajaran, perangkat ajar: agenda guru, RPP, buku nilai, buku absensi kelas, jurnal mengajar)"}, {"no": 28, "t": "Manajemen SDM: Mengelola administrasi kepegawaian, pembagian tugas, dan penilaian kinerja guru (PKG).", "doc": "Dokumen PKG"}, {"no": 29, "t": "Sarana & Prasarana: Mengelola pemeliharaan dan pengadaan fasilitas sekolah secara terencana.", "doc": "Buku inventaris, rencana perawatan gedung"}, {"no": 30, "t": "Manajemen Keuangan: Mengelola dana (BOS/Komite) dengan transparan dan sesuai regulasi.", "doc": "Laporan SPJ, buku kas umum"}, {"no": 31, "t": "Humas: Membangun jejaring kerja sama dengan orang tua, masyarakat, dan instansi terkait.", "doc": "Dokumen MoU, notulen rapat komite"}, {"no": 32, "t": "Mampu mengidentifikasi akar penyebab masalah secara akurat (bukan hanya gejala).", "doc": "Data hasil evaluasi diri sekolah"}, {"no": 33, "t": "Menggunakan data (Rapor Pendidikan, Dapodik, dsb) untuk memetakan masalah.", "doc": "Grafik/Data pendukung, Evaluasi Rapor Pendidikan"}, {"no": 34, "t": "Mengambil keputusan secara cepat dan tepat dalam situasi darurat/kritis.", "doc": "Catatan KS, Laporan penanganan konflik"}, {"no": 35, "t": "Mengomunikasikan keputusan dengan jelas, transparan, dan persuasif.", "doc": "Surat Edaran/Sosialisasi"}, {"no": 36, "t": "Menunjukkan ketegasan dalam menjalankan keputusan yang telah disepakati bersama.", "doc": "Lembar hasil observasi lapangan + foto dokumentasi"}, {"no": 37, "t": "Memiliki Kalender Pendidikan sekolah yang telah disesuaikan dengan program kerja tahunan.", "doc": "Kalender Pendidikan"}, {"no": 38, "t": "Menyusun jadwal kegiatan harian, mingguan, dan bulanan secara terstruktur.", "doc": "Agenda Kerja KS"}, {"no": 39, "t": "Merealisasikan anggaran sesuai dengan pos yang telah direncanakan dalam RKAS.", "doc": "Buku Kas Umum (BKU)"}, {"no": 40, "t": "Menyusun laporan pertanggungjawaban keuangan secara rutin, transparan, dan akuntabel.", "doc": "LPJ Keuangan"}, {"no": 41, "t": "Melakukan supervisi dan evaluasi internal terhadap penggunaan dana (misal: Dana BOS).", "doc": "Berita Acara Pemeriksaan oleh Sudin"}, {"no": 42, "t": "Memiliki Buku Inventaris Barang yang terupdate secara berkala.", "doc": "Buku Inventaris"}, {"no": 43, "t": "Menyusun program pemeliharaan sarana prasarana (perawatan gedung, alat lab, dll).", "doc": "Jadwal Pemeliharaan"}, {"no": 44, "t": "Memastikan seluruh fasilitas pembelajaran (kelas, perpus, lab) dalam kondisi bersih dan layak pakai.", "doc": "Lembar hasil observasi Lingkungan + foto dokumentasi"}, {"no": 45, "t": "Mengoptimalkan penggunaan sarana prasarana untuk mendukung kreativitas dan hasil belajar murid.", "doc": "Jurnal Penggunaan Papan Interaktif"}, {"no": 46, "t": "Menyusun perencanaan kebutuhan guru dan tenaga kependidikan berdasarkan analisis beban kerja.", "doc": "Analisis kebutuhan GTK"}, {"no": 47, "t": "Memfasilitasi program pengembangan kompetensi (Workshop, KKG/Kombel, Pelatihan mandiri/RGTK).", "doc": "Sertifikat/Laporan Diklat"}, {"no": 48, "t": "Melaksanakan supervisi akademik secara berkala untuk meningkatkan kualitas pembelajaran.", "doc": "Jadwal & Instrumen Supervisi (Pedoman Pelaksanaan, Instrumen, Nilai dan RTL)"}, {"no": 49, "t": "Mengelola Penerimaan murid Baru (SPMB/PPDB) secara akuntabel dan sesuai regulasi.", "doc": "Laporan SPMB/PPDB"}, {"no": 50, "t": "Menyelenggarakan program orientasi murid yang edukatif dan bebas dari kekerasan.", "doc": "Program MPLS/PLS, Daftar Hadir, Foto"}, {"no": 51, "t": "Menyediakan wadah pengembangan minat dan bakat melalui kegiatan ekstrakurikuler yang variatif.", "doc": "Daftar ekskul & prestasi"}, {"no": 52, "t": "Mengelola layanan konseling untuk mendukung kesejahteraan psikologis murid.", "doc": "Program kerjasama kesehatan mental dan catatan wali kelas/guru mapel"}]}, {"kode": "III", "nama": "Pengembangan GTK", "ind": [{"no": 53, "t": "Adanya pemetaan kebutuhan pengembangan kompetensi (analisis kesenjangan skill).", "doc": "Dokumen hasil supervisi akademik dan survei kebutuhan pelatihan"}, {"no": 54, "t": "Memfasilitasi PTK untuk mengikuti seminar, workshop, atau pendidikan lanjut.", "doc": "Surat tugas, sertifikat pelatihan guru, laporan diseminasi hasil pelatihan"}, {"no": 55, "t": "Mengaktifkan komunitas belajar internal (KKG/Kombel sekolah).", "doc": "Jadwal rutin pertemuan, daftar hadir, dan notulensi diskusi praktik baik"}, {"no": 56, "t": "Memberikan bimbingan teknis bagi tenaga kependidikan", "doc": "Laporan pembinaan staf atau pelatihan administrasi/IT"}, {"no": 57, "t": "Perhatian terhadap kesehatan mental dan keseimbangan kerja (Work-life balance).", "doc": "Program gathering, ruang istirahat yang layak, atau kebijakan jam kerja fleksibel"}, {"no": 58, "t": "Penanganan konflik internal secara objektif dan kekeluargaan.", "doc": "Catatan pembinaan atau dokumentasi mediasi konflik (jika ada)"}, {"no": 59, "t": "Membantu proses kenaikan pangkat dan administrasi kepegawaian (PAK, Dupak, dsb).", "doc": "Arsip pengusulan kenaikan pangkat yang terorganisir dengan baik"}, {"no": 60, "t": "Memberikan kesempatan penugasan strategis sebagai bentuk pengayaan karier.", "doc": "SK penunjukan koordinator program, wakil kepala sekolah, atau ketua panitia"}]}, {"kode": "IV", "nama": "Komunikasi", "ind": [{"no": 61, "t": "Menyampaikan visi, misi, dan program sekolah secara jelas kepada seluruh staf.", "doc": "Undangan, Daftar Hadir, Notulen, Foto"}, {"no": 62, "t": "Menggunakan berbagai media komunikasi (formal/informal) secara efektif.", "doc": "Grup WA/Mading/Email"}, {"no": 63, "t": "Memberikan apresiasi atau umpan balik positif atas kinerja staf secara berkala.", "doc": "Sertifikat/Foto Dokumentasi"}, {"no": 64, "t": "Berinteraksi secara ramah dan mengenali aspirasi murid.", "doc": "Rekap hasil wawancara Murid + foto dokumentasi"}, {"no": 65, "t": "Mendukung kegiatan dan hadir dalam acara-acara murid.", "doc": "Foto Dokumentasi Kegiatan"}, {"no": 66, "t": "Menginformasikan perkembangan sekolah dan murid kepada orang tua secara rutin.", "doc": "Laporan semester/Pertemuan"}, {"no": 67, "t": "Merespons keluhan atau pertanyaan orang tua dengan cepat dan solutif.", "doc": "Log komunikasi/Layanan pengaduan"}, {"no": 68, "t": "Membangun kerjasama (MoU) dengan instansi terkait (Dinas, Puskesmas, Polsek, dll).", "doc": "Dokumen Kerjasama (MoU)"}, {"no": 69, "t": "Berperan aktif dalam kegiatan kemasyarakatan di lingkungan sekitar sekolah.", "doc": "Laporan kegiatan sosial"}, {"no": 70, "t": "Mengelola publikasi sekolah melalui media sosial atau website secara positif.", "doc": "Link Medsos/Website (cantumkan tautan aktif)"}]}, {"kode": "V", "nama": "Inovasi Akademik / Kurikulum", "ind": [{"no": 71, "t": "Memfasilitasi penyusunan kurikulum yang melibatkan seluruh pemangku kepentingan.", "doc": "Dokumen berita acara rapat"}, {"no": 72, "t": "Melakukan diversifikasi kurikulum untuk mengakomodasi bakat dan minat murid yang beragam.", "doc": "Program muatan lokal/Program Ekstrakurikuler"}, {"no": 73, "t": "Mengintegrasikan nilai-nilai kearifan lokal atau isu global ke dalam struktur kurikulum.", "doc": "RPP"}, {"no": 74, "t": "Melakukan evaluasi kurikulum secara berkala berdasarkan data hasil belajar murid.", "doc": "Dokumen refleksi tahunan berbentuk Daftar Hadir, Notulen dan Foto"}, {"no": 75, "t": "Mendorong penggunaan metode pembelajaran aktif (Project Based Learning, Discovery, dll). Memfasilitasi pemanfaatan teknologi digital (LMS, AI, Media Interaktif) dalam pembelajaran.", "doc": "Rencana Pelaksanaan Pembelajaran (RPP)"}, {"no": 76, "t": "Menginisiasi program literasi dan numerasi yang kreatif melampaui standar nasional.", "doc": "Produk karya murid/Laporan program"}, {"no": 77, "t": "Menciptakan lingkungan belajar yang inklusif bagi murid dengan kebutuhan berbeda.", "doc": "Program Inklusi"}, {"no": 78, "t": "Mengaktifkan komunitas belajar (KKG/Kombel) di internal sekolah untuk berbagi praktik baik.", "doc": "Jadwal pertemuan dan notulensi"}, {"no": 79, "t": "Menunjukkan tren peningkatan prestasi akademik atau hasil rapor pendidikan.", "doc": "Telaah Laporan Rapor Pendidikan"}, {"no": 80, "t": "Kebersihan dan keasrian seluruh area sekolah (taman, drainase, toilet, ruang kelas).", "doc": "Lembar hasil observasi lingkungan + foto dokumentasi"}, {"no": 81, "t": "Penataan ruang kelas yang fleksibel dan mendukung berbagai model pembelajaran.", "doc": "Dokumentasi ruang kelas"}, {"no": 82, "t": "Ketersediaan fasilitas keamanan (pagar, CCTV, jalur evakuasi, APAR) yang berfungsi baik.", "doc": "Dokumentasi fasilitas keamanan"}, {"no": 83, "t": "Pengelolaan sanitasi dan ketersediaan air bersih yang memenuhi standar kesehatan.", "doc": "Laporan sanitasi"}, {"no": 84, "t": "Adanya kebijakan dan implementasi nyata pencegahan perundungan (anti-bullying) dan kekerasan.", "doc": "Dokumen Program Anti Bullying dan Dokumentasi Kegiatan"}, {"no": 85, "t": "Penerapan budaya 5S (Senyum, Sapa, Salam, Sopan, Santun) secara konsisten.", "doc": "Jadwal dan Foto Kegiatan"}, {"no": 86, "t": "Fasilitasi kegiatan literasi dan numerasi yang menarik di lingkungan sekolah.", "doc": "Program kegiatan literasi/numerasi, Jadwal Pembiasaan"}, {"no": 87, "t": "Kebijakan sekolah yang mendukung kesejahteraan psikologis (well-being) guru dan murid.", "doc": "Kebijakan kegiatan well-being"}]}, {"kode": "VI", "nama": "Kinerja Umum", "ind": [{"no": 88, "t": "Sistem penilaian murid dilakukan secara transparan dan objektif.", "doc": "Dokumen sistem penilaian"}, {"no": 89, "t": "Ketersediaan dan kelayakan ruang kelas, pojok baca, dan perpustakaan.", "doc": "Lembar hasil observasi & inventaris + foto dokumentasi"}, {"no": 90, "t": "Lingkungan sekolah bersih, aman, dan mendukung budaya literasi.", "doc": "Lembar hasil observasi lingkungan + foto dokumentasi"}, {"no": 91, "t": "Pemeliharaan sarana dilakukan secara berkala (preventive maintenance).", "doc": "Jadwal pemeliharaan"}, {"no": 92, "t": "Publikasi prestasi dan kegiatan sekolah melalui media sosial/website.", "doc": "Link medsos/website (cantumkan tautan aktif)"}, {"no": 93, "t": "Rata-rata Nilai Rapor: Persentase murid yang mencapai atau melampaui KKTP di semua mata pelajaran.", "doc": "Leger Nilai"}, {"no": 94, "t": "Hasil TKA: Capaian literasi dan numerasi dalam kategori \"Mencapai Kompetensi Minimum\" atau \"Mahir\"", "doc": "Laporan hasil dan analisis TKA"}, {"no": 95, "t": "Prestasi Kompetisi (KSN/OSN): Perolehan juara dalam olimpiade sains, matematika, atau lomba karya ilmiah.", "doc": "Laporan Hasil OSN"}, {"no": 96, "t": "Kelulusan & Lanjutan Studi: Persentase kelulusan dan jumlah lulusan yang masuk ke SMP favorit/unggul.", "doc": "Data Alumni"}, {"no": 97, "t": "Prestasi Olahraga (O2SN): Perolehan juara dalam bidang atletik, bela diri, permainan bola, dsb.", "doc": "Sertifikat/Piala"}, {"no": 98, "t": "Prestasi Seni & Budaya (FLS2N): Capaian dalam lomba menyanyi, menari, melukis, atau seni pertunjukan lainnya.", "doc": "Sertifikat/Piala"}, {"no": 99, "t": "Kepemimpinan & Organisasi: Keaktifan murid dalam Pramuka, kegiatan kelas/sekolah, atau ekstrakurikuler dalam menciptakan program mandiri.", "doc": "Laporan Kegiatan Ekskul"}]}], "bf": [{"d": 0, "no": 1, "t": "Daftar Hadir Fingerprint & Buku Piket", "ind": [1]}, {"d": 0, "no": 2, "t": "Jurnal Harian Kepala Sekolah", "ind": [7]}, {"d": 0, "no": 3, "t": "Notulen, Daftar Hadir & Dokumentasi rapat/kegiatan", "ind": [2, 6]}, {"d": 0, "no": 4, "t": "Lembar hasil observasi + foto dokumentasi", "ind": [5, 8]}, {"d": 0, "no": 5, "t": "Rekap hasil wawancara Guru/Staf + foto", "ind": [9, 10, 11]}, {"d": 0, "no": 6, "t": "Papan pengumuman / informasi pengelolaan dana", "ind": [3, 12]}, {"d": 0, "no": 7, "t": "Prosedur / kemudahan akses informasi anggaran", "ind": [13]}, {"d": 0, "no": 8, "t": "Keamanan dokumen (SPJ, Tanda Terima Ijazah)", "ind": [4]}, {"d": 0, "no": 9, "t": "SK Pembagian Tugas (terpublikasi)", "ind": [14]}, {"d": 0, "no": 10, "t": "Dokumen kriteria tertulis (reward/sanksi/KKTP)", "ind": [15]}, {"d": 0, "no": 11, "t": "Dokumen sosialisasi (Undangan, Daftar Hadir, Notulen, Foto)", "ind": [16, 20]}, {"d": 0, "no": 12, "t": "Laporan SPMB/PPDB & pengumuman", "ind": [17]}, {"d": 0, "no": 13, "t": "Buku Inventaris", "ind": [18]}, {"d": 0, "no": 14, "t": "Daftar penerima bantuan (KIP/PIP)", "ind": [19]}, {"d": 0, "no": 15, "t": "Dokumentasi kanal pengaduan (kotak saran/website/sosmed)", "ind": [21]}, {"d": 1, "no": 1, "t": "Dokumen Sosialisasi & Implementasi Visi-Misi", "ind": [22]}, {"d": 1, "no": 2, "t": "Absensi, observasi perilaku & testimoni guru", "ind": [23]}, {"d": 1, "no": 3, "t": "Surat tugas pelatihan, sertifikat guru & laporan Penggunaan Ruang GTK", "ind": [24]}, {"d": 1, "no": 4, "t": "Program sekolah aman & nyaman + foto kegiatan", "ind": [25]}, {"d": 1, "no": 5, "t": "Dokumen RKJM, RKT & RKAS", "ind": [26]}, {"d": 1, "no": 6, "t": "Dokumen Kurikulum (jadwal pelajaran, perangkat ajar: agenda guru, RPP, buku nilai, absensi kelas, jurnal mengajar)", "ind": [27]}, {"d": 1, "no": 7, "t": "Dokumen PKG", "ind": [28]}, {"d": 1, "no": 8, "t": "Buku Inventaris, rencana perawatan gedung & jadwal pemeliharaan", "ind": [29, 42, 43]}, {"d": 1, "no": 9, "t": "Laporan SPJ / LPJ Keuangan & Buku Kas Umum (BKU)", "ind": [30, 39, 40]}, {"d": 1, "no": 10, "t": "Dokumen MoU & notulen rapat komite", "ind": [31]}, {"d": 1, "no": 11, "t": "Data hasil Evaluasi Diri Sekolah (EDS)", "ind": [32]}, {"d": 1, "no": 12, "t": "Grafik/Data pendukung & Evaluasi Rapor Pendidikan", "ind": [33]}, {"d": 1, "no": 13, "t": "Catatan KS & laporan penanganan konflik", "ind": [34]}, {"d": 1, "no": 14, "t": "Surat Edaran / Sosialisasi", "ind": [35]}, {"d": 1, "no": 15, "t": "Lembar hasil observasi lapangan/lingkungan + foto", "ind": [36, 44]}, {"d": 1, "no": 16, "t": "Kalender Pendidikan", "ind": [37]}, {"d": 1, "no": 17, "t": "Agenda Kerja Kepala Sekolah", "ind": [38]}, {"d": 1, "no": 18, "t": "Berita Acara Pemeriksaan oleh Sudin", "ind": [41]}, {"d": 1, "no": 19, "t": "Jurnal Penggunaan Papan Interaktif", "ind": [45]}, {"d": 1, "no": 20, "t": "Analisis kebutuhan GTK", "ind": [46]}, {"d": 1, "no": 21, "t": "Sertifikat / Laporan Diklat", "ind": [47]}, {"d": 1, "no": 22, "t": "Jadwal & Instrumen Supervisi (Pedoman, Instrumen, Nilai, RTL)", "ind": [48]}, {"d": 1, "no": 23, "t": "Laporan SPMB/PPDB", "ind": [49]}, {"d": 1, "no": 24, "t": "Program MPLS/PLS, Daftar Hadir & Foto", "ind": [50]}, {"d": 1, "no": 25, "t": "Daftar ekskul & prestasi", "ind": [51]}, {"d": 1, "no": 26, "t": "Program kerjasama kesehatan mental & catatan wali kelas/guru mapel", "ind": [52]}, {"d": 2, "no": 1, "t": "Dokumen hasil supervisi akademik & survei kebutuhan pelatihan", "ind": [53]}, {"d": 2, "no": 2, "t": "Surat tugas, sertifikat pelatihan guru & laporan diseminasi hasil pelatihan", "ind": [54]}, {"d": 2, "no": 3, "t": "Jadwal pertemuan, daftar hadir & notulensi diskusi praktik baik (KKG/Kombel)", "ind": [55]}, {"d": 2, "no": 4, "t": "Laporan pembinaan staf / pelatihan administrasi-IT", "ind": [56]}, {"d": 2, "no": 5, "t": "Program gathering / ruang istirahat layak / kebijakan jam kerja fleksibel", "ind": [57]}, {"d": 2, "no": 6, "t": "Catatan pembinaan / dokumentasi mediasi konflik", "ind": [58]}, {"d": 2, "no": 7, "t": "Arsip pengusulan kenaikan pangkat (PAK/Dupak)", "ind": [59]}, {"d": 2, "no": 8, "t": "SK penunjukan koordinator program / wakil KS / ketua panitia", "ind": [60]}, {"d": 3, "no": 1, "t": "Undangan, Daftar Hadir, Notulen & Foto", "ind": [61]}, {"d": 3, "no": 2, "t": "Media komunikasi: Grup WA / Mading / Email", "ind": [62]}, {"d": 3, "no": 3, "t": "Sertifikat / Foto dokumentasi apresiasi", "ind": [63]}, {"d": 3, "no": 4, "t": "Rekap hasil wawancara Murid + foto", "ind": [64]}, {"d": 3, "no": 5, "t": "Foto dokumentasi kegiatan murid", "ind": [65]}, {"d": 3, "no": 6, "t": "Laporan semester / pertemuan orang tua", "ind": [66]}, {"d": 3, "no": 7, "t": "Log komunikasi / layanan pengaduan", "ind": [67]}, {"d": 3, "no": 8, "t": "Dokumen Kerjasama (MoU) instansi", "ind": [68]}, {"d": 3, "no": 9, "t": "Laporan kegiatan sosial / kemasyarakatan", "ind": [69]}, {"d": 3, "no": 10, "t": "Link Medsos / Website (cantumkan tautan aktif)", "ind": [70]}, {"d": 4, "no": 1, "t": "Dokumen berita acara rapat penyusunan kurikulum", "ind": [71]}, {"d": 4, "no": 2, "t": "Program muatan lokal / ekstrakurikuler", "ind": [72]}, {"d": 4, "no": 3, "t": "Rencana Pelaksanaan Pembelajaran (RPP)", "ind": [73, 75]}, {"d": 4, "no": 4, "t": "Dokumen refleksi tahunan (Daftar Hadir, Notulen, Foto)", "ind": [74]}, {"d": 4, "no": 5, "t": "Produk karya murid / laporan program literasi-numerasi", "ind": [76]}, {"d": 4, "no": 6, "t": "Program Inklusi", "ind": [77]}, {"d": 4, "no": 7, "t": "Jadwal pertemuan & notulensi (KKG/Kombel)", "ind": [78]}, {"d": 4, "no": 8, "t": "Telaah Laporan Rapor Pendidikan", "ind": [79]}, {"d": 4, "no": 9, "t": "Lembar hasil observasi lingkungan + foto", "ind": [80]}, {"d": 4, "no": 10, "t": "Dokumentasi ruang kelas", "ind": [81]}, {"d": 4, "no": 11, "t": "Dokumentasi fasilitas keamanan (pagar/CCTV/APAR/jalur evakuasi)", "ind": [82]}, {"d": 4, "no": 12, "t": "Laporan sanitasi & air bersih", "ind": [83]}, {"d": 4, "no": 13, "t": "Dokumen Program Anti Bullying & dokumentasi kegiatan", "ind": [84]}, {"d": 4, "no": 14, "t": "Jadwal & foto kegiatan budaya 5S", "ind": [85]}, {"d": 4, "no": 15, "t": "Program kegiatan literasi/numerasi & jadwal pembiasaan", "ind": [86]}, {"d": 4, "no": 16, "t": "Kebijakan kegiatan well-being", "ind": [87]}, {"d": 5, "no": 1, "t": "Dokumen sistem penilaian", "ind": [88]}, {"d": 5, "no": 2, "t": "Lembar hasil observasi & inventaris + foto", "ind": [89]}, {"d": 5, "no": 3, "t": "Lembar hasil observasi lingkungan + foto", "ind": [90]}, {"d": 5, "no": 4, "t": "Jadwal pemeliharaan (preventive maintenance)", "ind": [91]}, {"d": 5, "no": 5, "t": "Link medsos / website (cantumkan tautan aktif)", "ind": [92]}, {"d": 5, "no": 6, "t": "Leger Nilai / rata-rata rapor", "ind": [93]}, {"d": 5, "no": 7, "t": "Laporan hasil & analisis TKA", "ind": [94]}, {"d": 5, "no": 8, "t": "Laporan Hasil OSN/KSN", "ind": [95]}, {"d": 5, "no": 9, "t": "Data Alumni (kelulusan & lanjutan studi)", "ind": [96]}, {"d": 5, "no": 10, "t": "Sertifikat / Piala O2SN (olahraga)", "ind": [97]}, {"d": 5, "no": 11, "t": "Sertifikat / Piala FLS2N (seni)", "ind": [98]}, {"d": 5, "no": 12, "t": "Laporan Kegiatan Ekskul (Pramuka/organisasi)", "ind": [99]}]};
+const DIMS = DATA.dims, BF = DATA.bf;
+const KEY = 'spkks-sd-2026-v1';
+const TOTAL_IND = 99;
+
+/* ---------- util ---------- */
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pad2 = n => String(n).padStart(2,'0');
+const KAT = {4:'Sangat Baik',3:'Baik',2:'Cukup',1:'Kurang'};
+const BULAN = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+const tglID = iso => { if(!iso) return '………………'; const [y,m,d]=iso.split('-').map(Number); return d+' '+BULAN[m-1]+' '+y; };
+const pct = v => (v*100).toFixed(1).replace('.',',')+'%';
+const dec = v => v.toFixed(2).replace('.',',');
+const katAvg = a => a>=3.5?'Sangat Baik':a>=2.5?'Baik':a>=1.5?'Cukup':'Kurang';
+const predikat = p => p>=.91?['A','Sangat Baik']:p>=.81?['B','Baik']:p>=.71?['C','Cukup']:['D','Perlu Pembinaan'];
+
+/* ---------- index ---------- */
+const IND = {}; const dimOf = {};
+DIMS.forEach((d,k)=>d.ind.forEach(i=>{IND[i.no]=i; dimOf[i.no]=k;}));
+const bfKey = b => b.d+'-'+b.no;
+const bfByInd = {};
+BF.forEach(b=>b.ind.forEach(n=>(bfByInd[n]=bfByInd[n]||[]).push(bfKey(b))));
+const BFMAP = {}; BF.forEach(b=>BFMAP[bfKey(b)]=b);
+
+/* ---------- state ---------- */
+const DEF = () => ({
+  id:{sekolah:'SDIT Al Qomar',npsn:'20105610',akred:'A',alamat:'Jl. Kamal Raya No. 1, Tegal Alur, Kalideres, Jakarta Barat 11820',
+      ks:'Ahmad Budi Setiawan, S.E.',pembina:'Suryadi Hartono Ruspandi, S.H.',penilai:'',jabPenilai:'',tanggal:'2026-11-11',tahun:'2026/2027',kota:'Jakarta Barat'},
+  skor:{}, cat:{}, dimNote:{},
+  bf:{
+    '0-1':{st:'sudah',file:'KI-01 - Rekap Kehadiran dan Ketepatan Waktu Kepala Sekolah Bulan Juli sampai Oktober 2026.pdf',link:'',blob:false,todo:true,
+      note:'Draf KI-01 masih punya isian kuning yang belum final: (1) Tabel 3 / catatan September: hadir ditulis 16 agar jumlah sama dengan 17 hari efektif, cocokkan dengan cetakan mesin; (2) Tabel 5 no.5: waktu pertemuan PKKS 30 Okt 2026 "13.00 sampai ....."; (3) Subbab 4.3: hasil penelusuran selisih jam fingerprint vs Buku Piket belum diisi; (4) Gambar 4: tanggal foto "..... Oktober 2026".'}
+  }
+});
+let S;
+function load(){
+  const d = DEF();
+  try{
+    const raw = localStorage.getItem(KEY);
+    if(raw){
+      const o = JSON.parse(raw);
+      S = {id:{...d.id,...(o.id||{})}, skor:o.skor||{}, cat:o.cat||{}, dimNote:o.dimNote||{}, bf:{...d.bf,...(o.bf||{})}};
+      return;
+    }
+  }catch(e){}
+  S = d;
+}
+let saveT;
+function save(){
+  clearTimeout(saveT);
+  saveT = setTimeout(()=>{
+    try{ localStorage.setItem(KEY, JSON.stringify(S)); $('#saveMsg').textContent='Tersimpan otomatis · '+new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'}); }
+    catch(e){ $('#saveMsg').textContent='Penyimpanan peramban tidak tersedia — gunakan Ekspor JSON'; }
+  },250);
+}
+const B = k => S.bf[k] || (S.bf[k]={st:'belum',file:'',link:'',blob:false,todo:false,note:''});
+function setPath(path, v){
+  const p = path.split('.'); let o = S;
+  for(let i=0;i<p.length-1;i++){ if(o[p[i]]==null) o[p[i]]={}; o=o[p[i]]; }
+  o[p[p.length-1]] = v;
+}
+function getPath(path){ return path.split('.').reduce((o,k)=>o?.[k], S); }
+
+/* ---------- IndexedDB (berkas lampiran) ---------- */
+let dbp;
+function db(){
+  if(!dbp) dbp = new Promise((res,rej)=>{
+    try{
+      const r = indexedDB.open('spkks-files',1);
+      r.onupgradeneeded = ()=>r.result.createObjectStore('f');
+      r.onsuccess = ()=>res(r.result); r.onerror = ()=>rej(r.error);
+    }catch(e){ rej(e); }
+  });
+  return dbp;
+}
+async function idb(mode, fn){
+  const d = await db();
+  return new Promise((res,rej)=>{
+    const t = d.transaction('f',mode); const r = fn(t.objectStore('f'));
+    t.oncomplete = ()=>res(r&&r.result); t.onerror = ()=>rej(t.error);
+  });
+}
+const putFile = (k,file)=>idb('readwrite',s=>s.put(file,k));
+const getFile = k=>idb('readonly',s=>s.get(k));
+const delFile = k=>idb('readwrite',s=>s.delete(k));
+
+/* ---------- perhitungan ---------- */
+function indStatus(n){
+  const keys = bfByInd[n]||[]; const done = keys.filter(k=>B(k).st==='sudah').length;
+  return {done,total:keys.length,ok:keys.length>0&&done===keys.length};
+}
+function dimStats(k){
+  const d = DIMS[k]; let n=0,sum=0,up=0;
+  d.ind.forEach(i=>{ const v=S.skor[i.no]; if(v){n++;sum+=v;} if(indStatus(i.no).ok) up++; });
+  const avg = n?sum/n:0;
+  return {n,sum,avg,pct:n?sum/(4*n):0,up,tot:d.ind.length,kat:n?katAvg(avg):'–'};
+}
+function totals(){
+  let n=0,sum=0,up=0;
+  DIMS.forEach((d,k)=>{const s=dimStats(k); n+=s.n; sum+=s.sum; up+=s.up;});
+  const p = n?sum/(4*n):0;
+  const bfDone = BF.filter(b=>B(bfKey(b)).st==='sudah').length;
+  return {n,sum,up,pct:p,avg:n?sum/n:0,bfDone,final:n===TOTAL_IND,pred:n?predikat(p):['–','Belum dinilai']};
+}
+function stats(){
+  const t = totals();
+  $('#hs-nilai').textContent = t.n+'/'+TOTAL_IND;
+  $('#hs-bf').textContent = t.bfDone+'/'+BF.length;
+  $('#hs-pct').textContent = t.n?pct(t.pct)+' ('+t.pred[0]+')':'–';
+  $('#hd-sch').textContent = S.id.sekolah;
+}
+
+/* ---------- tab ---------- */
+let TAB='ringkasan';
+function showTab(t){
+  TAB=t;
+  $$('.tab').forEach(b=>b.classList.toggle('on',b.dataset.tab===t));
+  $$('.pane').forEach(p=>p.classList.toggle('on',p.id==='p-'+t));
+  ({ringkasan:rRingkasan,instrumen:rInstrumen,bukti:rBukti,cetak:rCetak})[t]();
+  stats();
+}
+
+/* ---------- Ringkasan ---------- */
+function checklist(){
+  const out=[];
+  const belum = []; for(let n=1;n<=TOTAL_IND;n++) if(!S.skor[n]) belum.push(n);
+  if(belum.length) out.push(`<b>${belum.length}</b> indikator belum diberi skor: ${belum.slice(0,14).map(n=>`<a data-act="goInd" data-n="${n}">${n}</a>`).join(', ')}${belum.length>14?' …':''}`);
+  const bb = BF.filter(b=>B(bfKey(b)).st!=='sudah');
+  if(bb.length) out.push(`<b>${bb.length}</b> bukti fisik belum diunggah / belum ditandai siap (buka tab Bukti Fisik, filter “Belum”)`);
+  BF.filter(b=>B(bfKey(b)).todo).forEach(b=>out.push(`Perlu tindak lanjut — <a data-act="goBf" data-k="${bfKey(b)}">${DIMS[b.d].kode}.${b.no} ${esc(b.t)}</a>`));
+  if(!S.id.penilai) out.push('Nama penilai belum diisi (lembar pengesahan).');
+  return out;
+}
+function rRingkasan(){
+  const t = totals(), ck = checklist();
+  const I = (f,l,ph='')=>`<label class="f">${l}<input data-f="id.${f}" value="${esc(S.id[f])}" placeholder="${ph}"></label>`;
+  $('#p-ringkasan').innerHTML = `
+  <div class="cards">
+    <div class="card"><small>Skor total</small><b>${t.n?pct(t.pct):'–'}</b><br><em>${t.n?'rata-rata '+dec(t.avg)+' dari 4':'belum ada skor'}</em></div>
+    <div class="card"><small>Predikat</small><b class="pred">${t.pred[0]}</b><br><em>${t.pred[1]}</em></div>
+    <div class="card"><small>Indikator dinilai</small><b>${t.n}/${TOTAL_IND}</b><br><em>${t.final?'<span class="ok">FINAL — semua terisi</span>':'DRAFT — hasil final bila 99 terisi'}</em></div>
+    <div class="card"><small>Bukti fisik siap</small><b>${t.bfDone}/${BF.length}</b><br><em>${t.up}/${TOTAL_IND} indikator buktinya lengkap</em></div>
+  </div>
+
+  <h2>Identitas</h2>
+  <div class="grid2">
+    ${I('sekolah','Nama sekolah')}${I('npsn','NPSN')}${I('akred','Akreditasi')}${I('tahun','Tahun pelajaran')}
+    ${I('ks','Kepala Sekolah')}${I('pembina','Pembina / Ketua Yayasan')}
+    ${I('penilai','Nama penilai (pengawas)','mis. Pengawas Sekolah Sudin Wilayah 1')}${I('jabPenilai','Jabatan / NIP penilai')}
+    ${I('kota','Kota penandatanganan')}
+    <label class="f">Tanggal<input type="date" data-f="id.tanggal" value="${esc(S.id.tanggal)}"></label>
+    <label class="f" style="grid-column:1/-1">Alamat${'<input data-f="id.alamat" value="'+esc(S.id.alamat)+'">'}</label>
+  </div>
+
+  <h2>Rekap per dimensi</h2>
+  <div style="overflow-x:auto"><table>
+    <thead><tr><th>Dimensi</th><th class="num">Indikator</th><th class="num">Terisi</th><th class="num">Total skor</th><th class="num">Rata-rata</th><th class="num">Persentase</th><th>Kategori</th><th>Bukti lengkap</th></tr></thead>
+    <tbody>${DIMS.map((d,k)=>{const s=dimStats(k);return `<tr>
+      <td><b>${d.kode}.</b> ${esc(d.nama)}</td><td class="num">${s.tot}</td><td class="num">${s.n}</td><td class="num">${s.sum}</td>
+      <td class="num">${s.n?dec(s.avg):'–'}</td><td class="num">${s.n?pct(s.pct):'–'}</td>
+      <td><span class="badge ${s.n?'b'+(s.avg>=3.5?4:s.avg>=2.5?3:s.avg>=1.5?2:1):''}">${s.kat}</span></td>
+      <td><div class="bar"><i style="width:${s.up/s.tot*100}%"></i></div><span class="hint">${s.up}/${s.tot} indikator</span></td></tr>`}).join('')}
+    <tr><td><b>TOTAL</b></td><td class="num"><b>${TOTAL_IND}</b></td><td class="num"><b>${t.n}</b></td><td class="num"><b>${t.sum}</b></td><td class="num"><b>${t.n?dec(t.avg):'–'}</b></td><td class="num"><b>${t.n?pct(t.pct):'–'}</b></td><td><b>${t.n?katAvg(t.avg):'–'}</b></td><td><b>${t.up}/${TOTAL_IND}</b></td></tr></tbody>
+  </table></div>
+  <p class="hint">Rumus: persentase = total skor ÷ (4 × jumlah indikator terisi). Predikat A ≥ 91%, B ≥ 81%, C ≥ 71%, D di bawah 71%. Kategori rata-rata: ≥ 3,5 Sangat Baik; ≥ 2,5 Baik; ≥ 1,5 Cukup; di bawahnya Kurang.</p>
+
+  <h2>Catatan perbaikan per dimensi</h2>
+  <div class="grid2">${DIMS.map((d,k)=>`<label class="f">${d.kode}. ${esc(d.nama)}<textarea rows="3" data-f="dimNote.${k}" style="display:block;width:100%;margin-top:3px;padding:7px 9px;border:1px solid var(--bd);border-radius:7px">${esc(S.dimNote[k]||'')}</textarea></label>`).join('')}</div>
+
+  <h2>Checklist sebelum cetak final</h2>
+  <div class="warn">${ck.length?`<b>${ck.length} hal perlu dibereskan:</b><ul>${ck.map(x=>`<li>${x}</li>`).join('')}</ul>`:'<span class="ok">Semua lengkap — siap dicetak final.</span>'}</div>`;
+}
+
+/* ---------- Instrumen ---------- */
+const FI = {dim:'all',q:'',m:'all'};
+function indRow(i){
+  const v = S.skor[i.no], st = indStatus(i.no);
+  const chips = (bfByInd[i.no]||[]).map(k=>{const b=BFMAP[k];return `<span class="chip bf" data-act="goBf" data-k="${k}" title="${esc(b.t)}">${DIMS[b.d].kode}.${b.no}</span>`}).join('');
+  const files = (bfByInd[i.no]||[]).map(k=>B(k).file||(B(k).link?'(tautan)':'')).filter(Boolean);
+  return `<tr id="ind-${i.no}" data-no="${i.no}">
+    <td class="num"><b>${i.no}</b><br><span class="ki">KI-${pad2(i.no)}</span></td>
+    <td>${esc(i.t)}<div class="doc"><b>Bukti wajib:</b> ${esc(i.doc)}</div><div class="doc">Terkait bukti fisik: ${chips}</div></td>
+    <td class="num"><div class="sk">${[1,2,3,4].map(n=>`<button data-act="skor" data-n="${i.no}" data-v="${n}" class="${v===n?'on':''}" title="${n} — ${KAT[n]}">${n}</button>`).join('')}</div></td>
+    <td class="num" data-c="kat">${v?`<span class="badge b${v}">${KAT[v]}</span>`:'<span class="badge">–</span>'}</td>
+    <td data-c="st"><span class="badge ${st.ok?'bok':st.done?'bpa':'bno'}">${st.ok?'Sudah Diunggah':'Belum Diunggah'}</span><div class="hint">${st.done}/${st.total} bukti</div>${files.length?`<div class="hint">${files.map(esc).join('; ')}</div>`:''}</td>
+    <td><textarea rows="2" data-f="cat.${i.no}" placeholder="Catatan evaluator">${esc(S.cat[i.no]||'')}</textarea></td></tr>`;
+}
+function indMatch(i){
+  const v=S.skor[i.no];
+  if(FI.dim!=='all' && String(dimOf[i.no])!==FI.dim) return false;
+  if(FI.m==='nilai' && v) return false;
+  if(FI.m==='bukti' && indStatus(i.no).ok) return false;
+  if(FI.q){ const q=FI.q.toLowerCase(); if(!(String(i.no)===q||(i.t+' '+i.doc).toLowerCase().includes(q)||('ki-'+pad2(i.no))===q)) return false; }
+  return true;
+}
+function rInstrumen(){
+  const p = $('#p-instrumen');
+  if(!p.dataset.init){
+    p.dataset.init=1;
+    p.innerHTML = `
+    <div class="tool">
+      <input type="search" id="fq" placeholder="Cari indikator / dokumen / nomor…">
+      <select id="fd"><option value="all">Semua dimensi</option>${DIMS.map((d,k)=>`<option value="${k}">${d.kode}. ${esc(d.nama)}</option>`).join('')}</select>
+      <div class="seg" id="fm"><button data-m="all" class="on">Semua</button><button data-m="nilai">Belum dinilai</button><button data-m="bukti">Bukti belum lengkap</button></div>
+      <span class="hint" id="fcount"></span>
+    </div>
+    <p class="hint">Klik angka 1–4 untuk skor (klik lagi untuk menghapus). 4 Sangat Baik · 3 Baik · 2 Cukup · 1 Kurang. Status unggah dihitung otomatis dari tab Bukti Fisik.</p>
+    <div style="overflow-x:auto"><table class="rs"><thead><tr><th style="width:56px">No</th><th>Indikator kinerja &amp; bukti wajib</th><th style="width:160px">Skor (1–4)</th><th style="width:110px">Kategori</th><th style="width:170px">Status unggah</th><th style="width:210px">Catatan evaluator</th></tr></thead><tbody id="itb"></tbody></table></div>`;
+    $('#fq').oninput = e=>{FI.q=e.target.value.trim();drawInd();};
+    $('#fd').onchange = e=>{FI.dim=e.target.value;drawInd();};
+    $('#fm').onclick = e=>{const b=e.target.closest('button');if(!b)return;FI.m=b.dataset.m;$$('#fm button').forEach(x=>x.classList.toggle('on',x===b));drawInd();};
+  }
+  drawInd();
+}
+function drawInd(){
+  let h='',c=0;
+  DIMS.forEach((d,k)=>{
+    const rows = d.ind.filter(indMatch); if(!rows.length) return;
+    const s = dimStats(k);
+    h += `<tr class="dhead"><td colspan="6">${d.kode}. ${esc(d.nama).toUpperCase()}<small id="dh-${k}">${dimLine(k)}</small></td></tr>`+rows.map(indRow).join(''); c+=rows.length;
+  });
+  $('#itb').innerHTML = h || '<tr><td colspan="6" class="hint">Tidak ada indikator yang cocok.</td></tr>';
+  $('#fcount').textContent = c+' indikator tampil';
+}
+function dimLine(k){ const s=dimStats(k); return s.n?`Rata-rata ${dec(s.avg)} · ${pct(s.pct)} · terisi ${s.n}/${s.tot}`:`Belum diisi · ${s.tot} indikator`; }
+
+/* ---------- Bukti Fisik ---------- */
+const FB = {dim:'all',q:'',m:'all'};
+function bfMatch(b){
+  const x = B(bfKey(b));
+  if(FB.dim!=='all' && String(b.d)!==FB.dim) return false;
+  if(FB.m==='belum' && x.st==='sudah') return false;
+  if(FB.m==='sudah' && x.st!=='sudah') return false;
+  if(FB.m==='todo' && !x.todo) return false;
+  if(FB.q){ const q=FB.q.toLowerCase(); if(!((b.t+' '+(x.file||'')).toLowerCase().includes(q)||b.ind.map(String).includes(q))) return false; }
+  return true;
+}
+function bfRow(b){
+  const k=bfKey(b), x=B(k), on=x.st==='sudah';
+  const chips = b.ind.map(n=>`<span class="chip" data-act="goInd" data-n="${n}" title="${esc(IND[n].t)}">${n}</span>`).join('');
+  return `<tr id="bf-${k}" data-k="${k}">
+    <td class="num"><b>${DIMS[b.d].kode}.${b.no}</b></td>
+    <td>${esc(b.t)}<div class="doc">Indikator: ${chips}</div></td>
+    <td class="num"><label class="sw"><input type="checkbox" data-act="bfTog" data-k="${k}" ${on?'checked':''}><span></span></label><div class="hint" data-c="lab">${on?'Sudah':'Belum'}</div></td>
+    <td>
+      <input type="text" data-f="bf.${k}.file" data-bf="${k}" placeholder="Nama berkas (mis. KI-01 - Rekap Kehadiran.pdf)" value="${esc(x.file)}">
+      <input type="url" data-f="bf.${k}.link" data-bf="${k}" placeholder="Tautan (Drive / website / medsos)" value="${esc(x.link)}" style="margin-top:4px">
+      <div class="fl">
+        <button class="btn sm" data-act="attach" data-k="${k}">Lampirkan berkas</button>
+        ${x.blob?`<button class="btn sm" data-act="openF" data-k="${k}">Buka</button><button class="btn sm dg" data-act="delF" data-k="${k}">Hapus berkas</button>`:''}
+        ${x.link?`<a class="btn sm" href="${esc(x.link)}" target="_blank" rel="noopener">Buka tautan</a>`:''}
+      </div>
+    </td>
+    <td><textarea rows="2" data-f="bf.${k}.note" placeholder="Catatan">${esc(x.note)}</textarea>
+      <label class="hint"><input type="checkbox" data-act="bfTodo" data-k="${k}" ${x.todo?'checked':''}> Perlu tindak lanjut</label></td></tr>`;
+}
+function rBukti(){
+  const p = $('#p-bukti');
+  if(!p.dataset.init){
+    p.dataset.init=1;
+    p.innerHTML = `
+    <div class="tool">
+      <input type="search" id="bq" placeholder="Cari bukti / nama berkas / no. indikator…">
+      <select id="bd"><option value="all">Semua dimensi</option>${DIMS.map((d,k)=>`<option value="${k}">${d.kode}. ${esc(d.nama)}</option>`).join('')}</select>
+      <div class="seg" id="bm"><button data-m="all" class="on">Semua</button><button data-m="belum">Belum</button><button data-m="sudah">Sudah</button><button data-m="todo">Tindak lanjut</button></div>
+      <span class="hint" id="bcount"></span>
+    </div>
+    <p class="hint">Satu bukti dapat melayani beberapa indikator (chip angka). Aktifkan sakelar bila bukti sudah siap; melampirkan berkas atau mengisi tautan otomatis menandai “Sudah”. Berkas lampiran disimpan di peramban ini saja (tidak diunggah ke server) — simpan salinan aslinya di folder penilaian.</p>
+    <div style="overflow-x:auto"><table class="rs"><thead><tr><th style="width:60px">No</th><th>Bukti fisik / dokumen</th><th style="width:80px">Siap?</th><th style="width:330px">Berkas / tautan</th><th style="width:220px">Catatan</th></tr></thead><tbody id="btb"></tbody></table></div>`;
+    $('#bq').oninput = e=>{FB.q=e.target.value.trim();drawBf();};
+    $('#bd').onchange = e=>{FB.dim=e.target.value;drawBf();};
+    $('#bm').onclick = e=>{const b=e.target.closest('button');if(!b)return;FB.m=b.dataset.m;$$('#bm button').forEach(x=>x.classList.toggle('on',x===b));drawBf();};
+  }
+  drawBf();
+}
+function drawBf(){
+  let h='',c=0;
+  DIMS.forEach((d,k)=>{
+    const rows = BF.filter(b=>b.d===k&&bfMatch(b)); if(!rows.length) return;
+    const done = BF.filter(b=>b.d===k&&B(bfKey(b)).st==='sudah').length, tot=BF.filter(b=>b.d===k).length;
+    h += `<tr class="dhead"><td colspan="5">${d.kode}. ${esc(d.nama).toUpperCase()}<small>Indikator ${d.ind[0].no}–${d.ind[d.ind.length-1].no} · ${done}/${tot} bukti siap</small></td></tr>`+rows.map(bfRow).join(''); c+=rows.length;
+  });
+  $('#btb').innerHTML = h || '<tr><td colspan="5" class="hint">Tidak ada bukti yang cocok.</td></tr>';
+  $('#bcount').textContent = c+' bukti tampil';
+}
+
+/* ---------- Cetak & Cadangan ---------- */
+function rCetak(){
+  $('#p-cetak').innerHTML = `
+  <h2>Hasil akhir (PDF)</h2>
+  <p>Tombol di bawah membuka dialog cetak peramban — pilih <b>“Simpan sebagai PDF”</b> sebagai printer, ukuran A4, dan <b>aktifkan “Grafik latar belakang”</b> agar warna tabel ikut tercetak.</p>
+  <div class="pp">
+    <div class="card"><b style="font-size:18px">Laporan lengkap</b><p>Sampul, ringkasan &amp; predikat, instrumen 99 indikator (skor, kategori, status, catatan), kesimpulan 87 bukti fisik, lembar pengesahan.</p><button class="btn gold" data-act="print" data-m="full">Cetak laporan lengkap</button></div>
+    <div class="card"><b style="font-size:18px">Ringkasan saja</b><p>Satu–dua halaman: identitas, rekap per dimensi, predikat, catatan perbaikan, pengesahan.</p><button class="btn" data-act="print" data-m="ring">Cetak ringkasan</button></div>
+    <div class="card"><b style="font-size:18px">Daftar bukti fisik</b><p>Checklist 87 bukti per dimensi beserta nomor indikator dan status — untuk map / folder penilaian.</p><button class="btn" data-act="print" data-m="bukti">Cetak daftar bukti</button></div>
+  </div>
+  <h2>Cadangan &amp; pemindahan data</h2>
+  <p>Data tersimpan otomatis di peramban ini. Ekspor secara berkala, dan gunakan Impor untuk memindahkan ke perangkat lain. <span class="hint">Berkas lampiran tidak ikut terekspor (hanya nama &amp; tautan).</span></p>
+  <div class="acts"><button class="btn" data-act="export">Ekspor JSON</button><button class="btn" data-act="import">Impor JSON</button><button class="btn dg" data-act="reset">Kosongkan semua skor &amp; status</button></div>`;
+}
+
+/* ---------- Cetak ---------- */
+function kop(){ return `<div class="kop"><b>YAYASAN PENDIDIKAN ISLAM PURNAMA CENDEKIA</b><b>${esc(S.id.sekolah.toUpperCase())} MUTHMAINNAH</b><span>${esc(S.id.alamat)} · Telp. 021-55968344 · alqomar.sch.id</span></div>`; }
+function signBlock(){ return `<div class="sign"><div>Mengetahui,<br>Pembina–Ketua Yayasan<br><br><br><br><u>${esc(S.id.pembina)}</u></div><div>${esc(S.id.kota)}, ${tglID(S.id.tanggal)}<br>Kepala ${esc(S.id.sekolah)}<br><br><br><br><u>${esc(S.id.ks)}</u></div><div>Penilai,<br>${esc(S.id.jabPenilai||'')}<br><br><br><br><u>${esc(S.id.penilai||'……………………………')}</u></div></div>`; }
+function ringTbl(){
+  const t = totals();
+  return `<table><thead><tr><th>Dimensi</th><th>Indikator</th><th>Terisi</th><th>Total skor</th><th>Rata-rata</th><th>%</th><th>Kategori</th><th>Bukti lengkap</th></tr></thead><tbody>${DIMS.map((d,k)=>{const s=dimStats(k);return `<tr><td>${d.kode}. ${esc(d.nama)}</td><td class="num">${s.tot}</td><td class="num">${s.n}</td><td class="num">${s.sum}</td><td class="num">${s.n?dec(s.avg):'–'}</td><td class="num">${s.n?pct(s.pct):'–'}</td><td>${s.kat}</td><td class="num">${s.up}/${s.tot}</td></tr>`}).join('')}<tr><td><b>TOTAL</b></td><td class="num"><b>${TOTAL_IND}</b></td><td class="num"><b>${t.n}</b></td><td class="num"><b>${t.sum}</b></td><td class="num"><b>${t.n?dec(t.avg):'–'}</b></td><td class="num"><b>${t.n?pct(t.pct):'–'}</b></td><td><b>${t.n?katAvg(t.avg):'–'}</b></td><td class="num"><b>${t.up}/${TOTAL_IND}</b></td></tr></tbody></table>`;
+}
+function ringPage(){
+  const t=totals();
+  return `<div class="pg">${kop()}<h2 style="text-align:center">RINGKASAN HASIL SPKKS — JENJANG SD</h2>
+  <table style="margin-bottom:10px"><tbody>
+   <tr><td style="width:32%">Nama sekolah</td><td>${esc(S.id.sekolah)} (NPSN ${esc(S.id.npsn)}, Akreditasi ${esc(S.id.akred)})</td></tr>
+   <tr><td>Kepala Sekolah</td><td>${esc(S.id.ks)}</td></tr><tr><td>Penilai</td><td>${esc(S.id.penilai||'……………………………')} ${esc(S.id.jabPenilai||'')}</td></tr>
+   <tr><td>Tahun pelajaran</td><td>${esc(S.id.tahun)}</td></tr></tbody></table>
+  ${ringTbl()}
+  <p style="margin-top:10px"><b>Persentase total:</b> ${t.n?pct(t.pct):'–'} &nbsp; <b>Predikat:</b> <span class="pb">${t.pred[0]}</span> ${t.pred[1]} &nbsp; <b>Status:</b> ${t.final?'FINAL':'DRAFT ('+t.n+' dari '+TOTAL_IND+' indikator terisi)'}</p>
+  <p style="font-size:9pt">Rumus: persentase = total skor ÷ (4 × jumlah indikator terisi). Predikat A ≥ 91%, B ≥ 81%, C ≥ 71%, D di bawah 71%.</p>
+  <h3>Catatan perbaikan per dimensi</h3>
+  <table><tbody>${DIMS.map((d,k)=>`<tr><td style="width:30%">${d.kode}. ${esc(d.nama)}</td><td>${esc(S.dimNote[k]||'—').replace(/\n/g,'<br>')}</td></tr>`).join('')}</tbody></table>
+  ${signBlock()}</div>`;
+}
+function instPage(){
+  let h=`<div class="land pg"><h2 style="text-align:center">INSTRUMEN SUPERVISI DAN PENILAIAN KINERJA KEPALA SEKOLAH (SPKKS) — SD — TAHUN ${esc(S.id.tahun)}</h2>
+  <table><thead><tr><th style="width:4%">No</th><th style="width:33%">Indikator kinerja</th><th style="width:20%">Dokumen / bukti fisik</th><th style="width:5%">Skor</th><th style="width:9%">Kategori</th><th style="width:9%">Status unggah</th><th style="width:20%">Nama file / tautan · catatan</th></tr></thead><tbody>`;
+  DIMS.forEach((d,k)=>{
+    h+=`<tr class="dhead"><td colspan="7"><b>${d.kode}. ${esc(d.nama.toUpperCase())}</b> — ${dimLine(k)}</td></tr>`;
+    d.ind.forEach(i=>{
+      const v=S.skor[i.no], st=indStatus(i.no);
+      const fl=(bfByInd[i.no]||[]).map(k=>{const x=B(k);return [x.file,x.link].filter(Boolean).join(' · ');}).filter(Boolean);
+      h+=`<tr><td class="num">${i.no}</td><td>${esc(i.t)}</td><td>${esc(i.doc)}</td><td class="num"><b>${v||''}</b></td><td>${v?KAT[v]:''}</td><td>${st.ok?'Sudah Diunggah':'Belum Diunggah'}</td><td>${fl.map(esc).join('<br>')}${S.cat[i.no]?'<br><i>'+esc(S.cat[i.no])+'</i>':''}</td></tr>`;
+    });
+  });
+  return h+'</tbody></table></div>';
+}
+function bfPage(){
+  let h=`<div class="pg">${kop()}<h2 style="text-align:center">KESIMPULAN BUKTI FISIK PER KOMPONEN</h2><p style="text-align:center;margin-top:0">Instrumen SPKKS Jenjang SD · Tahun ${esc(S.id.tahun)}</p>
+  <table><thead><tr><th style="width:8%">No</th><th>Bukti fisik / dokumen</th><th style="width:16%">No. indikator terkait</th><th style="width:12%">Status</th><th style="width:26%">Nama file / tautan</th></tr></thead><tbody>`;
+  DIMS.forEach((d,k)=>{
+    h+=`<tr class="dhead"><td colspan="5"><b>${d.kode}. ${esc(d.nama.toUpperCase())}</b> (Indikator ${d.ind[0].no}–${d.ind[d.ind.length-1].no})</td></tr>`;
+    BF.filter(b=>b.d===k).forEach(b=>{const x=B(bfKey(b));h+=`<tr><td class="num">${b.no}</td><td>${esc(b.t)}</td><td class="num">${b.ind.join(', ')}</td><td>${x.st==='sudah'?'☑ Siap':'☐ Belum'}</td><td>${esc([x.file,x.link].filter(Boolean).join(' · '))}</td></tr>`});
+  });
+  return h+'</tbody></table></div>';
+}
+function coverPage(){
+  const t=totals();
+  return `<div class="pg"><div class="cover">${kop()}
+  <h1>SUPERVISI DAN PENILAIAN KINERJA<br>KEPALA SEKOLAH (SPKKS)</h1><p><b>JENJANG SEKOLAH DASAR (SD)</b></p><p>Tahun Pelajaran ${esc(S.id.tahun)}</p>
+  <p style="margin-top:14mm">Disusun oleh:</p><p><b>${esc(S.id.ks)}</b></p><p>Kepala ${esc(S.id.sekolah)}</p>
+  <p style="margin-top:14mm"><b>${esc(S.id.sekolah.toUpperCase())}</b></p><p>NPSN ${esc(S.id.npsn)} · Terakreditasi ${esc(S.id.akred)}</p><p>${esc(S.id.alamat)}</p>
+  <p style="margin-top:10mm">Hasil: <b>${t.n?pct(t.pct)+' — Predikat '+t.pred[0]+' ('+t.pred[1]+')':'belum dinilai'}</b></p></div></div>`;
+}
+function doPrint(m){
+  const el=$('#print'); let h='';
+  if(m==='full') h = coverPage()+ringPage()+instPage()+bfPage();
+  else if(m==='ring') h = ringPage();
+  else h = bfPage();
+  el.innerHTML = h;
+  setTimeout(()=>window.print(),80);
+}
+
+/* ---------- event ---------- */
+function flash(sel){ const el=$(sel); if(!el) return; el.scrollIntoView({block:'center'}); el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash'); }
+function goInd(n){
+  FI.dim='all';FI.q='';FI.m='all';
+  const p=$('#p-instrumen'); if(p.dataset.init){$('#fq').value='';$('#fd').value='all';$$('#fm button').forEach(x=>x.classList.toggle('on',x.dataset.m==='all'));}
+  showTab('instrumen'); flash('#ind-'+n);
+}
+function goBf(k){
+  FB.dim='all';FB.q='';FB.m='all';
+  const p=$('#p-bukti'); if(p.dataset.init){$('#bq').value='';$('#bd').value='all';$$('#bm button').forEach(x=>x.classList.toggle('on',x.dataset.m==='all'));}
+  showTab('bukti'); flash('#bf-'+k);
+}
+let attachKey=null;
+document.addEventListener('click', async e=>{
+  const t = e.target.closest('[data-act],[data-tab]'); if(!t) return;
+  if(t.dataset.tab){ showTab(t.dataset.tab); return; }
+  const a=t.dataset.act, k=t.dataset.k, n=t.dataset.n&&+t.dataset.n;
+  if(a==='skor'){
+    const v=+t.dataset.v; if(S.skor[n]===v) delete S.skor[n]; else S.skor[n]=v; save();
+    const row=$('#ind-'+n), cur=S.skor[n];
+    $$('.sk button',row).forEach(b=>b.classList.toggle('on',+b.dataset.v===cur));
+    $('[data-c=kat]',row).innerHTML = cur?`<span class="badge b${cur}">${KAT[cur]}</span>`:'<span class="badge">–</span>';
+    const dh=$('#dh-'+dimOf[n]); if(dh) dh.textContent=dimLine(dimOf[n]);
+    stats();
+    if(FI.m==='nilai'&&cur){ setTimeout(()=>{ if(!indMatch(IND[n])){ row.remove(); } },350); }
+  }
+  else if(a==='goInd') goInd(n);
+  else if(a==='goBf') goBf(k);
+  else if(a==='print') doPrint(t.dataset.m);
+  else if(a==='attach'){ attachKey=k; const f=$('#attFile'); f.value=''; f.click(); }
+  else if(a==='openF'){ try{ const f=await getFile(k); if(f){ const u=URL.createObjectURL(f); window.open(u,'_blank'); setTimeout(()=>URL.revokeObjectURL(u),60000);} else alert('Berkas tidak ditemukan di peramban ini.'); }catch(err){ alert('Gagal membuka berkas.'); } }
+  else if(a==='delF'){ if(!confirm('Hapus berkas lampiran ini dari peramban? (nama berkas tetap tersimpan)')) return; try{await delFile(k);}catch(err){} B(k).blob=false; save(); drawBf(); stats(); }
+  else if(a==='export'){
+    const blob=new Blob([JSON.stringify(S,null,1)],{type:'application/json'}); const u=URL.createObjectURL(blob);
+    const l=document.createElement('a'); l.href=u; l.download='spkks-sd-'+S.id.tahun.replace('/','-')+'-cadangan.json'; l.click(); setTimeout(()=>URL.revokeObjectURL(u),2000);
+  }
+  else if(a==='import') $('#impFile').click();
+  else if(a==='reset'){
+    if(!confirm('Kosongkan SEMUA skor, catatan, dan status bukti fisik? Tindakan ini tidak dapat dibatalkan.')) return;
+    const keepId=S.id; S=DEF(); S.id=keepId; S.bf={}; save(); $('#p-instrumen').dataset.init=''; $('#p-bukti').dataset.init=''; showTab('ringkasan');
+  }
+});
+document.addEventListener('input', e=>{
+  const f=e.target.dataset?.f; if(!f) return;
+  const v = e.target.value;
+  if(f.startsWith('cat.') && !v) delete S.cat[f.slice(4)]; else setPath(f, v);
+  save();
+  if(f==='id.sekolah') stats();
+});
+document.addEventListener('change', e=>{
+  const t=e.target, a=t.dataset?.act, k=t.dataset?.k;
+  if(a==='bfTog'){
+    B(k).st = t.checked?'sudah':'belum'; save();
+    const row=$('#bf-'+k); $('[data-c=lab]',row).textContent=t.checked?'Sudah':'Belum'; stats();
+  }
+  else if(a==='bfTodo'){ B(k).todo=t.checked; save(); }
+  else if(t.dataset?.bf){
+    const x=B(t.dataset.bf);
+    if((x.file||x.link) && x.st!=='sudah'){ x.st='sudah'; save(); const row=$('#bf-'+t.dataset.bf); $('[data-act=bfTog]',row).checked=true; $('[data-c=lab]',row).textContent='Sudah'; stats(); }
+    if(t.type==='url'){ drawBfRowTools(t.dataset.bf); }
+  }
+});
+function drawBfRowTools(k){ const row=$('#bf-'+k); if(!row) return; const pos=row.querySelector('.fl'); const x=B(k);
+  pos.innerHTML = `<button class="btn sm" data-act="attach" data-k="${k}">Lampirkan berkas</button>${x.blob?`<button class="btn sm" data-act="openF" data-k="${k}">Buka</button><button class="btn sm dg" data-act="delF" data-k="${k}">Hapus berkas</button>`:''}${x.link?`<a class="btn sm" href="${esc(x.link)}" target="_blank" rel="noopener">Buka tautan</a>`:''}`; }
+$('#attFile').addEventListener('change', async e=>{
+  const f=e.target.files[0]; if(!f||!attachKey) return;
+  const k=attachKey;
+  try{ await putFile(k,f); const x=B(k); x.blob=true; if(!x.file) x.file=f.name; x.st='sudah'; save(); drawBf(); stats(); }
+  catch(err){ alert('Peramban menolak menyimpan berkas (mode privat / kuota penuh). Isi nama berkas atau tautan saja.'); }
+});
+$('#impFile').addEventListener('change', e=>{
+  const f=e.target.files[0]; if(!f) return;
+  const r=new FileReader(); r.onload=()=>{ try{
+    const o=JSON.parse(r.result); if(!o.skor||!o.bf||!o.id) throw 0;
+    if(!confirm('Impor akan MENIMPA data saat ini. Lanjutkan?')) return;
+    S={id:{...DEF().id,...o.id},skor:o.skor,cat:o.cat||{},dimNote:o.dimNote||{},bf:o.bf};
+    $$('.pane').forEach(p=>p.dataset.init=''); save(); showTab('ringkasan');
+  }catch(err){ alert('Berkas cadangan tidak valid.'); } }; r.readAsText(f);
+});
+window.addEventListener('beforeprint',()=>{ if(!$('#print').innerHTML) $('#print').innerHTML=coverPage()+ringPage()+instPage()+bfPage(); });
+window.addEventListener('afterprint',()=>{ $('#print').innerHTML=''; });
+
+load(); showTab('ringkasan');
+</script>
+</body>
+</html>
