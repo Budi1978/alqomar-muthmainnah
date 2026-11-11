@@ -1998,8 +1998,8 @@ function blkHTML(bl,i){
     case 'list': return `<div class="blk">${hd('Daftar bernomor')}<textarea rows="4" data-f="${P}.text">${esc(bl.text)}</textarea><span class="hint">Satu butir per baris.</span></div>`;
     case 'ttd': return `<div class="blk">${hd('Tanda tangan Kepala Sekolah')}<span class="hint">Memuat kota, tanggal, jabatan, dan nama dari data identitas.</span></div>`;
     case 'lamp': return `<div class="blk bab">${hd('LAMPIRAN (halaman baru)')}${inp('text','Judul lampiran')}</div>`;
-    case 'tbl': return `<div class="blk">${hd('Tabel')}${inp('cap','Judul tabel')}${gridHTML(P,bl,i)}</div>`;
-    case 'foto': return `<div class="blk">${hd('Foto / gambar')}${inp('cap','Keterangan gambar (mis. Kepala Sekolah menyambut murid, 8 Oktober 2026)')}
+    case 'tbl': return `<div class="blk">${hd('Tabel'+(bl.rows.slice(1).every(r=>r.slice(1).every(c=>!String(c||'').trim()))?' <span class="badge bpa">kosong — tidak dicetak</span>':''))}${inp('cap','Judul tabel')}${gridHTML(P,bl,i)}</div>`;
+    case 'foto': return `<div class="blk">${hd('Foto / gambar'+(bl.imgs.length?'':' <span class="badge bpa">belum ada foto — tidak dicetak</span>'))}${inp('cap','Keterangan gambar (mis. Kepala Sekolah menyambut murid, 8 Oktober 2026)')}
       <div class="thumbs">${bl.imgs.map((im,j)=>`<div class="th"><img data-iid="${im.id}" alt=""><input data-f="${P}.imgs.${j}.label" value="${esc(im.label)}" placeholder="Label foto"><button class="btn sm dg" data-da="delimg" data-i="${i}" data-j="${j}">Hapus</button></div>`).join('')}</div>
       <div class="fl"><button class="btn sm" data-da="addimg" data-i="${i}">+ Tambah foto</button><span class="hint">Foto diperkecil otomatis dan disimpan di peramban ini.</span></div></div>`;
   }
@@ -2074,7 +2074,10 @@ function docHTML(k){
   let bab=0,sub=0,tb=0,gb=0,lp=0; const toc=[],lt=[],lg=[]; let body='';
   const mk=s=>esc(s).replace(PH,m=>`<mark>${m}</mark>`);
   const sign=(ttl)=>`<div class="sign1"><div>${esc(S.id.kota)}, ${tglID(d.tanggal||S.id.tanggal)}<br>Kepala ${esc(sch)}<br><br><br><br><u>${esc(d.penyusun||S.id.ks)}</u></div></div>`;
-  d.blocks.forEach(bl=>{
+  const emptyTbl = bl => bl.rows.slice(1).every(r=>r.slice(1).every(c=>!String(c||'').trim()));
+  const lampOk = i => { for(let j=i+1;j<d.blocks.length;j++){ const x=d.blocks[j]; if(x.t==='lamp'||x.t==='bab') break; if((x.t==='foto'&&x.imgs.length)||(x.t==='tbl'&&!emptyTbl(x))||(x.t==='p'&&String(x.text||'').trim())) return true; } return false; };
+  d.blocks.forEach((bl,bi)=>{
+    if((bl.t==='tbl'&&emptyTbl(bl))||(bl.t==='foto'&&!bl.imgs.length)||(bl.t==='lamp'&&!lampOk(bi))) return;   /* blok kosong tidak ikut tercetak */
     if(bl.t==='bab'){ bab++;sub=0; toc.push('BAB '+roman(bab)+' '+bl.text); body+=`<h2 class="db">BAB ${roman(bab)}<br>${mk(bl.text)}</h2>`; }
     else if(bl.t==='sub'){ sub++; const l=bab+'.'+sub; toc.push('&nbsp;&nbsp;&nbsp;'+l+' '+esc(bl.text)); body+=`<h3>${l} ${mk(bl.text)}</h3>`; }
     else if(bl.t==='p') body+=paras(bl.text);
