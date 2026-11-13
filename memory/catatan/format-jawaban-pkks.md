@@ -18,9 +18,9 @@ Aturan cara menjawab soal PKKS (Kepala Sekolah) untuk Pak Ahmad Budi Setiawan. B
 
 **Format per soal:**
 1. **Pertanyaan X.Y:** kutip indikator penilaian (aspek dan indikator), lalu tanya "Bukti fisiknya apa?"
-2. **Dokumen inti:** daftar bernomor, berisi dokumen utama yang wajib ada.
-3. **Dokumen pendukung:** daftar bernomor, berisi bukti pelengkap.
-4. **Tambahan:** daftar bernomor, berisi bukti yang menguatkan saat verifikasi.
+2. **Tabel per soal** dengan kolom: Bukti dokumen inti | Bukti dokumen pendukung | Bukti dokumen tambahan. Ini format Excel contoh dari Pak Budi (soal 1.1 dan seterusnya).
+3. **Setiap dokumen inti punya pendukungnya sendiri** (satu baris per dokumen inti). Contoh: Visi-misi → SK, notulen, daftar hadir, foto, EDS, SWOT, profil, rapor pendidikan. KSP → SK penetapan, notulen, daftar hadir, rapor pendidikan.
+4. **Tambahan** diisi hanya jika ada bukti penguat di luar inti dan pendukung. Boleh kosong.
 5. Pisahkan antar soal dengan garis `---`.
 
 **Gaya:** Bahasa Indonesia, tegas, padat, tanpa kalimat pembuka atau penutup yang tidak perlu. Jangan tambahkan catatan panjang kecuali diminta.
