@@ -23,6 +23,16 @@ Aturan cara menjawab soal PKKS (Kepala Sekolah) untuk Pak Ahmad Budi Setiawan. B
 4. **Tambahan** diisi hanya jika ada bukti penguat di luar inti dan pendukung. Boleh kosong.
 5. Pisahkan antar soal dengan garis `---`.
 
+**Prinsip kualitas (instruksi Pak Budi, 2026-11-13):** tujuan bukan sekadar jawaban yang benar, tetapi jawaban yang **sempurna dengan cara terbaik**. Terapkan ke semua soal PKKS:
+1. Pecah indikator menjadi unsur-unsurnya (contoh 1.1: dipahami, berpusat pada murid, selaras pembelajaran mendalam; ditambah "budaya sekolah" jika ada di nama aspek). Setiap unsur wajib punya bukti.
+2. Definisi kolom: **inti** = bukti langsung yang membuktikan unsur indikator. **Pendukung** = legalitas dan proses (SK, notulen, daftar hadir, foto, data sumber). **Tambahan** = dampak, tindak lanjut, keberlanjutan, testimoni. Kolom tambahan jangan dibiarkan kosong bila ada bukti dampak.
+3. Semua "bukti fisik" dari pengawas wajib masuk. Item dari analisis sendiri ditandai **(+)** agar mudah dihapus.
+4. Jangan ada dokumen yang sama muncul di inti dan pendukung pada baris yang sama.
+5. Kutip teks indikator persis seperti di rubrik (jangan diringkas). Garis bergelombang di gambar rubrik adalah koreksi ejaan Word, bukan coretan.
+6. Tahap siklus (misal SPMI: pemetaan, rencana, pelaksanaan, monev, tindak lanjut) masing-masing menjadi baris inti sendiri.
+7. Soal keuangan dan BOS: beri peringatan regulasi bila relevan (ARKAS, SPJ, transparansi).
+Versi terbaru: `Bukti-Dokumen-PKKS-Aspek-1-4-v2` (docx dan md), 74 baris.
+
 **Gaya:** Bahasa Indonesia, tegas, padat, tanpa kalimat pembuka atau penutup yang tidak perlu. Jangan tambahkan catatan panjang kecuali diminta.
 
 **Pertanyaan yang menjadi acuan:** rubrik 1.1 sampai 1.5 (Visi-misi; Perencanaan Berbasis Data; Kurikulum dan Pembelajaran; Pengelolaan Peserta Didik; Pendidik dan Tenaga Kependidikan).
