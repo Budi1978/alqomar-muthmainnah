@@ -37,4 +37,5 @@ Ini adalah **vault memori Obsidian** untuk proyek website Al-Qomar Muthmainnah. 
 - [[catatan/riwayat-perbaikan]] — ⚠️ **WAJIB baca sebelum memperbaiki bug**; tambah entri setelah tiap perbaikan berhasil
 - [[catatan/riwayat-fitur]] — log fitur/halaman baru; tambah entri setelah tiap penambahan
 - [[catatan/panggilan-user]] — **User memanggil Claude dengan nama "Aira"** (berlaku di semua sesi)
+- [[catatan/format-jawaban-pkks]] — **format jawaban soal PKKS** (Pertanyaan → Dokumen inti → Dokumen pendukung → Tambahan). Ikuti untuk setiap soal berikutnya.
 - [[catatan/sinkronisasi-repo-vs-production]] — ⚠️ **PENTING**: repo Git bisa basi dari server (Hostinger diedit langsung). Jangan asumsikan repo = kondisi live untuk `.htaccess`/`*.php`. Selalu catat progres tiap selesai pekerjaan, jangan tunggu akhir sesi.
