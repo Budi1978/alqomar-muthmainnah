@@ -31,7 +31,7 @@ alqomar-muthmainnah/
 ├── _backup/                # Arsip: backup bertanggal + snapshot index-live lama
 │   ├── index.html.2026-04-14
 │   └── index.html.2026-04-15
-├── docs/                   # Dokumen pendukung
+├── docs/                   # Dokumen pendukung (docs/LEXUS/smp/: dokumen PKKS SMP, folder per komponen 1-4)
 ├── images/                 # Aset gambar
 ├── .htaccess               # Konfigurasi aktif: rewrite, cache, kompresi, redirect
 ├── _headers                # (tidak aktif) warisan Netlify

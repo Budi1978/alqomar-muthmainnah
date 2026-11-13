@@ -40,6 +40,10 @@ Versi terbaru: `Bukti-Dokumen-PKKS-Aspek-1-4-v2` (docx dan md), 74 baris.
 - A4 portrait, kop surat YPIPC dan Al-Qomar untuk SK dan notulen. Skrip pembangun: `build-11.js` di scratchpad (tidak ikut repo).
 - Hasil 1.1: `Dokumen-Komponen-1.1-Formal.docx` (48 halaman, 29 lampiran).
 
+**Lokasi file (diminta 2026-11-13):** `docs/LEXUS/smp/` berisi 4 folder komponen: `Komponen 1 - Manajemen dan Tata Kelola`, `Komponen 2 - Supervisi`, `Komponen 3 - Kewirausahaan, Inovasi dan Kemitraan`, `Komponen 4 - Kepribadian dan Sosial`. Komponen 1-4 = Aspek 1-4 pada rubrik PKKS SMP. Dokumen taruh di folder komponennya; ringkasan lintas komponen di `smp/`. "Dokumen 2" = dokumen Komponen 2 (Supervisi, indikator 2.1-2.5). Folder `docs/` dipakai karena tidak ada folder bernama `document`; `docs/` tidak ikut di-upload ke Hostinger.
+- Sudah dibuat: Komponen 1 (baru indikator 1.1, 1.2-1.10 belum) dan Komponen 2 (lengkap 2.1-2.5, 52 halaman, 34 lampiran). Belum: Komponen 3 dan 4, serta 1.2-1.10.
+- Skrip pembangun Komponen 2: `middle2.js`, `assemble2.py`, `figs2.py` di scratchpad sesi.
+
 **Gaya:** Bahasa Indonesia, tegas, padat, tanpa kalimat pembuka atau penutup yang tidak perlu. Jangan tambahkan catatan panjang kecuali diminta.
 
 **Pertanyaan yang menjadi acuan:** rubrik 1.1 sampai 1.5 (Visi-misi; Perencanaan Berbasis Data; Kurikulum dan Pembelajaran; Pengelolaan Peserta Didik; Pendidik dan Tenaga Kependidikan).
