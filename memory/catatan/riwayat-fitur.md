@@ -14,6 +14,7 @@ Bagian dari [[index]]. Bug dicatat di [[riwayat-perbaikan]].
 
 | Tanggal | Fitur | File / lokasi | Catatan |
 |---|---|---|---|
+| 2026-11-13 | Skill karpathy-guidelines (pedoman perilaku coding) | `.claude/skills/karpathy-guidelines/SKILL.md` | Salinan MIT dari forrestchang/andrej-karpathy-skills; juga dipasang di platform-guru-alqomar |
 | 2026-10-21 | Tracker MD Heny diunggah ke Google Drive sebagai Google Sheet (dummy) | Drive pemilik: ahmadbudisetiawan1@gmail.com, id `10oxXCdIK_6_VRgCSFP9_NNt6Q6Uq28fTltmJNPF3kXg` | Upload xlsx base64 gagal ("Invalid conversion requested", salinan base64 manual rusak); dibuat ulang lewat Sheets API (7 sheet, rumus, dropdown, warna status). Jangan diulang: kirim base64 panjang lewat chat |
 | 2026-10-21 | Tracker XLSX: tambah sheet Harian + Mingguan (rekap SUMIFS per rentang tanggal) | `docs/Tracker-Marketing-MD-Heny-Fitriani.xlsx` | Data dummy; non-website, tanpa deploy. Versi Google Sheets belum dibuat (tunggu konfirmasi upload ke Drive) |
 | 2026-10-21 | Tracker XLSX per anggota MD Heny (data DUMMY) | `docs/Tracker-Marketing-MD-Heny-Fitriani.xlsx` | 5 sheet (Petunjuk, Anggota, Referral, Bulanan, Rekap) dengan rumus & dropdown; non-website, tanpa deploy. Ganti data dummy sebelum dipakai |
