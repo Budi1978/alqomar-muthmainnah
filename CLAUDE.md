@@ -22,7 +22,6 @@ alqomar-muthmainnah/
 ├── berita-detail.html      # Template halaman detail artikel
 ├── event.html              # Halaman daftar event/kegiatan
 ├── ppdb.html               # Halaman PPDB (Pendaftaran Peserta Didik Baru)
-├── login-divisi.html       # Halaman login untuk divisi internal
 ├── berita/                 # Subdirektori berita — URL bersih /berita/
 │   ├── index.html          # Daftar berita (dapat diakses di /berita/)
 │   └── .htaccess           # Konfigurasi URL rewrite Apache
@@ -83,7 +82,6 @@ Folder `memory/` adalah **vault Obsidian** yang berfungsi sebagai memori jangka 
 | `berita-detail.html` | `/berita-detail.html` | Template halaman detail artikel |
 | `event.html` | `/event.html` | Daftar event dan agenda sekolah |
 | `ppdb.html` | `/ppdb.html` | Informasi dan pendaftaran PPDB |
-| `login-divisi.html` | `/login-divisi.html` | Login internal divisi sekolah |
 
 ## Variabel CSS (Sistem Desain)
 

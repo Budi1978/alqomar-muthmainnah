@@ -1,9 +1,6 @@
 User-agent: *
 Allow: /
 
-# Portal internal — jangan diindeks
-Disallow: /login-divisi
-
 # Arsip internal — jangan diindeks
 Disallow: /_backup/
 

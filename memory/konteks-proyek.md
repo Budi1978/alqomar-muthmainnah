@@ -24,7 +24,7 @@ Bagian dari [[index]].
 - Google Fonts: Plus Jakarta Sans, Amiri, Playfair Display
 
 ## Halaman Utama
-`index.html` (22 section) · `berita.html` + `berita/` · `berita-detail.html` · `event.html` · `ppdb.html` · `login-divisi.html`
+`index.html` (22 section) · `berita.html` + `berita/` · `berita-detail.html` · `event.html` · `ppdb.html`
 
 ## File Konfigurasi
 - `_headers` — CSP & header keamanan Netlify
