@@ -33,12 +33,12 @@ Aturan cara menjawab soal PKKS (Kepala Sekolah) untuk Pak Ahmad Budi Setiawan. B
 7. Soal keuangan dan BOS: beri peringatan regulasi bila relevan (ARKAS, SPJ, transparansi).
 Versi terbaru: `Bukti-Dokumen-PKKS-Aspek-1-4-v2` (docx dan md), 74 baris.
 
-**Paket dokumen bukti per komponen (diminta 2026-11-13):** untuk tiap komponen (mulai 1.1) buat satu file Word berisi dokumen bukti nyata (bukan daftar), disusun per dokumen inti, lalu pendukung dan tambahannya. Pola: sampul, petunjuk dan peta unsur indikator, daftar dokumen dengan checklist, lalu Bagian per dokumen inti dengan kode lampiran (1.0, 1.1, ...). Aturan:
+**Paket dokumen bukti per komponen (diminta 2026-11-13):** untuk tiap komponen (mulai 1.1) buat satu file Word FORMAL, bukan sekadar kumpulan lampiran. Pak Budi menolak versi kumpulan lampiran ("beda banget dengan dokumen SD yang rapi") dan juga tidak mau Claude minta contoh dokumen SD: rancang sendiri strukturnya. Struktur final (versi 2): cover (logo placeholder), lembar pengesahan, kata pengantar, daftar isi, daftar tabel, daftar gambar (halaman romawi), Bab I Pendahuluan (latar belakang, dasar hukum, tujuan, ruang lingkup, sistematika), Bab II Profil dan Landasan Konseptual (+Gambar), Bab III Uraian per unsur indikator, Bab IV Bukti inti/pendukung/tambahan (tabel), Bab V Penutup (kesimpulan, tindak lanjut), daftar pustaka, lalu Lampiran (dokumen bukti nyata berkode 1.0, 1.1, ... dengan checklist). Nomor halaman daftar isi dihitung dua kali jalan (render PDF lalu isi nomor), jadi harus dibangun ulang bila isi berubah. Skrip: `build-11.js`, `middle.js`, `assemble.py`, `extract.py`, `figs.py` di scratchpad sesi (tidak ikut repo). Aturan:
 - Isi yang diketahui (identitas sekolah, visi, misi, nama kepala sekolah) diambil dari sumber nyata. Visi dan misi diambil dari website alqomar.sch.id.
 - Data hasil (wawancara, capaian, daftar hadir, foto, nomor SK, tanggal) jangan dikarang: beri placeholder sorotan kuning.
 - Bagian usulan diberi label "usulan, sesuaikan". Dasar hukum SK diverifikasi sebelum ditandatangani.
 - A4 portrait, kop surat YPIPC dan Al-Qomar untuk SK dan notulen. Skrip pembangun: `build-11.js` di scratchpad (tidak ikut repo).
-- Hasil 1.1: `Komponen-1.1-Visi-Misi-Tujuan-Budaya-Sekolah.docx` (34 halaman, 29 lampiran).
+- Hasil 1.1: `Dokumen-Komponen-1.1-Formal.docx` (48 halaman, 29 lampiran).
 
 **Gaya:** Bahasa Indonesia, tegas, padat, tanpa kalimat pembuka atau penutup yang tidak perlu. Jangan tambahkan catatan panjang kecuali diminta.
 
