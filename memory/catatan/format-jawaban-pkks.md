@@ -42,7 +42,8 @@ Versi terbaru: `Bukti-Dokumen-PKKS-Aspek-1-4-v2` (docx dan md), 74 baris.
 
 **Lokasi file (diminta 2026-11-13):** `docs/LEXUS/smp/` berisi 4 folder komponen: `Komponen 1 - Manajemen dan Tata Kelola`, `Komponen 2 - Supervisi`, `Komponen 3 - Kewirausahaan, Inovasi dan Kemitraan`, `Komponen 4 - Kepribadian dan Sosial`. Komponen 1-4 = Aspek 1-4 pada rubrik PKKS SMP. Dokumen taruh di folder komponennya; ringkasan lintas komponen di `smp/`. "Dokumen 2" = dokumen Komponen 2 (Supervisi, indikator 2.1-2.5). Folder `docs/` dipakai karena tidak ada folder bernama `document`; `docs/` tidak ikut di-upload ke Hostinger.
 - KOREKSI penting: "dokumen 2-10" yang Pak Budi minta = indikator 1.2 sampai 1.10 di dalam Komponen 1, BUKAN Komponen 2. Salah tafsir ini sempat membuat beliau marah. Bila angka tunggal/rentang muncul tanpa konteks, anggap itu nomor indikator pada komponen yang sedang dikerjakan.
-- Sudah dibuat: Komponen 1 lengkap (1.1 sampai 1.10, masing-masing satu dokumen formal 29-39 halaman) dan Komponen 2 (Supervisi 2.1-2.5, 52 halaman, 34 lampiran). Belum: Komponen 3 dan 4.
+- Sudah dibuat: Komponen 1 lengkap (1.1 sampai 1.10, masing-masing satu dokumen formal 29-39 halaman), Komponen 2 (Supervisi 2.1-2.5, SATU dokumen 52 halaman), Komponen 3 (3.1-3.4, empat dokumen) dan Komponen 4 (4.1.1-4.2.3, enam dokumen). Perintah "lanjut 3-10" ditafsirkan sebagai dokumen Komponen 3 dan 4 yang belum ada (4+6 = 10 dokumen); tafsir ini belum dikonfirmasi Pak Budi.
+- Belum jelas: apakah Komponen 2 perlu dipecah per indikator (2.1-2.5) seperti Komponen 1, 3, 4.
 - Dokumen 1.2-1.10 dibangun oleh generator berbasis data (`configs.js`, `gen-middle.js`, `assemble-gen.py`, `gen-one.sh`, `figs3.py` di scratchpad): lampiran dibuat otomatis dari daftar bukti inti/pendukung/tambahan memakai template per jenis (SK, notulen, daftar hadir, foto, instrumen, program, laporan, dst).
 - Skrip pembangun Komponen 2: `middle2.js`, `assemble2.py`, `figs2.py` di scratchpad sesi.
 
