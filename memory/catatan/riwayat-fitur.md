@@ -30,3 +30,6 @@ Bagian dari [[index]]. Bug dicatat di [[riwayat-perbaikan]].
 | 2026-05-16 | Skill Claude Code (desain-profesional, konten-sosmed) | `.claude/skills/` | `c8dcf73`, `51ecd73` |
 
 <!-- Entri baru ditambah di baris pertama tabel -->
+
+## 2026-11-13 · Mesin perbaikan di artefak SPKKS
+Tambah periksa dan perbaiki satu dokumen (deteksi nomor dari nama berkas, perbaikan langsung di file Word asli, laporan sebelum/sesudah). Aturan baku: [[catatan/aturan-mesin-pkks]].
