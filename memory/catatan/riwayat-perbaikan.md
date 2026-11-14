@@ -18,6 +18,12 @@ Entri terbaru di atas. Entri berstatus "belum di-deploy" berarti bug masih ada d
 
 ---
 
+## 2026-11-14 — 404 tanpa Google Fonts + tanggal `/biaya`
+- **Status**: ⏳ siap di `_perbaikan/2026-11-14-c/` — **belum di-upload ke Hostinger**
+- **Gejala**: `404.html` masih memanggil Google Fonts dan punya canonical ke `/404.html`; `/biaya` menulis "Terakhir diperbarui: 25 Oktober 2026" padahal isinya berubah 14 Nov.
+- **Solusi**: hapus tautan Google + canonical di `404.html`, rujuk `pages.css?v=20261114`; ganti tanggal di `/biaya` (teks + meta description) ke 14 November 2026.
+- **Cek ulang**: buka URL ngawur → sumber halaman tidak memuat `fonts.googleapis`; `/biaya` menampilkan 14 November 2026. Purge Cloudflare setelah upload.
+
 ## 2026-11-14 — Font: lepas dari Google Fonts di 7 halaman lama
 - **Status**: ✅ sudah di-upload user dan diverifikasi di server asli 14 Nov 2026 (7 halaman, `pages.css`, font Nastaliq identik). Edge Cloudflare sempat masih menyajikan versi lama `/biaya`, `/tahfidz`, dan `/css/pages.css` tanpa `?v=` → perlu Purge Everything setelah upload.
 - **Gejala**: `/biaya`, `/fasilitas`, `/prestasi`, `/privacy`, `/syarat`, `/tahfidz`, `/sekolah-islam-jakarta-barat` masih memanggil `fonts.googleapis.com` (render-blocking), beda dari beranda yang sudah self-hosted.
