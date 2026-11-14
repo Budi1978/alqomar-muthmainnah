@@ -18,8 +18,16 @@ Entri terbaru di atas. Entri berstatus "belum di-deploy" berarti bug masih ada d
 
 ---
 
+## 2026-11-14 — Hero tablet menimpa foto + menu HP tanpa padding (paket e)
+- **Status**: ⏳ belum di-deploy — file di `_perbaikan/2026-11-14-e/` (22 HTML + 2 CSS, `.htaccess` tidak berubah)
+- **Gejala**: (1) beranda 861–1200px: `h1` hero melebar sampai 66–84% lebar layar, menimpa foto; (2) 600–860px: foto hero 480px tinggi, CTA turun; (3) menu HP semua halaman: isi menempel tepi kiri, submenu tidak menjorok, dropdown desktop tanpa padding.
+- **Penyebab**: (1) `.hero-copy{max-width:700px}` tetap 700px di layar sempit sedangkan gradasi putih berbasis persen; (3) `.site-header ul{padding:0}` (spesifisitas 0,1,1) mengalahkan `.main-nav` dan `.submenu` (0,1,0).
+- **Solusi**: (1) `@media (min-width:861px) and (max-width:1200px){.hero-copy{max-width:50%}` + gradasi 42/53/64/74%; (2) `@media (min-width:600px) and (max-width:860px){.hero-media{aspect-ratio:2/1}.hero p{max-width:58ch}}`; (3) `.site-header .submenu{padding:8px}` + di ≤860px `.site-header .main-nav{padding:12px 20px …}` dan `.site-header .submenu{padding:0 0 6px 14px}`. CSS naik ke `?v=20261114b`.
+- **Jangan diulang**: menerapkan `max-width:50%` di >1200px — di 1920px (zoom 1,42) judul pas di batas dan bisa patah jadi 3 baris. Menurunkan spesifisitas reset `.site-header ul` (footer ikut berubah).
+- **Cek ulang**: beranda di 861/940/1100px → tepi kanan judul & paragraf ≤50% lebar layar; menu HP → teks mulai 20px dari tepi, submenu 34px.
+
 ## 2026-11-14 — Audit UI/UX "Diagnostic Studio": 4 perbaikan (paket d)
-- **Status**: ✅ sudah di-upload user dan diverifikasi live 14 Nov 2026 (22 HTML + 2 CSS identik byte-per-byte; `/program/kb-tkit` & `/jenjang/kb-tkit` → 301 `/kb-tkit`; render 390/940/1280/1920px tanpa scroll horizontal). Sisa: di lebar tablet (±861–1100px) paragraf hero masih berakhir di ±58% lebar layar, sedikit menimpa foto.
+- **Status**: ✅ sudah di-upload user dan diverifikasi live 14 Nov 2026 (22 HTML + 2 CSS identik byte-per-byte; `/program/kb-tkit` & `/jenjang/kb-tkit` → 301 `/kb-tkit`; render 390/940/1280/1920px tanpa scroll horizontal). Sisa hero tablet ditangani di paket e.
 - **Gejala**: (1) `/program/kb-tkit` 404; (2) lebar 861–1040px header tanpa tombol PPDB dan tanpa hamburger; (3) `<ul id="mainNav">` tidak dibungkus `<nav>`; (4) paragraf hero beranda menimpa foto di desktop.
 - **Solusi**: (1) `RewriteRule ^program/kb-tkit/?$ /kb-tkit [R=301,L]` — pola sama dengan `/program/smpit` & `/program/sdit` yang sudah ada di server; (2) tautan menu "PPDB" jadi tombol hijau di 861–1040px; (3) `<nav class="nav-utama" aria-label="Navigasi utama">` + `.nav-utama{display:contents}`; (4) `.hero p` 46ch → 42ch, stop gradasi putih digeser (36/48/60/70%). CSS naik ke `?v=20261114a`; beranda juga diubah di `<style id="aq-kritis">`.
 - **Jangan diulang**: menganggap submenu Jenjang/Program tidak bisa diakses keyboard — **bisa** (`.has-sub:focus-within` sudah ada). Uji otomatis yang membaca gaya sebelum transisi 0,16 dtk selesai memberi hasil palsu. Menampilkan lagi `.header-actions .hbtn` di ≤1040px (meluber, lihat catatan 30/09 di chrome.css).
