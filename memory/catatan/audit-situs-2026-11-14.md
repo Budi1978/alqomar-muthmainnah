@@ -30,7 +30,7 @@ Audit menyeluruh www.alqomar.sch.id (30 halaman, header, sitemap, 75 aset, rende
 - [ ] Video profil hanya di `/tentang`; tabel `video_youtube` punya 4 video.
 - [ ] HTML tidak di-cache di edge Cloudflare (`cf-cache-status: DYNAMIC`, TTFB 1,0–1,3 dtk diukur dari AS).
 - [ ] HTML server `/berita` dan beranda tertinggal (berhenti 15 Okt; hanya 9 dari 39 artikel bertaut; sisanya lewat JS).
-- [ ] Upload `_perbaikan/2026-11-14-font/` (font self-hosted 7 halaman) — lihat [[catatan/riwayat-perbaikan]].
+- [x] (selesai 14 Nov 2026) Upload `_perbaikan/2026-11-14-font/` (font self-hosted 7 halaman) — lihat [[catatan/riwayat-perbaikan]].
 - [x] **Cache Rule Cloudflare untuk HTML** — aktif 14 Nov 2026 (dibuat user di dashboard). Aturan "Cache HTML publik": hostname `www.alqomar.sch.id`, kecuali path diawali `/spmb-online`, `/cms`, `/login`; Eligible for cache; Edge TTL ikut cache-control origin. Browser Cache TTL zona diubah dari 4 jam ke **Respect Existing Headers** (kalau tidak, Cloudflare menaikkan `max-age` HTML jadi 14400). Hasil: TTFB 1,1–1,6 dtk → 0,12–0,2 dtk (HIT, diukur dari AS). **Setelah upload ke Hostinger: Purge Everything di Cloudflare**, kalau tidak versi lama bertahan sampai 10 menit.
 - LCP `/spmb-online` dan `/berita` sudah diuji (14 Nov): hanya ±300 ms di atas TTFB, tidak perlu perubahan kode; angka 2,8–2,9 dtk sebelumnya adalah artefak sandbox (pihak ketiga tak terjangkau).
 - [ ] Tiga tumpukan CSS (v3; `pages.css` + Google Fonts; Tailwind/DaisyUI path relatif) dan tiga versi `alqomar-v3.js` (`20261006a`, `20261019`, `20261101`).

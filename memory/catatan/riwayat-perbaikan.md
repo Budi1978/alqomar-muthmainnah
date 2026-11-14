@@ -19,7 +19,7 @@ Entri terbaru di atas. Entri berstatus "belum di-deploy" berarti bug masih ada d
 ---
 
 ## 2026-11-14 — Font: lepas dari Google Fonts di 7 halaman lama
-- **Status**: ⏳ siap di `_perbaikan/2026-11-14-font/` — **belum di-upload ke Hostinger**
+- **Status**: ✅ sudah di-upload user dan diverifikasi di server asli 14 Nov 2026 (7 halaman, `pages.css`, font Nastaliq identik). Edge Cloudflare sempat masih menyajikan versi lama `/biaya`, `/tahfidz`, dan `/css/pages.css` tanpa `?v=` → perlu Purge Everything setelah upload.
 - **Gejala**: `/biaya`, `/fasilitas`, `/prestasi`, `/privacy`, `/syarat`, `/tahfidz`, `/sekolah-islam-jakarta-barat` masih memanggil `fonts.googleapis.com` (render-blocking), beda dari beranda yang sudah self-hosted.
 - **Penyebab**: `<link>` Google Fonts di tiap halaman **dan** `@import` Google Fonts di baris 7 `css/pages.css` (yang ini mudah terlewat).
 - **Solusi**: hapus `<link>`/preconnect Google; `pages.css` memakai `@font-face` lokal (Source Serif 4, Playfair) dan dirujuk sebagai `/css/pages.css?v=20261114` (file lama di-cache immutable 1 tahun); `/tahfidz` dan `/sekolah-islam-jakarta-barat` dapat blok `<style id="aq-font-lokal">`. Font baru yang harus di-upload: `fonts/noto-nastaliq-urdu-arabic-400-normal.woff2` (dari paket npm `@fontsource/noto-nastaliq-urdu` 5.3.0). Font lain sudah ada di `/fonts/` server.
