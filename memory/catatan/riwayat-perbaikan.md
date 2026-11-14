@@ -22,9 +22,10 @@ Entri terbaru di atas. Entri berstatus "belum di-deploy" berarti bug masih ada d
 - **Status**: ⏳ siap di `_perbaikan/2026-11-14/` — **belum di-upload ke Hostinger**
 - **Gejala**: (1) `/spmb-online` menulis tes Gelombang 2 "Pekan ke-2 Des 2026" padahal 9 Januari 2027; (2) Sekolah Penggerak ditulis sebagai status aktif di 5 halaman; (3) lembaga akreditasi SMPIT ditulis "BSANP" di `/tentang` dan `/smpit`; (4) `/smpit` masih memakai istilah P5; (5) `/tahfidz` menulis "Metode ODOA".
 - **Penyebab**: konten antarhalaman diperbarui terpisah; istilah regulasi lama belum disesuaikan.
+- **Tambahan (permintaan user, hari yang sama)**: nominal SPP dihapus dari `biaya`, `ppdb`, `kb-tkit`, `sdit`, `smpit` (20 penggantian); kolom SPP di tabel `/biaya` dihapus, baris SDIT digabung, FAQ diganti arahan ke Tata Usaha. Total 11 file.
 - **Solusi**: 27 penggantian teks di 8 file (`spmb-online`, `tentang`, `index`, `guru`, `ppdb`, `smpit`, `sekolah-islam-jakarta-barat`, `tahfidz`), dibuat dari **salinan HTML live** (bukan dari root repo yang tertinggal). Acuan isi: [[keputusan/2026-11-14-fakta-konten-baku]].
 - **Jangan diulang**: mengedit/upload file HTML root repo — `main` tertinggal jauh dari live (lihat [[audit-situs-2026-11-14]]). Menulis "Metode ODOA" atau Sekolah Penggerak sebagai status aktif.
-- **Cek ulang**: setelah upload, cari di situs live: "Pekan ke-2", "adalah Sekolah Penggerak", "BSANP)", "Projek Penguatan", "Metode ODOA" — semuanya harus nihil. Nomor SK SMPIT (`024/BSANP/K/SK/2026`) belum dicocokkan dengan dokumen asli.
+- **Cek ulang**: setelah upload, cari di situs live: "Pekan ke-2", "adalah Sekolah Penggerak", "BSANP)", "Projek Penguatan", "Metode ODOA", "Rp300.000", "Rp550.000", "Rp600.000" — semuanya harus nihil. Nomor SK SMPIT (`024/BSANP/K/SK/2026`) belum dicocokkan dengan dokumen asli.
 - **Commit**: lihat `git log -- _perbaikan/2026-11-14`
 
 ## 2026-09-14 — Repo `.htaccess` & `berita-detail.php` jauh beda dari production

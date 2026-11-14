@@ -15,7 +15,7 @@ Bagian dari [[index]]. Sumber: jawaban langsung user atas temuan [[catatan/audit
 2. **Sekolah Penggerak (SMPIT)**: **jangan dihapus**, tetapi jangan ditulis sebagai status aktif. Programnya sudah dihentikan pemerintah. Tulis sebagai riwayat: "pernah menjadi / alumni Program Sekolah Penggerak". Jangan sebut "didampingi Kemendikbud/Kemendikbudristek".
 3. **Lembaga akreditasi**: **BAN-PDM** untuk SDIT dan SMPIT. Jangan tulis "BSANP" sebagai nama lembaga.
 4. **Istilah kurikulum**: "Projek Penguatan Profil Pelajar Pancasila (P5)" diganti **"Kokurikuler dengan Dimensi Profil Lulusan"**.
-5. **SPP SMPIT (Rp300.000) lebih murah dari SDIT**: itu memang kebijakan — SD lebih mahal daripada TK dan SMP. **Bukan masalah; jangan diangkat lagi sebagai temuan** dan tidak perlu kalimat pembenaran di situs.
+5. **Nominal SPP tidak ditampilkan di situs** (semua jenjang). Yang tampil hanya biaya formulir Rp100.000; SPP, uang pangkal, seragam, dan buku diarahkan ke Tata Usaha/WhatsApp. Latar: SPP SD memang lebih tinggi daripada TK dan SMP (kebijakan sekolah) — jangan diangkat sebagai temuan. Infaq RQAQ Rp130.000/bulan tetap tampil.
 6. **Target tahfidz**: SMPIT **1 juz (Juz 30)**; SDIT **2 juz (Juz 30 dan Juz 29)**.
 7. **ODOA vs Ummi**: **ODOA (One Day One Ayat) = program Al-Qur'an sekolah Al-Qomar**; **Ummi = metode belajar Al-Qur'an-nya**. Jangan tulis "Metode ODOA".
 

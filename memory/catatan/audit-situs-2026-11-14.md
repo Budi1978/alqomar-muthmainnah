@@ -19,10 +19,10 @@ Audit menyeluruh www.alqomar.sch.id (30 halaman, header, sitemap, 75 aset, rende
 
 **Sudah benar (jangan diubah):** HSTS + CSP + header keamanan; redirect non-www/`.html`/trailing slash; title & description unik di 30 halaman; JSON-LD lengkap; cache aset 1 tahun; 0 aset rusak; mobile tanpa overflow, CLS ≈ 0, LCP 0,5–2,9 dtk; RLS aktif di 24/24 tabel Supabase; `daftar_spmb` punya pembatas laju.
 
-**Koreksi isi yang sudah disiapkan (8 file, 27 penggantian):** lihat [[catatan/riwayat-perbaikan]] entri 2026-11-14.
+**Koreksi isi yang sudah disiapkan (11 file, 47 penggantian, termasuk penghapusan nominal SPP):** lihat [[catatan/riwayat-perbaikan]] entri 2026-11-14.
 
 **TODO terbuka (belum dikerjakan):**
-- [ ] Upload 8 file dari `_perbaikan/2026-11-14/` ke `public_html` Hostinger.
+- [ ] Upload 11 file dari `_perbaikan/2026-11-14/` ke `public_html` Hostinger.
 - [ ] Cloudflare Web Analytics diblokir CSP (`static.cloudflareinsights.com` tidak ada di `script-src`): izinkan di `.htaccess` atau matikan di dashboard Cloudflare. Minta versi `.htaccess` server dulu.
 - [ ] Testimoni (4 baris di tabel `testimoni`) tidak tampil di beranda, `/ppdb`, `/spmb-online`.
 - [ ] Uang pangkal tidak dipublikasikan di `/biaya` (keputusan user belum ada).
