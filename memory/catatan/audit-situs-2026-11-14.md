@@ -24,7 +24,7 @@ Audit menyeluruh www.alqomar.sch.id (30 halaman, header, sitemap, 75 aset, rende
 **TODO terbuka (belum dikerjakan):**
 - [x] (selesai, terverifikasi live 14 Nov 2026) Upload 11 file dari `_perbaikan/2026-11-14/` ke `public_html` Hostinger.
 - [x] (selesai 14 Nov 2026) Upload `_perbaikan/2026-11-14-c/` (404 tanpa Google Fonts + tanggal `/biaya` 14 Nov 2026).
-- [ ] Upload `_perbaikan/2026-11-14-d/` (audit UI/UX: tombol PPDB tablet, `<nav>`, hero) + tambah baris redirect `/program/kb-tkit` di `.htaccess` server — lihat [[catatan/riwayat-perbaikan]].
+- [x] (selesai, terverifikasi live 14 Nov 2026) Upload `_perbaikan/2026-11-14-d/` (audit UI/UX: tombol PPDB tablet, `<nav>`, hero) + tambah baris redirect `/program/kb-tkit` di `.htaccess` server — lihat [[catatan/riwayat-perbaikan]].
 - [ ] Cloudflare Web Analytics diblokir CSP (`static.cloudflareinsights.com` tidak ada di `script-src`): izinkan di `.htaccess` atau matikan di dashboard Cloudflare. Minta versi `.htaccess` server dulu.
 - [ ] Testimoni (4 baris di tabel `testimoni`) tidak tampil di beranda, `/ppdb`, `/spmb-online`.
 - [ ] Uang pangkal tidak dipublikasikan di `/biaya` (keputusan user belum ada).
