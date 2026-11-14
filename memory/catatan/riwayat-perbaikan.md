@@ -19,7 +19,7 @@ Entri terbaru di atas. Entri berstatus "belum di-deploy" berarti bug masih ada d
 ---
 
 ## 2026-11-14 — Koreksi isi hasil audit (jadwal, Sekolah Penggerak, BAN-PDM, kokurikuler, ODOA)
-- **Status**: ⏳ siap di `_perbaikan/2026-11-14/` — **belum di-upload ke Hostinger**
+- **Status**: ✅ sudah di-upload user dan diverifikasi live 14 Nov 2026 (11 halaman identik byte-per-byte dengan `_perbaikan/2026-11-14/`; teks lama nihil)
 - **Gejala**: (1) `/spmb-online` menulis tes Gelombang 2 "Pekan ke-2 Des 2026" padahal 9 Januari 2027; (2) Sekolah Penggerak ditulis sebagai status aktif di 5 halaman; (3) lembaga akreditasi SMPIT ditulis "BSANP" di `/tentang` dan `/smpit`; (4) `/smpit` masih memakai istilah P5; (5) `/tahfidz` menulis "Metode ODOA".
 - **Penyebab**: konten antarhalaman diperbarui terpisah; istilah regulasi lama belum disesuaikan.
 - **Tambahan (permintaan user, hari yang sama)**: nominal SPP dihapus dari `biaya`, `ppdb`, `kb-tkit`, `sdit`, `smpit` (20 penggantian); kolom SPP di tabel `/biaya` dihapus, baris SDIT digabung, FAQ diganti arahan ke Tata Usaha. Total 11 file.

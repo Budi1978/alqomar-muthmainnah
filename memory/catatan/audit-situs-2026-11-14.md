@@ -11,7 +11,7 @@ Bagian dari [[index]]. Keputusan konten hasil audit: [[keputusan/2026-11-14-fakt
 
 ## Ringkasan
 
-Audit menyeluruh www.alqomar.sch.id (30 halaman, header, sitemap, 75 aset, render mobile/desktop, advisor Supabase). Fondasi teknis kuat; masalah utama ada di konsistensi isi. Koreksi isi sudah disiapkan di `_perbaikan/2026-11-14/` (belum di-upload).
+Audit menyeluruh www.alqomar.sch.id (30 halaman, header, sitemap, 75 aset, render mobile/desktop, advisor Supabase). Fondasi teknis kuat; masalah utama ada di konsistensi isi. Koreksi isi di `_perbaikan/2026-11-14/` sudah live per 14 Nov 2026.
 
 ## Detail
 
@@ -22,7 +22,8 @@ Audit menyeluruh www.alqomar.sch.id (30 halaman, header, sitemap, 75 aset, rende
 **Koreksi isi yang sudah disiapkan (11 file, 47 penggantian, termasuk penghapusan nominal SPP):** lihat [[catatan/riwayat-perbaikan]] entri 2026-11-14.
 
 **TODO terbuka (belum dikerjakan):**
-- [ ] Upload 11 file dari `_perbaikan/2026-11-14/` ke `public_html` Hostinger.
+- [x] (selesai, terverifikasi live 14 Nov 2026) Upload 11 file dari `_perbaikan/2026-11-14/` ke `public_html` Hostinger.
+- [ ] `/biaya` masih menulis "Terakhir diperbarui: 25 Oktober 2026" padahal isinya berubah 14 Nov 2026.
 - [ ] Cloudflare Web Analytics diblokir CSP (`static.cloudflareinsights.com` tidak ada di `script-src`): izinkan di `.htaccess` atau matikan di dashboard Cloudflare. Minta versi `.htaccess` server dulu.
 - [ ] Testimoni (4 baris di tabel `testimoni`) tidak tampil di beranda, `/ppdb`, `/spmb-online`.
 - [ ] Uang pangkal tidak dipublikasikan di `/biaya` (keputusan user belum ada).
