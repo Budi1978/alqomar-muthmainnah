@@ -11,15 +11,24 @@ Empat perbaikan dari audit "Diagnostic Studio". Dibuat dari salinan live 14 Nov 
 
 Urutan: **CSS dulu, baru HTML.** Setelah selesai: Cloudflare → **Purge Everything**.
 
-## 2. Tambah satu baris di `.htaccess` server (edit langsung, jangan timpa file)
+## 2. Tambah dua baris di `.htaccess` server (edit langsung, jangan timpa file)
 
-Letakkan tepat di bawah aturan `/program/smpit` dan `/program/sdit` yang sudah ada di server (atau tepat di bawah blok `APEX -> WWW`):
+Cari baris ini di `.htaccess` server:
 
 ```apache
-RewriteRule ^program/kb-tkit/?$ /kb-tkit [R=301,L]
+  RewriteRule ^(?:jenjang/tkit|tkit)/?$ /kb-tkit [R=301,L]
 ```
 
-Setelah disimpan, `https://www.alqomar.sch.id/program/kb-tkit` harus pindah ke `/kb-tkit` (sekarang 404).
+Tepat **di bawahnya**, tempel:
+
+```apache
+  # 14/11/2026: /program/kb-tkit (dan /jenjang/kb-tkit) masih 404; SDIT & SMPIT sudah ditangani di atas.
+  RewriteRule ^(?:program|jenjang)/kb-tkit/?$ /kb-tkit [R=301,L]
+```
+
+Setelah disimpan, `https://www.alqomar.sch.id/program/kb-tkit` harus pindah ke `/kb-tkit` (sekarang 404). Kalau situs error setelah disimpan, hapus dua baris itu lagi.
+
+`.htaccess` di root repo sudah berisi versi server 14 Nov 2026 + dua baris ini, sebagai arsip. Jangan upload file itu menimpa server: salinannya diketik ulang dari tempelan chat (hanya baris CSP yang dicocokkan dengan header live).
 
 ## Isi perubahan
 

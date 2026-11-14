@@ -2,6 +2,10 @@
 DirectoryIndex index.html
 Options -Indexes
 
+# Halaman 404 bergaya situs (30/09/2026). Tanpa ini Hostinger menampilkan
+# halaman default "This Page Does Not Exist" yang masih memuat analytics.js lama.
+ErrorDocument 404 /404.html
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
@@ -13,7 +17,26 @@ Options -Indexes
   # Tanpa rule ini, sitemap-berita.xml 404 dan berita tidak terindeks Google.
   RewriteRule ^sitemap-berita\.xml$ sitemap-berita.php [L]
 
+  # ---------- RSS BERITA (25/10/2026) ----------
+  RewriteRule ^feed\.xml$ feed.php [L]
+  RewriteRule ^feed/?$ /feed.xml [R=301,L]
+
   RewriteRule ^index\.html$ / [R=301,L]
+
+  # ---------- URL LAMA -> URL SEKARANG (23/10/2026) ----------
+  # Search Console: 25 URL 404 + 16 "duplikat" dari struktur lama. JANGAN tambah
+  # .php di pola berita-detail: /berita/{slug} dirombak internal ke
+  # berita-detail.php?slug= dan rule ini akan menangkapnya lagi -> LOOP.
+  RewriteCond %{QUERY_STRING} (?:^|&)slug=([A-Za-z0-9-]+)(?:&|$)
+  RewriteRule ^berita-detail(?:\.html)?$ /berita/%1? [R=301,L]
+  RewriteRule ^berita-detail(?:\.html)?$ /berita? [R=301,L]
+  RewriteRule ^index/?$ / [R=301,L]
+  RewriteRule ^berita/ppdb-20262027-alqomar-muthmainnah-pendaftaran-siswa-baru-kb-tkit-sdit-smpit-sudah-dibuka/?$ /berita/pembukaan-pendaftaran-peserta-didik-baru-tahun-ajaran-20272028 [R=301,L]
+  RewriteRule ^(?:program|jenjang)/(sdit|smpit)/?$ /$1 [R=301,L]
+  RewriteRule ^(?:jenjang/tkit|tkit)/?$ /kb-tkit [R=301,L]
+  # 14/11/2026: /program/kb-tkit (dan /jenjang/kb-tkit) masih 404; SDIT & SMPIT sudah ditangani di atas.
+  RewriteRule ^(?:program|jenjang)/kb-tkit/?$ /kb-tkit [R=301,L]
+  RewriteRule ^kontak\.html$ /tentang [R=301,L]
   # RewriteRule ^berita\.html$ /berita/ [R=301,L]
   # ^ DIHAPUS 14/09/2026: /berita/ jadi folder fisik sungguhan (berkas artikel
   # lama + index.html) hari ini, jadi Apache melayani folder itu duluan lewat
@@ -22,11 +45,21 @@ Options -Indexes
   # /berita/ -> LOOP TAK TERHINGGA (kejadian 14/09/2026, 30rb+ request/detik).
   # /berita.html sekarang dilayani apa adanya (nama .html tetap di address bar,
   # bukan cuma masalah kosmetik SEO minor).
-  RewriteRule ^(ppdb|spmb-online|rqaq|guru|kb-tkit|sdit|smpit|tahfidz|event|privacy|syarat|sekolah-islam-jakarta-barat)\.html$ /$1 [R=301,L]
+  RewriteRule ^(ppdb|spmb-online|rqaq|guru|kb-tkit|sdit|smpit|tahfidz|privacy|syarat|sekolah-islam-jakarta-barat|tentang|jenjang|program|ekstrakurikuler|galeri|biaya|prestasi|fasilitas)\.html$ /$1 [R=301,L]
+
+  # ---------- KALENDER/EVENT DIHAPUS (16/09/2026) ----------
+  # Fitur kalender dihapus permanen (jarang diisi). Redirect link lama/terindeks ke beranda.
+  RewriteRule ^event(\.html)?/?$ / [R=301,L]
+
+  # ---------- GARIS MIRING DI AKHIR -> 301 ke versi tanpa garis miring (30/09/2026) ----------
+  # Sebelumnya /ppdb/ dilayani 200 (konten ganda dengan /ppdb). Canonical sudah
+  # menolong, tapi redirect 301 lebih bersih untuk Google & GA4.
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(ppdb|spmb-online|rqaq|guru|kb-tkit|sdit|smpit|tahfidz|privacy|syarat|sekolah-islam-jakarta-barat|tentang|jenjang|program|ekstrakurikuler|galeri|biaya|prestasi|fasilitas)/$ /$1 [R=301,L]
 
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^(ppdb|spmb-online|rqaq|guru|kb-tkit|sdit|smpit|tahfidz|event|privacy|syarat|sekolah-islam-jakarta-barat)/?$ $1.html [L]
+  RewriteRule ^(ppdb|spmb-online|rqaq|guru|kb-tkit|sdit|smpit|tahfidz|privacy|syarat|sekolah-islam-jakarta-barat|tentang|jenjang|program|ekstrakurikuler|galeri|biaya|prestasi|fasilitas)$ $1.html [L]
 
   # ---------- ARSIP BERITA: /berita/ tanpa slug -> isi berita.html ----------
   # Kalau Apache SEMPAT sampai ke rule ini (belum tentu, folder fisik /berita/
@@ -90,7 +123,7 @@ Options -Indexes
   </FilesMatch>
   # HTML: boleh di-revalidate
   <FilesMatch "\.(html|php)$">
-    Header set Cache-Control "public, max-age=600, must-revalidate"
+    Header set Cache-Control "public, max-age=600, stale-while-revalidate=3600"
   </FilesMatch>
   # Keamanan ringan
   Header always set X-Content-Type-Options "nosniff"
@@ -126,21 +159,35 @@ Options -Indexes
   # cdn.jsdelivr.net — sudah masuk daftar, jadi insiden 17 Agu 2026 (CSP ketat
   # mematikan Cropper/Quill) tidak terulang.
   #
-  # 'unsafe-inline' pada script-src SENGAJA dipertahankan: seluruh halaman
-  # memakai <script> sebaris dan atribut onclick, sedangkan berkas .html statis
-  # di Hostinger tidak bisa menyuntik nonce per permintaan. Menghapusnya butuh
-  # pembongkaran seluruh penangan sebaris — dikerjakan terpisah, bukan diam-diam.
-  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: blob: https://www.alqomar.sch.id https://alqomar.sch.id https://*.supabase.co https://*.ytimg.com https://www.googletagmanager.com https://*.google-analytics.com https://www.google.com https://maps.gstatic.com; connect-src 'self' https://*.supabase.co https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com https://www.google.com https://maps.google.com; upgrade-insecure-requests"
+  # 3 Okt 2026: 'unsafe-inline' DIHAPUS dari script-src halaman publik. Tiap <script>
+  # sebaris diizinkan lewat hash SHA-256 isinya. onclick/onerror sudah diganti
+  # addEventListener (guru.html, berita-detail.php, offline.html). KALAU ISI <script>
+  # SEBARIS DIUBAH, hash WAJIB dihitung ulang (jalankan hitung-hash-csp.sh) — kalau
+  # tidak, skrip itu diblokir browser. JSON-LD tidak perlu hash. cms-alqomar.html
+  # tetap 'unsafe-inline' lewat blok <Files> di bawah.
+  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src 'self' https://cdn.jsdelivr.net https://www.googletagmanager.com 'sha256-p5BVmwv65u8pxAhUvv7BGCIJIlLfJqK5Njl2MNrpzSQ=' 'sha256-PJfbfMb10PXstsvGDd1ptA8MbKhLhOx609NkHV3R2TI=' 'sha256-plrii5s8XGDBpaO+w0RxJ/ovtBpsyY8zkEv3z+4MER8=' 'sha256-dOjAbUtjnvCUs+h6NZzxxg3X3+yaVkLByyvyFn25zhk=' 'sha256-o2Tj6LxldiP0tDKus2rjkoHUdxeh4R95JVMT6jO6Yn4=' 'sha256-D4dvZMiBwfFx8eIJoA/bGb8pvg72IXoatdHRn3QWOFE=' 'sha256-n5LeuHJ9dnqA9BTUnNekCNUO3RwX5vsi18c/PEUnZXE=' 'sha256-q2Y9ayz426i0wSnTE46fj5Wo9pqZIJ6EzoZLn4UZmlk=' 'sha256-2u3YDZZAgvgkYueO5TnAHxck0CHpLsKwOmP7OVhGoTI=' 'sha256-9E60ocfMHXRjJBzibgpXsqjzClNmle3hUBgGCAynFDA=' 'sha256-QZ2iUEO9BzWXJNO2IPJ0UQETpqkJ6D5LQFw2uo1YrsY=' 'sha256-YFfExRByKAvVPNE6r8OGaO4kth0b4SQiH+fzek/yxMI='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: blob: https://www.alqomar.sch.id https://alqomar.sch.id https://*.supabase.co https://*.ytimg.com https://www.googletagmanager.com https://*.google-analytics.com https://www.google.com https://maps.gstatic.com; connect-src 'self' https://*.supabase.co https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com https://www.instagram.com https://www.tiktok.com https://www.google.com https://maps.google.com; upgrade-insecure-requests"
 
   # ---------- CSP TARGET (laporan saja, tidak memblokir) ----------
-  # Versi tanpa 'unsafe-inline' + Trusted Types. Ini SENGAJA melaporkan banyak
-  # pelanggaran di console: tiap pelanggaran menunjuk satu skrip sebaris yang
-  # harus dipindah ke berkas terpisah sebelum tahap berikutnya bisa diaktifkan.
-  Header always set Content-Security-Policy-Report-Only "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src 'self' https://cdn.jsdelivr.net https://www.googletagmanager.com; style-src 'self' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: blob: https://www.alqomar.sch.id https://alqomar.sch.id https://*.supabase.co https://*.ytimg.com https://www.googletagmanager.com https://*.google-analytics.com https://www.google.com https://maps.gstatic.com; connect-src 'self' https://*.supabase.co https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com https://www.google.com https://maps.google.com; require-trusted-types-for 'script'; upgrade-insecure-requests"
+  # Sama dengan kebijakan aktif + Trusted Types (tahap berikutnya). Pelanggaran di
+  # console = innerHTML tanpa policy; dibereskan terpisah. upgrade-insecure-requests
+  # sengaja tidak ada di sini (diabaikan browser pada report-only).
+  Header always set Content-Security-Policy-Report-Only "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src 'self' https://cdn.jsdelivr.net https://www.googletagmanager.com 'sha256-p5BVmwv65u8pxAhUvv7BGCIJIlLfJqK5Njl2MNrpzSQ=' 'sha256-PJfbfMb10PXstsvGDd1ptA8MbKhLhOx609NkHV3R2TI=' 'sha256-plrii5s8XGDBpaO+w0RxJ/ovtBpsyY8zkEv3z+4MER8=' 'sha256-dOjAbUtjnvCUs+h6NZzxxg3X3+yaVkLByyvyFn25zhk=' 'sha256-o2Tj6LxldiP0tDKus2rjkoHUdxeh4R95JVMT6jO6Yn4=' 'sha256-D4dvZMiBwfFx8eIJoA/bGb8pvg72IXoatdHRn3QWOFE=' 'sha256-n5LeuHJ9dnqA9BTUnNekCNUO3RwX5vsi18c/PEUnZXE=' 'sha256-q2Y9ayz426i0wSnTE46fj5Wo9pqZIJ6EzoZLn4UZmlk=' 'sha256-2u3YDZZAgvgkYueO5TnAHxck0CHpLsKwOmP7OVhGoTI=' 'sha256-9E60ocfMHXRjJBzibgpXsqjzClNmle3hUBgGCAynFDA=' 'sha256-QZ2iUEO9BzWXJNO2IPJ0UQETpqkJ6D5LQFw2uo1YrsY=' 'sha256-YFfExRByKAvVPNE6r8OGaO4kth0b4SQiH+fzek/yxMI='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: blob: https://www.alqomar.sch.id https://alqomar.sch.id https://*.supabase.co https://*.ytimg.com https://www.googletagmanager.com https://*.google-analytics.com https://www.google.com https://maps.gstatic.com; connect-src 'self' https://*.supabase.co https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com https://www.instagram.com https://www.tiktok.com https://www.google.com https://maps.google.com; require-trusted-types-for 'script'"
 
   # Popup wa.me tetap terbuka; yang diputus hanya rujukan balik window.opener.
   Header always set Cross-Origin-Opener-Policy "same-origin-allow-popups"
+
+  # Panel CMS: jangan diindeks mesin pencari (lapisan kedua selain robots.txt & meta)
+  <Files "cms-alqomar.html">
+    Header always set X-Robots-Tag "noindex, nofollow, noarchive"
+    Header set Cache-Control "no-store, private"
+    # Panel CMS masih penuh <script> sebaris + onclick (Cropper/Quill) — tetap 'unsafe-inline'
+    Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: blob: https://www.alqomar.sch.id https://alqomar.sch.id https://*.supabase.co https://*.ytimg.com https://www.googletagmanager.com https://*.google-analytics.com https://www.google.com https://maps.gstatic.com; connect-src 'self' https://*.supabase.co https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com https://www.google.com https://maps.google.com; upgrade-insecure-requests"
+    Header always unset Content-Security-Policy-Report-Only
+  </Files>
   Header always set X-Permitted-Cross-Domain-Policies "none"
+  # Jangan umumkan versi PHP (30/09/2026). berita-detail.php juga memanggil header_remove().
+  Header always unset X-Powered-By
+  Header unset X-Powered-By
 </IfModule>
 
 # ---------- 4. KEEP-ALIVE ----------
@@ -158,8 +205,6 @@ Options -Indexes
   RedirectMatch 301 ^/images/index-live\.html$        /
   RedirectMatch 301 ^/berita-detail-backup-.*\.html$  /berita
   RedirectMatch 301 ^/berita-backup-.*\.html$         /berita
-  # Backup .php ikut ter-cover, bukan cuma .html
-  RedirectMatch 301 ^/.*-backup-[0-9]+.*\.php$        /
 </IfModule>
 
 # ---------- 6. PROTEKSI FILE NON-PUBLIK ----------
