@@ -18,6 +18,15 @@ Entri terbaru di atas. Entri berstatus "belum di-deploy" berarti bug masih ada d
 
 ---
 
+## 2026-11-14 — Audit UI/UX "Diagnostic Studio": 4 perbaikan (paket d)
+- **Status**: ⏳ belum di-deploy — file di `_perbaikan/2026-11-14-d/` (22 HTML + 2 CSS), plus satu baris `.htaccess` yang ditambah langsung di server
+- **Gejala**: (1) `/program/kb-tkit` 404; (2) lebar 861–1040px header tanpa tombol PPDB dan tanpa hamburger; (3) `<ul id="mainNav">` tidak dibungkus `<nav>`; (4) paragraf hero beranda menimpa foto di desktop.
+- **Solusi**: (1) `RewriteRule ^program/kb-tkit/?$ /kb-tkit [R=301,L]` — pola sama dengan `/program/smpit` & `/program/sdit` yang sudah ada di server; (2) tautan menu "PPDB" jadi tombol hijau di 861–1040px; (3) `<nav class="nav-utama" aria-label="Navigasi utama">` + `.nav-utama{display:contents}`; (4) `.hero p` 46ch → 42ch, stop gradasi putih digeser (36/48/60/70%). CSS naik ke `?v=20261114a`; beranda juga diubah di `<style id="aq-kritis">`.
+- **Jangan diulang**: menganggap submenu Jenjang/Program tidak bisa diakses keyboard — **bisa** (`.has-sub:focus-within` sudah ada). Uji otomatis yang membaca gaya sebelum transisi 0,16 dtk selesai memberi hasil palsu. Menampilkan lagi `.header-actions .hbtn` di ≤1040px (meluber, lihat catatan 30/09 di chrome.css).
+- **Temuan audit yang tidak terbukti**: unduhan ganda foto hero (ada pengaman `data-snapshot`), "32 tahun"/"3 juz" (situs konsisten 35 tahun & 2 juz), angka CWV "P75", kontras `.jicon.orange` (elemen tersembunyi di beranda).
+- **Belum tercakup**: `berita-detail.php` (butuh versi server) — belum ber-`<nav>`, masih merujuk chrome.css versi lama. Drawer menu HP di beranda tanpa padding kiri (sudah begitu di live sebelum paket ini).
+- **Cek ulang**: setelah upload + purge — `curl -I /program/kb-tkit` → 301; sumber halaman memuat `nav-utama` dan `20261114a`; di lebar 940px tombol hijau "PPDB" tampil di header tanpa scroll horizontal.
+
 ## 2026-11-14 — 404 tanpa Google Fonts + tanggal `/biaya`
 - **Status**: ✅ sudah di-upload user, di-purge, dan diverifikasi live 14 Nov 2026 (identik; 0 request ke Google)
 - **Gejala**: `404.html` masih memanggil Google Fonts dan punya canonical ke `/404.html`; `/biaya` menulis "Terakhir diperbarui: 25 Oktober 2026" padahal isinya berubah 14 Nov.

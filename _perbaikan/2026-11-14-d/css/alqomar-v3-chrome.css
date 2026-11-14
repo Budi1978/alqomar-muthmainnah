@@ -1,0 +1,166 @@
+/* Al-Qomar v3 — CHROME: font, token warna, header, footer, tab bar, tombol WA.
+   Dipakai SEMUA halaman (baru & lama). Di-cache immutable: naikkan ?v= tiap berubah. */
+
+@font-face{font-family:'Playfair Fallback';font-weight:600 800;src:local('Georgia Bold'),local('Georgia-Bold'),local('Georgia');size-adjust:89%}
+@font-face{font-family:'Jakarta Fallback';font-weight:400 800;src:local('Arial'),local('Helvetica Neue'),local('Roboto');size-adjust:104%}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:600 800;font-display:swap;src:url('/fonts/playfair-display-latin-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:400 800;font-display:swap;src:url('/fonts/plus-jakarta-sans-latin-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Amiri';font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/amiri-arabic-normal-400.woff2') format('woff2');unicode-range:U+0600-06FF,U+0750-077F,U+FB50-FDFF,U+FE70-FEFC}
+
+:root{
+  --aq-green-950:#033A33;
+  --aq-green-900:#03473E;
+  --aq-green-800:#045D45;
+  --aq-green-700:#036A47;
+  --aq-green-600:#0B7F57;
+  --aq-lime:#9ADBBE;
+  --aq-mint-100:#DCEDE4;
+  --aq-mint-50:#F0F7F3;
+  --aq-gray-50:#F3F5F3;
+  --aq-gray-200:#E4EAE6;
+  --aq-gold:#F8CB62;
+  --aq-gold-dark:#D99A12;
+  --aq-orange:#F59E0B;
+  --aq-blue:#2F6FDE;
+  --aq-ink:#0B2A25;
+  --aq-ink-soft:#2F4641;
+  --aq-muted:#566B65;
+  --aq-white:#fff;
+  --aq-radius:14px;
+  --aq-radius-lg:22px;
+  --aq-shadow-sm:0 1px 2px rgba(4,93,69,.06),0 4px 14px -6px rgba(4,93,69,.12);
+  --aq-shadow-md:0 10px 34px -14px rgba(3,71,62,.28);
+  --aq-wrap:1240px;
+  --aq-z:1;
+  --aq-sans:'Plus Jakarta Sans','Jakarta Fallback',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --aq-serif:'Playfair Display','Playfair Fallback',Georgia,serif;
+}
+
+/* Layar lebar: seluruh halaman membesar proporsional supaya memenuhi monitor besar (tata letak tetap = rancangan 1440px). */
+@media (min-width:1500px){:root{--aq-z:1.15}}
+@media (min-width:1680px){:root{--aq-z:1.28}}
+@media (min-width:1900px){:root{--aq-z:1.42}}
+@media (min-width:2200px){:root{--aq-z:1.64}}
+@media (min-width:2500px){:root{--aq-z:1.86}}
+.site-header,.site-footer,.wa-float{zoom:var(--aq-z)}
+
+/* reset terbatas: berkas ini dipasang juga di halaman lama yang punya CSS sendiri */
+.site-header,.site-header *,.site-footer,.site-footer *,.tabbar,.tabbar *,.wa-float{box-sizing:border-box}
+.site-header,.site-footer,.tabbar{font-family:var(--aq-sans);line-height:1.5;-webkit-font-smoothing:antialiased}
+.site-header ul,.site-footer ul{list-style:none;margin:0;padding:0}
+.site-header a,.site-footer a,.tabbar a{color:inherit;text-decoration:none}
+.site-header img,.site-footer img{display:block;max-width:100%}
+.site-footer h3,.site-footer p{margin:0}
+.site-footer{text-align:left}
+.site-header .wrap,.site-footer .wrap{width:100%;max-width:var(--aq-wrap);margin-left:auto;margin-right:auto;padding-left:24px;padding-right:24px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--aq-green-800);color:#fff;padding:10px 16px;border-radius:8px;z-index:200}
+.skip:focus{left:12px}
+.hbtn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:40px;padding:8px 18px;border-radius:999px;font-weight:700;font-size:15px;line-height:1.2;background:var(--aq-green-800);color:#fff!important;box-shadow:0 8px 20px -10px rgba(4,93,69,.7);transition:background .18s}
+.hbtn:hover{background:var(--aq-green-700)}
+.hbtn svg{width:16px;height:16px;flex-shrink:0}
+
+/* ---------- Header ---------- */
+.site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--aq-gray-200)}
+.site-header .wrap{display:flex;align-items:center;gap:22px;min-height:80px}
+.brand{display:flex;align-items:center;gap:11px;flex-shrink:0}
+.brand img{width:50px;height:50px;object-fit:contain}
+.brand-name{display:block;font-weight:800;font-size:17.5px;line-height:1.15;color:var(--aq-green-900);letter-spacing:-.01em}
+.brand-sub{display:block;font-size:13px;font-weight:500;color:var(--aq-muted);margin-top:2px}
+.main-nav{margin-left:auto;display:flex;align-items:center;gap:2px}
+.main-nav>li{position:relative}
+.nav-link{display:flex;align-items:center;gap:5px;padding:10px 14px;font-size:15.5px;font-weight:600;color:var(--aq-ink-soft);border-radius:8px;position:relative;background:none;border:0}
+.nav-link:hover{color:var(--aq-green-800)}
+.nav-link[aria-current="page"],.nav-link.is-active{color:var(--aq-green-800);font-weight:700}
+.nav-link[aria-current="page"]::after,.nav-link.is-active::after{content:"";position:absolute;left:12px;right:12px;bottom:2px;height:2.5px;border-radius:2px;background:var(--aq-green-600)}
+.nav-link .caret{width:10px;height:10px;opacity:.6}
+.submenu{position:absolute;top:100%;left:0;min-width:210px;background:#fff;border:1px solid var(--aq-gray-200);border-radius:12px;box-shadow:var(--aq-shadow-md);padding:8px;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .16s,transform .16s,visibility .16s}
+.has-sub:hover .submenu,.has-sub:focus-within .submenu{opacity:1;visibility:visible;transform:none}
+/* jembatan hover: celah li->submenu (termasuk saat translateY 6px) tidak memutus :hover */
+@media (min-width:861px){.submenu::before{content:"";position:absolute;left:0;right:0;top:-14px;height:14px}}
+.submenu a{display:block;padding:9px 12px;border-radius:8px;font-size:15.5px;font-weight:600;color:var(--aq-ink-soft)}
+.submenu a:hover{background:var(--aq-mint-50);color:var(--aq-green-800)}
+.header-actions{display:flex;align-items:center;gap:10px}
+.icon-btn{width:42px;height:42px;display:grid;place-items:center;border-radius:50%;color:var(--aq-green-900);background:none;border:0}
+.icon-btn:hover{background:var(--aq-mint-50)}
+.icon-btn svg{width:20px;height:20px}
+.nav-toggle{display:none}
+.main-nav .nav-cta{display:none}
+
+/* ---------- Footer ---------- */
+.site-footer{background:var(--aq-green-900);color:rgba(255,255,255,.78);padding:clamp(40px,5vw,60px) 0 0;font-size:15.5px;margin-top:clamp(20px,3vw,40px)}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1.3fr;gap:32px}
+.site-footer .brand-name{color:#fff}
+.site-footer .brand-sub{color:rgba(255,255,255,.65)}
+.site-footer h3{font-size:15.5px;font-weight:700;color:#fff;margin-bottom:12px}
+.site-footer li{margin-bottom:8px}
+.site-footer a:hover{color:var(--aq-lime)}
+.site-footer .footer-about{margin-top:14px;font-size:15px;line-height:1.65;max-width:34ch}
+.socials{display:flex;gap:10px;margin-bottom:14px}
+.socials a{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.25);display:grid;place-items:center}
+.socials a:hover{background:rgba(255,255,255,.1)}
+.socials svg{width:17px;height:17px}
+.site-footer .footer-bottom{margin-top:36px;border-top:1px solid rgba(255,255,255,.12);padding-top:18px;padding-bottom:22px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:14px;color:rgba(255,255,255,.6)}
+/* tombol WA mengambang (kanan bawah) menutup tautan Syarat & Ketentuan di layar 861-1799 */
+@media (min-width:861px) and (max-width:1799px){.site-footer .footer-bottom{padding-right:88px}}
+
+/* ---------- WA mengambang & tab bar mobile ---------- */
+.wa-float{position:fixed;right:18px;bottom:22px;z-index:90;width:54px;height:54px;border-radius:50%;background:#1FAF54;color:#fff;display:grid;place-items:center;box-shadow:0 10px 26px -8px rgba(0,0,0,.4)}
+.wa-float svg{width:28px;height:28px}
+.tabbar{display:none}
+
+/* 30/09/2026: header meluber di 861–1200px (s.d. 113px di ~1090px, 32px di 1024px) →
+   scroll horizontal. Menu ringkas dimulai dari 1200px (dulu 1080px). */
+@media (max-width:1200px){
+  .main-nav .nav-link{padding:10px 8px;font-size:13.5px}
+  .header-actions{gap:6px}
+  .hbtn{padding:8px 12px;font-size:14px;gap:6px}
+  .hbtn svg{display:none}
+  .brand-sub{display:none}
+}
+@media (max-width:1080px){
+  .footer-grid{grid-template-columns:1.4fr 1fr 1fr}
+}
+/* 30/09/2026: 861–1040px (tablet landscape) header meluber s.d. 125px. Menu sudah punya
+   tautan "PPDB", jadi tombol PPDB di header disembunyikan di rentang ini. */
+@media (max-width:1040px){
+  .header-actions .hbtn{display:none}
+}
+@media (max-width:920px){
+  .main-nav .nav-link{padding:10px 6px}
+}
+@media (max-width:860px){
+  /* backdrop-filter di header menjadikan header sebagai containing block bagi .main-nav (position:fixed) → tinggi drawer 0. Matikan di mobile. */
+  .site-header{backdrop-filter:none;-webkit-backdrop-filter:none;background:#fff}
+  body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+  .site-header .wrap{min-height:64px;gap:10px}
+  .brand img{width:40px;height:40px}
+  .brand-sub{display:block}
+  .header-actions{display:none}
+  .nav-toggle{display:grid;margin-left:auto}
+  .main-nav{position:fixed;inset:64px 0 0 0;background:#fff;flex-direction:column;align-items:stretch;gap:0;padding:12px 20px calc(90px + env(safe-area-inset-bottom));overflow-y:auto;transform:translateX(100%);transition:transform .25s ease;visibility:hidden;margin:0}
+  .main-nav.open{transform:none;visibility:visible}
+  .main-nav .nav-link{font-size:16px;padding:14px 4px;border-bottom:1px solid var(--aq-gray-200);border-radius:0;width:100%}
+  .nav-link[aria-current="page"]::after,.nav-link.is-active::after{display:none}
+  .nav-link .caret{display:none}
+  .submenu{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:0;padding:0 0 6px 14px;min-width:0}
+  .submenu a{padding:11px 4px;font-weight:500}
+  .main-nav .nav-cta{display:block;margin-top:18px}
+  .main-nav .nav-cta .hbtn{width:100%;min-height:48px;font-size:15px}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:28px 20px}
+  .footer-grid>:first-child,.footer-grid>:last-child{grid-column:1/-1}
+  .footer-bottom{flex-direction:column;gap:6px}
+  .wa-float{bottom:calc(78px + env(safe-area-inset-bottom));right:14px;width:50px;height:50px}
+  .tabbar{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:95;background:#fff;border-top:1px solid var(--aq-gray-200);padding:6px 4px calc(6px + env(safe-area-inset-bottom));box-shadow:0 -6px 20px -12px rgba(3,71,62,.25)}
+  .tabbar a{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 2px;font-size:12px;font-weight:600;color:var(--aq-muted);border-radius:10px;min-height:48px;justify-content:center}
+  .tabbar svg{width:21px;height:21px}
+  .tabbar a[aria-current="page"]{color:var(--aq-green-800)}
+}
+
+
+/* 14/11/2026: menu utama dibungkus <nav class="nav-utama"> (landmark aksesibilitas).
+   display:contents supaya tata letak flex header tidak berubah. */
+.nav-utama{display:contents}
+
+/* 14/11/2026: 861-1040px tombol PPDB header disembunyikan (30/09) dan menu drawer belum aktif,
+   jadi header tanpa ajakan daftar. Tautan "PPDB" di menu tampil sebagai tombol di rentang ini. */
+@media (min-width:861px) and (max-width:1040px){.main-nav .nav-link{padding:10px 5px}.main-nav .nav-link[href="/ppdb"]{margin-left:4px;padding:8px 12px;border-radius:999px;background:var(--aq-green-800);color:#fff;font-weight:700}.main-nav .nav-link[href="/ppdb"]:hover{background:var(--aq-green-700);color:#fff}.main-nav .nav-link[href="/ppdb"]::after{display:none}}
