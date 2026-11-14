@@ -23,7 +23,7 @@ Audit menyeluruh www.alqomar.sch.id (30 halaman, header, sitemap, 75 aset, rende
 
 **TODO terbuka (belum dikerjakan):**
 - [x] (selesai, terverifikasi live 14 Nov 2026) Upload 11 file dari `_perbaikan/2026-11-14/` ke `public_html` Hostinger.
-- [ ] Upload `_perbaikan/2026-11-14-c/` (404 tanpa Google Fonts + tanggal `/biaya` 14 Nov 2026).
+- [x] (selesai 14 Nov 2026) Upload `_perbaikan/2026-11-14-c/` (404 tanpa Google Fonts + tanggal `/biaya` 14 Nov 2026).
 - [ ] Cloudflare Web Analytics diblokir CSP (`static.cloudflareinsights.com` tidak ada di `script-src`): izinkan di `.htaccess` atau matikan di dashboard Cloudflare. Minta versi `.htaccess` server dulu.
 - [ ] Testimoni (4 baris di tabel `testimoni`) tidak tampil di beranda, `/ppdb`, `/spmb-online`.
 - [ ] Uang pangkal tidak dipublikasikan di `/biaya` (keputusan user belum ada).
@@ -37,7 +37,7 @@ Audit menyeluruh www.alqomar.sch.id (30 halaman, header, sitemap, 75 aset, rende
 - [ ] `robots.txt` menyebut `/login-divisi` (kini 404) dan `/_backup/`.
 - [ ] `/PPDB` (huruf besar) 404 — tambah redirect lowercase.
 - [ ] Alt kosong pada foto konten (`/ppdb`, `/sdit`, `/smpit`, `/berita`, `/galeri`).
-- [ ] `site.webmanifest` dikirim `text/plain`; 404 punya canonical ke `/404.html`.
+- [ ] `site.webmanifest` dikirim `text/plain`. (Canonical 404 sudah dihapus 14 Nov.)
 - [ ] Supabase: 20 tabel punya dua policy SELECT permisif untuk `authenticated`; `supabase-js` dipatok 2.39.3.
 
 **Temuan yang dicabut:** SPP SMPIT < SDIT (kebijakan, bukan masalah). Target tahfidz SMPIT: halaman `/smpit` ternyata sudah punya dua jalur (masuk baru: Juz 30; lanjutan SDIT: lanjut Juz 29 sesuai kemampuan) — sesuai keputusan user.

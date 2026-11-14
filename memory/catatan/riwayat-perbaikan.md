@@ -19,7 +19,7 @@ Entri terbaru di atas. Entri berstatus "belum di-deploy" berarti bug masih ada d
 ---
 
 ## 2026-11-14 — 404 tanpa Google Fonts + tanggal `/biaya`
-- **Status**: ⏳ siap di `_perbaikan/2026-11-14-c/` — **belum di-upload ke Hostinger**
+- **Status**: ✅ sudah di-upload user, di-purge, dan diverifikasi live 14 Nov 2026 (identik; 0 request ke Google)
 - **Gejala**: `404.html` masih memanggil Google Fonts dan punya canonical ke `/404.html`; `/biaya` menulis "Terakhir diperbarui: 25 Oktober 2026" padahal isinya berubah 14 Nov.
 - **Solusi**: hapus tautan Google + canonical di `404.html`, rujuk `pages.css?v=20261114`; ganti tanggal di `/biaya` (teks + meta description) ke 14 November 2026.
 - **Cek ulang**: buka URL ngawur → sumber halaman tidak memuat `fonts.googleapis`; `/biaya` menampilkan 14 November 2026. Purge Cloudflare setelah upload.
