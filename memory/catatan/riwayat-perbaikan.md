@@ -2,7 +2,7 @@
 judul: Riwayat Perbaikan Bug
 tipe: catatan
 tags: [proyek, perbaikan, penting]
-diperbarui: 2026-10-11
+diperbarui: 2026-11-14
 ---
 
 # Riwayat Perbaikan Bug
@@ -17,6 +17,15 @@ Bagian dari [[index]]. Fitur baru dicatat di [[riwayat-fitur]].
 Entri terbaru di atas. Entri berstatus "belum di-deploy" berarti bug masih ada di live sampai file di-upload ke Hostinger.
 
 ---
+
+## 2026-11-14 — Koreksi isi hasil audit (jadwal, Sekolah Penggerak, BAN-PDM, kokurikuler, ODOA)
+- **Status**: ⏳ siap di `_perbaikan/2026-11-14/` — **belum di-upload ke Hostinger**
+- **Gejala**: (1) `/spmb-online` menulis tes Gelombang 2 "Pekan ke-2 Des 2026" padahal 9 Januari 2027; (2) Sekolah Penggerak ditulis sebagai status aktif di 5 halaman; (3) lembaga akreditasi SMPIT ditulis "BSANP" di `/tentang` dan `/smpit`; (4) `/smpit` masih memakai istilah P5; (5) `/tahfidz` menulis "Metode ODOA".
+- **Penyebab**: konten antarhalaman diperbarui terpisah; istilah regulasi lama belum disesuaikan.
+- **Solusi**: 27 penggantian teks di 8 file (`spmb-online`, `tentang`, `index`, `guru`, `ppdb`, `smpit`, `sekolah-islam-jakarta-barat`, `tahfidz`), dibuat dari **salinan HTML live** (bukan dari root repo yang tertinggal). Acuan isi: [[keputusan/2026-11-14-fakta-konten-baku]].
+- **Jangan diulang**: mengedit/upload file HTML root repo — `main` tertinggal jauh dari live (lihat [[audit-situs-2026-11-14]]). Menulis "Metode ODOA" atau Sekolah Penggerak sebagai status aktif.
+- **Cek ulang**: setelah upload, cari di situs live: "Pekan ke-2", "adalah Sekolah Penggerak", "BSANP)", "Projek Penguatan", "Metode ODOA" — semuanya harus nihil. Nomor SK SMPIT (`024/BSANP/K/SK/2026`) belum dicocokkan dengan dokumen asli.
+- **Commit**: lihat `git log -- _perbaikan/2026-11-14`
 
 ## 2026-09-14 — Repo `.htaccess` & `berita-detail.php` jauh beda dari production
 - **Status**: ✅ sudah disinkronkan di repo (versi server jadi acuan)
